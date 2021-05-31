@@ -1,7 +1,7 @@
-from flask import Flask, request, render_template, redirect, url_for, session
+from flask import Flask, jsonify, request, render_template, redirect, url_for, session
 from functools import wraps
 
-
+import time
 import json
 from datetime import datetime, timedelta
 
@@ -18,7 +18,8 @@ app.config.from_object('config')
 def login_required(f):
     @wraps(f)
     def wrap(*args, **kwargs):
-        return f(*args, **kwargs)
+        if True:
+            return f(*args, **kwargs)
 
         else:
             print("on redirige vers l'accueil")
@@ -28,6 +29,31 @@ def login_required(f):
 ############################
 
 
+@app.route('/')
+def main():
+    return render_template('main.html', reload = time.time())
+
+
+@app.route('/api/user')
+def api_user():
+    info = {
+        "username":"test1",
+        "games":{
+            "test1":{
+                "activated":True,
+                "last_played":'2020-12-01',
+            },
+            "test2":{
+                "activated":False,
+                "last_played":'2020-12-01',
+            },
+        },
+        "info_nulle":"test en cours"
+    }
+
+    return jsonify(info)
+
 @app.route("/connexion", methods=["GET", "POST"])
 def login_page():
     # traitement de la requete ajax
+    pass
