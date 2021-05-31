@@ -132,7 +132,7 @@ def change_player_qual(user_id, game_id, quality, conn):
 
 def get_player_info(user_id, game_id, conn):
     cur = conn.cursor()
-    sql = f"SELECT quality, player_id FROM user WHERE login = '{login}'"
+    sql = f"SELECT quality, player_id FROM player WHERE user_id = {user_id} and game_id = {game_id}"
     cur.execute(sql)
     result = cur.fetchone()
     cur.close()
@@ -154,7 +154,7 @@ def rm_player(user_id, game_id, conn):
 
 # conn = give_connection("dev")
 
-# print(list_user_games(1, conn))
+# print(get_player_info(1, 4, conn))
 
 
 # conn.close()

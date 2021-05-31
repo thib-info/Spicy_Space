@@ -3,8 +3,8 @@ import json
 
 from bdd import give_connection
 
-from bdd import  add_game, get_game_id, can_join, rm_game
-from bdd import add_user, get_user_id, compare_passw, rm_user
+from bdd import  add_game, get_game_id, can_join, rm_game, list_game_users
+from bdd import add_user, get_user_id, compare_passw, rm_user, list_user_games
 from bdd import add_player, change_player_qual, get_player_info, rm_player
 
 
@@ -28,7 +28,7 @@ def create_game(user_id, name, code, conn):
     return 'ok'
 
 
-def register_player(login, passwd, conn):
+def register_user(login, passwd, conn):
     if get_user_id(login, conn) != None:
         return 'taken'
 
@@ -45,8 +45,29 @@ def join_game(user_id, game_id, code, conn):
     else:
         return 'no'
 
+
 def give_mj(user_id, login, game_id, conn):
-    pass
+    players = list_game_users(game_id, conn)
+    info = get_player_info(user_id, game_id, conn)
+    if info[0] == "mj":
+        if login in players:
+            new_mj = get_user_id(login, conn)
+            change_player_qual(user_id, game_id, 'player', conn)
+            change_player_qual(new_mj, game_id, 'mj', conn )
+            return 'ok'
+        else:
+            return 'unknow'
+    
+    elif info[0] == None:
+        return 'strange'
+    return 'unauthorized'
+
+
+
+def connect_user(login, passw, con):
+    if compare_passw(login, passw, conn):
+        return True
+    return False
 
 
 
@@ -55,7 +76,7 @@ conn = give_connection('dev')
 # print(register_player("user2", "test", conn))
 # print(create_game(1, "game2", "naze", conn))
 
-print(join_game(2, 4, "naze", conn))
+print(give_mj(1, "user2", 4, conn))
 
 
 
