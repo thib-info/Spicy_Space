@@ -1,5 +1,61 @@
 var windows = []; // array of all window class instances
 
+function windowConstructor(windowIndex) { // windowIndex is an integer
+  function windowBase() { // what all windows contain
+    document.body.insertAdjacentHTML('beforeend',`
+    <div id="window${windowIndex}" class="window" selected="true">
+      <div class="windowHeader">
+        <button type="button" class="windowCloseButton" onclick="closeWindow(${windowIndex})"></button>
+      </div>
+      <div class="windowBody">
+      </div>
+    </div>
+    `);
+  }
+  function windowTitle() {
+    var title;
+    switch (windowIndex) {
+      case 0: // Technologies
+        title = '<h2>Technologie</h2>';
+        break;
+      case 1: // Diplomatie
+        title = '<h2>Diplomatie</h2>';
+        break;
+      case 2: // construire sur un système
+        title = '<h2>Construire</h2>';
+        break;
+      default:
+        title = '<h2>Default_Title</h2>';
+        break;
+    }
+    var windowHeader = document.querySelector(`[id="window${windowIndex}"] .windowHeader`);
+    windowHeader.insertAdjacentHTML('afterbegin',title);
+  }
+  function windowContent() {
+    var content;
+    switch (windowIndex) {
+      case 0: // Technologies
+        content = '<p>Ici il y aura tous les éléments relatifs aux Technologies</p>';
+        break;
+      case 1: // Diplomatie
+        content = '<p>Ici il y aura tous les éléments relatifs à la Diplomatie</p>';
+        break;
+      case 2: // construire sur un système
+        content = '<p>Ici il y aura tous les éléments relatifs à la Construction</p>';;
+        break;
+      default:
+        content = '<h2>Default_Content</h2>';
+        break;
+    }
+    var windowBody = document.querySelector(`[id="window${windowIndex}"] .windowBody`);
+    windowBody.insertAdjacentHTML('afterbegin',content);
+  }
+
+  windowBase();
+  windowTitle();
+  windowContent();
+}
+
 function windowFocus(windowElement) {
   windowElement.attributes.selected.value = true;
   windows.forEach(function(windowEl){
@@ -9,44 +65,39 @@ function windowFocus(windowElement) {
   });
 }
 
-function addWindow(windowId) {
-  if (document.querySelector(`[id=${windowId}]`)) { // if window already exists,
-    windowFocus(document.querySelector(`[id=${windowId}]`));
+function windowUnfocusAll() {
+  windows.forEach(function(windowEl){
+    windowEl.attributes.selected.value = false;
+  });
+}
+
+function addWindow(windowIndex) { // windowIndex is an integer
+  if (document.querySelector(`[id=window${windowIndex}]`)) { // if window already exists,
+    windowFocus(document.querySelector(`[id=window${windowIndex}]`));
     return 0;
   }
+   // constructing window
+  windowConstructor(windowIndex);
 
-
-  document.body.insertAdjacentHTML('beforeend',`
-  <div id="${windowId}" class="window" selected="true">
-    <div class="windowHeader">
-      This is window with id ${windowId}.
-      <button type="button" class="windowCloseButton" onclick="closeWindow(${windowId}.id)"></button>
-    </div>
-    <div class="windowBody">
-      <p>Move</p>
-      <p>this</p>
-      <p>DIV</p>
-    </div>
-  </div>
-  `);
-  var windowElement = document.getElementById(windowId);
+  var windowElement = document.getElementById(`window${windowIndex}`);
   windows.push(windowElement);
+
+  // window focus managment
+  windowFocus(windowElement); // always focus the new window
+  windowElement.onmousedown = function() {
+    windowFocus(windowElement); // focus if window is clicked on
+  }
+
   dragElement(windowElement);
-  windowFocus(windowElement);
   return 0;
 }
 
-function closeWindow(windowId) {
-  document.getElementById(windowId).remove();
+function closeWindow(windowIndex) {
+  document.getElementById(`window${windowIndex}`).remove();
 }
 
 // Make the DIV element draggable:
 function dragElement(elmnt) {
-  // whenever clicking on a window, focus on it.
-  elmnt.onmousedown = function() {
-    windowFocus(elmnt);
-  }
-
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   if (document.querySelector(`[id=${elmnt.id}] .windowHeader`)) {
     // if present, the header is where you move the DIV from:
