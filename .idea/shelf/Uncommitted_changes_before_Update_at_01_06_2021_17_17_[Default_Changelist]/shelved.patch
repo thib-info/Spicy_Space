@@ -1,0 +1,37 @@
+Index: web_docs/data/js/ajax/exampleConnexion.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- web_docs/data/js/ajax/exampleConnexion.js	(date 1622560540967)
++++ web_docs/data/js/ajax/exampleConnexion.js	(date 1622560540967)
+@@ -0,0 +1,11 @@
++window.onload = function(){
++    let buttonClick = document.getElementById('ajaxCall');
++    if(buttonClick != null){
++        buttonClick.addEventListener('click', function(){
++            let valueToSend = "activated=oui";
++            let target = "localhost:8080/api/user";
++            let goal = null;
++            ajaxCall(valueToSend, target, goal);
++        });
++    }
++}
+\ No newline at end of file
+Index: web_docs/data/css/window/window.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>body {\n  margin: 0;\n}\n\n.window {\n  position: absolute;\n  background-color: #f1f1f1;\n  border: 1px solid #d3d3d3;\n\n  width: 600px;\n  height: 400px;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n\n  /* prevent text selection */\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n}\n\n.windowHeader {\n  padding: 10px;\n  cursor: move;\n  color: #fff;\n  z-index: inherit;\n\n}\n\n.windowBody {\n  padding: 10px;\n  z-index: inherit;\n}\n\n/* selected window */\n.window[selected=true] .windowHeader {\n  background-color: #2196F3;\n}\n.window[selected=true] {\n  z-index: 10;\n}\n\n/* unselected window */\n.window[selected=false] .windowHeader {\n  background-color: #8DBDEB;\n}\n.window[selected=false] {\n  z-index: 9;\n}\n\n/* windowCloseButton */\n.windowCloseButton {\n  vertical-align: middle;\n  height:20px;\n  width:20px;\n  float: right;\n  background-color: red;\n  border: 0;\n}\n.windowCloseButton:hover {\n  background-color: #671706;\n}\n.windowCloseButton:active {\n  background-color: #B66351;\n}\n\n/* window Menu (temporary) */\n#windowMenu {\n  text-align: center;\n  background-color: #2BA432;\n}\n.windowMenu button {\n  display: inline-block;\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- web_docs/data/css/window/window.css	(revision 51912c6917cbae1a4d3aeb3f8c4afa20282c0853)
++++ web_docs/data/css/window/window.css	(date 1622559702807)
+@@ -69,6 +69,7 @@
+ #windowMenu {
+   text-align: center;
+   background-color: #2BA432;
++  margin-top: 10%; /*Just for some tests*/
+ }
+ .windowMenu button {
+   display: inline-block;

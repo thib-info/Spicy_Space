@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/implement-AJAX" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="064b37ff-9fb4-46b2-be31-9447bb19a6cc" name="Default Changelist" comment="Start of colors&#10;pannel dev">
+      <change afterPath="$PROJECT_DIR$/web_docs/data/js/ajax/exampleConnexion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_docs/data/css/colors/colors-stock.css" beforeDir="false" afterPath="$PROJECT_DIR$/web_docs/data/css/colors/colors-stock.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_docs/data/css/index/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/web_docs/data/css/index/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_docs/data/css/window/window.css" beforeDir="false" afterPath="$PROJECT_DIR$/web_docs/data/css/window/window.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_docs/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/web_docs/templates/index.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="dev-window" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1tIPyCv8qMLIKN4nAQGsY2Is4IR" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/web_docs/templates" />
+      <recent name="$PROJECT_DIR$/web_docs/data" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="defaultBuilder" type="PythonConfigurationType" factoryName="Python">
+      <module name="Spicy_Space" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/local/bin/python3.7" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="064b37ff-9fb4-46b2-be31-9447bb19a6cc" name="Default Changelist" comment="" />
+      <created>1622453885196</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1622453885196</updated>
+      <workItem from="1622453891416" duration="857000" />
+      <workItem from="1622549915961" duration="8335000" />
+      <workItem from="1622559347491" duration="1097000" />
+    </task>
+    <task id="LOCAL-00001" summary="encore un test">
+      <created>1622453996478</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1622453996478</updated>
+    </task>
+    <task id="LOCAL-00002" summary="New branch">
+      <created>1622550098601</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1622550098601</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Update trash file">
+      <created>1622550272471</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1622550272471</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Update trash file">
+      <created>1622550305935</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1622550305935</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Configuration of AJAX">
+      <created>1622550956012</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1622550956012</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Start of colors&#10;pannel dev">
+      <created>1622557055562</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1622557055562</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/implement-AJAX" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="encore un test" />
+    <MESSAGE value="New branch" />
+    <MESSAGE value="Update trash file" />
+    <MESSAGE value="Configuration of AJAX" />
+    <MESSAGE value="Start of colors&#10;pannel dev" />
+    <option name="LAST_COMMIT_MESSAGE" value="Start of colors&#10;pannel dev" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="184" y="94" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1622559768954">
+      <screen x="0" y="23" width="1440" height="819" />
+    </state>
+    <state x="184" y="94" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.819@0.23.1440.819" timestamp="1622559768954" />
+    <state x="411" y="142" key="RollbackChangesDialog" timestamp="1622558436418">
+      <screen x="0" y="23" width="1440" height="819" />
+    </state>
+    <state x="411" y="142" key="RollbackChangesDialog/0.23.1440.819@0.23.1440.819" timestamp="1622558436418" />
+    <state x="427" y="209" key="Vcs.Push.Dialog.v2" timestamp="1622557061199">
+      <screen x="0" y="23" width="1920" height="1119" />
+    </state>
+    <state x="320" y="159" key="Vcs.Push.Dialog.v2/0.23.1440.819@0.23.1440.819" timestamp="1622550970282" />
+    <state x="427" y="209" key="Vcs.Push.Dialog.v2/0.23.1920.1119@0.23.1920.1119" timestamp="1622557061199" />
+    <state x="518" y="353" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1622557525312">
+      <screen x="0" y="23" width="1440" height="819" />
+    </state>
+    <state x="518" y="353" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.819@0.23.1440.819" timestamp="1622557525312" />
+    <state x="418" y="187" width="604" height="490" key="find.popup" timestamp="1622555054780">
+      <screen x="0" y="23" width="1440" height="819" />
+    </state>
+    <state x="418" y="187" width="604" height="490" key="find.popup/0.23.1440.819@0.23.1440.819" timestamp="1622555054780" />
+  </component>
+</project>
