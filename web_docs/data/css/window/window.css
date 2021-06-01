@@ -1,5 +1,7 @@
 body {
   margin: 0;
+  height: 100%;
+  overflow: hidden;
 }
 
 .window {
@@ -51,9 +53,9 @@ body {
 
 /* windowCloseButton */
 .windowCloseButton {
-  vertical-align: middle;
-  height:20px;
-  width:20px;
+  /*vertical-align: middle; */
+  height:28px;
+  width:28px;
   float: right;
   background-color: red;
   border: 0;
@@ -63,6 +65,14 @@ body {
 }
 .windowCloseButton:active {
   background-color: #B66351;
+}
+
+.window[selected=false] .windowCloseButton {
+  background-color: #BB7168;
+}
+
+.window h2, .window .windowCloseButton {
+  display: inline;
 }
 
 /* window Menu (temporary) */
