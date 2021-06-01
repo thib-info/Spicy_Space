@@ -1,6 +1,6 @@
 import json
 
-class unite:
+class unit:
     def __init__(self, conf, owner, position, base_lvl=1):
         self.name = conf["name"]
         self.type = conf["type"]
@@ -22,13 +22,13 @@ class unite:
         self.cost = self.cost + self.scaling[3] * conf["cost"]
         self.maint_cost = self.maint_cost + self.scaling[4] * conf["maint_cost"]
 
-with open("conf_files/class_attributes/spaceships.json") as f:
+with open("../../../config/config_unit.json") as f:
     conf = json.load(f)
 
-#print(conf["destroyer"].keys())
-#test = unite(conf["destroyer"], 1, [1, 1])
-#test.upgrade(conf["destroyer"])
-#test.upgrade(conf["destroyer"])
-#print(test.pv)
-#print(test.maint_cost)
+print(conf["destroyer"].keys())
+test = unit(conf["destroyer"], 1, [1, 1])
+test.upgrade(conf["destroyer"])
+test.upgrade(conf["destroyer"])
+print(test.pv)
+print(test.maint_cost)
 
