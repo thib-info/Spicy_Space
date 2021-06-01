@@ -6,7 +6,7 @@ from sp_motor.utils import dist
 class System():
     def __init__(self, x, y):
         self.pos = (x, y)
-        self.neighbors = []
+        self.graph = None
 
 
 class Spawn_zonne(System):
@@ -21,7 +21,7 @@ class Spawn_zonne(System):
         i = 0
         while unplaced and i < 2000:
             x = randint(self.pos[0] - self.radius + min_radius, self.pos[0] + self.radius - min_radius)
-            y = randint(self.pos[1] - self.radius + min_radius, self.pos[1] + self.radius + min_radius)
+            y = randint(self.pos[1] - self.radius + min_radius, self.pos[1] + self.radius - min_radius)
 
             minimal_radius = max_radius
             for child in self.children:
@@ -31,8 +31,7 @@ class Spawn_zonne(System):
             if minimal_radius >= min_radius:
                 radius = uniform(min_radius, min(minimal_radius, max_radius))
                 
-                self.children.append(Spawn_zonne(x, y, radius))
-
+                self.children.append(Spawn_zonne(x, y, int(radius)))
             unplaced = False
             i += 1
 
