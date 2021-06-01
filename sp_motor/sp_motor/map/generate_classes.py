@@ -1,12 +1,19 @@
 from random import uniform, randint
+import numpy as np
+
 from sp_motor.utils import dist
 
-
-class Spawn_zonne():
-    def __init__(self, x, y, radius):
+class System():
+    def __init__(self, x, y):
         self.pos = (x, y)
+
+
+class Spawn_zonne(System):
+    def __init__(self, x, y, radius):
         self.radius = radius
         self.children = []
+
+        System.__init__(self, x, y)
 
     def make_spawn(self, min_radius, max_radius):
         unplaced = True
@@ -21,13 +28,36 @@ class Spawn_zonne():
                 minimal_radius = min(minimal_radius, curr_rad)
 
             if minimal_radius >= min_radius:
-                print(min(minimal_radius, max_radius))
                 radius = uniform(min_radius, min(minimal_radius, max_radius))
                 
-            self.children.append(Spawn_zonne(x, y, radius))
+                self.children.append(Spawn_zonne(x, y, radius))
 
             unplaced = False
             i += 1
+
+    def adja_mat(self):
+        adja = np.array([[i for i in range(len(self.children))] for i in range(len(self.children))])
+        for i in range(adja.shape[0]):
+            for j in range(adja.shape[1]):
+                adja[i, j] = dist(self.children[i].pos, self.children[j].pos)
+
+        return adja
+
+    def get_points(self):
+        points = []
+        for child in self.children:
+            points.append([child.pos[0], child.pos[1]])
+
+        return np.array(points)
+
+    def get_child(pos):
+        for i in range(len(self.children)):
+            if self.children[i].pos == pos:
+                return i
+
+        return None
+
+    
 
 
     def print_spawn(self):
@@ -36,4 +66,6 @@ class Spawn_zonne():
             print(f"child   ({child.pos[0]}, {child.pos[1]}), radius  : {child.radius}")
 
 
-        
+
+
+
