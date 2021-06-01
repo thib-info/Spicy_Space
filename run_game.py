@@ -1,1 +1,1 @@
-from spicy_motor.map import generation
+import spicy_motor
