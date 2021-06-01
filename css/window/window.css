@@ -1,0 +1,75 @@
+body {
+  margin: 0;
+}
+
+.window {
+  position: absolute;
+  background-color: #f1f1f1;
+  border: 1px solid #d3d3d3;
+
+  width: 600px;
+  height: 400px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  /* prevent text selection */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.windowHeader {
+  padding: 10px;
+  cursor: move;
+  color: #fff;
+  z-index: inherit;
+
+}
+
+.windowBody {
+  padding: 10px;
+  z-index: inherit;
+}
+
+/* selected window */
+.window[selected=true] .windowHeader {
+  background-color: #2196F3;
+}
+.window[selected=true] {
+  z-index: 10;
+}
+
+/* unselected window */
+.window[selected=false] .windowHeader {
+  background-color: #8DBDEB;
+}
+.window[selected=false] {
+  z-index: 9;
+}
+
+/* windowCloseButton */
+.windowCloseButton {
+  vertical-align: middle;
+  height:20px;
+  width:20px;
+  float: right;
+  background-color: red;
+  border: 0;
+}
+.windowCloseButton:hover {
+  background-color: #671706;
+}
+.windowCloseButton:active {
+  background-color: #B66351;
+}
+
+/* window Menu (temporary) */
+#windowMenu {
+  text-align: center;
+  background-color: #2BA432;
+}
+.windowMenu button {
+  display: inline-block;
+}
