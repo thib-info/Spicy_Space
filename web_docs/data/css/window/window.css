@@ -69,6 +69,7 @@ body {
 #windowMenu {
   text-align: center;
   background-color: #2BA432;
+  margin-top: 10%; /*Just for some tests*/
 }
 .windowMenu button {
   display: inline-block;
