@@ -31,7 +31,7 @@ def login_required(f):
 
 @app.route('/')
 def main():
-    return render_template('main.html', reload = time.time())
+    return render_template('index.html', reload = time.time())
 
 
 @app.route('/api/user')
@@ -48,10 +48,16 @@ def api_user():
                 "last_played":'2020-12-01',
             },
         },
-        "info_nulle":"test en cours"
+        "info_nulle":["naze", 1]
     }
 
     return jsonify(info)
+
+@app.route('/api/rendu')
+def rendu():
+    a = int(request.args.get('a', 1000))
+
+    return jsonify({'resp':a})
 
 @app.route("/connexion", methods=["GET", "POST"])
 def login_page():
