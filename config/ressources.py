@@ -1,7 +1,7 @@
 import json
 
 class ressource:
-    def __init__(self, conf,):
+    def __init__(self, conf):
         self.value = conf["value"]
         self.type = conf["type"]
 
