@@ -1,0 +1,40 @@
+
+*{
+    margin: 0;
+    text-align: center;
+}
+
+body{
+    height: 100%;
+    width: 100%;
+    background-color: rgb(63,0,81);
+}
+
+.pannel-border{
+    position: fixed;
+    width: 60px;
+    height: 75%;
+    transform: translateY(16%);
+}
+
+
+.pannel-left{
+    left: 0;
+    background-color: red;
+    border-radius: 0 50% 50% 0;
+}
+
+.pannel-right{
+    right: 0;
+    background-color: brown;
+    border-radius: 50% 0 0 50%;
+}
+
+.pannel-top{
+    position: fixed;
+    top: 0;
+    width: 75%;
+    height: 65px;
+    transform: translateX(16%);
+    border-radius: 0 0 30px 30px;
+}
