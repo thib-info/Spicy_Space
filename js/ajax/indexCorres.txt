@@ -1,0 +1,4 @@
+
+### Significations des différents type d'index ###
+
+null -> aucune action à réaliser après
