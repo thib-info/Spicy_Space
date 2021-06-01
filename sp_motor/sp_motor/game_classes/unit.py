@@ -35,6 +35,8 @@ class unit:
                 self.pv = self.pv_max
     def battle(self):
         self.battling = True
+    def end_battle(self):
+        self.battling= False
 
 
 with open("../../../config/config_unit.json") as f:
