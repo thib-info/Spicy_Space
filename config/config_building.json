@@ -1,0 +1,12 @@
+{
+  "mine": {
+    "name": "mine",
+    "level" : 1,
+    "cost" : 10,
+    "pv_max": 100,
+    "maint_cost": 200,
+    "state": 0,
+    "scaling": [1.25,2,1.5],
+    "production": 15
+  }
+}
