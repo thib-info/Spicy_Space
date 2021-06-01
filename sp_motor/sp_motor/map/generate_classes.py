@@ -6,6 +6,7 @@ from sp_motor.utils import dist
 class System():
     def __init__(self, x, y):
         self.pos = (x, y)
+        self.neighbors = []
 
 
 class Spawn_zonne(System):
@@ -50,12 +51,18 @@ class Spawn_zonne(System):
 
         return np.array(points)
 
-    def get_child(pos):
+    def get_child(self, pos):
         for i in range(len(self.children)):
             if self.children[i].pos == pos:
                 return i
 
         return None
+
+    def fill_child_neig(self, array_like):
+        for i in range(len(self.children)):
+            self.children[i] = array_like[i]
+
+    
 
     
 
