@@ -1,15 +1,14 @@
 import json
-#with open("config/ressources.json") as g:
- #   conf_ress = json.load(g)
+from ressources import ressource
+with open("../../../config/ressources.json") as g:
+    conf_ress = json.load(g)
 class player :
     def __init__(self, conf, pid, name, isMj = False):
         self.name = name
         self.pid = pid
         self.allies = []
         self.enemies=[]
-       # population = ressource(conf["population"])
-        self.ressources = []
-        self.buildings = []
+        self.ressources = {}
         self.systems = []
         self.isMj = isMj
 

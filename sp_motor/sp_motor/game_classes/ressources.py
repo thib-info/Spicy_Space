@@ -10,17 +10,17 @@ class ressource:
 
     def withdraw(self, amount):
         self.value -= amount
-
-
+    def get_ress(self):
+        return self.value
 
 with open("../../../config/ressources.json") as f:
     conf = json.load(f)
 
-print(conf["population"].keys())
-test = ressource(conf["population"])
-print(test.value)
-print(test.type)
-test.add(5)
-print(test.value)
-test.withdraw(10)
-print(test.value)
+#print(conf["population"].keys())
+#test = ressource(conf["population"])
+#print(test.value)
+#print(test.type)
+#test.add(5)
+#print(test.value)
+#test.withdraw(10)
+#print(test.value)
