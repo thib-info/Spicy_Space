@@ -13,7 +13,7 @@ class ressource:
 
 
 
-with open("config/ressources.json") as f:
+with open("../../../config/ressources.json") as f:
     conf = json.load(f)
 
 print(conf["population"].keys())
