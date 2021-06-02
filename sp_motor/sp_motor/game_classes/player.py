@@ -1,13 +1,14 @@
 import json
-
+from ressources import ressource
+with open("../../../config/ressources.json") as g:
+    conf_ress = json.load(g)
 class player :
     def __init__(self, conf, pid, name, isMj = False):
         self.name = name
         self.pid = pid
         self.allies = []
         self.enemies=[]
-        self.ressources = []
-        self.buildings = []
+        self.ressources = {}
         self.systems = []
         self.isMj = isMj
 
@@ -17,6 +18,7 @@ class player :
     def add_ally(self,pid):
         if not pid in self.allies and not pid in self.enemies:
             self.allies.append(pid)
+
 
 
 with open("../../../config/config_player.json") as f:
