@@ -5,6 +5,7 @@
   <title>Windows</title>
   <link rel="stylesheet" href="{{url_for('static', filename='css/window/window.css')}}">
   <script src="{{url_for('static', filename='js/window/window.js')}}"></script>
+  <script src="{{url_for('static', filename='js/ajax/ajaxCall.js')}}"></script>
 </head>
 <body>
   <div id="windowMenu">
@@ -13,7 +14,6 @@
     <button type="button" onclick="addWindow(1)">Diplomatie</button>
     <button type="button" id="ajax-test">Test AJAX</button>
   </div>
-
-  <script src="../data/js/ajax/exampleConnexion.js"></script>
+  <script src="{{url_for('static', filename='js/ajax/exampleConnexion.js')}}"></script>
 </body>
 </html>

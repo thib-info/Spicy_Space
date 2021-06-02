@@ -2,8 +2,13 @@ let buttonSubmit = document.getElementById('ajax-test');
 if(buttonSubmit!= null){
     buttonSubmit.addEventListener('click', function(){
         let valueToSend = "a=10";
-        let target = "localhost:8080/api/user";
-        let goal = null;
+        let target = "/api/rendu";
+        let goal = 100;
         ajaxCall(valueToSend, target, goal);
     });
+}
+
+function justeTest(value){
+    value = JSON.parse(value);
+    console.log(value);
 }
