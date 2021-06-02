@@ -1,0 +1,125 @@
+{
+  "batiment": {
+    "ferme": {
+      "next_upgrade": ["ferme tier 2","prod ferme +10%"],
+      "researched": "true"
+    },
+    "ferme tier 2": {
+      "next_upgrade": ["ferme tier 3","prod ferme +20%"],
+      "researched": "false"
+    },
+    "ferme tier 3": {
+      "next_upgrade": [],
+      "researched": "false"
+    },
+    "prod ferme +10%": {
+      "next_upgrade": ["prod ferme +20%"],
+      "researched": "false"
+    },
+    "prod ferme +20%": {
+      "next_upgrade": [],
+      "researched": "false"
+    },
+    "habitations": {
+      "next_upgrade": ["habitations tier 2","prod habitations +10%"],
+      "researched": "true"
+    },
+    "habitations tier 2": {
+      "next_upgrade": ["habitations tier 3","prod habitations +20%"],
+      "researched": "false"
+    },
+    "habitations tier 3": {
+      "next_upgrade": [],
+      "researched": "false"
+    },
+    "prod habitations +10%": {
+      "next_upgrade": ["prod habitations +20%"],
+      "researched": "false"
+    },
+    "prod habitations +20%": {
+      "next_upgrade": [],
+      "researched": "false"
+
+    },
+    "mine": {
+      "next_upgrade": ["mine tier 2","prod mine +10%","spatioport","raffinerie"],
+      "researched": "true"
+    },
+    "mine tier 2": {
+      "next_upgrade": ["mine tier 3","prod mine +20%"],
+      "researched": "false"
+    },
+    "mine tier 3": {
+      "next_upgrade": [],
+      "researched": "false"
+    },
+    "prod mine +10%": {
+      "next_upgrade": ["prod mine +20%"],
+      "researched": "false"
+    },
+    "prod mine +20%": {
+      "next_upgrade": [],
+      "researched": "false"
+    },
+    "spatioport": {
+      "next_upgrade": ["spatioporrt tier 2","vitesse prod spatioport +10%"],
+      "researched": "false"
+    },
+    "spatioport tier 2": {
+      "next_upgrade": ["spatioporrt tier 2","vitesse prod spatioport +20%"],
+      "researched": "false"
+    },
+    "spatioport tier 3": {
+      "next_upgrade": [],
+      "researched": "false"
+    },
+    "vitesse prod spatioport +10%": {
+      "next_upgrade": ["vitesse prod spatioport +20%"],
+      "researched": "false"
+    },
+    "vitesse prod spatioport +20%": {
+      "next_upgrade": [],
+      "researched": "false"
+    },
+    "raffinerie": {
+      "next_upgrade": ["mine tier 2","prod mine +10%","usine"],
+      "researched": "false"
+    },
+    "raffinerie tier 2": {
+      "next_upgrade": ["raffinerie tier 3","prod raffinerie +20%"],
+      "researched": "false"
+    },
+    "raffinerie tier 3": {
+      "next_upgrade": [],
+      "researched": "false"
+    },
+    "prod raffinerie +10%": {
+      "next_upgrade": ["prod raffinerie +20%"],
+      "researched": "false"
+    },
+    "prod raffinerie +20%": {
+      "next_upgrade": [],
+      "researched": "false"
+    },
+    "usine": {
+      "next_upgrade": ["usine tier 2","prod usine +10%"],
+      "researched": "false"
+    },
+    "usine tier 2": {
+      "next_upgrade": ["usine tier 3","prod usine +20%"],
+      "researched": "false"
+    },
+    "ferme usine 3": {
+      "next_upgrade": [],
+      "researched": "false"
+    },
+    "prod usine +10%": {
+      "next_upgrade": ["prod usine +20%"],
+      "researched": "false"
+    },
+    "prod usine +20%": {
+      "next_upgrade": [],
+      "researched": "false"
+    }
+  }
+}
