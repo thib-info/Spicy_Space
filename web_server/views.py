@@ -53,10 +53,10 @@ def api_user():
 
     return jsonify(info)
 
-@app.route('/api/rendu')
+@app.route('/api/rendu', methods=['GET', 'POST'])
 def rendu():
-    a = int(request.args.get('a', 1000))
-
+    a = int(request.args.get('a'))
+    print(a)
     return jsonify({'resp':a})
 
 @app.route("/connexion", methods=["GET", "POST"])
