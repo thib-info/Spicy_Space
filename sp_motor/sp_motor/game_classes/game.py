@@ -1,5 +1,4 @@
 
-
 class game:
     def __init__(self, conf):
         self.players = conf["players"]
