@@ -1,4 +1,5 @@
 import numpy as np
+# from copy import deepcopy
 
 from sp_motor.utils import calculate_cost
 
@@ -24,7 +25,7 @@ class Amas_constructor(Syst_obj_constructor):
     def __init__(self, pos):
         self.children = []
         self.graph = None
-
+        self.indice_start = 0
         Syst_obj_constructor.__init__(self, pos)
 
 
@@ -45,22 +46,33 @@ class Amas_constructor(Syst_obj_constructor):
 class Map_constructor(Amas_constructor):
     def __init__(self, pos):
 
-        self.amas = []
+        # self.amas = []
         self.systems = []
         Amas_constructor.__init__(self, pos)
 
 
     def import_amas(self, amas_coll):
+        #on vient ajouter les amas, pour les modifs, mais on les avait déjà inclus une fois avant dans import children
         for i in range(len(amas_coll)):
-            self.amas.append(amas_coll[i].graph.shape[0])
+            list_copy = amas_coll.children[:]
+            self.children[i].children = [len(self.systems) + z for z in range(len(list_copy))]
+            self.children[i].indice_start = len(self.systems)
 
-    
-        for ama in self.amas:
-            for i in range(ama):
-                self.systems.append(i)
 
+            #on vient réindexer les voisins
+            for syst in range(len(list_copy)):
+                for v in range(len(list_copy[syst].neighbors)):
+                    temp_v = list_copy[syst].neighbors[v]
+                    temp_v["dest"] += len(self.systems)
+                    list_copy[syst].neighbors[v] = temp_v
+
+            self.systems += list_copy
+
+
+    #permet d'avoir l'id général du système en internal_id position d'un amas
     def get_system_id(self, child_id, internal_id):
-        return sum(self.amas[:child_id]) + internal_id
+        return self.children[child_id].children[internal_id]
+
 
 
     def add_amas_links(self, neigh, contacts):
@@ -68,8 +80,16 @@ class Map_constructor(Amas_constructor):
         for i in range(len(neigh)):
             sys1_id, sys2_id = neigh[i]["sys1"], neigh[i]["sys2"]
             intern1_id, intern2_id, cost = contacts[i]
+            
+            intern1_id = get_system_id(sys1_id, intern1_id)
+            intern2_id = get_system_id(sys2_id, intern2_id)
 
-        self.children[sys1_id].children[intern1_id].add_neighbor
+
+        self.children[intern1_id].add_neighbor(intern2_id, cost)
+        self.children[intern2_id].add_neighbor(intern1_id, cost)
+
+
+        
             
 
    

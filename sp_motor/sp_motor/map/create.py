@@ -9,7 +9,8 @@ import matplotlib.pyplot as plt
 
 from sp_motor.map.generate_classes import Spawn_zonne, System
 from sp_motor.utils import dist
-from sp_motor.game_classes.map import Map
+from sp_motor.game_classes.map import Syst_obj_constructor, Amas_constructor, Map_constructor
+
 
 
 ####global var###############
@@ -145,19 +146,45 @@ def create_map(radius=600, nb_zonnes=(10, 14), zonnes_r=(40, 80), systems=(10, 2
             for j in range(map.children[child].graph.shape[1]):
                 map.graph[child +i, child+j] = map.children[child].graph[i, j]
 
-
-
     #on vient ajouter les liens entre les amas stellaires dans le graphe gen
     neighbors = id_neighbors(amas_graph)
-
+    contacts = []
     for link in neighbors:
         contact = find_contact(map.children[link["sys1"]], map.children[link["sys2"]], radius)
-
+        contacts.append(contact)
         map.graph[link["sys1"] + contact[0], link["sys2"] + contact[1]] = contact[2]
 
-
-    return map
+    return {"map":map, "neighbors":neighbors, "contacts":contacts}
     
+
+
+
+
+def treat_map(source_map, neighbors, contacts):
+    amas = []
+    for child in source_map.children:
+        local_systems = []
+
+        for ch in child:
+            local_systems.append(Syst_obj_constructor(ch.pos))
+
+        local_amas = Amas_constructor(child.pos)
+
+        local_amas.import_graph(child.graph)
+        local_amas.import_children(local_systems, self.graph)
+
+        amas.append(local_amas)
+
+
+    map = Map_constructor(source_map.pos)
+    map.import_graph(source_map.graph)
+    map.import_children(amas, self.graph)
+    map.import_amas(amas)
+    map.add_amas_links()
+
+    map.add_amas_links(neighbors, contacts)
+
+
 
 
 
