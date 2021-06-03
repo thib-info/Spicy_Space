@@ -2,3 +2,4 @@
 ### Significations des différents type d'index ###
 
 null -> aucune action à réaliser après
+100 -> Pour tester la connexion et le renvoie AJAX

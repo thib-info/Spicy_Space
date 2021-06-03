@@ -34,7 +34,7 @@ def main():
     return render_template('index.html', reload = time.time())
 
 
-@app.route('/api/user')
+@app.route('/api/user', methods=['POST'])
 def api_user():
     info = {
         "username":"test1",
@@ -53,10 +53,10 @@ def api_user():
 
     return jsonify(info)
 
-@app.route('/api/rendu')
+@app.route('/api/rendu', methods=['POST'])
 def rendu():
-    a = int(request.args.get('a', 1000))
-
+    a = int(request.form.get('a'))
+    print(a)
     return jsonify({'resp':a})
 
 @app.route("/connexion", methods=["GET", "POST"])
