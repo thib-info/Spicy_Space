@@ -4,13 +4,20 @@
   <meta charset="utf-8">
   <title>Windows</title>
   <link rel="stylesheet" href="../data/css/window/window.css">
+  <link rel="stylesheet" href="../data/css/panel/panel.css">
   <script src="../data/js/window/window.js"></script>
+  <script src="../data/js/panel/panel.js"></script>
 </head>
 <body>
   <div id="windowMenu">
     <button type="button" onclick="addWindow(2)">Construction</button>
     <button type="button" onclick="addWindow(0)">Technologies</button>
     <button type="button" onclick="addWindow(1)">Diplomatie</button>
+    <button type="button" onclick="addPanel(1,'Alpha',true)">Système alpha ...</button>
+  </div>
+  <div id="canvasDiv">
+    <canvas id="canvas"></canvas>
   </div>
 </body>
+<script src="../data/js/canvas/canvas.js"></script>
 </html>
