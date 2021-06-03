@@ -8,6 +8,6 @@
     "cost": 2500,
     "maint_cost": 200,
     "scaling": [1,1,1,1,1],
-    "evasion": 40
+    "precision": 70
   }
 }

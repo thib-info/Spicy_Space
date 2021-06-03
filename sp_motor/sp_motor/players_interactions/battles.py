@@ -1,37 +1,47 @@
 from sp_motor.sp_motor.game_classes.unit import unit as un
 import random
 import json
-
-def hit(attack,defense):
-    if random.randint(1,100) >= defense.evasion:
-        return True
-    else:
-        return False
-
-def battle(pUnit1,tar1,tar2=None,tar3=None):
-        pUnit1.battling=True
-        tar1.battling=True
-        if hit(pUnit1,tar1):
-            tar1.pv = tar1.pv - pUnit1.pa
-            print(f"Tir reussi vous avez inflige  {pUnit1.pa} degats")
-
-            if pUnit1.pa > tar1.pv:
-                if tar2 != None :
-                    tar2.battling=True
-                    if pUnit1.pa >(tar1.pv + tar2.pv):
-                        if tar3 != None:
-                            tar3.battling=True
-
+from copy import deepcopy
 
 with open("../../../config/config_unit.json") as f:
     conf = json.load(f)
 
-id1 = un(conf["destroyer"], 1, [1, 1])
-id2 = un(conf["destroyer"], 2, [2, 2])
-hit(id1,id2)
-print(id1.battling)
+destroyer = un(conf["destroyer"], -1, [-1, -1])
+
+def hit(defense):
+    if random.randint(1, 100) <= defense.precision:
+        return True
+    else:
+        return False
+
+def battle(pUnit1,target):
+        pUnit1.battle()
+        target.battle()
+        if hit(target):
+            target.battle()
+            target.take_damage(pUnit1.pa)
+            print(f"Tir reussi vous avez inflige  {pUnit1.pa} degats")
+        else:
+            print("Tir echoue")
+
+
+
+
+
+
+id1 = deepcopy(destroyer)
+id1.set_param(1,(1,1))
+id2 = deepcopy(destroyer)
+id2.set_param(2,(1,1))
+
+#print(id1.battling)
+#print(hit(id2))
 
 battle(id1,id2)
-print(id1.battling)
+battle(id1,id2)
+print(id2.pv)
 
+#print(id1.battling)
 
+#changer les battling pour que les unités sur la meme cases passent en battle si une d'entre elle tape ou
+#se fait taper

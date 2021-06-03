@@ -5,7 +5,7 @@ class unit:
         self.name = conf["name"]
         self.type = conf["type"]
         self.owner = owner
-        self.evasion= conf["evasion"]
+        self.precision= conf["precision"]
         self.position = position
         self.tier = base_lvl
         self.scaling= conf["scaling"]
@@ -38,6 +38,10 @@ class unit:
         self.battling = True
     def end_battle(self):
         self.battling= False
+    def set_param(self,owner, position, base_lvl=1):
+        self.owner = owner
+        self.position = position
+        self.tier = base_lvl
 
 
 with open("../../../config/config_unit.json") as f:
