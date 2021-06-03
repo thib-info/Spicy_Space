@@ -1,0 +1,144 @@
+.container-menu {
+    width: 300px;
+    height: 300px;
+    position: fixed;
+    bottom:0;
+}
+.btn-menu {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 20;
+    cursor: pointer;
+}
+
+.ligne {
+    width: 40px;
+    height: 5px;
+    border-radius: 5px;
+    background: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    transition: all 0.1s ease-in-out;
+}
+
+.ligne::before {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    background: #333;
+    width: 100%;
+    height: 5px;
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+}
+.ligne::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    background: #333;
+    width: 100%;
+    height: 5px;
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+}
+
+.name-item{
+    margin-left: 160px;
+    visibility: hidden;
+}
+
+.blob-1 .name-item{
+    transition: all 0.2s 0.1s ease-in-out;
+}
+
+.blob-2 .name-item{
+    transition: all 0.2s 0.2s ease-in-out;
+}
+
+.blob-3 .name-item{
+    transition: all 0.2s 0.3s ease-in-out;
+}
+
+.blob-4 .name-item{
+    transition: all 0.2s 0.4s ease-in-out;
+}
+
+.container-menu.active .ligne::before {
+    transform: translateY(10px) rotate(-45deg);
+}
+.container-menu.active .ligne {
+    background: transparent;
+}
+.container-menu.active .ligne::after {
+    transform: translateY(-10px) rotate(45deg);
+}
+
+.icone {
+    width: 40px;
+}
+.menu-item {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f1f1f1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.blob-1 {
+    background: #e0fefe;
+    transition: all 0.2s 0.1s ease-in-out;
+}
+.blob-2 {
+    background: #c7ceea;
+    transition: all 0.2s 0.2s ease-in-out;
+}
+.blob-3 {
+    background: #ffdac1;
+    transition: all 0.2s 0.3s ease-in-out;
+}
+.blob-4 {
+    background: #ff9aa2;
+    transition: all 0.2s 0.4s ease-in-out;
+}
+
+/* Animation */
+.container-menu.active .blob-1 {
+    left: 40%;
+    top: 15%;
+}
+.container-menu.active .name-item{
+    visibility: visible;
+}
+
+.container-menu.active .blob-2 {
+    left: 40%;
+    top: -2%;
+}
+.container-menu.active .blob-3 {
+    left: 40%;
+    top: -20%;
+}
+.container-menu.active .blob-4 {
+    left: 40%;
+    top: -38%;
+}
+
+.hidden{
+    visibility: hidden;
+}
+
+.visible{
+    visibility: visible;
+}
