@@ -1,92 +1,80 @@
 import numpy as np
+from copy import deepcopy
 # from copy import deepcopy
 
 from sp_motor.utils import calculate_cost
 
 
 
-class Syst_obj_constructor():
 
-    def __init__(self, pos):
-        
-        self.neighbors = []
+class Basic_info():
+
+    def __init__(self, name, pos):
+        self.name = name
         self.pos = pos
-        
 
-    def add_neighbor(self, indice, distance):
-        self.neighbors.append({
-            "dest":indice,
-            "cost":calculate_cost(distance)
-        })
+    def get_pos(self):
+        return self.pos[:]
+
+    def get_name(self):
+        return self.name
+
+    def set_name(self, name):
+        self.name = name
+
+class System_p(Basic_info):
+
+    def __init__(self, name, pos):
+        self.sector_id = 0
+        self.ressources_slots = []
+        self.units = []
+        self.ressources_qt = {}
+        Basic_info.__init__(self, name, pos)
+
+
+    def set_sector(self, sector_id):
+        self.sector_id = sector_id
+    
+    def get_sector_id(self):
+        return self.sector_id
+
+class Sectors(Basic_info):
+
+    def __init__(self, name, pos):
+        self.members = []
+
+        Basic_info.__init__(self, name, pos)
 
     
-class Amas_constructor(Syst_obj_constructor):
-
-    def __init__(self, pos):
-        self.children = []
-        self.graph = None
-        self.indice_start = 0
-        Syst_obj_constructor.__init__(self, pos)
-
-
-    def import_graph(self, graph):
-        self.graph = graph
-
-    def import_children(self, children, child_graph):
-        self.children = children
-
-        for i in range(child_graph.shape[0]):
-            for j in range(child_graph.shape[1]):
-                if child_graph[i, j] > 0:
-                    self.children[i].add_neighbor(j, child_graph[i, j])
-                    self.children[j].add_neighbor(i, child_graph[i, j])
+    def set_systems_indices(self, syst_indices):
+        self.members = syst_indices[:]
+         
 
 
 
-class Map_constructor(Amas_constructor):
-    def __init__(self, pos):
+class Map(Basic_info):
 
-        # self.amas = []
+    def __init__(self, name, pos):
         self.systems = []
-        Amas_constructor.__init__(self, pos)
+        self.sectors = []
+        self.graph_cost = None
+        self.graph_link = None
+
+        Basic_info.__init__(self, name, pos)
+
+    
+    def import_sectors(self, sectors):
+        self.sectors = deepcopy(sectors)
 
 
-    def import_amas(self, amas_coll):
-        #on vient ajouter les amas, pour les modifs, mais on les avait déjà inclus une fois avant dans import children
-        for i in range(len(amas_coll)):
-            list_copy = amas_coll.children[:]
-            self.children[i].children = [len(self.systems) + z for z in range(len(list_copy))]
-            self.children[i].indice_start = len(self.systems)
+    def import_systems(self, systems):
+        self.systems = deepcopy(systems)
 
+    def import_graph_cost(self, graph):
+        self.graph_cost = deepcopy(graph)
 
-            #on vient réindexer les voisins
-            for syst in range(len(list_copy)):
-                for v in range(len(list_copy[syst].neighbors)):
-                    temp_v = list_copy[syst].neighbors[v]
-                    temp_v["dest"] += len(self.systems)
-                    list_copy[syst].neighbors[v] = temp_v
-
-            self.systems += list_copy
-
-
-    #permet d'avoir l'id général du système en internal_id position d'un amas
-    def get_system_id(self, child_id, internal_id):
-        return self.children[child_id].children[internal_id]
-
-
-
-    def add_amas_links(self, neigh, contacts):
-
-        for i in range(len(neigh)):
-            sys1_id, sys2_id = neigh[i]["sys1"], neigh[i]["sys2"]
-            intern1_id, intern2_id, cost = contacts[i]
-            
-            intern1_id = get_system_id(sys1_id, intern1_id)
-            intern2_id = get_system_id(sys2_id, intern2_id)
-
-
-        self.children[intern1_id].add_neighbor(intern2_id, cost)
-        self.children[intern2_id].add_neighbor(intern1_id, cost)
+    def import_graph_link(self, graph):
+        self.graph_link = deepcopy(graph)
 
 
         

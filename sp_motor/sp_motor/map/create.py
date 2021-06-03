@@ -3,14 +3,15 @@ from scipy.sparse.csgraph import minimum_spanning_tree
 from scipy.spatial import Delaunay
 import numpy as np
 
+from copy import deepcopy
+
 from random import randint, choice
 
 import matplotlib.pyplot as plt
 
 from sp_motor.map.generate_classes import Spawn_zonne, System
 from sp_motor.utils import dist
-from sp_motor.game_classes.map import Syst_obj_constructor, Amas_constructor, Map_constructor
-
+from sp_motor.game_classes.map import System_p, Map, Sectors
 
 
 ####global var###############
@@ -154,41 +155,55 @@ def create_map(radius=600, nb_zonnes=(10, 14), zonnes_r=(40, 80), systems=(10, 2
         contacts.append(contact)
         map.graph[link["sys1"] + contact[0], link["sys2"] + contact[1]] = contact[2]
 
-    return {"map":map, "neighbors":neighbors, "contacts":contacts}
+
+    o_systems = []
+    o_sectors = []
+
     
+    for child in map.children:
+        o_sectors.append(Sectors("nom_nul", child.pos))
+        sys_indices = []
+        for ch in child.children:
+            o_systems.append(System_p("syst_nul", ch.pos))
+            o_systems[-1].set_sector(len(o_sectors) - 1)
+
+            sys_indices.append(len(o_systems) - 1)
+
+        o_sectors[-1].set_systems_indices(sys_indices)
+
+
+    o_map = Map("map", map.pos)
+    o_map.import_sectors(o_sectors)
+    o_map.import_systems(o_systems)
+    o_map.import_graph_cost(map.graph)
+
+    link_graph = deepcopy(map.graph)
+    for i in range(link_graph.shape[0]):
+        for j in range(link_graph.shape[1]):
+            if link_graph[i, j] > 0:
+                link_graph[i, j] = 1
+
+    o_map.import_graph_link(link_graph)
+
+
+   
+
+    return o_map
 
 
 
 
-def treat_map(source_map, neighbors, contacts):
-    amas = []
-    for child in source_map.children:
-        local_systems = []
-
-        for ch in child:
-            local_systems.append(Syst_obj_constructor(ch.pos))
-
-        local_amas = Amas_constructor(child.pos)
-
-        local_amas.import_graph(child.graph)
-        local_amas.import_children(local_systems, self.graph)
-
-        amas.append(local_amas)
-
-
-    map = Map_constructor(source_map.pos)
-    map.import_graph(source_map.graph)
-    map.import_children(amas, self.graph)
-    map.import_amas(amas)
-    map.add_amas_links()
-
-    map.add_amas_links(neighbors, contacts)
 
 
 
+map = create_map()
 
-
-create_map()
+# print(map.graph_cost)
+# print(map.graph_link)
+# for sector in map.sectors:
+#     print(sector.name)
+#     for indice in sector.members:
+#         print(indice, "  :  ", map.systems[indice].pos)
 
 
 
