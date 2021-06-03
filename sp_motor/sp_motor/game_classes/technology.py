@@ -31,6 +31,8 @@ class technology:
                 buff = technology(conf, i)
                 if buff.researched():
                     res.append(buff["name"])
+        if self.researched():
+            res.append(self.name)
         return res
 
 
