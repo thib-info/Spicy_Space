@@ -1,0 +1,14 @@
+.font-ouverture{
+    font-family: "ouverture";
+    src: url("addiction/Addiction.ttf");
+}
+
+.font-titre{
+    font-family: "titre";
+    src: url("blade-singer/bladesinger.ttf");
+}
+
+.font-paragraphe{
+    font-family: "paragraphe";
+    src: url("laser/laser.ttf");
+}

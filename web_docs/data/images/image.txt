@@ -1,0 +1,19 @@
+Population.png      -> icone population
+
+énergie.png         -> icone électricitée
+
+Nourriture.png      -> icone nourriture
+
+monnaie.png         ->icone argent
+monnaie_v1.png      alternatif
+monnaie_v2.png      alternatif
+
+minerais.png        -> icone ressoure tier1
+minerais_v1.png     alternatif
+minerais_v2.png     alternatif
+
+Cuivre.png          ->icone minerais tier2
+Acier.png           alternatif
+
+PCB.png             ->icone minerais tier3
+CPU.png             alternatif
