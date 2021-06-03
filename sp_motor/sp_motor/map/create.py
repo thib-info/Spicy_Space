@@ -196,7 +196,7 @@ def create_map(radius=600, nb_zonnes=(10, 14), zonnes_r=(40, 80), systems=(10, 2
 
 
 
-map = create_map()
+# map = create_map()
 
 # print(map.graph_cost)
 # print(map.graph_link)
@@ -207,6 +207,13 @@ map = create_map()
 
 
 
+import json
 
+map = create_map(radius=300)
+
+dico = map.export_info()
+
+with open("../../../map.json", 'w') as f:
+    json.dump(dico, f)
 
 

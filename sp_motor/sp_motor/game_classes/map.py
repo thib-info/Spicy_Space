@@ -22,6 +22,14 @@ class Basic_info():
     def set_name(self, name):
         self.name = name
 
+    def export_min_info(self):
+        return {
+            "name":self.name,
+            "pos":self.pos,
+        }
+    
+
+
 class System_p(Basic_info):
 
     def __init__(self, name, pos):
@@ -37,6 +45,10 @@ class System_p(Basic_info):
     
     def get_sector_id(self):
         return self.sector_id
+
+
+    def export_system_info(self):
+        pass
 
 class Sectors(Basic_info):
 
@@ -75,6 +87,29 @@ class Map(Basic_info):
 
     def import_graph_link(self, graph):
         self.graph_link = deepcopy(graph)
+
+    def export_info(self):
+        output = {
+            "systems":[],
+            "sectors":[],
+            "links":[],
+        }
+
+        for sector in self.sectors:
+            output["sectors"].append(sector.export_min_info())
+
+        for system in self.systems:
+            output["systems"].append(system.export_min_info())
+
+        for i in range(self.graph_link.shape[0]):
+            for j in range(self.graph_link.shape[1]):
+                if self.graph_link[i, j] == 1:
+                    output["links"].append({
+                        "start":self.systems[i].get_pos(),
+                        "end":self.systems[j].get_pos()
+                    })
+
+        return output
 
 
         
