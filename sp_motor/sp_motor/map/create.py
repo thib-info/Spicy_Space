@@ -109,7 +109,7 @@ def find_contact(system_1, system_2, max_radius):
 
 def create_map(radius=600, nb_zonnes=(10, 14), zonnes_r=(40, 80), systems=(10, 20)):
     #creer la zonne de la map
-    map = Spawn_zonne(1000, 1000, 1000)
+    map = Spawn_zonne(radius, radius, radius)
 
     #trouver un nombre d'amas d'étoiles à créer
     nb_z = randint(nb_zonnes[0], nb_zonnes[1])
@@ -213,7 +213,7 @@ map = create_map(radius=300)
 
 dico = map.export_info()
 
-with open("../../../map.json", 'w') as f:
-    json.dump(dico, f)
+# with open("../../../map.json", 'w') as f:
+#     json.dump(dico, f)
 
 
