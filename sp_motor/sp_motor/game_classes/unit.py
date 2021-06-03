@@ -5,6 +5,7 @@ class unit:
         self.name = conf["name"]
         self.type = conf["type"]
         self.owner = owner
+        self.evasion= conf["evasion"]
         self.position = position
         self.tier = base_lvl
         self.scaling= conf["scaling"]
@@ -42,17 +43,17 @@ class unit:
 with open("../../../config/config_unit.json") as f:
     conf = json.load(f)
 
-print(conf["destroyer"].keys())
-test = unit(conf["destroyer"], 1, [1, 1])
-test.upgrade(conf["destroyer"])
-test.upgrade(conf["destroyer"])
-print(test.pv)
-print(test.pv_max)
-test.battle()
-test.take_damage(12)
-test.heal_damage(34)
+#print(conf["destroyer"].keys())
+#test = unit(conf["destroyer"], 1, [1, 1])
+#test.upgrade(conf["destroyer"])
+#test.upgrade(conf["destroyer"])
+#print(test.pv)
+#print(test.pv_max)
+#test.battle()
+#test.take_damage(12)
+#test.heal_damage(34)
 
-print(test.pv)
-print(test.pv_max)
-print(test.maint_cost)
+#print(test.pv)
+#print(test.pv_max)
+#print(test.maint_cost)
 
