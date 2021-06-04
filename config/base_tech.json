@@ -151,5 +151,83 @@
       "next_upgrade": [],
       "researched": false
     }
+  },
+  "vaisseaux":{
+    "type": "vaisseau",
+    "colonisateur":{
+      "name":"colonisateur",
+      "next_upgrade": ["colonisateur tier 2"],
+      "researched": false
+    },
+    "colonisateur tier 2":{
+      "name":"colonisateur tier 2",
+      "next_upgrade": ["colonisateur tier 3"],
+      "researched": false
+    },
+    "colonisateur tier 3":{
+      "name":"colonisateur tier 3",
+      "next_upgrade": [],
+      "researched": false
+    },
+    "eclaireur":{
+      "name":"eclaireur",
+      "next_upgrade": ["eclaireur tier 2","destroyer","cuirasse","tardigrade"],
+      "researched": false
+    },
+    "eclaireur tier 2":{
+      "name":"eclaireur tier 2",
+      "next_upgrade": ["eclaireur tier 3"],
+      "researched": false
+    },
+     "eclaireur tier 3":{
+      "name":"eclaireur tier 3",
+      "next_upgrade": [],
+      "researched": false
+    },
+    "destroyer":{
+      "name":"destroyer",
+      "next_upgrade": ["destroyer tier 2"],
+      "researched": false
+    },
+     "destroyer tier 2":{
+      "name":"destroyer tier 2",
+      "next_upgrade": ["destroyer tier 3"],
+      "researched": false
+    },
+    "destroyer tier 3":{
+      "name":"destroyer tier 3",
+      "next_upgrade": [],
+      "researched": false
+    },
+    "cuirasse":{
+      "name":"cuirasse",
+      "next_upgrade": ["cuirasse tier 2"],
+      "researched": false
+    },
+     "cuirasse tier 2":{
+      "name":"cuirasse tier 2",
+      "next_upgrade": ["cuirasse tier 3"],
+      "researched": false
+    },
+    "cuirasse tier 3":{
+      "name":"cuirasse tier 3",
+      "next_upgrade": [],
+      "researched": false
+    },
+    "tardigrade":{
+      "name":"tardigrade",
+      "next_upgrade": ["tardigrade tier 2"],
+      "researched": false
+    },
+     "tardigrade tier 2":{
+      "name":"tardigrade tier 2",
+      "next_upgrade": ["tardigrade tier 3"],
+      "researched": false
+    },
+    "tardigrade tier 3":{
+      "name":"tardigrade tier 3",
+      "next_upgrade": [],
+      "researched": false
+    }
   }
 }

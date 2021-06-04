@@ -16,6 +16,9 @@ class technology:
             return True
         return False
 
+    def upgrade_possible(self):
+        return self.upgrade
+
     def research(self):
         print(self.unlocked)
         self.unlocked = True
@@ -40,14 +43,14 @@ with open("../../../config/base_tech.json") as f:
     config = json.load(f)
 
 print(config["batiment"]["ferme"].keys())
-test = technology(config["batiment"], "usine tier 3")
+test = technology(config["batiment"], "ferme tier 2")
 print("researched")
 print(test.researched())
 print("upgrade")
 test.research()
 print("upgradable")
 print(test.upgradable())
-
+print("upgrade possible")
+print(test.upgrade_possible())
 result = test.tech_researched(config["batiment"])
 print(result)
-
