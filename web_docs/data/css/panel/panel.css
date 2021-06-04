@@ -3,7 +3,7 @@
   background-color: #f1f1f1;
   border: 1px solid #d3d3d3;
 
-  width: 300px;
+  width: 20%;
   height: 600px;
   z-index: 8;
 
@@ -12,6 +12,10 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.panel:target {
+    pointer-events: none;
 }
 
 .panel[side="right"] {

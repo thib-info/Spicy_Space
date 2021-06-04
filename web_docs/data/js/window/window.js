@@ -1,6 +1,8 @@
 var windows = []; // array of all window class instances
 
-function windowConstructor(windowIndex) { // windowIndex is an integer
+function windowConstructor(windowIndex,location) {
+  // windowIndex is an integer
+  // location is the id of the system (=null if window represents diplomacy, stats, etc.)
   function windowBase() { // what all windows contain
     document.body.insertAdjacentHTML('beforeend',`
     <div id="window${windowIndex}" class="window" selected="true">
@@ -21,8 +23,14 @@ function windowConstructor(windowIndex) { // windowIndex is an integer
       case 1: // Diplomatie
         title = '<h2>Diplomatie</h2>';
         break;
-      case 2: // construire sur un système
-        title = '<h2>Construire</h2>';
+      case 2: // Statistiques de partie
+        title = '<h2>Diplomatie</h2>';
+        break;
+      case 3: // Construire un bâtiment sur un système
+        title = `<h2>Système ${location} - Bâtiments</h2>`;
+        break;
+      case 4: // Construire une unité sur un système
+        title = `<h2>Système ${location} - Unités</h2>`;
         break;
       default:
         title = '<h2>Default_Title</h2>';
@@ -40,8 +48,20 @@ function windowConstructor(windowIndex) { // windowIndex is an integer
       case 1: // Diplomatie
         content = '<p>Ici il y aura tous les éléments relatifs à la Diplomatie</p>';
         break;
-      case 2: // construire sur un système
-        content = '<p>Ici il y aura tous les éléments relatifs à la Construction</p>';;
+      case 2: // Statistiques de partie
+        content = '<p>Ici il y aura tous les éléments relatifs aux statistiques de la partie</p>';;
+        break;
+      case 3: // Construire un bâtiment sur un système
+        content = `
+        <div class="systemPreview"></div>
+        <div class="ressourcesDashboard"></div>
+        <div class="slots"></div>
+        `;
+        break;
+      case 4: // Construire une unité sur un système
+        content = `
+          ton code ici
+        `;
         break;
       default:
         content = '<h2>Default_Content</h2>';
@@ -71,13 +91,13 @@ function windowUnfocusAll() {
   });
 }
 
-function addWindow(windowIndex) { // windowIndex is an integer
+function addWindow(windowIndex,location) { // windowIndex is an integer
   if (document.querySelector(`[id=window${windowIndex}]`)) { // if window already exists,
     windowFocus(document.querySelector(`[id=window${windowIndex}]`));
     return 0;
   }
    // constructing window
-  windowConstructor(windowIndex);
+  windowConstructor(windowIndex,location);
 
   var windowElement = document.getElementById(`window${windowIndex}`);
   windows.push(windowElement);

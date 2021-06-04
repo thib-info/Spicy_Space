@@ -1,0 +1,21 @@
+.systemPreview {
+  top: 0;
+  left: 0;
+  width: 150px;
+  height: 150px;
+  background-color: #0000FF;
+}
+
+.ressourcesDashboard {
+  width: 400px;
+  height: 150px;
+  background-color: #FF00FF;
+}
+
+.slots {
+  display: block;
+}
+
+.systemPreview, .ressourcesDashboard {
+  display: inline-block;
+}

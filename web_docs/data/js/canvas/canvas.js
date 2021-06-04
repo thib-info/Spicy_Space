@@ -24,30 +24,32 @@ hoverStarImage.addEventListener('load', function() {
 }, false);
 hoverStarImage.src ="../data/images/hoverStar.png";
 
-var clickingOnStar = false;
+var clickingOnStar = false, starHovered = false;
 
 var loadedImages = 0
 // CONSTANTS
 var n = 1000;
 var starSize = 48;
-var maxZoom = 5, minZoom = 0.05, zoomFactor = 1.05, zoomLimit = 0.3;
+var galaxySize = 600;
+var maxZoom = 5, minZoom = (canvas.width/galaxySize)/3, zoomFactor = 1.05, zoomLimit = 0.3;
 var topCanvas, leftCanvas;
-var galaxySize = 2000;
+
 
 var X = [], Y = [], links = [];
-/*data["systems"].forEach((system) => {
+data["systems"].forEach((system) => {
   X.push(system["pos"][0]);
   Y.push(system["pos"][1]);
 });
 data["links"].forEach((link) => {
   links.push([link["start"],link["end"]]);
-});*/
+});
+console.log(X.length);
 
 
-for (let i = 0 ; i < n ; i++) {
+/*for (let i = 0 ; i < n ; i++) {
   X.push(Math.floor(Math.random() * galaxySize));
   Y.push(Math.floor(Math.random() * galaxySize));
-}
+}*/
 
 const mouse = {
   x: 0,
@@ -73,7 +75,7 @@ function mouseMove(event) {
   mouse.shift = event.shiftKey;
   mouse.ctrl = event.ctrlKey;
   if (event.type === "mousedown") {
-    event.preventDefault();
+    //event.preventDefault();
     mouse.buttonRaw |= mouse.buttons[event.which - 1];
   } else if (event.type === "mouseup") {
     mouse.buttonRaw &= mouse.buttons[event.which + 2];
@@ -156,6 +158,21 @@ const displayTransform = {
     this.doy += (this.oy - this.coy) * this.accel;
     this.dscale += (this.scale - this.cscale) * this.accel;
     this.drotate += (this.rotate - this.crotate) * this.accel;
+
+    if((-displayTransform.matrix[4] / displayTransform.scale)<-galaxySize && this.dx<0) {
+        this.dx=0;
+    }
+    if((-displayTransform.matrix[5] / displayTransform.scale)<-(galaxySize*0.5) && this.dy<0) {
+        this.dy=0;
+    }
+    if(((-displayTransform.matrix[4] +canvas.width)/ displayTransform.scale)>2*galaxySize && this.dx>0) {
+        this.dx=0;
+    }
+    if(((-displayTransform.matrix[5] +canvas.height)/ displayTransform.scale)>1.5*galaxySize && this.dy>0) {
+        this.dy=0;
+    }
+
+
     // drag
     this.dx *= this.drag;
     this.dy *= this.drag;
@@ -257,45 +274,48 @@ const displayTransform = {
 };
 
 function drawStars() {
+  starHovered = false;
   var rect = canvas.getBoundingClientRect();
   //starImage.addEventListener('load',function() {
-    for (let i = 0 ; i < n ; i++) {
-        if (displayTransform.scale > zoomLimit) {
-          ctx.beginPath();
-          ctx.rect(X[i]-(starSize/displayTransform.scale)/2,Y[i]-(starSize/displayTransform.scale)/2,starSize/displayTransform.scale,starSize/displayTransform.scale);
-          if (ctx.isPointInPath(mouse.x,mouse.y)) {
-              ctx.drawImage(hoverStarImage, X[i]-(starSize/displayTransform.scale)/2,Y[i]-(starSize/displayTransform.scale)/2,starSize/displayTransform.scale,starSize/displayTransform.scale);
-              if (mouse.oldX !== undefined && (mouse.buttonRaw & 1) === 1) {
-                clickingOnStar = true;
-                addPanel(1,i,true);
-              } else {
-                clickingOnStar = false;
-              }
-          } else {
-              ctx.drawImage(starImage, X[i]-(starSize/displayTransform.scale)/2,Y[i]-(starSize/displayTransform.scale)/2,starSize/displayTransform.scale,starSize/displayTransform.scale);
-          }
-          ctx.textAlign = 'center';
-          ctx.fillStyle = "white"
-          ctx.fillText(`Système ${i}`,X[i],Y[i]+(starSize/displayTransform.scale)/2);
-        }
-        else {
-            ctx.beginPath();
-            ctx.arc(X[i], Y[i], 10, 10, Math.PI, true);
-            ctx.fillStyle = "red";
-            ctx.fill();
-        }
-      }
-      for (let i = 0 ; i < links.length ; i++) {
+  for (let i = 0 ; i < n ; i++) {
+      if (displayTransform.scale > zoomLimit) {
         ctx.beginPath();
-        ctx.moveTo(links[i][0][0],links[i][0][1]);
-        ctx.lineTo(links[i][1][0],links[i][1][1]);
-        ctx.stroke();
+        ctx.rect(X[i]-(starSize/displayTransform.scale)/2,Y[i]-(starSize/displayTransform.scale)/2,starSize/displayTransform.scale,starSize/displayTransform.scale);
+        if (ctx.isPointInPath(mouse.x,mouse.y) && !starHovered) {
+          starHovered = true;
+            ctx.drawImage(hoverStarImage, X[i]-(starSize/displayTransform.scale)/2,Y[i]-(starSize/displayTransform.scale)/2,starSize/displayTransform.scale,starSize/displayTransform.scale);
+            if (mouse.oldX !== undefined && (mouse.buttonRaw & 1) === 1) {
+              clickingOnStar = true;
+              addPanel(0,i,true);
+            } else {
+              clickingOnStar = false;
+            }
+        } else {
+            ctx.drawImage(starImage, X[i]-(starSize/displayTransform.scale)/2,Y[i]-(starSize/displayTransform.scale)/2,starSize/displayTransform.scale,starSize/displayTransform.scale);
+        }
+        ctx.textAlign = 'center';
+        ctx.fillStyle = "white"
+        ctx.fillText(`Système ${i}`,X[i],Y[i]+(starSize/displayTransform.scale)/2);
       }
+      else {
+          ctx.beginPath();
+          ctx.arc(X[i], Y[i], 10, 10, Math.PI, true);
+          ctx.fillStyle = "red";
+          ctx.fill();
+      }
+    }
+    for (let i = 0 ; i < links.length ; i++) {
+      ctx.beginPath();
+      ctx.moveTo(links[i][0][0],links[i][0][1]);
+      ctx.lineTo(links[i][1][0],links[i][1][1]);
+      ctx.strokeStyle = "green";
+      ctx.stroke();
+    }
   //}, false);
 }
 
 function update() {
-  //console.log(displayTransform.mouseX);
+  console.log(clickingOnStar);
   topCanvas = -displayTransform.matrix[5] / displayTransform.scale;
   leftCanvas = -displayTransform.matrix[4] / displayTransform.scale;
 
