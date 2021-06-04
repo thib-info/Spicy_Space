@@ -1,0 +1,18 @@
+Balise <script> et <link> a ajouter dans le cadre de l'utilisation du serveur python
+
+<head>
+  <meta charset="utf-8">
+  <title>Spicy Space</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='css/window/window.css')}}">
+  <script src="{{url_for('static', filename='js/window/window.js')}}"></script>
+  <link rel="stylesheet" href="{{url_for('static', filename='css/index/index.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/colors/colors-stock.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/index/menu-style.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/font/font.css')}}">
+  <script src="{{url_for('static', filename='js/window/window.js')}}"></script>
+  <script src="{{url_for('static', filename='js/ajax/ajaxCall.js')}}"></script>
+  <script src="{{url_for('static', filename='js/ajax/getMap.js')}}"></script>
+  <script src="{{url_for('static', filename='js/ajax/exampleConnexion.js')}}"></script>
+</head>
+
+<script src="{{url_for('static', filename='js/menu-animation/menuAnimation.js')}}"></script>
