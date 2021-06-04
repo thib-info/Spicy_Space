@@ -15,6 +15,8 @@ class player :
         self.isMj = isMj
         self.interraction_request=[]
         self.interraction_create=[]
+        self.unit=[]
+        self.buildings=[]
 
     def add_enemy(self,pid):
         if not pid in self.allies and not pid in self.enemies:
@@ -70,6 +72,7 @@ class player :
     def create_interraction(self,p2,type):
         interraction=Players_interraction(self,p2,type)
         self.interraction_create.append(interraction)
+
 
 
 
