@@ -5,7 +5,7 @@ from sp_motor.sp_motor.players_interactions.Players_interraction import Players_
 with open("../../../config/ressources.json") as g:
     conf_ress = json.load(g)
 class player :
-    def __init__(self, conf, pid, name, isMj = False):
+    def __init__(self, conf, pid, name, isMj=False):
         self.name = name
         self.pid = pid
         self.allies = []
@@ -15,6 +15,11 @@ class player :
         self.isMj = isMj
         self.interraction_request=[]
         self.interraction_create=[]
+
+    def get_isMJ(self):
+        return self.isMj
+    def affiche(self):
+        print(f"{self.name},{self.isMj}")
 
     def add_enemy(self,pid):
         if not pid in self.allies and not pid in self.enemies:

@@ -1,5 +1,6 @@
 from sp_motor.sp_motor.game_classes.unit import unit as un
 from sp_motor.sp_motor.game_classes.player import player as pl
+from sp_motor.sp_motor.game_classes.game import game
 import random
 import json
 from copy import deepcopy
@@ -7,9 +8,6 @@ from copy import deepcopy
 with open("../../../config/config_unit.json") as f:
     conf = json.load(f)
 
-with open("../../../config/config_player.json") as f_player:
-    conf_player = json.load(f_player)
-player_model = pl(conf_player["player"],-1,"NULL")
 
 destroyer = un(conf["destroyer"], -1, [-1, -1])
 
