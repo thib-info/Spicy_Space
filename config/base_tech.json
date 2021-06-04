@@ -152,7 +152,7 @@
       "researched": false
     }
   },
-  "vaisseaux":{
+  "vaisseau":{
     "type": "vaisseau",
     "colonisateur":{
       "name":"colonisateur",
