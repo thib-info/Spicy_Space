@@ -46,6 +46,10 @@ class technology:
                         res.append(j)
         return res
 
+    def upgrage_request(self,name):
+        if name in self.upgrade_possible():
+            return True
+        return False
 
 with open("../../../config/base_tech.json") as f:
     config = json.load(f)
