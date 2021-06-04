@@ -1,4 +1,4 @@
-var panels = [];
+var leftPanel = 0, rightPanel = 0;
 
 function panelConstructor(panelIndex, typeValue,isRight) {
   // panelIndex est un entier qui indique ce qu'affiche le panel :
@@ -63,10 +63,18 @@ function panelConstructor(panelIndex, typeValue,isRight) {
 }
 
 function addPanel(panelIndex,typeValue,isRight) {
+  if (isRight == true) {
+    if (rightPanel != 0) {
+      closePanel(rightPanel);
+    }
+  }
   panelConstructor(panelIndex,typeValue,isRight);
 
   var panelElement = document.getElementById(`panel${panelIndex}`);
-  panels.push(panelElement);
+  if (isRight)
+    rightPanel = panelElement;
+  else
+    leftPanel = panelElement;
 
   function detect(e) {
     let targetElement = e.target; // clicked element
@@ -91,6 +99,10 @@ function addPanel(panelIndex,typeValue,isRight) {
 
   function closePanel(panelElement) {
     document.removeEventListener("click",detect);
+    if (panelElement.attributes.side.value == "right")
+      rightPanel = 0;
+    else
+      leftPanel = 0;
     panelElement.remove();
   }
 }
