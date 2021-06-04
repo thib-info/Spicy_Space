@@ -93,7 +93,18 @@ class building:
         elif self.type == "ferme":
             return "nourriture"
 
-
+    def produce_unit(self, name):
+        if self.type == "spatioport":
+            if name == "destroyer":
+                print("produce"+name)
+            elif name == "tardigrade":
+                print("produce"+name)
+            elif name == "battleship":
+                print("produce" + name)
+            elif name == "colon":
+                print("produce" + name)
+            elif name == "spotter":
+                print("produce" + name)
 
 
 
