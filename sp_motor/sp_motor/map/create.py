@@ -61,6 +61,7 @@ def prune_graph(delaunay, m_tree, min_add=0, max_add=1):
     possible_add = delaunay - m_tree
     for i in range(n):
         friends = list(possible_add[i])
+        print(friends)
         max_f = randint(min_add, max_add)
 
         for step in range(max_f):
@@ -92,24 +93,81 @@ def id_neighbors(graph):
 
 
 
-def find_contact(system_1, system_2, max_radius):
+def find_contact(system_1, system_2, max_radius, map):
     minimal, id1, id2 = max_radius, 0, 0
-    for i in range(len(system_1.children)):
-        for j in range(len(system_2.children)):
-            distance = dist(system_1.children[i].pos, system_2.children[j].pos)
+    s1_dep, s2_dep = 0, 0
+    for i in range(len(map.children)):
+        if i < system_1:
+            s1_dep += len(map.children[i].children) 
+
+        if i < system_2:
+            s2_dep += len(map.children[i].children) 
+
+    s1, s2 = map.children[system_1], map.children[system_2]
+    
+    for i in range(len(s1.children)):
+        for j in range(len(s2.children)):
+            distance = dist(s1.children[i].pos, s2.children[j].pos)
             if distance < minimal:
                 minimal = distance
-                id1 = i
-                id2 = j
+                id1 = i 
+                id2 = j 
 
-    return (id1, id2, minimal)
-
-
+    return (s1_dep + id1, s2_dep + id2, minimal)
 
 
-def create_map(radius=600, nb_zonnes=(10, 14), zonnes_r=(40, 80), systems=(10, 20)):
+
+def print_spawn_total(spawn, graph):
+    points = {"x":[], "y":[]}
+    lines = []
+
+    for syst in spawn.children:
+        points["x"].append(syst.pos[0])
+        points["y"].append(syst.pos[1])
+        
+    for i in range(len(spawn.children)):
+        for j in range(len(spawn.children)):
+            if graph[i, j] > 1:
+                coords = [[], []]
+                coords[0] = [spawn.children[i].pos[0], spawn.children[j].pos[0]]
+                coords[1] = [spawn.children[i].pos[1], spawn.children[j].pos[1]]
+
+                plt.plot(coords[0], coords[1])
+
+
+        plt.plot(points["x"], points["y"], 'o')
+    plt.title("shema amas")
+    plt.show()
+
+
+def print_spawn(spawn):
+    points = {"x":[], "y":[]}
+    lines = []
+
+    
+
+
+    for syst in spawn.children:
+        points["x"].append(syst.pos[0])
+        points["y"].append(syst.pos[1])
+        
+    for i in range(spawn.graph.shape[0]):
+        for j in range(spawn.graph.shape[1]):
+            if spawn.graph[i, j] > 1:
+                coords = [[], []]
+                coords[0] = [spawn.children[i].pos[0], spawn.children[j].pos[0]]
+                coords[1] = [spawn.children[i].pos[1], spawn.children[j].pos[1]]
+
+                plt.plot(coords[0], coords[1])
+
+
+        plt.plot(points["x"], points["y"], 'o')
+        
+
+
+def create_map(radius=250, nb_zonnes=(10, 14), zonnes_r=(30, 40), systems=(10, 15), inner_conf=(4, 10)):
     #creer la zonne de la map
-    map = Spawn_zonne(1000, 1000, 1000)
+    map = Spawn_zonne(radius, radius, radius)
 
     #trouver un nombre d'amas d'étoiles à créer
     nb_z = randint(nb_zonnes[0], nb_zonnes[1])
@@ -121,18 +179,20 @@ def create_map(radius=600, nb_zonnes=(10, 14), zonnes_r=(40, 80), systems=(10, 2
     #on calcule le graph reliant les amas
     adja_max = get_delaunay(map)
     r = minimal_tree(map)
-    amas_graph = prune_graph(adja_max, r)
+    amas_graph = prune_graph(adja_max, r, 1, 2)
 
     #pr chaque amas, on vient créer ses systèmes, et on en fait le graphe
     for i in range(len(map.children)):
         nb_s = randint(systems[0], systems[1])
         for j in range(nb_s):
             map.children
-            map.children[i].make_spawn(default_system_radius, default_system_radius)
+            map.children[i].make_spawn(inner_conf[0], inner_conf[1])
 
         adja_max = get_delaunay(map.children[i])
         r = minimal_tree(map.children[i])
-        map.children[i].graph = prune_graph(adja_max, r)
+        map.children[i].graph = prune_graph(adja_max, r, 1, 4)
+
+    
 
 
     nb_total_syst = 0
@@ -143,18 +203,29 @@ def create_map(radius=600, nb_zonnes=(10, 14), zonnes_r=(40, 80), systems=(10, 2
     #on vient ajouter dans le graphe général de la map les liens locaux
     map.graph = np.array([[0 for i in range(nb_total_syst)] for i in range(nb_total_syst)])
     for child in range(len(map.children)):
+
+        s1_dep = 0
+        for i in range(len(map.children)):
+            if i < child:
+                s1_dep += len(map.children[i].children) - 1
+
+
+
         for i in range(map.children[child].graph.shape[0]):
             for j in range(map.children[child].graph.shape[1]):
-                map.graph[child +i, child+j] = map.children[child].graph[i, j]
+                map.graph[s1_dep + child +i, s1_dep + child+j] = map.children[child].graph[i, j]
 
-    #on vient ajouter les liens entre les amas stellaires dans le graphe gen
+    
+
+    # on vient ajouter les liens entre les amas stellaires dans le graphe gen
     neighbors = id_neighbors(amas_graph)
     contacts = []
     for link in neighbors:
-        contact = find_contact(map.children[link["sys1"]], map.children[link["sys2"]], radius)
+        contact = find_contact(link["sys1"], link["sys2"], radius, map)
         contacts.append(contact)
-        map.graph[link["sys1"] + contact[0], link["sys2"] + contact[1]] = contact[2]
-
+        
+        map.graph[ contact[0],  contact[1]] = contact[2]
+ 
 
     o_systems = []
     o_sectors = []
@@ -177,26 +248,45 @@ def create_map(radius=600, nb_zonnes=(10, 14), zonnes_r=(40, 80), systems=(10, 2
     o_map.import_systems(o_systems)
     o_map.import_graph_cost(map.graph)
 
+
     link_graph = deepcopy(map.graph)
     for i in range(link_graph.shape[0]):
         for j in range(link_graph.shape[1]):
             if link_graph[i, j] > 0:
                 link_graph[i, j] = 1
+                
+
 
     o_map.import_graph_link(link_graph)
-
-
    
-
     return o_map
 
 
+def print_graph(map):
+
+
+    points = {"x":[], "y":[]}
+    lines = []
+    for syst in map.systems:
+        points["x"].append(syst.pos[0])
+        points["y"].append(syst.pos[1])
+        
+    for i in range(map.graph_link.shape[0]):
+        for j in range(map.graph_link.shape[1]):
+            if map.graph_link[i, j] == 1:
+                coords = [[], []]
+                coords[0] = [map.systems[i].pos[0], map.systems[j].pos[0]]
+                coords[1] = [map.systems[i].pos[1], map.systems[j].pos[1]]
+
+                plt.plot(coords[0], coords[1])
+
+    plt.plot(points["x"], points["y"], 'o')
+    plt.show()
 
 
 
 
 
-map = create_map()
 
 # print(map.graph_cost)
 # print(map.graph_link)
@@ -207,6 +297,31 @@ map = create_map()
 
 
 
+# import json
 
+
+# map = create_map(radius=300,nb_zonnes=(60, 90), zonnes_r=(60, 80), systems=(8, 15), inner_conf=(8, 15) )
+# print_graph(map)
+# dico = map.export_info()
+
+
+
+
+
+
+# with open("../../../map.json", 'w') as f:
+#     json.dump(dico, f)
+
+
+
+
+
+
+
+
+
+# print(graph)
+# with open("../../../graph.json", 'w') as f:
+#     json.dump(graph, f)
 
 
