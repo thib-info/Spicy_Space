@@ -3,8 +3,6 @@ const btnMenu = document.querySelector('.btn-menu');
 
 btnMenu.addEventListener('click', function(){
     containerMenu.classList.toggle('active');
-
-    //visibleName();
 });
 
 function visibleName(){

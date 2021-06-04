@@ -3,3 +3,5 @@
 
 null -> aucune action à réaliser après
 100 -> Pour tester la connexion et le renvoie AJAX
+
+1 -> Récupere la map dans son etat initial

@@ -6,7 +6,7 @@ function ajaxCall(valueToSend, target, goalIndex){
     httpRequest.onreadystatechange = function(){
         if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
             let response = httpRequest.responseText;
-            console.log(response);
+            //console.log(response);
             reactAjax(goalIndex, response);
         }
     };
@@ -20,7 +20,7 @@ function reactAjax(index, response){
 
     switch (index){
         case 1:
-            console.log('Only example');
+            let jsonMap = JSON.parse(response);
             break;
         case 100:
             justeTest(response);
