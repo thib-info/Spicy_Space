@@ -4,7 +4,7 @@
 }
 
 @font-face{
-    font-family: "titre";
+    font-family: "titre", Serif;
     src: url("blade-singer/bladesinger.ttf");
 }
 
