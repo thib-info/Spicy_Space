@@ -1,6 +1,26 @@
 {
+  "or": {
+    "value": 250,
+    "type": "or"
+  },
+  "minerai": {
+    "value": 80,
+    "type": "minerai"
+  },
+  "lingot": {
+    "value": 0,
+    "type": "lingot"
+  },
+  "electronique": {
+    "value": 0,
+    "type": "electronique"
+  },
   "population": {
-    "value": 1500,
+    "value": 1,
     "type": "population"
+  },
+  "nourriture": {
+    "value": 50,
+    "type": "nourriture"
   }
 }

@@ -5,7 +5,7 @@ class unit:
         self.name = conf["name"]
         self.type = conf["type"]
         self.owner = owner
-        self.evasion= conf["evasion"]
+        self.precision= conf["precision"]
         self.position = position
         self.tier = base_lvl
         self.scaling= conf["scaling"]
@@ -38,13 +38,34 @@ class unit:
         self.battling = True
     def end_battle(self):
         self.battling= False
+    def set_param(self,owner, position, base_lvl=1):
+        self.owner = owner
+        self.position = position
+        self.tier = base_lvl
+
+    def recruit(self, type, pos):
+        if type == "destroyer":
+            vaiss = unit(conf["destroyer"],self.owner,pos)
+            print("recruit" + type)
+        elif type == "tardigrade":
+            vaiss = unit(conf["tardigrade"], self.owner, pos)
+            print("recruit" + type)
+        elif type == "battleship":
+            vaiss = unit(conf["battleship"], self.owner, pos)
+            print("recruit" + type)
+        elif type == "colon":
+            vaiss = unit(conf["colon"], self.owner, pos)
+            print("recruit" + type)
+        elif type == "spotter":
+            vaiss = unit(conf["spotter"], self.owner, pos)
+            print("recruit" + type)
 
 
 with open("../../../config/config_unit.json") as f:
     conf = json.load(f)
 
 #print(conf["destroyer"].keys())
-#test = unit(conf["destroyer"], 1, [1, 1])
+test = unit(conf["destroyer"], 1, [1, 1])
 #test.upgrade(conf["destroyer"])
 #test.upgrade(conf["destroyer"])
 #print(test.pv)
@@ -56,4 +77,5 @@ with open("../../../config/config_unit.json") as f:
 #print(test.pv)
 #print(test.pv_max)
 #print(test.maint_cost)
+test.recruit("destroyer",[1, 1])
 
