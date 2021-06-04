@@ -107,7 +107,7 @@ def find_contact(system_1, system_2, max_radius):
 
 
 
-def create_map(radius=600, nb_zonnes=(10, 14), zonnes_r=(40, 80), systems=(10, 20)):
+def create_map(radius=250, nb_zonnes=(10, 14), zonnes_r=(30, 40), systems=(10, 15)):
     #creer la zonne de la map
     map = Spawn_zonne(radius, radius, radius)
 
@@ -121,7 +121,7 @@ def create_map(radius=600, nb_zonnes=(10, 14), zonnes_r=(40, 80), systems=(10, 2
     #on calcule le graph reliant les amas
     adja_max = get_delaunay(map)
     r = minimal_tree(map)
-    amas_graph = prune_graph(adja_max, r)
+    amas_graph = prune_graph(adja_max, r, 2, 3)
 
     #pr chaque amas, on vient créer ses systèmes, et on en fait le graphe
     for i in range(len(map.children)):
@@ -132,7 +132,7 @@ def create_map(radius=600, nb_zonnes=(10, 14), zonnes_r=(40, 80), systems=(10, 2
 
         adja_max = get_delaunay(map.children[i])
         r = minimal_tree(map.children[i])
-        map.children[i].graph = prune_graph(adja_max, r)
+        map.children[i].graph = prune_graph(adja_max, r, 1, 4)
 
 
     nb_total_syst = 0
@@ -155,6 +155,7 @@ def create_map(radius=600, nb_zonnes=(10, 14), zonnes_r=(40, 80), systems=(10, 2
         contacts.append(contact)
         map.graph[link["sys1"] + contact[0], link["sys2"] + contact[1]] = contact[2]
 
+    # print(len(contacts))
 
     o_systems = []
     o_sectors = []
@@ -177,14 +178,17 @@ def create_map(radius=600, nb_zonnes=(10, 14), zonnes_r=(40, 80), systems=(10, 2
     o_map.import_systems(o_systems)
     o_map.import_graph_cost(map.graph)
 
+    count = 0
+
     link_graph = deepcopy(map.graph)
     for i in range(link_graph.shape[0]):
         for j in range(link_graph.shape[1]):
             if link_graph[i, j] > 0:
                 link_graph[i, j] = 1
+                count += 1
 
     o_map.import_graph_link(link_graph)
-
+    # print(count, link_graph.shape[0])
 
    
 
@@ -207,11 +211,11 @@ def create_map(radius=600, nb_zonnes=(10, 14), zonnes_r=(40, 80), systems=(10, 2
 
 
 
-import json
+# import json
 
-map = create_map(radius=300)
+# map = create_map(radius=300)
 
-dico = map.export_info()
+# dico = map.export_info()
 
 # with open("../../../map.json", 'w') as f:
 #     json.dump(dico, f)
