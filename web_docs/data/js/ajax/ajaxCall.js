@@ -21,6 +21,7 @@ function reactAjax(index, response){
     switch (index){
         case 1:
             let jsonMap = JSON.parse(response);
+            console.log(jsonMap);
             break;
         case 100:
             justeTest(response);
