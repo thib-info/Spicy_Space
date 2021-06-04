@@ -1,14 +1,28 @@
-.font-ouverture{
+@font-face{
     font-family: "ouverture";
     src: url("addiction/Addiction.ttf");
 }
 
-.font-titre{
+@font-face{
     font-family: "titre";
     src: url("blade-singer/bladesinger.ttf");
 }
 
-.font-paragraphe{
+@font-face{
     font-family: "paragraphe";
     src: url("laser/laser.ttf");
+}
+
+
+
+.font-ouverture{
+    font-family: "ouverture","Arial";
+}
+
+.font-titre{
+    font-family: "titre","Arial";
+}
+
+.font-paragraphe{
+    font-family: "paragraphe","Arial";
 }
