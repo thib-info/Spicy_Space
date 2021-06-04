@@ -4,12 +4,9 @@ from sp_motor.sp_motor.game_classes.unit import unit as un
 from sp_motor.sp_motor.game_classes.building import building as build
 from copy import deepcopy
 
-with open("../../../config/config_player.json") as f:
-    conf_player = json.load(f)
-player_model = pl(conf_player["player"], -1, "NULL")
+
 
 PLAYER1_NAME = "Toto"
-
 
 class game:
     def __init__(self):
@@ -17,16 +14,27 @@ class game:
         self.list_systems =[] #conf["map"]
         self.turn =[] #conf["turn"]
         self.units = []
+        self.models = {}
 
 
 
-    def create_player(self):
-        self.players.append(deepcopy(player_model))
-        self.players[-1].set_param(len(self.players)-1, PLAYER1_NAME)
+    def create_player(self,isMJ=False):
+        self.players.append(deepcopy(self.models["player"]))
+        self.players[-1].set_param(len(self.players)-1, PLAYER1_NAME,isMJ)
     def next_turn(self):
         self.turn += 1
 
+    def load_conf(self):
+        with open("../../../config/config_player.json") as f:
+            conf_player = json.load(f)
+        self.models["player"] = pl(conf_player["player"], -1, "NULL")
+
 g1 = game()
+g1.load_conf()
 g1.create_player()
-print(g1.players[0].pid)
+g1.create_player(True)
+print(g1.players[0])
+print(g1.players[1])
+#print(g1.players[0].name)
+#print(g1.players[1].pid)
 
