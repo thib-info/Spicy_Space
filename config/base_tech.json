@@ -225,76 +225,70 @@
     "eclaireur":{
       "name":"eclaireur",
       "researched": false,
-      "children": ["eclaireur niveau 2","destroyer","battleship","tardigrade"]
-
-    },
-    "eclaireur niveau 2":{
-      "name":"eclaireur niveau 2",
-      "researched": false,
       "children": {
-        "eclaireur niveau 3":{
-           "name":"eclaireur niveau 3",
-           "researched": false,
-           "children": {}
-        }
-      }
-    },
-
-    "destroyer":{
-      "name":"destroyer",
-      "researched": false,
-      "children": {
-        "destroyer niveau 2":{
-           "name":"destroyer niveau 2",
-           "researched": false,
-           "children": {
-             "destroyer niveau 3":{
-              "name":"destroyer niveau 3",
-              "researched": false,
-              "children": {}
-            }
-           }
-        }
-      }
-    },
-
-
-    "battleship":{
-      "name":"battleship",
-      "researched": false,
-      "children": {
-        "battleship niveau 2":{
-           "name":"battleship niveau 2",
-           "researched": false,
-           "children": {
-             "battleship niveau 3":{
-               "name":"battleship niveau 3",
+        "eclaireur niveau 2":{
+          "name":"eclaireur niveau 2",
+          "researched": false,
+          "children": {
+            "eclaireur niveau 3":{
+               "name":"eclaireur niveau 3",
                "researched": false,
                "children": {}
-             }
-           }
+            }
+          }
+        },
+        "destroyer":{
+          "name":"destroyer",
+          "researched": false,
+          "children": {
+            "destroyer niveau 2":{
+              "name":"destroyer niveau 2",
+              "researched": false,
+              "children": {
+                "destroyer niveau 3":{
+                 "name":"destroyer niveau 3",
+                 "researched": false,
+                 "children": {}
+                }
+              }
+            }
+          }
+        },
+        "battleship":{
+          "name":"battleship",
+          "researched": false,
+          "children": {
+            "battleship niveau 2":{
+              "name":"battleship niveau 2",
+              "researched": false,
+              "children": {
+                "battleship niveau 3":{
+                  "name":"battleship niveau 3",
+                  "researched": false,
+                  "children": {}
+                }
+              }
+            }
+          }
+        },
+        "tardigrade":{
+          "name":"tardigrade",
+          "researched": false,
+          "children": {
+            "tardigrade niveau 2":{
+              "name":"tardigrade niveau 2",
+              "researched": false,
+              "children": {
+                "tardigrade niveau 3":{
+                  "name":"tardigrade niveau 3",
+                  "researched": false,
+                  "children": {}
+                }
+              }
+            }
+          }
         }
       }
-    },
-
-
-    "tardigrade":{
-      "name":"tardigrade",
-      "researched": false,
-      "children": {
-        "tardigrade niveau 2":{
-           "name":"tardigrade niveau 2",
-           "researched": false,
-           "children": ["tardigrade niveau 3"]
-        }
-      }
-    },
-
-    "tardigrade niveau 3":{
-      "name":"tardigrade niveau 3",
-      "researched": false,
-      "children": {}
-      
     }
   }
 }
