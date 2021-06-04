@@ -1,10 +1,13 @@
 from sp_motor.sp_motor.game_classes.unit import unit as un
+from sp_motor.sp_motor.game_classes.player import player as pl
+from sp_motor.sp_motor.game_classes.game import game
 import random
 import json
 from copy import deepcopy
 
 with open("../../../config/config_unit.json") as f:
     conf = json.load(f)
+
 
 destroyer = un(conf["destroyer"], -1, [-1, -1])
 
@@ -18,11 +21,15 @@ def battle(pUnit1,target):
         pUnit1.battle()
         target.battle()
         if hit(target):
-            target.battle()
             target.take_damage(pUnit1.pa)
             print(f"Tir reussi vous avez inflige  {pUnit1.pa} degats")
         else:
             print("Tir echoue")
+def can_battle(pUnit1,pUnit2,player1,player2):
+    if pUnit1.owner != pUnit2.owner and pUnit1.position == pUnit2.position and player1.is_ally(player2.pid):
+        return True
+    else :
+        return False
 
 
 

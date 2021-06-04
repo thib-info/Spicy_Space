@@ -7,7 +7,7 @@ from sp_motor.sp_motor.game_classes.systeme import systeme
 with open("../../../config/ressources.json") as g:
     conf_ress = json.load(g)
 class player :
-    def __init__(self, conf, pid, name, isMj = False):
+    def __init__(self, conf, pid, name, isMj=False):
         self.name = name
         self.pid = pid
         self.allies = []
@@ -18,6 +18,11 @@ class player :
         self.interraction_request=[]
         self.interraction_create=[]
         self.unit=[]
+
+    def get_isMJ(self):
+        return self.isMj
+    def affiche(self):
+        print(f"{self.name},{self.isMj}")
 
     def add_enemy(self,pid):
         if not pid in self.allies and not pid in self.enemies:
@@ -57,9 +62,24 @@ class player :
         for i in self.interraction_create:
             self.send_interraction(i)
 
-    def set_param(self,pid, name):
+    def set_param(self,pid, name,isMJ= False):
         self.pid = pid
         self.name = name
+        self.isMj = isMJ
+
+    def is_ally(self, pid):
+        for i in self.allies:
+            if pid == self.allies[i]:
+                return True
+            else:
+                return False
+
+    def is_enemy(self, pid):
+        for i in self.enemies:
+            if pid == self.enemies[i]:
+                return True
+            else:
+                return False
 
     #fonction pour test
     def print_ally(self):

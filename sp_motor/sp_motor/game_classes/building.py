@@ -22,7 +22,6 @@ class building:
         self.state = 0
         self.production_per_turn = 0
         self.scaling = 0
-        self.owner=0
 
     def aplly_conf(self):
         with open("../../../config/config_building.json") as f:
