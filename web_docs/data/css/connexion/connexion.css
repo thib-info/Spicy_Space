@@ -1,0 +1,141 @@
+*{
+    background-color: black;
+    color: white;
+}
+
+.logo{
+    text-align: center;
+}
+
+
+form{
+    text-align: center;
+    padding: 100px;
+    height : 50vh;
+}
+
+.placeholder {
+    margin : 50px;
+}
+
+.text{
+    text-align: center;
+    color: white;
+    width : 200px;
+    height : 40px;
+    margin: 10px;
+    border: double 5px transparent;
+    border-radius: 15px;
+    background: linear-gradient(black, black),
+    linear-gradient(90deg, #FFFB00, #F1C40F, #EAB120, #9068D0, #711C84, #621C9C, #2E1C94, #1C9FB7);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    filter : drop-shadow(0 0 5px) ;
+
+}
+
+
+
+/*.submit{
+    background-color: red;
+    width :50%;
+    height : 50%;
+    margin: 1%;
+
+}
+
+.submit:hover{
+    background-color: yellow;
+}*/
+
+/*html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /*background: #000;
+}*/
+.glow{
+    background-color: rgba(0, 0, 0, 0.0);
+    color : white;
+    width : 100%;
+    height: 100%;
+    border : none;
+    font-size : 30px;
+}
+
+.glow-on-hover {
+    width: 220px;
+    height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    margin: 20px;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #FFFB00, #F1C40F, #EAB120, #9068D0, #711C84, #621C9C, #2E1C94, #1C9FB7, #FFFB00);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+
+footer{
+    height:50px;
+    line-height:50px;
+    text-align:center;
+    bottom:0px;
+    width:100%;
+}
+
