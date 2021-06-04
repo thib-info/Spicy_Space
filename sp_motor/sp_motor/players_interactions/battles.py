@@ -1,6 +1,9 @@
 from sp_motor.sp_motor.game_classes.unit import unit as un
 from sp_motor.sp_motor.game_classes.player import player as pl
 from sp_motor.sp_motor.game_classes.game import game
+from sp_motor.sp_motor.game_classes.map import System_p
+
+
 import random
 import json
 from copy import deepcopy
@@ -30,6 +33,7 @@ def can_battle(pUnit1,pUnit2,player1,player2):
         return True
     else :
         return False
+
 
 
 

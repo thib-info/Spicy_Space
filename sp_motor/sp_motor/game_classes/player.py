@@ -1,10 +1,10 @@
 import json
 #from ressources import ressource
-from sp_motor.sp_motor.game_classes.ressources import ressource
-from sp_motor.sp_motor.players_interactions.Players_interraction import Players_interraction
-from sp_motor.sp_motor.game_classes.systeme import systeme
+from sp_motor.game_classes.ressources import ressource
+from sp_motor.players_interactions.Players_interraction import Players_interraction
+from sp_motor.game_classes.systeme import systeme
 
-with open("../../../config/ressources.json") as g:
+with open("config/ressources.json") as g:
     conf_ress = json.load(g)
 class player :
     def __init__(self, conf, pid, name, isMj=False):
@@ -17,7 +17,11 @@ class player :
         self.isMj = isMj
         self.interraction_request=[]
         self.interraction_create=[]
+<<<<<<< HEAD
         self.unit=[]
+=======
+        self.units_id = []
+>>>>>>> origin/war
 
     def get_isMJ(self):
         return self.isMj
@@ -117,7 +121,7 @@ class player :
 
 
 
-with open("../../../config/config_player.json") as f:
+with open("config/config_player.json") as f:
     conf = json.load(f)
 #test = player(conf["player"], 1,"oui")
 #test.add_ally(4)
@@ -126,57 +130,57 @@ with open("../../../config/config_player.json") as f:
 
 #TEST DES INTERRACTIONS
 
-p1 = player(conf["player"],1,"oui")
-p2 = player(conf["player"],2,"oui")
-p3 = player(conf["player"],3,"oui")
+# p1 = player(conf["player"],1,"oui")
+# p2 = player(conf["player"],2,"oui")
+# p3 = player(conf["player"],3,"oui")
 
-p1.create_interraction(p2,2)
-p1.create_interraction(p2,4)
+# p1.create_interraction(p2,2)
+# p1.create_interraction(p2,4)
 
-print("Etat initial de l'interraction: "+ str(p1.interraction_create[0].state))
-p1.send_interraction_created()
-print("Etat de l'interraction après envoi: "+ str(p1.interraction_create[0].state))
-print("\nlecture des requets reçu par p2:")
-p2.read_interraction_request()
-print("P2 enemmies avant:")
-p1.print_enemies()
-print("P1 enemmies avant:")
-p2.print_enemies()
+# print("Etat initial de l'interraction: "+ str(p1.interraction_create[0].state))
+# p1.send_interraction_created()
+# print("Etat de l'interraction après envoi: "+ str(p1.interraction_create[0].state))
+# print("\nlecture des requets reçu par p2:")
+# p2.read_interraction_request()
+# print("P2 enemmies avant:")
+# p1.print_enemies()
+# print("P1 enemmies avant:")
+# p2.print_enemies()
 
-p2.accept_interraction(p2.interraction_request[0])
-print("P2 enemmies après:")
-p1.print_enemies()
+# p2.accept_interraction(p2.interraction_request[0])
+# print("P2 enemmies après:")
+# p1.print_enemies()
 
-print("P2 enemmies après:")
-p2.print_enemies()
-
-
-p2.decline_interraction(p2.interraction_request[0])
-print("P2 enemmies après:")
-p1.print_enemies()
-
-print("P2 enemmies après:")
-p2.print_enemies()
+# print("P2 enemmies après:")
+# p2.print_enemies()
 
 
+# p2.decline_interraction(p2.interraction_request[0])
+# print("P2 enemmies après:")
+# p1.print_enemies()
 
-print("Etat de l'interraction après acceptation: "+ str(p1.interraction_create[0].state))
+# print("P2 enemmies après:")
+# p2.print_enemies()
 
 
-print("\n")
-print("test ressources")
-#p1.print_ressources()
-p1.ressources_init_player()
-p1.print_ressources()
 
-systeme_test=systeme("dasysteme","dalocation")
-systeme_test.add_building()
-systeme_test.buildings[0].change_owner(p1)
-#print("le owner:"+str(systeme_test.buildings[0].owner))
-systeme_test.print_buildings()
-p1.add_systeme(systeme_test)
-print("\n")
-#p1.recolte_production()
-#p1.print_ressources()
+# print("Etat de l'interraction après acceptation: "+ str(p1.interraction_create[0].state))
 
-#print(p1.ressources[0])
+
+# print("\n")
+# print("test ressources")
+# #p1.print_ressources()
+# p1.ressources_init_player()
+# p1.print_ressources()
+
+# systeme_test=systeme("dasysteme","dalocation")
+# systeme_test.add_building()
+# systeme_test.buildings[0].change_owner(p1)
+# #print("le owner:"+str(systeme_test.buildings[0].owner))
+# systeme_test.print_buildings()
+# p1.add_systeme(systeme_test)
+# print("\n")
+# #p1.recolte_production()
+# #p1.print_ressources()
+
+# #print(p1.ressources[0])
