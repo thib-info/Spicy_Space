@@ -1,21 +1,23 @@
 .systemPreview {
-  top: 0;
-  left: 0;
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   background-color: #0000FF;
 }
 
 .ressourcesDashboard {
   width: 400px;
-  height: 150px;
+  height: 200px;
   background-color: #FF00FF;
 }
 
 .slots {
   display: block;
+  height: 200px;
+  width: 600px;
+  background-color: #00FF00;
 }
 
 .systemPreview, .ressourcesDashboard {
   display: inline-block;
+  /*text-align: center;*/
 }

@@ -9,8 +9,6 @@ canvas.height = window.innerHeight;
 // loading map
 var data = JSON.parse(JSON.stringify(data));
 
-console.log(data["systems"]);
-
 // loading images
 const starImage = new Image();
 starImage.addEventListener('load', function() {
@@ -22,7 +20,7 @@ const hoverStarImage = new Image();
 hoverStarImage.addEventListener('load', function() {
   loadedImages += 1;
 }, false);
-hoverStarImage.src ="../data/images/hoverStar.png";
+hoverStarImage.src ="../data/images/hoverStar2.png";
 
 var clickingOnStar = false, starHovered = false;
 
@@ -277,6 +275,14 @@ function drawStars() {
   starHovered = false;
   var rect = canvas.getBoundingClientRect();
   //starImage.addEventListener('load',function() {
+  for (let i = 0 ; i < links.length ; i++) {
+    ctx.beginPath();
+    ctx.moveTo(links[i][0][0],links[i][0][1]);
+    ctx.lineTo(links[i][1][0],links[i][1][1]);
+    ctx.strokeStyle = "green";
+    ctx.stroke();
+  }
+
   for (let i = 0 ; i < n ; i++) {
       if (displayTransform.scale > zoomLimit) {
         ctx.beginPath();
@@ -304,18 +310,10 @@ function drawStars() {
           ctx.fill();
       }
     }
-    for (let i = 0 ; i < links.length ; i++) {
-      ctx.beginPath();
-      ctx.moveTo(links[i][0][0],links[i][0][1]);
-      ctx.lineTo(links[i][1][0],links[i][1][1]);
-      ctx.strokeStyle = "green";
-      ctx.stroke();
-    }
   //}, false);
 }
 
 function update() {
-  console.log(clickingOnStar);
   topCanvas = -displayTransform.matrix[5] / displayTransform.scale;
   leftCanvas = -displayTransform.matrix[4] / displayTransform.scale;
 

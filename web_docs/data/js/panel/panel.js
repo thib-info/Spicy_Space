@@ -5,10 +5,11 @@ function panelConstructor(panelIndex, location,isRight) {
   // interface pour vaisseaux, apercu système,etc.
   // location permet de renseigner le système visé ou actuel
   // isRight décrit la position du panel
+  var panelID = `${panelIndex}-${location}`;
   function panelBase() {
     if (isRight) {
       document.body.insertAdjacentHTML('beforeend',`
-        <div id="panel${panelIndex}" class="panel" side="right">
+        <div id="${panelID}" class="panel" side="right">
           <div class="panelHeader"></div>
           <div class="panelBody">
           </div>
@@ -16,7 +17,7 @@ function panelConstructor(panelIndex, location,isRight) {
       `);
     } else {
       document.body.insertAdjacentHTML('beforeend',`
-        <div id="panel${panelIndex}" class="panel" side="left">
+        <div id="${panelID}" class="panel" side="left">
           <div class="panelHeader"></div>
           <div class="panelBody">
           </div>
@@ -38,7 +39,7 @@ function panelConstructor(panelIndex, location,isRight) {
         title = '<h2>Default_Title</h2>';
         break;
     }
-    var panelHeader = document.querySelector(`[id="panel${panelIndex}"] .panelHeader`);
+    var panelHeader = document.querySelector(`[id="${panelID}"] .panelHeader`);
     panelHeader.insertAdjacentHTML('afterbegin',title);
   }
   function panelContent() {
@@ -58,7 +59,7 @@ function panelConstructor(panelIndex, location,isRight) {
         content = '<h2>Default_Content</h2>';
         break;
     }
-    var panelBody = document.querySelector(`[id="panel${panelIndex}"] .panelBody`);
+    var panelBody = document.querySelector(`[id="${panelID}"] .panelBody`);
     panelBody.insertAdjacentHTML('afterbegin',content);
   }
   panelBase();
@@ -74,7 +75,7 @@ function addPanel(panelIndex,location,isRight) {
   }
   panelConstructor(panelIndex,location,isRight);
 
-  var panelElement = document.getElementById(`panel${panelIndex}`);
+  var panelElement = document.getElementById(`${panelIndex}-${location}`);
   if (isRight)
     rightPanel = panelElement;
   else
@@ -83,12 +84,10 @@ function addPanel(panelIndex,location,isRight) {
   function detect(e) {
     let targetElement = e.target; // clicked element
     do {
-        //console.log(targetElement);
         if (targetElement == panelElement // click inside the panel
           || targetElement == document.getElementById("windowMenu") // click inside the bar
           || windows.includes(targetElement) // click inside a window
           || clickingOnStar) { // clicking right now on the star
-            console.log("inside");
             return;
         }
         targetElement = targetElement.parentNode;

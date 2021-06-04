@@ -33,7 +33,13 @@ body {
 .windowBody {
   padding: 10px;
   z-index: inherit;
+  height: inherit;
 }
+
+.centerWrapper {
+  margin: auto;
+}
+
 
 /* selected window */
 .window[selected=true] .windowHeader {
