@@ -1,9 +1,16 @@
 import json
 
 class ressource:
-    def __init__(self, conf):
-        self.value = conf["value"]
-        self.type = conf["type"]
+    def __init__(self, type):
+        self.value = 0
+        self.type = type
+
+    def apply_conf(self):
+        with open("../../../config/ressources.json") as f:
+            config = json.load(f)
+        actual_conf = config[self.type]
+        self.value = actual_conf["value"]
+        self.type = actual_conf["type"]
 
     def add(self, amount):
         self.value += amount
@@ -32,14 +39,16 @@ class ressource:
     def total_ressources(self,conf):
         res = []
         for i in conf:
-            buff = ressource(conf[i])
+            buff = ressource(i)
+            buff.apply_conf()
             res.append(buff.value)
         return res
 
     def order_ressources(self,conf):
         res = []
         for i in conf:
-            buff = ressource(conf[i])
+            buff = ressource(i)
+            buff.apply_conf()
             res.append(buff.type)
         return res
 
@@ -47,7 +56,8 @@ with open("../../../config/ressources.json") as f:
     config = json.load(f)
 
 print(config["population"].keys())
-test = ressource(config["or"])
+test = ressource("or")
+test.apply_conf()
 print(test.value)
 print(test.type)
 test.add(100)

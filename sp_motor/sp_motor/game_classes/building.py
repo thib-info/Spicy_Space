@@ -1,4 +1,5 @@
 import json
+from ressources import ressource
 #JSON SCALING
 #[0] = PV
 #[1] = MAINT_COST
@@ -6,20 +7,37 @@ import json
 
 class building:
     lastId = 1
-    def __init__(self, conf, location):
+
+    def __init__(self, type, location):
         self.id = building.lastId
         building.lastId += 1
-        self.type = conf["type"]
+        self.type = type
         self.location = location
-        self.level_tier = conf["level_tier"]
-        self.level_production = conf["level_production"]
-        self.cost=conf["cost"]
-        self.pv=conf["pv"]
-        self.pv_max=conf["pv"]
-        self.maint_cost=conf["maint_cost"]
-        self.state=conf["state"]
-        self.production_per_turn=conf["production"]
-        self.scaling=conf["scaling"]
+        self.level_tier = 0
+        self.level_production = 0
+        self.cost = 0
+        self.pv = 0
+        self.pv_max = 0
+        self.maint_cost = 0
+        self.state = 0
+        self.production_per_turn = 0
+        self.scaling = 0
+
+    def aplly_conf(self):
+        with open("../../../config/config_building.json") as f:
+            conf = json.load(f)
+
+        actual_conf = conf[self.type]
+
+        self.type = actual_conf["type"]
+        self.level_tier = actual_conf["level_tier"]
+        self.level_production = actual_conf["level_production"]
+        self.cost = actual_conf["cost"]
+        self.pv_max = actual_conf["pv"]
+        self.maint_cost = actual_conf["maint_cost"]
+        self.state = actual_conf["state"]
+        self.production_per_turn = actual_conf["production"]
+        self.scaling = actual_conf["scaling"]
 
     def take_damage(self, damage):
         if damage>0:
@@ -49,12 +67,43 @@ class building:
             self.production_per_turn = round(self.production_per_turn * self.scaling[2])
             self.level_production=self.level_production+1
 
-with open("../../../config/config_building.json") as f:
-    conf = json.load(f)
+    def produce(self,type):
+        ress = ressource(type)
+        ress.apply_conf()
+        if self.type == "habitation":
+            return ["or",ress.value + self.production_per_turn]
+        elif self.type == "mine":
+            return ["minerai",ress.value + self.production_per_turn]
+        elif self.type == "raffinerie":
+            return ["lingot",ress.value + self.production_per_turn]
+        elif self.type == "usine":
+            return ["electronique",ress.value + self.production_per_turn]
+        elif self.type == "ferme":
+            return ["nourriture",ress.value + self.production_per_turn]
+
+    def link_ress(self,type):
+        if self.type == "habitation":
+            return "or"
+        elif self.type == "mine":
+            return "minerai"
+        elif self.type == "raffinerie":
+            return "lingot"
+        elif self.type == "usine":
+            return "electronique"
+        elif self.type == "ferme":
+            return "nourriture"
+
+
+
+
+
 
 #print(conf["mine"].keys())
-test = building(conf["mine"],[0,0])
-test2 = building(conf["mine"],[0,0])
+test = building("ferme",[0,0])
+test.aplly_conf()
+test2 = building("ferme",[0,0])
+test2.aplly_conf()
+
 
 print("test id")
 print("id1="+str(test.id))
@@ -87,3 +136,7 @@ print("\ntest upgrade_prod")
 print("production_per_turn="+str(test.production_per_turn))
 test.upgrade_prod()
 print("production_per_turn="+str(test.production_per_turn))
+
+print("\ntest produce")
+print(test.produce(test.link_ress(test.type))[0])
+print(test.produce(test.link_ress(test.type))[1])
