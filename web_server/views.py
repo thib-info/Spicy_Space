@@ -69,3 +69,13 @@ def mapSend():
     with open("../game_data/map.json") as f:
         map=json.load(f)
     return jsonify(map)
+
+@app.route("/treeTech", methods=["POST"])
+def treeTechSend():
+    idTech = request.form.get('idTech')
+    if(idTech != None):
+        return True
+    else:
+        with open("../config/base_tech.json") as f:
+            treeTech=json.load(f)
+        return jsonify(treeTech)

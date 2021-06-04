@@ -5,3 +5,5 @@ null -> aucune action à réaliser après
 100 -> Pour tester la connexion et le renvoie AJAX
 
 1 -> Récupere la map dans son etat initial
+2 -> Recupere le JSON de la l'arbre de technologie
+3 -> Demande de verification pour l'update de treeTech

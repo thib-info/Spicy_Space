@@ -18,6 +18,8 @@ function setWindow(idElement){
         addWindow(3);
     else if(idElement==='diplomatie')
         addWindow(1);
-    else if(idElement==='arbre-tech')
+    else if(idElement==='arbre-tech') {
+        getTreeTech();
         addWindow(4);
+    }
 }
