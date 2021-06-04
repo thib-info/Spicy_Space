@@ -10,7 +10,7 @@ from sp_motor.sp_motor.game_classes.unit import unit
 class building:
     lastId = 1
 
-    def __init__(self, type, location):
+    def __init__(self, type, location,owner):
         self.id = building.lastId
         building.lastId += 1
         self.type = type
@@ -24,7 +24,7 @@ class building:
         self.state = 0
         self.production_per_turn = 0
         self.scaling = 0
-        self.owner = -1
+        self.owner = owner
 
     def aplly_conf(self):
         with open("../../../config/config_building.json") as f:
@@ -87,15 +87,15 @@ class building:
 
     def produce2(self):
         if self.type == "habitation": #ressources population
-            self.owner.ressources[4]=self.owner.ressources[4]+self.production_per_turn
+            self.owner.ressources[4].value=self.owner.ressources[4].value+self.production_per_turn
         elif self.type == "mine": #minerais
-            self.owner.ressources[1] = self.owner.ressources[1] + self.production_per_turn
+            self.owner.ressources[1].value = self.owner.ressources[1].value + self.production_per_turn
         elif self.type == "raffinerie":#ingot
-            self.owner.ressources[2] = self.owner.ressources[2] + self.production_per_turn
+            self.owner.ressources[2].value = self.owner.ressources[2].value + self.production_per_turn
         elif self.type == "usine":#electrotech
-            self.owner.ressources[3] = self.owner.ressources[3] + self.production_per_turn
+            self.owner.ressources[3].value = self.owner.ressources[3].value + self.production_per_turn
         elif self.type == "ferme": #nourriture
-            self.owner.ressources[5] = self.owner.ressources[5] + self.production_per_turn
+            self.owner.ressources[5].value = self.owner.ressources[5].value + self.production_per_turn
 
     def link_ress(self,type):
         if self.type == "habitation":
@@ -111,7 +111,7 @@ class building:
 
 
     def change_owner(self,owner):
-        owner=self.owner
+        self.owner=owner
 
 
 
@@ -123,49 +123,3 @@ class building:
                 id_created = len(game.units)-1
                 game.players[self.owner].units_id.append(id_created)
                 game.map.systems[self.location].units_id.append(id_created)
-
-
-
-
-#print(conf["mine"].keys())
-test = building("ferme",[0,0])
-test.aplly_conf()
-test2 = building("ferme",[0,0])
-test2.aplly_conf()
-
-
-print("test id")
-print("id1="+str(test.id))
-print("id2="+str(test2.id))
-print("\n")
-
-print("test de take_damage():")
-print("PV="+str(test.pv))
-print("-5 de damage:")
-test.take_damage(5)
-print("PV="+str(test.pv))
-print("heal +5pv :")
-test.repare(5)
-print("PV="+str(test.pv))
-print("\n")
-
-print("test de upgrade_tier():")
-print("PV="+str(test.pv))
-print("maint_cost="+str(test.maint_cost))
-print("production_per_turn="+str(test.production_per_turn))
-print("level="+str(test.level_tier))
-print("---upgrade_tier---")
-test.upgrade_tier()
-print("PV="+str(test.pv))
-print("maint_cost="+str(test.maint_cost))
-print("production_per_turn="+str(test.production_per_turn))
-print("level="+str(test.level_tier))
-
-print("\ntest upgrade_prod")
-print("production_per_turn="+str(test.production_per_turn))
-test.upgrade_prod()
-print("production_per_turn="+str(test.production_per_turn))
-
-print("\ntest produce")
-print(test.produce(test.link_ress(test.type))[0])
-print(test.produce(test.link_ress(test.type))[1])

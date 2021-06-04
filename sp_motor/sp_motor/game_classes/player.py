@@ -17,11 +17,9 @@ class player :
         self.isMj = isMj
         self.interraction_request=[]
         self.interraction_create=[]
-<<<<<<< HEAD
         self.unit=[]
-=======
         self.units_id = []
->>>>>>> origin/war
+
 
     def get_isMJ(self):
         return self.isMj
@@ -99,6 +97,7 @@ class player :
         self.interraction_create.append(interraction)
 
     def add_systeme(self,systeme):
+        systeme.change_owner(self)
         self.systems.append(systeme)
 
     def remove_systeme(self,systeme):
@@ -116,6 +115,7 @@ class player :
     def recolte_production(self):
         for i in self.systems:
             for j in i.buildings:
+                #print("proprio"+str(j.owner.pid))
                 j.produce2()
 
 
@@ -173,14 +173,13 @@ print("test ressources")
 p1.ressources_init_player()
 p1.print_ressources()
 
-systeme_test=systeme("dasysteme","dalocation")
+systeme_test=systeme("sys1","galaxy1",p1)
 systeme_test.add_building()
-systeme_test.buildings[0].change_owner(p1)
-#print("le owner:"+str(systeme_test.buildings[0].owner))
+#systeme_test.buildings[0].change_owner(p1)
 systeme_test.print_buildings()
 p1.add_systeme(systeme_test)
 print("\n")
-#p1.recolte_production()
-#p1.print_ressources()
+p1.recolte_production()
+p1.print_ressources()
 
 #print(p1.ressources[0])
