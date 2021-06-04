@@ -5,17 +5,19 @@ btnMenu.addEventListener('click', function(){
     containerMenu.classList.toggle('active');
 });
 
-function visibleName(){
-    let names = document.getElementsByClassName('name-item');
-    for(var i=0; i<names.length; i++) {
-        let name = names[i];
-        let classes = name.className;
-        if (classes.includes('visible')) {
-            name.classList.remove("visible");
-            name.classList.add("hidden");
-        } else {
-            name.classList.remove("hidden");
-            name.classList.add("visible");
-        }
-    }
+const itemsMenu = document.getElementsByClassName('menu-item');
+for(const item of itemsMenu){
+    item.addEventListener('click', function(element){
+        let idElement = element.target.parentElement.id;
+        setWindow(idElement);
+    });
+}
+
+function setWindow(idElement){
+    if(idElement==='statistique')
+        addWindow(3);
+    else if(idElement==='diplomatie')
+        addWindow(1);
+    else if(idElement==='arbre-tech')
+        addWindow(4);
 }

@@ -93,6 +93,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 .blob-1 {
     background: #e0fefe;

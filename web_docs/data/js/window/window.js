@@ -24,6 +24,12 @@ function windowConstructor(windowIndex) { // windowIndex is an integer
       case 2: // construire sur un système
         title = '<h2>Construire</h2>';
         break;
+      case 3:
+        title = '<h2>Statistique</h2>';
+        break;
+      case 4:
+        title = '<h2>Arbre de technologie</h2>';
+        break;
       default:
         title = '<h2>Default_Title</h2>';
         break;
@@ -76,7 +82,7 @@ function addWindow(windowIndex) { // windowIndex is an integer
     windowFocus(document.querySelector(`[id=window${windowIndex}]`));
     return 0;
   }
-   // constructing window
+  // constructing window
   windowConstructor(windowIndex);
 
   var windowElement = document.getElementById(`window${windowIndex}`);
