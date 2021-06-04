@@ -1,6 +1,6 @@
 from random import randint
 
-from sp_motor.sp_motor.game_classes.building import building
+from sp_motor.game_classes.building import building
 class systeme:
     lastId = 1
     def __init__(self,name,location,owner):

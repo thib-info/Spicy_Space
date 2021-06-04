@@ -1,7 +1,7 @@
 import json
 from copy import deepcopy
-from sp_motor.sp_motor.game_classes.ressources import ressource
-from sp_motor.sp_motor.game_classes.unit import unit
+from sp_motor.game_classes.ressources import ressource
+from sp_motor.game_classes.unit import unit
 #JSON SCALING
 #[0] = PV
 #[1] = MAINT_COST
@@ -27,7 +27,7 @@ class building:
         self.owner = owner
 
     def aplly_conf(self):
-        with open("../../../config/config_building.json") as f:
+        with open("config/config_building.json") as f:
             conf = json.load(f)
 
         actual_conf = conf[self.type]
@@ -123,3 +123,51 @@ class building:
                 id_created = len(game.units)-1
                 game.players[self.owner].units_id.append(id_created)
                 game.map.systems[self.location].units_id.append(id_created)
+
+
+
+
+
+#print(conf["mine"].keys())
+# test = building("ferme",[0,0])
+# test.aplly_conf()
+# test2 = building("ferme",[0,0])
+# test2.aplly_conf()
+
+
+# print("test id")
+# print("id1="+str(test.id))
+# print("id2="+str(test2.id))
+# print("\n")
+
+# print("test de take_damage():")
+# print("PV="+str(test.pv))
+# print("-5 de damage:")
+# test.take_damage(5)
+# print("PV="+str(test.pv))
+# print("heal +5pv :")
+# test.repare(5)
+# print("PV="+str(test.pv))
+# print("\n")
+
+# print("test de upgrade_tier():")
+# print("PV="+str(test.pv))
+# print("maint_cost="+str(test.maint_cost))
+# print("production_per_turn="+str(test.production_per_turn))
+# print("level="+str(test.level_tier))
+# print("---upgrade_tier---")
+# test.upgrade_tier()
+# print("PV="+str(test.pv))
+# print("maint_cost="+str(test.maint_cost))
+# print("production_per_turn="+str(test.production_per_turn))
+# print("level="+str(test.level_tier))
+
+# print("\ntest upgrade_prod")
+# print("production_per_turn="+str(test.production_per_turn))
+# test.upgrade_prod()
+# print("production_per_turn="+str(test.production_per_turn))
+
+# print("\ntest produce")
+# print(test.produce(test.link_ress(test.type))[0])
+# print(test.produce(test.link_ress(test.type))[1])
+
