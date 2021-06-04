@@ -1,5 +1,7 @@
 import json
-from ressources import ressource
+from copy import deepcopy
+from sp_motor.sp_motor.game_classes.ressources import ressource
+from sp_motor.sp_motor.game_classes.unit import unit
 #JSON SCALING
 #[0] = PV
 #[1] = MAINT_COST
@@ -22,6 +24,7 @@ class building:
         self.state = 0
         self.production_per_turn = 0
         self.scaling = 0
+        self.owner = -1
 
     def aplly_conf(self):
         with open("../../../config/config_building.json") as f:
@@ -38,6 +41,7 @@ class building:
         self.state = actual_conf["state"]
         self.production_per_turn = actual_conf["production"]
         self.scaling = actual_conf["scaling"]
+
 
     def take_damage(self, damage):
         if damage>0:
@@ -93,19 +97,14 @@ class building:
         elif self.type == "ferme":
             return "nourriture"
 
-    def produce_unit(self, name):
+    def produce_unit(self, name,game):
         if self.type == "spatioport":
-            if name == "destroyer":
-                print("produce"+name)
-            elif name == "tardigrade":
-                print("produce"+name)
-            elif name == "battleship":
-                print("produce" + name)
-            elif name == "colon":
-                print("produce" + name)
-            elif name == "spotter":
-                print("produce" + name)
-
+            if name in game.models.keys():
+                created = deepcopy(game.models[name])
+                game.units.append(created)
+                id_created = len(game.units)-1
+                game.players[self.owner].units_id.append(id_created)
+                game.map.systems[self.location].units_id.append(id_created)
 
 
 

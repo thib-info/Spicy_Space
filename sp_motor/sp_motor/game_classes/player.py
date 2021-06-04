@@ -15,6 +15,7 @@ class player :
         self.isMj = isMj
         self.interraction_request=[]
         self.interraction_create=[]
+        self.units_id = []
 
     def get_isMJ(self):
         return self.isMj
