@@ -54,9 +54,24 @@ class player :
         for i in self.interraction_create:
             self.send_interraction(i)
 
-    def set_param(self,pid, name):
+    def set_param(self,pid, name,isMJ= False):
         self.pid = pid
         self.name = name
+        self.isMj = isMJ
+
+    def is_ally(self, pid):
+        for i in self.allies:
+            if pid == self.allies[i]:
+                return True
+            else:
+                return False
+
+    def is_enemy(self, pid):
+        for i in self.enemies:
+            if pid == self.enemies[i]:
+                return True
+            else:
+                return False
 
     #fonction pour test
     def print_ally(self):

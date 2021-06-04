@@ -9,5 +9,30 @@
     "maint_cost": 200,
     "scaling": [1,1,1,1,1],
     "precision": 70
-  }
+  },
+  "tardigrade": {
+    "name": "tardigrade",
+    "type": "military",
+    "pv_max" : 10,
+    "pa" : 4,
+    "speed": 4,
+    "cost": 2500,
+    "maint_cost": 200,
+    "scaling": [1,1,1,1,1],
+    "precision": 70
+  },
+  "battleship": {
+    "name": "battleship",
+    "type": "military",
+    "pv_max" : 10,
+    "pa" : 4,
+    "speed": 4,
+    "cost": 2500,
+    "maint_cost": 200,
+    "scaling": [1,1,1,1,1],
+    "precision": 70
+    }
 }
+
+
+
