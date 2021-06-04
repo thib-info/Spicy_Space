@@ -82,7 +82,8 @@ function addPanel(panelIndex,typeValue,isRight) {
         console.log(targetElement);
         if (targetElement == panelElement // click inside the panel
           || targetElement == document.getElementById("windowMenu") // click inside the bar
-          || windows.includes(targetElement)) { // click inside a window
+          || windows.includes(targetElement)
+          || clickingOnStar) { // click inside a window
             console.log("inside");
             return;
         }

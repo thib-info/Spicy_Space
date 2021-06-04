@@ -1,16 +1,22 @@
+document.addEventListener('contextmenu', event => event.preventDefault()); // disable right click
+
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+// loading map
+var data = JSON.parse(JSON.stringify(data));
+
+console.log(data["systems"]);
 
 // loading images
 const starImage = new Image();
 starImage.addEventListener('load', function() {
   loadedImages += 1;
 }, false);
-starImage.src ="../data/images/star.png";
+starImage.src ="../data/images/star2.png";
 
 const hoverStarImage = new Image();
 hoverStarImage.addEventListener('load', function() {
@@ -18,15 +24,26 @@ hoverStarImage.addEventListener('load', function() {
 }, false);
 hoverStarImage.src ="../data/images/hoverStar.png";
 
+var clickingOnStar = false;
+
 var loadedImages = 0
 // CONSTANTS
 var n = 1000;
 var starSize = 48;
-var maxZoom = 1, minZoom = 0.05, zoomFactor = 1.05, zoomLimit = 0.3;
+var maxZoom = 5, minZoom = 0.05, zoomFactor = 1.05, zoomLimit = 0.3;
 var topCanvas, leftCanvas;
-var galaxySize = 10000;
+var galaxySize = 2000;
 
-var X = [], Y = [];
+var X = [], Y = [], links = [];
+/*data["systems"].forEach((system) => {
+  X.push(system["pos"][0]);
+  Y.push(system["pos"][1]);
+});
+data["links"].forEach((link) => {
+  links.push([link["start"],link["end"]]);
+});*/
+
+
 for (let i = 0 ; i < n ; i++) {
   X.push(Math.floor(Math.random() * galaxySize));
   Y.push(Math.floor(Math.random() * galaxySize));
@@ -248,18 +265,31 @@ function drawStars() {
           ctx.rect(X[i]-(starSize/displayTransform.scale)/2,Y[i]-(starSize/displayTransform.scale)/2,starSize/displayTransform.scale,starSize/displayTransform.scale);
           if (ctx.isPointInPath(mouse.x,mouse.y)) {
               ctx.drawImage(hoverStarImage, X[i]-(starSize/displayTransform.scale)/2,Y[i]-(starSize/displayTransform.scale)/2,starSize/displayTransform.scale,starSize/displayTransform.scale);
-              if (mouse.oldX !== undefined && (mouse.buttonRaw & 1) === 1)
-                addPanel(1,'i',true);
+              if (mouse.oldX !== undefined && (mouse.buttonRaw & 1) === 1) {
+                clickingOnStar = true;
+                addPanel(1,i,true);
+              } else {
+                clickingOnStar = false;
+              }
           } else {
               ctx.drawImage(starImage, X[i]-(starSize/displayTransform.scale)/2,Y[i]-(starSize/displayTransform.scale)/2,starSize/displayTransform.scale,starSize/displayTransform.scale);
           }
+          ctx.textAlign = 'center';
+          ctx.fillStyle = "white"
+          ctx.fillText(`Système ${i}`,X[i],Y[i]+(starSize/displayTransform.scale)/2);
         }
         else {
             ctx.beginPath();
-            ctx.arc(X[i], Y[i], 10, 10, 2 * Math.PI, true);
+            ctx.arc(X[i], Y[i], 10, 10, Math.PI, true);
             ctx.fillStyle = "red";
             ctx.fill();
         }
+      }
+      for (let i = 0 ; i < links.length ; i++) {
+        ctx.beginPath();
+        ctx.moveTo(links[i][0][0],links[i][0][1]);
+        ctx.lineTo(links[i][1][0],links[i][1][1]);
+        ctx.stroke();
       }
   //}, false);
 }
