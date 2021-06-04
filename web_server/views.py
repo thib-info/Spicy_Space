@@ -31,7 +31,7 @@ def login_required(f):
 
 @app.route('/')
 def main():
-    return render_template('index.html', reload = time.time())
+    return render_template('indexPyt.html', reload = time.time())
 
 
 @app.route('/api/user', methods=['POST'])

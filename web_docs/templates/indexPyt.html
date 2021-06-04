@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Spicy Space</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/window/window.css')}}">
+    <script src="{{url_for('static', filename='js/window/window.js')}}"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/index/index.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/colors/colors-stock.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/index/menu-style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/font/font.css')}}">
+    <script src="{{url_for('static', filename='js/window/window.js')}}"></script>
+    <script src="{{url_for('static', filename='js/ajax/ajaxCall.js')}}"></script>
+    <script src="{{url_for('static', filename='js/ajax/getMap.js')}}"></script>
+    <script src="{{url_for('static', filename='js/ajax/exampleConnexion.js')}}"></script>
+</head>
+<body>
+<div class="top-bar custom-gradient"></div>
+<div id="windowMenu">
+    <button type="button" onclick="addWindow(2)">Construction</button>
+    <button type="button"  onclick="addWindow(0)">Technologies</button>
+    <button type="button"  onclick="addWindow(1)">Diplomatie</button>
+    <button type="button" id="ajax-test" >Test AJAX</button>
+</div>
+<div id="map"></div>
+
+<div class="container-menu">
+    <div class="btn-menu button-menu-color"></div>
+
+    <div class="menu-item blob-1">
+        <img src="" alt="" class="icone">
+        <p class="name-item hidden">Aled</p>
+    </div>
+    <div class="menu-item blob-2">
+        <img src="" alt="" class="icone">
+        <p class="name-item hidden">Statistiques</p>
+    </div>
+    <div class="menu-item blob-3">
+        <img src="" alt="" class="icone">
+        <p class="name-item hidden">Diplomatie</p>
+    </div>
+    <div class="menu-item blob-4">
+        <img src="" alt="" class="icone">
+        <p class="name-item hidden">Arbre technologique</p>
+    </div>
+</div>
+<script src="{{url_for('static', filename='js/menu-animation/menuAnimation.js')}}"></script>
+</body>
+</html>
