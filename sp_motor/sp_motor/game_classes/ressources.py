@@ -37,7 +37,7 @@ class ressource:
         return pop.value
 
     def total_ressources(self):
-        with open("../../../config/ressources.json") as f:
+        with open("config/ressources.json") as f:
             conf = json.load(f)
         res = []
         for i in conf:
@@ -54,18 +54,18 @@ class ressource:
             res.append(buff.type)
         return res
 
-with open("../../../config/ressources.json") as f:
+with open("config/ressources.json") as f:
     config = json.load(f)
 
-print(config["population"].keys())
-test = ressource("or")
-test.apply_conf()
-print(test.value)
-print(test.type)
-test.add(100)
-print(test.value)
-test.withdraw(300)
-print(test.value)
-test.pop_growth(config)
-print(test.total_ressources())
-print(test.order_ressources(config))
+# print(config["population"].keys())
+# test = ressource("or")
+# test.apply_conf()
+# print(test.value)
+# print(test.type)
+# test.add(100)
+# print(test.value)
+# test.withdraw(300)
+# print(test.value)
+# test.pop_growth(config)
+# print(test.total_ressources())
+# print(test.order_ressources(config))

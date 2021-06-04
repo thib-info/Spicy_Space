@@ -1,14 +1,14 @@
 import json
-from sp_motor.sp_motor.game_classes.player import player as pl
-from sp_motor.sp_motor.game_classes.unit import unit as un
-from sp_motor.sp_motor.game_classes.building import building as build
+from sp_motor.game_classes.player import player as pl
+from sp_motor.game_classes.unit import unit as un
+from sp_motor.game_classes.building import building as build
 from copy import deepcopy
 
 
 
 PLAYER1_NAME = "Toto"
 
-class game:
+class game():
     def __init__(self):
         self.players = []
         self.list_systems =[] #conf["map"]
@@ -25,16 +25,16 @@ class game:
         self.turn += 1
 
     def load_conf(self):
-        with open("../../../config/config_player.json") as f:
+        with open("config/config_player.json") as f:
             conf_player = json.load(f)
         self.models["player"] = pl(conf_player["player"], -1, "NULL")
 
-g1 = game()
-g1.load_conf()
-g1.create_player()
-g1.create_player(True)
-print(g1.players[0])
-print(g1.players[1])
-#print(g1.players[0].name)
-#print(g1.players[1].pid)
+# g1 = game()
+# g1.load_conf()
+# g1.create_player()
+# g1.create_player(True)
+# print(g1.players[0])
+# print(g1.players[1])
+# #print(g1.players[0].name)
+# #print(g1.players[1].pid)
 
