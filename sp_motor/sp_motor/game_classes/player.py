@@ -2,6 +2,8 @@ import json
 #from ressources import ressource
 from sp_motor.sp_motor.game_classes.ressources import ressource
 from sp_motor.sp_motor.players_interactions.Players_interraction import Players_interraction
+from sp_motor.sp_motor.game_classes.systeme import systeme
+
 with open("../../../config/ressources.json") as g:
     conf_ress = json.load(g)
 class player :
@@ -10,13 +12,12 @@ class player :
         self.pid = pid
         self.allies = []
         self.enemies=[]
-        self.ressources = {}
+        self.ressources = []
         self.systems = []
         self.isMj = isMj
         self.interraction_request=[]
         self.interraction_create=[]
         self.unit=[]
-        self.buildings=[]
 
     def add_enemy(self,pid):
         if not pid in self.allies and not pid in self.enemies:
@@ -73,6 +74,26 @@ class player :
         interraction=Players_interraction(self,p2,type)
         self.interraction_create.append(interraction)
 
+    def add_systeme(self,systeme):
+        self.systems.append(systeme)
+
+    def remove_systeme(self,systeme):
+        self.systems.remove(systeme)
+
+    def ressources_init_player(self):
+        temp = ressource("or")
+        temp.apply_conf()
+        self.ressources=temp.total_ressources()
+
+    def print_ressources(self):
+        for i in self.ressources:
+            print("player id= "+str(self.pid)+ " ressources: "+str(i.type)+" : "+str(i.value))
+
+    def recolte_production(self):
+        for i in self.systems:
+            for j in i.buildings:
+                j.produce2()
+
 
 
 
@@ -122,3 +143,20 @@ p2.print_enemies()
 print("Etat de l'interraction après acceptation: "+ str(p1.interraction_create[0].state))
 
 
+print("\n")
+print("test ressources")
+#p1.print_ressources()
+p1.ressources_init_player()
+p1.print_ressources()
+
+systeme_test=systeme("dasysteme","dalocation")
+systeme_test.add_building()
+systeme_test.buildings[0].change_owner(p1)
+#print("le owner:"+str(systeme_test.buildings[0].owner))
+systeme_test.print_buildings()
+p1.add_systeme(systeme_test)
+print("\n")
+#p1.recolte_production()
+#p1.print_ressources()
+
+#print(p1.ressources[0])

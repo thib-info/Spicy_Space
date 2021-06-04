@@ -22,6 +22,7 @@ class building:
         self.state = 0
         self.production_per_turn = 0
         self.scaling = 0
+        self.owner=0
 
     def aplly_conf(self):
         with open("../../../config/config_building.json") as f:
@@ -81,6 +82,18 @@ class building:
         elif self.type == "ferme":
             return ["nourriture",ress.value + self.production_per_turn]
 
+    def produce2(self):
+        if self.type == "habitation": #ressources population
+            self.owner.ressources[4]=self.owner.ressources[4]+self.production_per_turn
+        elif self.type == "mine": #minerais
+            self.owner.ressources[1] = self.owner.ressources[1] + self.production_per_turn
+        elif self.type == "raffinerie":#ingot
+            self.owner.ressources[2] = self.owner.ressources[2] + self.production_per_turn
+        elif self.type == "usine":#electrotech
+            self.owner.ressources[3] = self.owner.ressources[3] + self.production_per_turn
+        elif self.type == "ferme": #nourriture
+            self.owner.ressources[5] = self.owner.ressources[5] + self.production_per_turn
+
     def link_ress(self,type):
         if self.type == "habitation":
             return "or"
@@ -93,6 +106,8 @@ class building:
         elif self.type == "ferme":
             return "nourriture"
 
+    def change_owner(self,owner):
+        owner=self.owner
 
 
 

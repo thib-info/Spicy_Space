@@ -1,2 +1,33 @@
+from random import randint
+
+from sp_motor.sp_motor.game_classes.building import building
 class systeme:
-    def __init__(self, player1,player2, type, state=0):
+    lastId = 1
+    def __init__(self,name,location):
+        self.id = systeme.lastId
+        systeme.lastId += 1
+        self.name=name
+        self.location=location
+        self.owner=None
+        self.buildings=[]
+        self.max_building=randint(5,10)
+        self.population=0
+        self.bonus=randint(0,4)
+
+    def add_building(self):
+        test = building("mine",self.id)
+        self.buildings.append(test)
+
+    def add_population(self,n):
+        self.population=self.population+n
+
+    def change_owner(self,owner):
+        self.owner=owner
+
+    def print_buildings(self):
+        for i in self.buildings:
+            print(i.type)
+
+
+
+

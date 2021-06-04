@@ -36,12 +36,14 @@ class ressource:
         print("no pop change")
         return pop.value
 
-    def total_ressources(self,conf):
+    def total_ressources(self):
+        with open("../../../config/ressources.json") as f:
+            conf = json.load(f)
         res = []
         for i in conf:
             buff = ressource(i)
             buff.apply_conf()
-            res.append(buff.value)
+            res.append(buff)
         return res
 
     def order_ressources(self,conf):
@@ -65,5 +67,5 @@ print(test.value)
 test.withdraw(300)
 print(test.value)
 test.pop_growth(config)
-print(test.total_ressources(config))
+print(test.total_ressources())
 print(test.order_ressources(config))
