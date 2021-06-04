@@ -1,0 +1,14 @@
+{
+  "destroyer": {
+    "name": "Destroyer",
+    "type": "Military",
+    "pv": 20,
+    "pa": 30,
+    "speed": 1.5,
+    "cost": 2500,
+    "maint_cost": 200,
+    "scaling": [1.0,2.0,0.5,0.8,0.5]
+  }
+}
+
+
