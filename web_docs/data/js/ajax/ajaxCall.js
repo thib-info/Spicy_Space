@@ -21,7 +21,15 @@ function reactAjax(index, response){
     switch (index){
         case 1:
             let jsonMap = JSON.parse(response);
+            console.log(jsonMap);
             break;
+        case 2:
+            let jsonTreeTech = JSON.parse(response);
+            console.log(jsonTreeTech);
+            break;
+        case 3:
+            if(response===true)
+                redrawTreeTech();
         case 100:
             justeTest(response);
             break;

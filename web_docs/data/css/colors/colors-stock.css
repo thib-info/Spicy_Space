@@ -44,3 +44,12 @@
     color: #fff;
     text-decoration: none;
 }
+
+.name-menu-item-color{
+    background: #A7CFDF;
+    background: -webkit-repeating-linear-gradient(to bottom right, #A7CFDF 20%, #3B90FF 20%, #23538A 79%);
+    background: -moz-repeating-linear-gradient(to bottom right, #A7CFDF 20%, #3B90FF 20%, #23538A 79%);
+    background: repeating-linear-gradient(to bottom right, #A7CFDF 20%, #3B90FF 20%, #23538A 79%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

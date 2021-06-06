@@ -1,0 +1,155 @@
+{
+  "batiment": {
+    "type": "batiment",
+    "ferme": {
+      "name": "ferme",
+      "next_upgrade": ["ferme tier 2","prod ferme +10%"],
+      "researched": "True"
+    },
+    "ferme tier 2": {
+      "name": "ferme tier 2",
+      "next_upgrade": ["ferme tier 3","prod ferme +20%"],
+      "researched": "False"
+    },
+    "ferme tier 3": {
+      "name": "ferme tier 3",
+      "next_upgrade": [],
+      "researched": "False"
+    },
+    "prod ferme +10%": {
+      "name": "prod ferme +10%",
+      "next_upgrade": ["prod ferme +20%"],
+      "researched": "False"
+    },
+    "prod ferme +20%": {
+      "name": "prod ferme +20%",
+      "next_upgrade": [],
+      "researched": "False"
+    },
+    "habitations": {
+      "name": "habitations",
+      "next_upgrade": ["habitations tier 2","prod habitations +10%"],
+      "researched": "True"
+    },
+    "habitations tier 2": {
+      "name": "habitations tier 2",
+      "next_upgrade": ["habitations tier 3","prod habitations +20%"],
+      "researched": "False"
+    },
+    "habitations tier 3": {
+      "name": "habitations tier 3",
+      "next_upgrade": [],
+      "researched": "False"
+    },
+    "prod habitations +10%": {
+      "name": "prod habitations +10%",
+      "next_upgrade": ["prod habitations +20%"],
+      "researched": "False"
+    },
+    "prod habitations +20%": {
+      "name": "prod habitations +20%",
+      "next_upgrade": [],
+      "researched": "False"
+    },
+    "mine": {
+      "name": "mine",
+      "next_upgrade": ["mine tier 2","prod mine +10%","spatioport","raffinerie"],
+      "researched": "True"
+    },
+    "mine tier 2": {
+      "name": "mine tier 2",
+      "next_upgrade": ["mine tier 3","prod mine +20%"],
+      "researched": "False"
+    },
+    "mine tier 3": {
+      "name": "mine tier 3",
+      "next_upgrade": [],
+      "researched": "False"
+    },
+    "prod mine +10%": {
+      "name": "prod mine +10%",
+      "next_upgrade": ["prod mine +20%"],
+      "researched": "False"
+    },
+    "prod mine +20%": {
+      "name": "prod mine +20%",
+      "next_upgrade": [],
+      "researched": "False"
+    },
+    "spatioport": {
+      "name": "spatioport",
+      "next_upgrade": ["spatioporrt tier 2","vitesse prod spatioport +10%"],
+      "researched": "False"
+    },
+    "spatioport tier 2": {
+      "name": "spatioport tier 2",
+      "next_upgrade": ["spatioporrt tier 2","vitesse prod spatioport +20%"],
+      "researched": "False"
+    },
+    "spatioport tier 3": {
+      "mine": "spatioport tier 3",
+      "next_upgrade": [],
+      "researched": "False"
+    },
+    "vitesse prod spatioport +10%": {
+      "mine": "vitesse prod spatioport +20%",
+      "next_upgrade": ["vitesse prod spatioport +20%"],
+      "researched": "False"
+    },
+    "vitesse prod spatioport +20%": {
+      "name": "vitesse prod spatioport +20%",
+      "next_upgrade": [],
+      "researched": "False"
+    },
+    "raffinerie": {
+      "name": "raffinerie",
+      "next_upgrade": ["mine tier 2","prod mine +10%","usine"],
+      "researched": "False"
+    },
+    "raffinerie tier 2": {
+      "name": "raffinerie tier 2",
+      "next_upgrade": ["raffinerie tier 3","prod raffinerie +20%"],
+      "researched": "False"
+    },
+    "raffinerie tier 3": {
+      "name": "raffinerie tier 3",
+      "next_upgrade": [],
+      "researched": "False"
+    },
+    "prod raffinerie +10%": {
+      "name": "prod raffinerie +10%",
+      "next_upgrade": ["prod raffinerie +20%"],
+      "researched": "False"
+    },
+    "prod raffinerie +20%": {
+      "name": "prod raffinerie +20%",
+      "next_upgrade": [],
+      "researched": "False"
+    },
+    "usine": {
+      "name": "usine",
+      "next_upgrade": ["usine tier 2","prod usine +10%"],
+      "researched": "False"
+    },
+    "usine tier 2": {
+      "name": "usine tier 2",
+      "next_upgrade": ["usine tier 3","prod usine +20%"],
+      "researched": "False"
+    },
+    "usine tier 3": {
+      "name": "usine tier 3",
+      "next_upgrade": [],
+      "researched": "False"
+    },
+    "prod usine +10%": {
+      "name": "prod usine +10%",
+      "next_upgrade": ["prod usine +20%"],
+      "researched": "False"
+    },
+    "prod usine +20%": {
+      "name": "prod usine +20%",
+      "next_upgrade": [],
+      "researched": "False"
+    }
+  }
+}

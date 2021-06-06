@@ -2,7 +2,8 @@
     width: 300px;
     height: 300px;
     position: fixed;
-    bottom:0;
+    bottom:-50px;
+    left: -50px;
 }
 .btn-menu {
     width: 100px;
@@ -80,9 +81,6 @@
     transform: translateY(-10px) rotate(45deg);
 }
 
-.icone {
-    width: 40px;
-}
 .menu-item {
     width: 40px;
     height: 40px;
@@ -95,6 +93,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 .blob-1 {
     background: #e0fefe;
@@ -135,10 +134,8 @@
     top: -38%;
 }
 
-.hidden{
-    visibility: hidden;
-}
-
-.visible{
-    visibility: visible;
+.font-style-menu{
+    font-size: 25px;
+    font-variant: small-caps slashed-zero;
+    font-weight: bold;
 }
