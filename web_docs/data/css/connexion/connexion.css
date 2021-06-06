@@ -1,21 +1,72 @@
 *{
     background-color: black;
     color: white;
+    background-image: url("../../images/connexion/star_wallpaper.jpg"); /*lien à changer par rapport à flask */
+    padding: 0;
 }
 
-.logo{
+#logo{
+    z-index: 1;
+    display: flex;
+    position: fixed;
+    left : 43vw;
+}
+
+.background{
+    position : absolute;
+    right: 0;
+    bottom :0;
+    min-width: 100vw;
+    min-height: 100vh;
+    z-index : 0;
+    /*top:0;
+    left:0;
+    height:100vh;
+    width:100vw;
+    overflow: hidden;
+    background-size:cover*/
+}
+
+#stars {
+    position: absolute;
+    top: -22.5%;
+    left: 0;
+    z-index: 1;
+    min-width: 100%;
+    min-height: 115%;
+    width: 10%;
+    height: 20%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+
+}
+
+
+body{
+    padding: 0;
+    margin: 0;
+}
+
+
+header{
     text-align: center;
+    background-color: #11ffee00;
+    color: white;
+    position: center;
+    margin : 40px 0 0 0;
+    padding: 0;
 }
-
 
 form{
     text-align: center;
     padding: 100px;
     height : 50vh;
+    background: transparent;
+
 }
 
-.placeholder {
-    margin : 50px;
+p, div{
+    background: transparent;
 }
 
 .text{
@@ -23,8 +74,8 @@ form{
     color: white;
     width : 200px;
     height : 40px;
-    margin: 10px;
-    border: double 5px transparent;
+    margin: 0 0 20px 0;
+    border: double 2px transparent;
     border-radius: 15px;
     background: linear-gradient(black, black),
     linear-gradient(90deg, #FFFB00, #F1C40F, #EAB120, #9068D0, #711C84, #621C9C, #2E1C94, #1C9FB7);
@@ -35,33 +86,8 @@ form{
 }
 
 
-
-/*.submit{
-    background-color: red;
-    width :50%;
-    height : 50%;
-    margin: 1%;
-
-}
-
-.submit:hover{
-    background-color: yellow;
-}*/
-
-/*html,
-body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    /*background: #000;
-}*/
 .glow{
-    background-color: rgba(0, 0, 0, 0.0);
+    background : transparent;
     color : white;
     width : 100%;
     height: 100%;
@@ -75,25 +101,25 @@ body {
     border: none;
     outline: none;
     color: #fff;
-    background: #111;
+    background-color: #000000;
     cursor: pointer;
     position: relative;
     z-index: 0;
     border-radius: 10px;
-    margin: 20px;
+    margin:0 15px 0 15px;
 }
 
 .glow-on-hover:before {
     content: '';
     background: linear-gradient(45deg, #FFFB00, #F1C40F, #EAB120, #9068D0, #711C84, #621C9C, #2E1C94, #1C9FB7, #FFFB00);
     position: absolute;
-    top: -2px;
-    left:-2px;
+    top: -4px;
+    left:-4px;
     background-size: 400%;
     z-index: -1;
-    filter: blur(5px);
-    width: calc(100% + 4px);
-    height: calc(100% + 4px);
+    filter: blur(3px);
+    width: calc(100% + 8px);
+    height: calc(100% + 8px);
     animation: glowing 20s linear infinite;
     opacity: 0;
     transition: opacity .3s ease-in-out;
@@ -118,7 +144,7 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: #111;
+    background: #000000;
     left: 0;
     top: 0;
     border-radius: 10px;
@@ -130,12 +156,16 @@ body {
     100% { background-position: 0 0; }
 }
 
-
 footer{
-    height:50px;
-    line-height:50px;
-    text-align:center;
-    bottom:0px;
-    width:100%;
+    text-align: center;
+    background: none;
+    color: white;
+    bottom:0;
+    padding: 0;
+    z-index: 1;
+    display: flex;
+    position: fixed;
 }
+
+
 
