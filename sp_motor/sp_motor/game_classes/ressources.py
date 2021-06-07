@@ -37,7 +37,7 @@ class ressource:
         return pop.value
 
     def total_ressources(self):
-        with open("config/ressources.json") as f:
+        with open("../../../config/ressources.json") as f:
             conf = json.load(f)
         res = []
         for i in conf:
@@ -54,7 +54,7 @@ class ressource:
             res.append(buff.type)
         return res
 
-with open("config/ressources.json") as f:
+with open("../../../config/ressources.json") as f:
     config = json.load(f)
 
 # print(config["population"].keys())

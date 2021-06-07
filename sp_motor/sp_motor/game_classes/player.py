@@ -4,7 +4,7 @@ from sp_motor.game_classes.ressources import ressource
 from sp_motor.players_interactions.Players_interraction import Players_interraction
 from sp_motor.game_classes.systeme import systeme
 
-with open("config/ressources.json") as g:
+with open("../../../config/ressources.json") as g:
     conf_ress = json.load(g)
 class player :
     def __init__(self, conf, pid, name, isMj=False):
@@ -115,13 +115,12 @@ class player :
     def recolte_production(self):
         for i in self.systems:
             for j in i.buildings:
-                #print("proprio"+str(j.owner.pid))
-                j.produce2()
+                j.produce()
 
 
 
 
-with open("config/config_player.json") as f:
+with open("../../../config/config_player.json") as f:
     conf = json.load(f)
 #test = player(conf["player"], 1,"oui")
 #test.add_ally(4)
@@ -130,7 +129,7 @@ with open("config/config_player.json") as f:
 
 #TEST DES INTERRACTIONS
 
-# p1 = player(conf["player"],1,"oui")
+p1 = player(conf["player"],1,"oui")
 # p2 = player(conf["player"],2,"oui")
 # p3 = player(conf["player"],3,"oui")
 
@@ -168,21 +167,20 @@ with open("config/config_player.json") as f:
 
 
 # print("\n")
-# print("test ressources")
-# #p1.print_ressources()
-# p1.ressources_init_player()
-# p1.print_ressources()
+print("test ressources")
+p1.print_ressources()
+p1.ressources_init_player()
+p1.print_ressources()
 
 
-# systeme_test=systeme("dasysteme","dalocation")
-# systeme_test.add_building()
-# systeme_test.buildings[0].change_owner(p1)
-# #print("le owner:"+str(systeme_test.buildings[0].owner))
-# systeme_test.print_buildings()
-# p1.add_systeme(systeme_test)
-# print("\n")
-# #p1.recolte_production()
-# #p1.print_ressources()
+systeme_test=systeme("dasysteme","dalocation",p1)
+systeme_test.add_building("mine")
+systeme_test.add_building("usine")
+systeme_test.print_buildings()
+p1.add_systeme(systeme_test)
+print("\n")
+p1.recolte_production()
+p1.print_ressources()
 
 
 # #print(p1.ressources[0])

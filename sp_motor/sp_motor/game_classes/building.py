@@ -27,7 +27,7 @@ class building:
         self.owner = owner
 
     def aplly_conf(self):
-        with open("config/config_building.json") as f:
+        with open("../../../config/config_building.json") as f:
             conf = json.load(f)
 
         actual_conf = conf[self.type]
@@ -71,21 +71,7 @@ class building:
             self.production_per_turn = round(self.production_per_turn * self.scaling[2])
             self.level_production=self.level_production+1
 
-    def produce(self,type):
-        ress = ressource(type)
-        ress.apply_conf()
-        if self.type == "habitation":
-            return ["or",ress.value + self.production_per_turn]
-        elif self.type == "mine":
-            return ["minerai",ress.value + self.production_per_turn]
-        elif self.type == "raffinerie":
-            return ["lingot",ress.value + self.production_per_turn]
-        elif self.type == "usine":
-            return ["electronique",ress.value + self.production_per_turn]
-        elif self.type == "ferme":
-            return ["nourriture",ress.value + self.production_per_turn]
-
-    def produce2(self):
+    def produce(self):
         if self.type == "habitation": #ressources population
             self.owner.ressources[4].value=self.owner.ressources[4].value+self.production_per_turn
         elif self.type == "mine": #minerais

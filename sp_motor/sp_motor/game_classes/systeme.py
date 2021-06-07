@@ -14,9 +14,10 @@ class systeme:
         self.population=0
         self.bonus=randint(0,4)
 
-    def add_building(self):
-        test = building("mine",self.id,self.owner)
-        self.buildings.append(test)
+    def add_building(self,type):
+        tmp = building(type,self.id,self.owner)
+        tmp.aplly_conf()
+        self.buildings.append(tmp)
 
     def add_population(self,n):
         self.population=self.population+n
@@ -26,8 +27,9 @@ class systeme:
 
     def print_buildings(self):
         for i in self.buildings:
-            print("liste des différents batiments du systeme")
-            print("type: "+str(i.type)+" propriétaire: "+str(i.owner))
+            print("\n")
+            print("liste des différents batiments du systeme :")
+            print("type: "+str(i.type)+" propriétaire: "+str(i.owner.pid))
 
 
 
