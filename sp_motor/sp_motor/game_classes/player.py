@@ -2,7 +2,7 @@ import json
 #from ressources import ressource
 from sp_motor.game_classes.ressources import ressource
 from sp_motor.players_interactions.Players_interraction import Players_interraction
-from sp_motor.game_classes.systeme import systeme
+#from sp_motor.game_classes.systeme import systeme
 from sp_motor.utils import load_conf_f
 
 conf_ress = load_conf_f("ressources")

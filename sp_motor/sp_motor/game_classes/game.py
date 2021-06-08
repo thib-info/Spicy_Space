@@ -44,6 +44,8 @@ class game():
         self.units[-1].set_param(owner_id, position, base_lvl)
         self.players[owner_id].unit.append(self.units[-1].id)
 
+    def move_unit(self, unit_id, destination):
+        self.units[unit_id].position = destination
 
 
 ######################################""
