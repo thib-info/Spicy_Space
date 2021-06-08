@@ -32,6 +32,39 @@
       }
     }
   },
+  "labo": {
+    "name": "labo",
+    "researched": true,
+    "children": {
+      "labo niveau 2": {
+        "name": "labo niveau 2",
+        "researched": false,
+        "children": {
+          "labo niveau 3": {
+            "name": "labo niveau 3",
+            "researched": false,
+            "children": {}
+          },
+          "prod labo +20%": {
+            "name": "prod labo +20%",
+            "researched": false,
+            "children": {}
+          }
+        }
+      },
+      "prod labo +10%": {
+        "name": "prod labo +10%",
+        "researched": false,
+        "children": {
+          "prod labo +20%": {
+            "name": "prod labo +20%",
+            "researched": false,
+            "children": {}
+          }
+        }
+      }
+    }
+  },
   "habitations": {
     "name": "habitations",
     "researched": true,

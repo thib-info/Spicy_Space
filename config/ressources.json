@@ -22,5 +22,9 @@
   "nourriture": {
     "value": 50,
     "type": "nourriture"
+  },
+  "science": {
+    "value": 0,
+    "type": "science"
   }
 }

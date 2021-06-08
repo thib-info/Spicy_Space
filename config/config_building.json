@@ -21,6 +21,17 @@
     "scaling": [1.25,2,1.5],
     "production": 1
   },
+  "labo": {
+    "type": "labo",
+    "level_tier" : 1,
+    "level_production" : 1,
+    "cost" : 10,
+    "pv": 50,
+    "maint_cost": 200,
+    "state": 0,
+    "scaling": [1.25,2,1.5],
+    "production": 1
+  },
   "habitation": {
     "type": "habitation",
     "level_tier" : 1,

@@ -1,4 +1,3 @@
-import json
 from sp_motor.utils import load_conf_f
 
 class ressource:
@@ -29,7 +28,7 @@ class ressource:
             return pop.value
         elif nour.value<pop.value*50:
             pop.withdraw(1)
-            if pop <= 0:
+            if pop.value <= 0:
                 pop.add(1)
             print("pop decline")
             return pop.value
