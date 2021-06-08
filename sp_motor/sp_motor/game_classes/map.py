@@ -86,6 +86,10 @@ class Map(Basic_info):
         self.systems = deepcopy(systems)
 
     def import_graph_cost(self, graph):
+        self.graph_cost = calculate_cost(graph)
+        # self.graph_cost = graph
+
+
         self.graph_cost = deepcopy(graph)
 
     def import_graph_link(self, graph):

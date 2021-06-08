@@ -1,8 +1,11 @@
 import json
+import pickle
 
-from sp_motor.game_classes.player import player as pl
-from sp_motor.game_classes.unit import unit as un
+
+from sp_motor.game_classes.player import player 
+from sp_motor.game_classes.unit import unit 
 from sp_motor.game_classes.building import building as build
+from sp_motor.utils import load_conf_f
 from copy import deepcopy
 
 
@@ -26,17 +29,28 @@ class game():
         self.turn += 1
 
     def load_conf(self):
-        with open("config/config_player.json") as f:
-            conf_player = json.load(f)
+        conf_player = load_conf_f("config_player")
         self.models["player"] = player(conf_player["player"], -1, "NULL")
 
-        with open("config/config_unit.json") as f:
-            conf_unit = json.load(f)
+        conf_unit = load_conf_f("config_unit")
         for key,model in conf_unit.items():
             self.models[key] = unit(model,-1,-1)
 
     def delete_unit(self,id_unit):
         self.units.pop(id_unit)
+
+
+
+######################################""
+def save_game(game, path):
+    with open(path, 'wb') as f:
+        pickle.dump(game, f)
+
+def load_game(path):
+    with open(path, 'rb') as f:
+        output = pickle.load(f)
+    return output
+
 
 
 # g1 = game()
@@ -48,14 +62,14 @@ class game():
 # #print(g1.players[0].name)
 # #print(g1.players[1].pid)
 
-with open("../../../config/config_unit.json") as g:
-    conf_unit = json.load(g)
+# with open("../../../config/config_unit.json") as g:
+#     conf_unit = json.load(g)
 
 
-destroyer = unit(conf_unit["destroyer"], -1, [-1, -1])
-u1=deepcopy(destroyer)
-g1.units.append(u1)
-g1.units.append(u1)
-print(g1.units)
-g1.delete_unit(0)
-print(g1.units)
+# destroyer = unit(conf_unit["destroyer"], -1, [-1, -1])
+# u1=deepcopy(destroyer)
+# g1.units.append(u1)
+# g1.units.append(u1)
+# print(g1.units)
+# g1.delete_unit(0)
+# print(g1.units)
