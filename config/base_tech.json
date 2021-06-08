@@ -2,320 +2,380 @@
   "ferme": {
     "name": "ferme",
     "researched": true,
-    "children": {
-      "ferme niveau 2": {
-        "name": "ferme niveau 2",
-        "researched": false,
-        "children": {
-          "ferme niveau 3": {
-            "name": "ferme niveau 3",
-            "researched": false,
-            "children": {}
-          },
-          "prod ferme +20%": {
-            "name": "prod ferme +20%",
-            "researched": false,
-            "children": {}
-          }
-        }
-      },
-      "prod ferme +10%": {
-        "name": "prod ferme +10%",
-        "researched": false,
-        "children": {
-          "prod ferme +20%": {
-            "name": "prod ferme +20%",
-            "researched": false,
-            "children": {}
-          }
+    "children": [
+      {
+        "ferme niveau 2": {
+          "name": "ferme niveau 2",
+          "researched": false,
+          "children": [
+            {
+              "ferme niveau 3": {
+                "name": "ferme niveau 3",
+                "researched": false,
+                "children": {}
+              },
+              "prod ferme +20%": {
+                "name": "prod ferme +20%",
+                "researched": false,
+                "children": {}
+              }
+            }
+          ]
+        },
+        "prod ferme +10%": {
+          "name": "prod ferme +10%",
+          "researched": false,
+          "children": [
+            {
+              "prod ferme +20%": {
+                "name": "prod ferme +20%",
+                "researched": false,
+                "children": {}
+              }
+            }
+          ]
         }
       }
-    }
+    ]
   },
   "labo": {
     "name": "labo",
     "researched": true,
-    "children": {
-      "labo niveau 2": {
-        "name": "labo niveau 2",
-        "researched": false,
-        "children": {
-          "labo niveau 3": {
-            "name": "labo niveau 3",
-            "researched": false,
-            "children": {}
-          },
-          "prod labo +20%": {
-            "name": "prod labo +20%",
-            "researched": false,
-            "children": {}
-          }
-        }
-      },
-      "prod labo +10%": {
-        "name": "prod labo +10%",
-        "researched": false,
-        "children": {
-          "prod labo +20%": {
-            "name": "prod labo +20%",
-            "researched": false,
-            "children": {}
-          }
+    "children": [
+        {
+        "labo niveau 2": {
+          "name": "labo niveau 2",
+          "researched": false,
+          "children": [
+              {
+              "labo niveau 3": {
+                "name": "labo niveau 3",
+                "researched": false,
+                "children": {}
+              },
+              "prod labo +20%": {
+                "name": "prod labo +20%",
+                "researched": false,
+                "children": {}
+              }
+            }
+          ]
+        },
+        "prod labo +10%": {
+          "name": "prod labo +10%",
+          "researched": false,
+          "children": [
+            {
+              "prod labo +20%": {
+                "name": "prod labo +20%",
+                "researched": false,
+                "children": {}
+              }
+            }
+          ]
         }
       }
-    }
+    ]
   },
   "habitations": {
     "name": "habitations",
     "researched": true,
-    "children": {
-      "habitations niveau 2": {
-        "name": "habitations niveau 2",
-        "researched": false,
-        "children": {
-          "habitations niveau 3": {
-            "name": "habitations niveau 3",
-            "researched": false,
-            "children": {}
-          },
-          "prod habitations +20%": {
-            "name": "prod habitations +20%",
-            "researched": false,
-            "children": {}
-          }
-        }
-      },
-      "prod habitations +10%": {
-        "name": "prod habitations +10%",
-        "researched": false,
-        "children": {
-          "prod habitations +20%": {
-            "name": "prod habitations +20%",
-            "researched": false,
-            "children": {}
-          }
+    "children": [
+        {
+        "habitations niveau 2": {
+          "name": "habitations niveau 2",
+          "researched": false,
+          "children": [
+              {
+              "habitations niveau 3": {
+                "name": "habitations niveau 3",
+                "researched": false,
+                "children": {}
+              },
+              "prod habitations +20%": {
+                "name": "prod habitations +20%",
+                "researched": false,
+                "children": {}
+              }
+            }
+          ]
+        },
+        "prod habitations +10%": {
+          "name": "prod habitations +10%",
+          "researched": false,
+          "children": [
+              {
+              "prod habitations +20%": {
+                "name": "prod habitations +20%",
+                "researched": false,
+                "children": {}
+              }
+            }
+          ]
         }
       }
-    }
+    ]
   },
   "mine": {
     "name": "mine",
     "researched": true,
-    "children": {
-      "mine niveau 2": {
-        "name": "mine niveau 2",
-        "researched": false,
-        "children": {
-          "mine niveau 3": {
-            "name": "mine niveau 3",
-            "researched": false,
-            "children": {}
+    "children": [
+        {
+        "mine niveau 2": {
+          "name": "mine niveau 2",
+          "researched": false,
+          "children": [
+              {
+              "mine niveau 3": {
+                "name": "mine niveau 3",
+                "researched": false,
+                "children": {}
 
-          },
-          "prod mine +20%": {
-            "name": "prod mine +20%",
-            "researched": false,
-            "children": {}
-
-          }
-        }
-      },
-      "prod mine +10%": {
-        "name": "prod mine +10%",
-        "researched": false,
-        "children": {
-          "prod mine +20%": {
-            "name": "prod mine +20%",
-            "researched": false,
-            "children": {}
-
-          }
-        }
-      },
-      "spatioport": {
-        "name": "spatioport",
-        "researched": false,
-        "children": {
-          "spatioport niveau 2": {
-            "name": "spatioport niveau 2",
-            "researched": false,
-            "children": {
-              "spatioport niveau 3": {
-                "name": "spatioport niveau 3",
+              },
+              "prod mine +20%": {
+                "name": "prod mine +20%",
                 "researched": false,
                 "children": {}
               }
-            },
-            "vitesse prod spatioport +20%": {
-              "name": "vitesse prod spatioport +20%",
-              "researched": false,
-              "children": {}
             }
-          },
-          "vitesse prod spatioport +10%": {
-            "name": "vitesse prod spatioport +20%",
-            "researched": false,
-            "children": {
-              "vitesse prod spatioport +20%": {
+          ]
+        },
+        "prod mine +10%": {
+          "name": "prod mine +10%",
+          "researched": false,
+          "children": [
+              {
+              "prod mine +20%": {
+                "name": "prod mine +20%",
+                "researched": false,
+                "children": {}
+              }
+            }
+          ]
+        },
+        "spatioport": {
+          "name": "spatioport",
+          "researched": false,
+          "children": [
+              {
+              "spatioport niveau 2": {
+                "name": "spatioport niveau 2",
+                "researched": false,
+                "children": [
+                    {
+                    "spatioport niveau 3": {
+                      "name": "spatioport niveau 3",
+                      "researched": false,
+                      "children": {}
+                    }
+                    }
+                  ]
+                },
+                "vitesse prod spatioport +20%": {
+                  "name": "vitesse prod spatioport +20%",
+                  "researched": false,
+                  "children": {}
+              },
+              "vitesse prod spatioport +10%": {
                 "name": "vitesse prod spatioport +20%",
                 "researched": false,
-                "children": {}
-              }
-            }
-          }
-        }
-      },
-      "raffinerie": {
-        "name": "raffinerie",
-        "researched": false,
-        "children": {
-          "raffinerie niveau 2": {
-            "name": "raffinerie niveau 2",
-            "researched": false,
-            "children": {
-              "raffinerie niveau 3": {
-                "name": "raffinerie niveau 3",
-                "researched": false,
-                "children": {}
-              },
-              "prod raffinerie +20%": {
-                "name": "prod raffinerie +20%",
-                "researched": false,
-                "children": {}
-              }
-            }
-          },
-          "prod raffinerie +10%": {
-            "name": "prod raffinerie +10%",
-            "researched": false,
-            "children": {
-              "prod raffinerie +20%": {
-                "name": "prod raffinerie +20%",
-                "researched": false,
-                "children": {}
-              }
-            }
-          },
-          "usine": {
-            "name": "usine",
-            "researched": false,
-            "children": {
-              "usine niveau 2": {
-                "name": "usine niveau 2",
-                "researched": false,
-                "children": {
-                  "usine niveau 3": {
-                    "name": "usine niveau 3",
-                    "researched": false,
-                    "children": {}
-                  },
-                  "prod usine +20%": {
-                    "name": "prod usine +20%",
-                    "researched": false,
-                    "children": {}
+                "children": [
+                    {
+                    "vitesse prod spatioport +20%": {
+                      "name": "vitesse prod spatioport +20%",
+                      "researched": false,
+                      "children": {}
+                    }
                   }
-                }
-              },
-              "prod usine +10%": {
-                "name": "prod usine +10%",
-                "researched": false,
-                "children": {
-                  "prod usine +20%": {
-                    "name": "prod usine +20%",
-                    "researched": false,
-                    "children": {}
-                  }
-                }
+                ]
               }
             }
-          }
+          ]
+        },
+        "raffinerie": {
+          "name": "raffinerie",
+          "researched": false,
+          "children": [
+              {
+              "raffinerie niveau 2": {
+                "name": "raffinerie niveau 2",
+                "researched": false,
+                "children": [
+                    {
+                    "raffinerie niveau 3": {
+                      "name": "raffinerie niveau 3",
+                      "researched": false,
+                      "children": {}
+                    },
+                    "prod raffinerie +20%": {
+                      "name": "prod raffinerie +20%",
+                      "researched": false,
+                      "children": {}
+                    }
+                  }
+                ]
+              },
+              "prod raffinerie +10%": {
+                "name": "prod raffinerie +10%",
+                "researched": false,
+                "children": [
+                    {
+                    "prod raffinerie +20%": {
+                      "name": "prod raffinerie +20%",
+                      "researched": false,
+                      "children": {}
+                    }
+                  }
+                ]
+              },
+              "usine": {
+                "name": "usine",
+                "researched": false,
+                "children": [
+                    {
+                    "usine niveau 2": {
+                      "name": "usine niveau 2",
+                      "researched": false,
+                      "children": [
+                          {
+                          "usine niveau 3": {
+                            "name": "usine niveau 3",
+                            "researched": false,
+                            "children": {}
+                          },
+                          "prod usine +20%": {
+                            "name": "prod usine +20%",
+                            "researched": false,
+                            "children": {}
+                          }
+                        }
+                      ]
+                    },
+                    "prod usine +10%": {
+                      "name": "prod usine +10%",
+                      "researched": false,
+                      "children": [
+                        {
+                          "prod usine +20%": {
+                            "name": "prod usine +20%",
+                            "researched": false,
+                            "children": {}
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
         }
       }
-    }
+    ]
   },
   "colonisateur":{
     "name":"colonisateur",
-    "researched": false,
-    "children": {
-      "colonisateur niveau 2":{
-        "name":"colonisateur niveau 2",
-        "researched": false,
-        "children": {
-          "colonisateur niveau 3":{
-            "name":"colonisateur niveau 3",
-            "researched": false,
-            "children": {}
-          }
+    "researched": true,
+    "children": [
+      {
+        "colonisateur niveau 2":{
+          "name":"colonisateur niveau 2",
+          "researched": false,
+          "children": [
+            {
+              "colonisateur niveau 3":{
+                "name":"colonisateur niveau 3",
+                "researched": false,
+                "children": {}
+              }
+            }
+          ]
         }
       }
-    }
+    ]
   },
   "eclaireur":{
     "name":"eclaireur",
-    "researched": false,
-    "children": {
+    "researched": true,
+    "children": [
+      {
       "eclaireur niveau 2":{
         "name":"eclaireur niveau 2",
         "researched": false,
-        "children": {
-          "eclaireur niveau 3":{
-             "name":"eclaireur niveau 3",
-             "researched": false,
-             "children": {}
+        "children": [
+          {
+            "eclaireur niveau 3":{
+              "name":"eclaireur niveau 3",
+              "researched": false,
+              "children": {}
+            }
           }
-        }
+        ]
       },
       "destroyer":{
         "name":"destroyer",
         "researched": false,
-        "children": {
-          "destroyer niveau 2":{
-            "name":"destroyer niveau 2",
-            "researched": false,
-            "children": {
-              "destroyer niveau 3":{
-               "name":"destroyer niveau 3",
-               "researched": false,
-               "children": {}
-              }
-            }
-          }
-        }
-      },
-      "battleship":{
-        "name":"battleship",
-        "researched": false,
-        "children": {
-          "battleship niveau 2":{
-            "name":"battleship niveau 2",
-            "researched": false,
-            "children": {
-              "battleship niveau 3":{
-                "name":"battleship niveau 3",
+        "children": [
+          {
+              "destroyer niveau 2":{
+                "name":"destroyer niveau 2",
                 "researched": false,
-                "children": {}
+                "children": [
+                  {
+                    "destroyer niveau 3":{
+                      "name":"destroyer niveau 3",
+                      "researched": false,
+                      "children": {}
+                    }
+                  }
+                ]
               }
             }
-          }
-        }
-      },
-      "tardigrade":{
-        "name":"tardigrade",
-        "researched": false,
-        "children": {
-          "tardigrade niveau 2":{
-            "name":"tardigrade niveau 2",
-            "researched": false,
-            "children": {
-              "tardigrade niveau 3":{
-                "name":"tardigrade niveau 3",
+          ]
+        },
+        "battleship":{
+          "name":"battleship",
+          "researched": false,
+          "children": [
+            {
+              "battleship niveau 2":{
+                "name":"battleship niveau 2",
                 "researched": false,
-                "children": {}
+                "children": [
+                  {
+                    "battleship niveau 3":{
+                      "name":"battleship niveau 3",
+                      "researched": false,
+                      "children": {}
+                    }
+                  }
+                ]
               }
             }
-          }
+          ]
+        },
+        "tardigrade":{
+          "name":"tardigrade",
+          "researched": false,
+          "children": [
+              {
+              "tardigrade niveau 2":{
+                "name":"tardigrade niveau 2",
+                "researched": false,
+                "children": [
+                  {
+                    "tardigrade niveau 3":{
+                      "name":"tardigrade niveau 3",
+                      "researched": false,
+                      "children": {}
+                    }
+                  }
+                ]
+              }
+            }
+          ]
         }
       }
-    }
+    ]
   }
 }
