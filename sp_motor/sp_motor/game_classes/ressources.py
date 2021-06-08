@@ -4,11 +4,11 @@ from sp_motor.utils import load_conf_f
 class ressource:
     def __init__(self, type):
         self.value = 0
-        self.type = type
+        self.typeR = typeR
 
     def apply_conf(self):
         config = load_conf_f("ressources")
-        actual_conf = config[self.type]
+        actual_conf = config[self.typeR]
         self.value = actual_conf["value"]
         self.type = actual_conf["type"]
 

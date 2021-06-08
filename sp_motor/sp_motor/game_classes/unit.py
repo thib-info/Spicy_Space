@@ -3,7 +3,7 @@ import json
 class unit:
     def __init__(self, conf, owner, position, base_lvl=1,battling = False):
         self.name = conf["name"]
-        self.type = conf["type"]
+        self.typeU = conf["type"]
         self.owner = owner
         self.precision= conf["precision"]
         self.position = position
@@ -44,19 +44,19 @@ class unit:
         self.tier = base_lvl
 
     def recruit(self, type, pos):
-        if type == "destroyer":
+        if typeU == "destroyer":
             vaiss = unit(conf["destroyer"],self.owner,pos)
             print("recruit" + type)
-        elif type == "tardigrade":
+        elif typeU == "tardigrade":
             vaiss = unit(conf["tardigrade"], self.owner, pos)
             print("recruit" + type)
-        elif type == "battleship":
+        elif typeU == "battleship":
             vaiss = unit(conf["battleship"], self.owner, pos)
             print("recruit" + type)
-        elif type == "colon":
+        elif typeU == "colon":
             vaiss = unit(conf["colon"], self.owner, pos)
             print("recruit" + type)
-        elif type == "spotter":
+        elif typeU == "spotter":
             vaiss = unit(conf["spotter"], self.owner, pos)
             print("recruit" + type)
 

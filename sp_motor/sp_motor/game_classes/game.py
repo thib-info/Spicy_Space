@@ -1,14 +1,11 @@
 import json
 import pickle
 
-
 from sp_motor.game_classes.player import player 
 from sp_motor.game_classes.unit import unit 
 from sp_motor.game_classes.building import building as build
 from sp_motor.utils import load_conf_f
 from copy import deepcopy
-
-
 
 PLAYER1_NAME = "Toto"
 
@@ -19,12 +16,32 @@ class game():
         self.turn =[] #conf["turn"]
         self.units = []
         self.models = {}
-
-
+        self.Players_intteractions=[]
 
     def create_player(self,isMJ=False):
         self.players.append(deepcopy(self.models["player"]))
         self.players[-1].set_param(len(self.players)-1, PLAYER1_NAME,isMJ)
+
+    def get_player(self,pid):
+        for i in players:
+            if i.pid==pid:
+                return i
+
+    def get_unit(self,id):
+        for i in unit:
+            if i.id==id:
+                return i
+
+    def get_systems(self,id):
+        for i in list_systems:
+            if i.id==pid:
+                return i
+
+    def get_PLayers_intteractions(self,id):
+        for i in players_interractions:
+            if i.id==pid:
+                return i
+
     def next_turn(self):
         self.turn += 1
 
