@@ -8,6 +8,7 @@ class unit:
         self.id = unit.lastId
         unit.lastId += 1
         self.name = conf["name"]
+        self.typeU = conf["type"]
         self.owner = owner
         self.precision= conf["precision"]
         self.position = position
@@ -48,21 +49,21 @@ class unit:
         self.tier = base_lvl
 
     def recruit(self, type, pos):
-        if type == "destroyer":
-           # vaiss = unit(conf["destroyer"],self.owner,pos)
-            print("recruit" + type)
-        elif type == "tardigrade":
-            #vaiss = unit(conf["tardigrade"], self.owner, pos)
-            print("recruit" + type)
-        elif type == "battleship":
-            #vaiss = unit(conf["battleship"], self.owner, pos)
-            print("recruit" + type)
-        elif type == "colon":
-           # vaiss = unit(conf["colon"], self.owner, pos)
-            print("recruit" + type)
-        elif type == "spotter":
-           # vaiss = unit(conf["spotter"], self.owner, pos)
-            print("recruit" + type)
+        if typeU == "destroyer":
+            vaiss = unit(conf["destroyer"],self.owner,pos)
+            print("recruit" + typeU)
+        elif typeU == "tardigrade":
+            vaiss = unit(conf["tardigrade"], self.owner, pos)
+            print("recruit" + typeU)
+        elif typeU == "battleship":
+            vaiss = unit(conf["battleship"], self.owner, pos)
+            print("recruit" + typeU)
+        elif typeU == "colon":
+            vaiss = unit(conf["colon"], self.owner, pos)
+            print("recruit" + typeU)
+        elif typeU == "spotter":
+            vaiss = unit(conf["spotter"], self.owner, pos)
+            print("recruit" + typeU)
 
 
 # with open("../../../config/config_unit.json") as f:

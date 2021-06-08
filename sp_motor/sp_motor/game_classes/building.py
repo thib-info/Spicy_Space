@@ -15,7 +15,7 @@ class building:
     def __init__(self, type, location,owner):
         self.id = building.lastId
         building.lastId += 1
-        self.type = type
+        self.typeB = typeB
         self.location = location
         self.level_tier = 0
         self.level_production = 0
@@ -73,27 +73,27 @@ class building:
             self.level_production=self.level_production+1
 
     def produce(self):
-        if self.type == "habitation": #ressources population
+        if self.typeB == "habitation": #ressources population
             self.owner.ressources[4].value=self.owner.ressources[4].value+self.production_per_turn
-        elif self.type == "mine": #minerais
+        elif self.typeB == "mine": #minerais
             self.owner.ressources[1].value = self.owner.ressources[1].value + self.production_per_turn
-        elif self.type == "raffinerie":#ingot
+        elif self.typeB == "raffinerie":#ingot
             self.owner.ressources[2].value = self.owner.ressources[2].value + self.production_per_turn
-        elif self.type == "usine":#electrotech
+        elif self.typeB == "usine":#electrotech
             self.owner.ressources[3].value = self.owner.ressources[3].value + self.production_per_turn
-        elif self.type == "ferme": #nourriture
+        elif self.typeB == "ferme": #nourriture
             self.owner.ressources[5].value = self.owner.ressources[5].value + self.production_per_turn
 
     def link_ress(self,type):
-        if self.type == "habitation":
+        if self.typeB == "habitation":
             return "or"
-        elif self.type == "mine":
+        elif self.typeB == "mine":
             return "minerai"
-        elif self.type == "raffinerie":
+        elif self.typeB == "raffinerie":
             return "lingot"
-        elif self.type == "usine":
+        elif self.typeB == "usine":
             return "electronique"
-        elif self.type == "ferme":
+        elif self.typeB == "ferme":
             return "nourriture"
 
 
