@@ -51,9 +51,17 @@ Spatioport.png     ->icone production de vaisseaux
 
 usine.png          ->icone produiction de minerai tier 3
 
+########################## VAISSEAUX #####################################################
+##########################################################################################
 
+Battleship.png      ->icone battleship(vaisseau militaire lourd)
 
+Destroyer.png       ->icone destroyer(vaisseau militaire moyen)
 
+Tardigrade.png      ->icone tardigrade(vaisseau militaire léger)
 
+Colonisateur.png    ->icone vaisseau colon
+
+éclaireur.png       ->icone vaisseau éclaireur
 
 
