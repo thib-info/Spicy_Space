@@ -1,11 +1,14 @@
 import json
 from sp_motor.utils import load_conf_f
+from sp_motor.game_classes.player import player
+from sp_motor.game_classes.ressources import ressource
 
 class technology:
     def __init__(self, conf, bat):
         global path
         buff = self.parcours(conf, bat)
         self.name = buff["name"]
+        self.cost = buff["cost"]
         self.unlocked = buff["researched"]
         self.upgrade = buff["children"]
 
@@ -36,7 +39,9 @@ class technology:
         return self.upgrade
 
     def research(self):
-        self.unlocked = True
+        buff = player.ressources
+        if buff[6] >= self.cost:
+            self.unlocked = True
         return self.unlocked
 
     def researched(self):
