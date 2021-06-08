@@ -15,10 +15,10 @@ for(const item of itemsMenu){
 
 function setWindow(idElement){
     if(idElement==='statistique')
-        addWindow(3);
+        addWindow(3,null);
     else if(idElement==='diplomatie')
-        addWindow(1);
+        addWindow(1,null);
     else if(idElement==='arbre-tech') {
-        addWindow(4);
+        addWindow(4,null);
     }
 }
