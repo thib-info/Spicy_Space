@@ -85,7 +85,7 @@ class player :
 
     def is_enemy(self, pid):
         for i in self.enemies_id:
-            if pid == self.enemies_id[i]:
+            if pid in self.enemies_id[i]:
                 return True
             else:
                 return False

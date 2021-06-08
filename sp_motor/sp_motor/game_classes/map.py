@@ -40,6 +40,8 @@ class System_p(Basic_info):
         System_p.lastId += 1
         self.owner_id = -1
 
+        self.to_peace = 0
+
         self.units_id = []
         self.max_building=randint(5,10)
         self.buildings_id=[]
@@ -57,13 +59,15 @@ class System_p(Basic_info):
     def export_system_info(self):
         pass
 
-
-    def add_building(self,id):
+    def can_add_building(self):
         if len(self.buildings_id) < self.max_building:
-            self.buildings_id.append(id)
             return True
         else:
             return False
+
+    def add_building(self,id):
+        self.buildings_id.append(id)
+         
 
 
     def add_population(self,n):
@@ -151,8 +155,15 @@ class Map(Basic_info):
         return output
 
 
-        
-            
+
+
+
+# def check_sys_in_war(sys, players):
+
+#     for p in players:
+#         if p.pid in players:[]
+
+
 
    
 
