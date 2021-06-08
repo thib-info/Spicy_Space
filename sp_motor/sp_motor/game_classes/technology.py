@@ -12,6 +12,19 @@ def parcours(conf, bat):
                     return buffer
     return None
 
+def path(conf, bat):
+    buff = []
+    for c, v in conf.items():
+        if c == bat:
+            return buff
+        else:
+            for child in v["children"]:
+                buff.append(v)
+                buffer = parcours(child, bat)
+                if buffer != None:
+                    return buff
+    return buff
+
 class technology:
     def __init__(self, conf, bat):
         buff = parcours(conf, bat)
@@ -67,3 +80,5 @@ class technology:
             return True
         return False
 
+    def yol(self, conf, bat):
+        path(conf, bat)
