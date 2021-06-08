@@ -1,5 +1,5 @@
 from sp_motor.sp_motor.game_classes.unit import unit as un
-from sp_motor.sp_motor.game_classes.player import player as pl
+from sp_motor.sp_motor.game_classes.player import player
 from sp_motor.sp_motor.game_classes.game import game
 from sp_motor.sp_motor.game_classes.map import System_p
 
@@ -8,11 +8,7 @@ import random
 import json
 from copy import deepcopy
 
-with open("../../../config/config_unit.json") as f:
-    conf = json.load(f)
 
-
-destroyer = un(conf["destroyer"], -1, [-1, -1])
 
 def hit(defense):
     if random.randint(1, 100) <= defense.precision:
@@ -20,18 +16,18 @@ def hit(defense):
     else:
         return False
 
-def battle(pUnit1,target):
-        pUnit1.battle()
-        target.battle()
+def battle(g1,pUnit1,target):
+    if can_battle(g1,pUnit1,target):
         if hit(target):
             target.take_damage(pUnit1.pa)
             print(f"Tir reussi vous avez inflige  {pUnit1.pa} degats")
         else:
             print("Tir echoue")
-def can_battle(pUnit1,pUnit2,player1,player2):
-    if pUnit1.owner != pUnit2.owner and pUnit1.position == pUnit2.position and player1.is_ally(player2.pid):
+def can_battle(g1,pUnit1,pUnit2):
+    if pUnit1.owner != pUnit2.owner and pUnit1.position == pUnit2.position and not g1.players[pUnit1.owner].is_ally(g1.players[pUnit2.owner]):
         return True
     else :
+        print("These units can't battle")
         return False
 
 
@@ -40,17 +36,17 @@ def can_battle(pUnit1,pUnit2,player1,player2):
 
 
 
-id1 = deepcopy(destroyer)
-id1.set_param(1,(1,1))
-id2 = deepcopy(destroyer)
-id2.set_param(2,(1,1))
+#id1 = deepcopy(destroyer)
+#id1.set_param(1,(1,1))
+#id2 = deepcopy(destroyer)
+#id2.set_param(2,(1,1))
 
 #print(id1.battling)
 #print(hit(id2))
 
-battle(id1,id2)
-battle(id1,id2)
-print(id2.pv)
+#battle(id1,id2)
+#battle(id1,id2)
+#print(id2.pv)
 
 #print(id1.battling)
 

@@ -1,6 +1,7 @@
 import numpy as np
 from copy import deepcopy
 import json
+from random import randint
 # from copy import deepcopy
 
 from sp_motor.utils import calculate_cost
@@ -32,15 +33,19 @@ class Basic_info():
 
 
 class System_p(Basic_info):
-
+    lastId = 1
     def __init__(self, name, pos):
         self.sector_id = 0
-        self.ressources_slots = []
+        self.id = System_p.lastId
+        System_p.lastId += 1
+        self.owner_id = -1
+
         self.units_id = []
-        self.ressources_qt = {}
+        self.max_building=randint(5,10)
+        self.buildings_id=[]
+        self.population=0
+        self.bonus=randint(0,4)
         Basic_info.__init__(self, name, pos)
-
-
 
     def set_sector(self, sector_id):
         self.sector_id = sector_id
@@ -51,6 +56,30 @@ class System_p(Basic_info):
 
     def export_system_info(self):
         pass
+
+
+    def add_building(self,id):
+        if len(self.buildings_id) < self.max_building:
+            self.buildings_id.append(id)
+            return True
+        else:
+            return False
+
+
+    def add_population(self,n):
+        self.population=self.population+n
+
+    def change_owner(self,owner):
+        self.owner_id = owner
+
+    def print_buildings(self):
+        for i in self.buildings:
+            print("\n")
+            print("liste des différents batiments du systeme :")
+            print("type: "+str(i.type)+" propriétaire: "+str(i.owner.pid))
+
+
+    
 
 class Sectors(Basic_info):
 

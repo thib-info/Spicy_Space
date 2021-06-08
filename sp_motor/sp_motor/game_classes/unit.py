@@ -1,7 +1,12 @@
 import json
 
 class unit:
+
+    lastId = 0
+
     def __init__(self, conf, owner, position, base_lvl=1,battling = False):
+        self.id = unit.lastId
+        unit.lastId += 1
         self.name = conf["name"]
         self.typeU = conf["type"]
         self.owner = owner
@@ -46,19 +51,19 @@ class unit:
     def recruit(self, type, pos):
         if typeU == "destroyer":
             vaiss = unit(conf["destroyer"],self.owner,pos)
-            print("recruit" + type)
+            print("recruit" + typeU)
         elif typeU == "tardigrade":
             vaiss = unit(conf["tardigrade"], self.owner, pos)
-            print("recruit" + type)
+            print("recruit" + typeU)
         elif typeU == "battleship":
             vaiss = unit(conf["battleship"], self.owner, pos)
-            print("recruit" + type)
+            print("recruit" + typeU)
         elif typeU == "colon":
             vaiss = unit(conf["colon"], self.owner, pos)
-            print("recruit" + type)
+            print("recruit" + typeU)
         elif typeU == "spotter":
             vaiss = unit(conf["spotter"], self.owner, pos)
-            print("recruit" + type)
+            print("recruit" + typeU)
 
 
 # with open("../../../config/config_unit.json") as f:

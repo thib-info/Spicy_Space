@@ -26,12 +26,11 @@ def test_map():
 
     map = medium_map()
     print_graph(map)
-    dico = map.export_info()
 
 
-
-    with open("games/medium_map.json", 'w') as f:
-        json.dump(dico, f)
+    # dico = map.export_info()
+    # with open("games/medium_map.json", 'w') as f:
+    #     json.dump(dico, f)
 
 
 test_map()
