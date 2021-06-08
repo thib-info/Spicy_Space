@@ -4,7 +4,7 @@
   border: 1px solid #d3d3d3;
 
   width: 20%;
-  height: 600px;
+  height: 80%;
   z-index: 8;
 
   /* prevent text selection */
@@ -21,7 +21,7 @@
 .panel[side="right"] {
     top: 50%;
     right: 0%;
-    /*transform: translate(0%,-50%);*/
+    transform: translate(0%,-50%);
 }
 
 .panel[side="left"] {
