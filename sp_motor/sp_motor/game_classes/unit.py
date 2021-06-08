@@ -61,8 +61,8 @@ class unit:
             print("recruit" + type)
 
 
-with open("../../../config/config_unit.json") as f:
-    conf = json.load(f)
+# with open("../../../config/config_unit.json") as f:
+#     conf = json.load(f)
 
 # #print(conf["destroyer"].keys())
 # test = unit(conf["destroyer"], 1, [1, 1])

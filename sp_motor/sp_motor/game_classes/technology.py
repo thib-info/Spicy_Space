@@ -47,8 +47,8 @@ class technology:
         return res
 
 
-with open("config/base_tech.json") as f:
-    config = json.load(f)
+# with open("config/base_tech.json") as f:
+#     config = json.load(f)
 
 # print(config["batiment"]["ferme"].keys())
 # test = technology(config["batiment"], "spatioport")

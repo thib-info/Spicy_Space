@@ -2,6 +2,8 @@ import json
 from copy import deepcopy
 from sp_motor.game_classes.ressources import ressource
 from sp_motor.game_classes.unit import unit
+from sp_motor.utils import load_conf_f
+
 #JSON SCALING
 #[0] = PV
 #[1] = MAINT_COST
@@ -27,8 +29,7 @@ class building:
         self.owner = owner
 
     def aplly_conf(self):
-        with open("../../../config/config_building.json") as f:
-            conf = json.load(f)
+        conf = load_conf_f("config_building")
 
         actual_conf = conf[self.type]
 
