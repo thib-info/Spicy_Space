@@ -1,30 +1,45 @@
+@font-face{
+    font-family: "ouverture";
+    src: url("../Font/addiction/Addiction.ttf");
+}
+
+@font-face{
+    font-family: "paragraphe";
+    src: url("../Font/laser/laser.ttf");
+}
+
+
+
+.font-ouverture{
+    font-family: "ouverture","Arial";
+}
+
+.font-paragraphe{
+    font-family: "paragraphe","Arial";
+}
+
 *{
     background-color: black;
     color: white;
-    background-image: url("../../images/connexion/star_wallpaper.jpg"); /*lien à changer par rapport à flask */
     padding: 0;
 }
 
 #logo{
     z-index: 1;
-    display: flex;
-    position: fixed;
-    left : 43vw;
+    display: block;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    background: transparent;
 }
 
 .background{
     position : absolute;
     right: 0;
     bottom :0;
-    min-width: 100vw;
-    min-height: 100vh;
+    max-width: 100%;
+    height: auto;
     z-index : 0;
-    /*top:0;
-    left:0;
-    height:100vh;
-    width:100vw;
-    overflow: hidden;
-    background-size:cover*/
 }
 
 #stars {
@@ -53,16 +68,15 @@ header{
     background-color: #11ffee00;
     color: white;
     position: center;
-    margin : 40px 0 0 0;
+    margin-top : 40px;
     padding: 0;
 }
 
 form{
     text-align: center;
-    padding: 100px;
+    padding: 50px;
     height : 50vh;
     background: transparent;
-
 }
 
 p, div{
@@ -78,11 +92,15 @@ p, div{
     border: double 2px transparent;
     border-radius: 15px;
     background: linear-gradient(black, black),
-    linear-gradient(90deg, #FFFB00, #F1C40F, #EAB120, #9068D0, #711C84, #621C9C, #2E1C94, #1C9FB7);
+    linear-gradient(90deg, #FFFB00, #B7950B, #7E5109, #4A235A , #711C84,#330033, #621C9C, #2E1C94, #1C9FB7);
     background-origin: border-box;
     background-clip: content-box, border-box;
     filter : drop-shadow(0 0 5px) ;
+    font-family : "paragraphe";
+}
 
+.button{
+    margin-top: 50px;
 }
 
 
@@ -93,6 +111,7 @@ p, div{
     height: 100%;
     border : none;
     font-size : 30px;
+    font-family: "ouverture";
 }
 
 .glow-on-hover {
@@ -111,7 +130,7 @@ p, div{
 
 .glow-on-hover:before {
     content: '';
-    background: linear-gradient(45deg, #FFFB00, #F1C40F, #EAB120, #9068D0, #711C84, #621C9C, #2E1C94, #1C9FB7, #FFFB00);
+    background: linear-gradient(45deg, #FFFB00, #B7950B, #7E5109, #4A235A, #711C84,#330033, #621C9C, #2E1C94, #1C9FB7, #FFFB00);
     position: absolute;
     top: -4px;
     left:-4px;
@@ -163,8 +182,11 @@ footer{
     bottom:0;
     padding: 0;
     z-index: 1;
-    display: flex;
-    position: fixed;
+    font-family : "paragraphe";
+    display: block;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
