@@ -1,0 +1,43 @@
+.panel {
+  position: absolute;
+  background-color: #f1f1f1;
+  border: 1px solid #d3d3d3;
+
+  width: 20%;
+  height: 600px;
+  z-index: 8;
+
+  /* prevent text selection */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.panel:target {
+    pointer-events: none;
+}
+
+.panel[side="right"] {
+    top: 50%;
+    right: 0%;
+    /*transform: translate(0%,-50%);*/
+}
+
+.panel[side="left"] {
+    top: 50%;
+    left: 0%;
+    transform: translate(0%,-50%);
+}
+
+.panelHeader {
+  padding: 10px;
+  color: #fff;
+  z-index: inherit;
+  background-color: #2196F3;
+}
+
+.panelBody {
+  padding: 10px;
+  z-index: inherit;
+}
