@@ -31,6 +31,7 @@ body {
 }
 
 .windowBody {
+  position: relative;
   padding: 10px;
   z-index: inherit;
   height: inherit;

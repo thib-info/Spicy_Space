@@ -1,3 +1,12 @@
+window.onresize = function()
+{
+    var canvas = document.getElementById('canvas');
+    canvas.width = window.innerWidth;
+    canvas.style.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    canvas.style.height = window.innerHeight;
+}
+
 document.addEventListener('contextmenu', event => event.preventDefault()); // disable right click
 
 const canvas = document.getElementById("canvas");

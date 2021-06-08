@@ -1,25 +1,49 @@
 .u_div1{
     display: inline-block;
+    position: absolute;
 }
 
 .u_divg{
     width: 61%;
     height: 100%;
-    background-color: aqua;
 }
 
 .u_divp{
-    top: 0px;
     width: 19%;
     height: 100%;
-    background-color: red;
     
 }
 
-u_button_1{
-    top: 10;
+.u_diva > div{
+    height: 50%;
 }
 
-u_button_2{
-    top: 50;
+.u_divb > div{
+    height: 33%;
+}
+
+.u_divc > div{
+    height: 10%;
+}
+
+.u_button{
+    background-color: transparent;
+    height: 50px;
+    width: 150px;
+    
+}
+
+.u_diva {
+    top: 0;
+    left: 0;
+}
+
+.u_divb {
+    top: 0;
+    left: 19%;
+}
+
+.u_divc {
+    top: 0;
+    left: 80%;
 }

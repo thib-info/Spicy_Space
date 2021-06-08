@@ -1,4 +1,4 @@
-var windows = []; // array of all window class instances
+var confirmationWindow = null; // will store the current cWindow element;
 
 function windowConstructor(windowIndex,location) {
   // windowIndex is an integer
@@ -54,111 +54,27 @@ function windowConstructor(windowIndex,location) {
         break;
       case 3: // Construire un bâtiment sur un système
         content = `
-        <div class="b_1">
-            <div class="b_11">
-                <canvas id="c${windowID}" class="systemPreview" width="250" height="250"></canvas>
-            </div>
-            <div class="b_12">
-                <p class="b_sysname">Nom du système</p>
-                <p class="b_ressource">Population : 10</p>
-                <p class="b_ressource">Ressource 1 : 50</p>
-                <p class="b_ressource">Ressource 2 : 60</p>
-                <p class="b_ressource">Ressource 3 : 60</p>
-            </div>
-        </div>
-        <div class="b_2">
-            <div class="b_21">
-                <button type="button" class="b_button">Bâtiment 1</button>
-                <button type="button" class="b_button">Bâtiment 2</button>
-                <button type="button" class="b_button">Bâtiment 3</button>
-                <button type="button" class="b_button">Bâtiment 4</button>
-                <button type="button" class="b_button">Bâtiment 5</button>
-            </div>
-            <div class="b_22">
-                <button type="button" class="b_button">Bâtiment 6</button>
-                <button type="button" class="b_button">Bâtiment 7</button>
-                <button type="button" class="b_button">Bâtiment 8</button>
-                <button type="button" class="b_button">Bâtiment 9</button>
-                <button type="button" class="b_button">Bâtiment 10</button>
-            </div>
-            <div class="b_23">
-                <button type="button" class="b_button">Bâtiment 11</button>
-                <button type="button" class="b_button">Bâtiment 12</button>
-                <button type="button" class="b_button">Bâtiment 13</button>
-                <button type="button" class="b_button">Bâtiment 14</button>
-                <button type="button" class="b_button">Bâtiment 15</button>
-            </div>
+        <div class="centerWrapper">
+          <canvas id="c${windowID}" class="systemPreview" width="250" height="250"></canvas>
+          <div class="ressourcesDashboard"></div>
+          <div class="slots"></div>
         </div>
         `;
         break;
       case 4: // Construire une unité sur un système
         content = `
-         <div class="u_div1 u_divp u_diva">
-            <p>Militaire</p>
-            <div>
-                <p>Exploration</p>
-                <button type="button" class="u_button">Vaisseau 11</button>
-            </div>
-            <div>
-                <p>Colonisation</p>
-                <button type="button" class="u_button">Vaisseau 12</button>
-            </div>
+        <div class="u_div1 u_divp">
+          <button type="button" class="u_button_1">Vaisseau 11</button>
+          <button type="button" class="u_button_2">Vaisseau 12</button>
         </div>
-        <div class="u_div1 u_divg u_divb">
-            
-            <div>
-                <p>Destroyer</p>
-                <button type="button" class="u_button">I</button>
-                <button type="button" class="u_button">II</button>
-                <button type="button" class="u_button">III</button>
-            </div>
-
-            <div>
-                <p>Cuirassé</p>
-                <button type="button" class="u_button">I</button>
-                <button type="button" class="u_button">II</button>
-                <button type="button" class="u_button">III</button>
-            </div>
-            <div>
-                <p>Tardigrade</p>
-                <button type="button" class="u_button">I</button>
-                <button type="button" class="u_button">II</button>
-                <button type="button" class="u_button">III</button>
-            </div>
+        <div class="u_div1 u_divg">
+            <button type="button">Vaisseau 21</button>
+            <button type="button">Vaisseau 22</button>
+            <button type="button">Vaisseau 23</button>
         </div>
-        <div class="u_div1 u_divp u_divc">
-            <p>Spacioports</p>
-            <div>
-                <button type="button" class="u_button">Spacioport 1</button>
-            </div>
-            <div>
-                <button type="button" class="u_button">Spacioport 1</button>
-            </div>
-            <div>
-                <button type="button" class="u_button">Spacioport 1</button>
-            </div>
-            <div>
-                <button type="button" class="u_button">Spacioport 1</button>
-            </div>
-            <div>
-                <button type="button" class="u_button">Spacioport 1</button>
-            </div>
-            <div>
-                <button type="button" class="u_button">Spacioport 1</button>
-            </div>
-            <div>
-                <button type="button" class="u_button">Spacioport 1</button>
-            </div>
-            <div>
-                <button type="button" class="u_button">Spacioport 1</button>
-            </div>
-            <div>
-                <button type="button" class="u_button">Spacioport 1</button>
-            </div>
-            <div>
-                <button type="button" class="u_button">Spacioport 1</button>
-            </div>
-
+        <div class="u_div1 u_divp">
+            <button type="button">Vaisseau 21</button>
+            <button type="button">Vaisseau 22</button>
         </div>
         `;
         break;
@@ -168,8 +84,7 @@ function windowConstructor(windowIndex,location) {
     }
     var windowBody = document.querySelector(`[id="${windowID}"] .windowBody`);
     windowBody.insertAdjacentHTML('afterbegin',content);
-      
-      if (windowIndex == 3)
+    if (windowIndex == 3)
       systemPrev(`c${windowID}`);
   }
 
