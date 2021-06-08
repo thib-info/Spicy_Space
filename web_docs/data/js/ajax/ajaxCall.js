@@ -25,7 +25,7 @@ function reactAjax(index, response){
             break;
         case 2:
             let jsonTreeTech = JSON.parse(response);
-            drawTreeTech(jsonTreeTech);
+            defineJsonTreeTech(jsonTreeTech);
             break;
         case 3:
             if(response===true)

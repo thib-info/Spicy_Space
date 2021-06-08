@@ -1,4 +1,5 @@
 let markupArray = ["<ul>"];
+let jsonTreeTech = null;
 
 getTreeTech();
 
@@ -7,6 +8,10 @@ function getTreeTech(){
     let target = "/treeTech";
     let goal = 2;
     ajaxCall(valueToSend, target, goal);
+}
+
+function defineJsonTreeTech(jsonTT){
+    jsonTreeTech = jsonTT;
 }
 
 // evaluate expressions
@@ -43,13 +48,12 @@ const getDetails = (details) => {
     }
 };
 
-function drawTreeTech(jsonTreeTech){
+function drawTreeTech(){
     createList(jsonTreeTech);
     markupArray.push("</ul>");
     let htmlCode = markupArray.join("");
-    return null;
+    return htmlCode;
 }
-
 
 function askUpdateTech(idTech){
     let valueToSend = "idTech=" + idTech;

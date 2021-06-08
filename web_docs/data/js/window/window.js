@@ -49,6 +49,10 @@ function windowConstructor(windowIndex) { // windowIndex is an integer
       case 2: // construire sur un système
         content = '<p>Ici il y aura tous les éléments relatifs à la Construction</p>';;
         break;
+      case 4: // Arbre de technologie
+        //content = drawTreeTech();
+        content = '<p> test </p>';
+        break;
       default:
         content = '<h2>Default_Content</h2>';
         break;
