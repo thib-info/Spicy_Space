@@ -2,7 +2,7 @@ import json
 
 class unit:
 
-    lastId = 1
+    lastId = 0
 
     def __init__(self, conf, owner, position, base_lvl=1,battling = False):
         self.id = unit.lastId
@@ -49,19 +49,19 @@ class unit:
 
     def recruit(self, type, pos):
         if type == "destroyer":
-            vaiss = unit(conf["destroyer"],self.owner,pos)
+           # vaiss = unit(conf["destroyer"],self.owner,pos)
             print("recruit" + type)
         elif type == "tardigrade":
-            vaiss = unit(conf["tardigrade"], self.owner, pos)
+            #vaiss = unit(conf["tardigrade"], self.owner, pos)
             print("recruit" + type)
         elif type == "battleship":
-            vaiss = unit(conf["battleship"], self.owner, pos)
+            #vaiss = unit(conf["battleship"], self.owner, pos)
             print("recruit" + type)
         elif type == "colon":
-            vaiss = unit(conf["colon"], self.owner, pos)
+           # vaiss = unit(conf["colon"], self.owner, pos)
             print("recruit" + type)
         elif type == "spotter":
-            vaiss = unit(conf["spotter"], self.owner, pos)
+           # vaiss = unit(conf["spotter"], self.owner, pos)
             print("recruit" + type)
 
 

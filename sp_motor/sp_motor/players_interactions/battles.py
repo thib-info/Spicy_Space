@@ -1,5 +1,5 @@
 from sp_motor.sp_motor.game_classes.unit import unit as un
-from sp_motor.sp_motor.game_classes.player import player as pl
+from sp_motor.sp_motor.game_classes.player import player
 from sp_motor.sp_motor.game_classes.game import game
 from sp_motor.sp_motor.game_classes.map import System_p
 
@@ -16,18 +16,18 @@ def hit(defense):
     else:
         return False
 
-def battle(pUnit1,target):
-        pUnit1.battle()
-        target.battle()
+def battle(g1,pUnit1,target):
+    if can_battle(g1,pUnit1,target):
         if hit(target):
             target.take_damage(pUnit1.pa)
             print(f"Tir reussi vous avez inflige  {pUnit1.pa} degats")
         else:
             print("Tir echoue")
-def can_battle(pUnit1,pUnit2,player1,player2):
-    if pUnit1.owner != pUnit2.owner and pUnit1.position == pUnit2.position and not player1.is_ally(player2.pid):
+def can_battle(g1,pUnit1,pUnit2):
+    if pUnit1.owner != pUnit2.owner and pUnit1.position == pUnit2.position and not g1.players[pUnit1.owner].is_ally(g1.players[pUnit2.owner]):
         return True
     else :
+        print("These units can't battle")
         return False
 
 
