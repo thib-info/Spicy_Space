@@ -16,7 +16,8 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 // loading map
-var data = JSON.parse(JSON.stringify(data));
+console.log(data);
+//var data = JSON.parse(JSON.stringify(data));
 
 // loading images
 const starImage = new Image();
