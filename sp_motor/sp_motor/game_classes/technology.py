@@ -1,11 +1,9 @@
-import json
 from sp_motor.utils import load_conf_f
 from sp_motor.game_classes.player import player
-from sp_motor.game_classes.ressources import ressource
+
 
 class technology:
     def __init__(self, conf, bat):
-        global path
         buff = self.parcours(conf, bat)
         self.name = buff["name"]
         self.cost = buff["cost"]
@@ -15,16 +13,14 @@ class technology:
     def parcours(self, conf, bat, find=0):
         global buffer
         if find == 0:
-            for k, v in conf.items():
+            for v in conf.items():
                 if isinstance(v, dict):
-                    path.append(k)
                     if v["name"] == bat:
                         buffer = v
                         find = 1
                         return buffer
                     else:
                         self.parcours(v["children"], bat, find)
-                    path.pop()
         return buffer
 
     def __getitem__(self, item):
@@ -39,8 +35,9 @@ class technology:
         return self.upgrade
 
     def research(self):
-        buff = player.ressources
-        if buff[6] >= self.cost:
+        buff = player.ressources[6]
+        if buff >= self.cost:
+            player.ressources[6].withdraw(self.cost)
             self.unlocked = True
         return self.unlocked
 
@@ -73,7 +70,6 @@ class technology:
 
 
 # config = load_conf_f("base_tech")
-# path = []
 # buffer = []
 # print(config["mine"].keys())
 # test = technology(config, "usine niveau 2")
