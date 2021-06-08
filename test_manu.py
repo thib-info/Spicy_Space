@@ -19,7 +19,7 @@ print(g1.players[0].name)
 print(g1.players[1].pid)
 
 g1.create_unit(1, 4, "destroyer")
-g1.create_unit(0,4,"battleship")
+g1.create_unit(0,4,"tardigrade")
 print(g1.units[1].pv)
 
 

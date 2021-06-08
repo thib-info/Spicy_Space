@@ -23,7 +23,7 @@ class game():
         self.players[-1].set_param(len(self.players)-1, PLAYER1_NAME,isMJ)
 
     def get_player(self,pid):
-        for i in players:
+        for i in self.players:
             if i.pid==pid:
                 return i
 
@@ -33,13 +33,13 @@ class game():
                 return i
 
     def get_systems(self,id):
-        for i in list_systems:
-            if i.id==pid:
+        for i in self.list_systems:
+            if i.id==self.pid:
                 return i
 
     def get_PLayers_intteractions(self,id):
-        for i in players_interractions:
-            if i.id==pid:
+        for i in self.players_interractions:
+            if i.id==self.pid:
                 return i
 
     def next_turn(self):
@@ -51,7 +51,7 @@ class game():
 
         conf_unit = load_conf_f("config_unit")
         for key,model in conf_unit.items():
-            self.models[key] = unit(model,-1,-1)
+            self.models[key] = unit(model, -1, -1)
 
     def delete_unit(self,id_unit):
         self.units.pop(id_unit)
@@ -59,7 +59,7 @@ class game():
     def create_unit(self, owner_id, position, created_unit, base_lvl=1,):
         self.units.append(deepcopy(self.models[created_unit]))
         self.units[-1].set_param(owner_id, position, base_lvl)
-        self.players[owner_id].unit.append(self.units[-1].id)
+        self.players[owner_id].units_id.append(self.units[-1].id)
 
     def move_unit(self, unit_id, destination):
         self.units[unit_id].position = destination

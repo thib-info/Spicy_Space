@@ -8,7 +8,7 @@ import random
 import json
 from copy import deepcopy
 
-
+REDUC_DMG_TARDI = 20# %
 
 def hit(defense):
     if random.randint(1, 100) <= defense.precision:
@@ -17,9 +17,13 @@ def hit(defense):
         return False
 
 def battle(g1,pUnit1,target):
+
     if can_battle(g1,pUnit1,target):
         if hit(target):
-            target.take_damage(pUnit1.pa)
+            if target.name == "tardigrade":
+                target.take_damage(pUnit1.pa - round(20*pUnit1.pa / 100) )
+            else:
+                target.take_damage(pUnit1.pa)
             print(f"Tir reussi vous avez inflige  {pUnit1.pa} degats")
         else:
             print("Tir echoue")
