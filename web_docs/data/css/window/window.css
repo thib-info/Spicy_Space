@@ -9,8 +9,8 @@ body {
   background-color: #f1f1f1;
   border: 1px solid #d3d3d3;
 
-  width: 600px;
-  height: 400px;
+  width: 70%;
+  height: 80%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -31,9 +31,16 @@ body {
 }
 
 .windowBody {
+  position: relative;
   padding: 10px;
   z-index: inherit;
+  height: inherit;
 }
+
+.centerWrapper {
+  margin: auto;
+}
+
 
 /* selected window */
 .window[selected=true] .windowHeader {

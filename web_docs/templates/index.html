@@ -9,20 +9,29 @@
   <link rel="stylesheet" href="../data/css/colors/colors-stock.css">
   <link rel="stylesheet" href="../data/css/index/menu-style.css">
   <link rel="stylesheet" href="../data/css/font/font.css">
+  <link rel="stylesheet" href="../data/css/panel/panel.css">
+  <link rel="stylesheet" href="../data/css/window/buildingWindow.css">
+  <link rel="stylesheet" href="../data/css/window/unitWindow.css">
   <link href="https://unpkg.com/treeflex/dist/css/treeflex.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <script src="../data/js/window/window.js"></script>
   <script src="../data/js/ajax/ajaxCall.js"></script>
   <script src="../data/js/ajax/getMap.js"></script>
-  <script src="../data/js/ajax/exampleConnexion.js"></script>
-</head>
-<body>
-<div class="top-bar custom-gradient"></div>
+  <script src="../data/js/window/window.js"></script>
+  <script src="../data/js/window/systemPreview.js"></script>
+  <script src="../data/js/panel/panel.js"></script>
+  <script type="text/javascript" src="../data/js/canvas/map.json"></script>
+  </head>
+
+
+
+<body style="background-image: url('../data/images/background.png');">
   <div id="windowMenu">
-    <button type="button" onclick="addWindow(2)">Construction</button>
-    <button type="button"  onclick="addWindow(0)">Technologies</button>
-    <button type="button"  onclick="addWindow(1)">Diplomatie</button>
-    <button type="button" id="ajax-test" >Test AJAX</button>
+    <button type="button" onclick="addWindow(0,null)">Technologies</button>
+    <button type="button" onclick="addWindow(1,null)">Diplomatie</button>
+    <button type="button" onclick="addWindow(2,null)">Statistiques</button>
+  </div>
+  <div id="canvasDiv">
+    <canvas id="canvas" style="position: absolute;"></canvas>
   </div>
 
 <div class="container-menu">
@@ -43,4 +52,5 @@
 <div id="res"></div>
 <script src="../data/js/menu-animation/menuAnimation.js"></script>
 </body>
+<script src="../data/js/canvas/canvas.js"></script>
 </html>
