@@ -17,27 +17,33 @@ class game():
         self.units = []
         self.models = {}
         self.Players_intteractions=[]
+        self.map = None
 
     def create_player(self,isMJ=False):
         self.players.append(deepcopy(self.models["player"]))
         self.players[-1].set_param(len(self.players)-1, PLAYER1_NAME,isMJ)
 
     def get_player(self,pid):
-        for i in self.players:
-            if i.pid==pid:
+        for i in range(len(self.players)):
+            if self.players[i].pid==pid:
                 return i
+        return -1
 
     def get_unit(self,id):
-        for i in unit:
-            if i.id==id:
+        for i in range(len(self.unit)):
+            if self.unit[i].id==id:
                 return i
+
+        return -1
 
     def get_systems(self,id):
-        for i in self.list_systems:
-            if i.id==self.pid:
+        for i in range(len(self.map.systems)):
+            if self.map.systems[i].id == id:
                 return i
 
-    def get_PLayers_intteractions(self,id):
+        return -1
+
+    def get_pLayers_interactions(self,id):
         for i in self.players_interractions:
             if i.id==self.pid:
                 return i
