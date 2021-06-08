@@ -69,10 +69,10 @@ class technology:
         return False
 
 
-# config = load_conf_f("base_tech")
-# buffer = []
+config = load_conf_f("base_tech")
+buffer = []
 # print(config["mine"].keys())
-# test = technology(config, "usine niveau 2")
+test = technology(config, "usine niveau 2")
 # print("researched")
 # print(test.researched())
 # print("upgrade")
