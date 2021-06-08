@@ -1,6 +1,7 @@
 let data = null;
 let checkAjax = false;
 let isLoading = false;
+let firstLoad = false;
 
 var url = window.location.href; url = url.split('/');
 url = url[2].split(':');
@@ -55,16 +56,8 @@ var galaxySize = 600;
 var maxZoom = 5, minZoom = (canvas.width/galaxySize)/3, zoomFactor = 1.05, zoomLimit = 0.3;
 var topCanvas, leftCanvas;
 
-
 var X = [], Y = [], links = [];
-data["systems"].forEach((system) => {
-  X.push(system["pos"][0]);
-  Y.push(system["pos"][1]);
-});
-data["links"].forEach((link) => {
-  links.push([link["start"],link["end"]]);
-});
-console.log(X.length);
+
 
 
 /*for (let i = 0 ; i < n ; i++) {
@@ -336,6 +329,11 @@ function drawStars() {
 }
 
 function update() {
+  if(!isLoading && !firstLoad) {
+      loadMap();
+      firstLoad=true;
+      isLoading=false;
+  }
   topCanvas = -displayTransform.matrix[5] / displayTransform.scale;
   leftCanvas = -displayTransform.matrix[4] / displayTransform.scale;
 
@@ -361,4 +359,15 @@ update(); // start it happening
 function setData(jsonMap){
   data = jsonMap;
   isLoading=false;
+}
+
+function loadMap(){
+    data["systems"].forEach((system) => {
+    X.push(system["pos"][0]);
+    Y.push(system["pos"][1]);
+    });
+    data["links"].forEach((link) => {
+    links.push([link["start"],link["end"]]);
+    });
+    console.log(X.length);
 }
