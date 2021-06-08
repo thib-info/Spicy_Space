@@ -19,7 +19,6 @@ function setWindow(idElement){
     else if(idElement==='diplomatie')
         addWindow(1);
     else if(idElement==='arbre-tech') {
-        getTreeTech();
         addWindow(4);
     }
 }

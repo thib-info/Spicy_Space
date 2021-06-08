@@ -25,11 +25,12 @@ function reactAjax(index, response){
             break;
         case 2:
             let jsonTreeTech = JSON.parse(response);
-            console.log(jsonTreeTech);
+            defineJsonTreeTech(jsonTreeTech);
             break;
         case 3:
             if(response===true)
                 redrawTreeTech();
+            break;
         case 100:
             justeTest(response);
             break;

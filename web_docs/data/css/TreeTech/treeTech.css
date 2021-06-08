@@ -1,0 +1,23 @@
+.example .tf-nc {
+    /* css here */
+    color: black;
+}
+
+.tf-custom .tf-nc:before,
+.tf-custom .tf-nc:after {
+    /* css here */
+    color: black;
+}
+
+.tf-custom li li:before {
+    /* css here */
+    color: black;
+}
+
+.researched{
+    color: green;
+}
+
+.no-researched{
+    color: red;
+}
