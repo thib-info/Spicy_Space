@@ -36,9 +36,10 @@ class System_p(Basic_info):
     def __init__(self, name, pos):
         self.sector_id = 0
         self.ressources_slots = []
-        self.units = []
+        self.units_id = []
         self.ressources_qt = {}
         Basic_info.__init__(self, name, pos)
+
 
 
     def set_sector(self, sector_id):

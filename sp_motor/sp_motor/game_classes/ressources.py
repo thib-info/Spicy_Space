@@ -1,4 +1,5 @@
 import json
+from sp_motor.utils import load_conf_f
 
 class ressource:
     def __init__(self, type):
@@ -6,8 +7,7 @@ class ressource:
         self.type = type
 
     def apply_conf(self):
-        with open("../../../config/ressources.json") as f:
-            config = json.load(f)
+        config = load_conf_f("ressources")
         actual_conf = config[self.type]
         self.value = actual_conf["value"]
         self.type = actual_conf["type"]
@@ -37,8 +37,7 @@ class ressource:
         return pop.value
 
     def total_ressources(self):
-        with open("config/ressources.json") as f:
-            conf = json.load(f)
+        conf = load_conf_f("ressources")
         res = []
         for i in conf:
             buff = ressource(i)
@@ -54,8 +53,8 @@ class ressource:
             res.append(buff.type)
         return res
 
-with open("config/ressources.json") as f:
-    config = json.load(f)
+# with open("config/ressources.json") as f:
+#     config = json.load(f)
 
 # print(config["population"].keys())
 # test = ressource("or")
