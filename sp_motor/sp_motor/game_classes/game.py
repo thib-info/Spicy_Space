@@ -37,7 +37,7 @@ class game():
             if i.id==pid:
                 return i
 
-    def get_PLayers_intteractions(self,id):
+    def get_pLayers_interactions(self,id):
         for i in players_interractions:
             if i.id==pid:
                 return i

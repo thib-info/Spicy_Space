@@ -76,11 +76,8 @@ class System_p(Basic_info):
     def change_owner(self,owner):
         self.owner_id = owner
 
-    def print_buildings(self):
-        for i in self.buildings:
-            print("\n")
-            print("liste des différents batiments du systeme :")
-            print("type: "+str(i.type)+" propriétaire: "+str(i.owner.pid))
+    def is_owned(self, pid):
+        return self.owner_id == pid
 
 
     
@@ -158,10 +155,8 @@ class Map(Basic_info):
 
 
 
-# def check_sys_in_war(sys, players):
 
-#     for p in players:
-#         if p.pid in players:[]
+        
 
 
 
