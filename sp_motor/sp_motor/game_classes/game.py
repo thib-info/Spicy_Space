@@ -48,14 +48,14 @@ class game():
 # #print(g1.players[0].name)
 # #print(g1.players[1].pid)
 
-with open("../../../config/config_unit.json") as g:
-    conf_unit = json.load(g)
+# with open("../../../config/config_unit.json") as g:
+#     conf_unit = json.load(g)
 
 
-destroyer = unit(conf_unit["destroyer"], -1, [-1, -1])
-u1=deepcopy(destroyer)
-g1.units.append(u1)
-g1.units.append(u1)
-print(g1.units)
-g1.delete_unit(0)
-print(g1.units)
+# destroyer = unit(conf_unit["destroyer"], -1, [-1, -1])
+# u1=deepcopy(destroyer)
+# g1.units.append(u1)
+# g1.units.append(u1)
+# print(g1.units)
+# g1.delete_unit(0)
+# print(g1.units)

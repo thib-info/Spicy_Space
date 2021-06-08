@@ -1,7 +1,7 @@
 import json
 from copy import deepcopy
-from sp_motor.sp_motor.game_classes.ressources import ressource
-from sp_motor.sp_motor.game_classes.unit import unit
+from sp_motor.game_classes.ressources import ressource
+from sp_motor.game_classes.unit import unit
 #JSON SCALING
 #[0] = PV
 #[1] = MAINT_COST
@@ -10,7 +10,7 @@ from sp_motor.sp_motor.game_classes.unit import unit
 class building:
     lastId = 1
 
-    def __init__(self, type, location):
+    def __init__(self, type, location,owner):
         self.id = building.lastId
         building.lastId += 1
         self.type = type
@@ -24,10 +24,10 @@ class building:
         self.state = 0
         self.production_per_turn = 0
         self.scaling = 0
-        self.owner = -1
+        self.owner = owner
 
     def aplly_conf(self):
-        with open("config/config_building.json") as f:
+        with open("../../../config/config_building.json") as f:
             conf = json.load(f)
 
         actual_conf = conf[self.type]
@@ -71,31 +71,17 @@ class building:
             self.production_per_turn = round(self.production_per_turn * self.scaling[2])
             self.level_production=self.level_production+1
 
-    def produce(self,type):
-        ress = ressource(type)
-        ress.apply_conf()
-        if self.type == "habitation":
-            return ["or",ress.value + self.production_per_turn]
-        elif self.type == "mine":
-            return ["minerai",ress.value + self.production_per_turn]
-        elif self.type == "raffinerie":
-            return ["lingot",ress.value + self.production_per_turn]
-        elif self.type == "usine":
-            return ["electronique",ress.value + self.production_per_turn]
-        elif self.type == "ferme":
-            return ["nourriture",ress.value + self.production_per_turn]
-
-    def produce2(self):
+    def produce(self):
         if self.type == "habitation": #ressources population
-            self.owner.ressources[4]=self.owner.ressources[4]+self.production_per_turn
+            self.owner.ressources[4].value=self.owner.ressources[4].value+self.production_per_turn
         elif self.type == "mine": #minerais
-            self.owner.ressources[1] = self.owner.ressources[1] + self.production_per_turn
+            self.owner.ressources[1].value = self.owner.ressources[1].value + self.production_per_turn
         elif self.type == "raffinerie":#ingot
-            self.owner.ressources[2] = self.owner.ressources[2] + self.production_per_turn
+            self.owner.ressources[2].value = self.owner.ressources[2].value + self.production_per_turn
         elif self.type == "usine":#electrotech
-            self.owner.ressources[3] = self.owner.ressources[3] + self.production_per_turn
+            self.owner.ressources[3].value = self.owner.ressources[3].value + self.production_per_turn
         elif self.type == "ferme": #nourriture
-            self.owner.ressources[5] = self.owner.ressources[5] + self.production_per_turn
+            self.owner.ressources[5].value = self.owner.ressources[5].value + self.production_per_turn
 
     def link_ress(self,type):
         if self.type == "habitation":
@@ -111,7 +97,7 @@ class building:
 
 
     def change_owner(self,owner):
-        owner=self.owner
+        self.owner=owner
 
 
 
@@ -123,6 +109,7 @@ class building:
                 id_created = len(game.units)-1
                 game.players[self.owner].units_id.append(id_created)
                 game.map.systems[self.location].units_id.append(id_created)
+
 
 
 
@@ -169,3 +156,4 @@ class building:
 # print("\ntest produce")
 # print(test.produce(test.link_ress(test.type))[0])
 # print(test.produce(test.link_ress(test.type))[1])
+
