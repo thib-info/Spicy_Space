@@ -53,7 +53,19 @@ function windowConstructor(windowIndex,location) {
         content = '<p>Ici il y aura tous les éléments relatifs aux Technologies</p>';
         break;
       case 1: // Diplomatie
-        content = '<p>Ici il y aura tous les éléments relatifs à la Diplomatie</p>';
+        content = `
+        <div class="d_1">
+            <img src="https://iddeo.ca/wp-content/uploads/2015/03/p_iddeo_10_03_2015_900x400_01.jpg" class="d_img1">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Poster-sized_portrait_of_Barack_Obama.jpg/450px-Poster-sized_portrait_of_Barack_Obama.jpg" class="d_img2">
+            <img src="https://www.letudiant.fr/static/uploads/mediatheque/ETU_ETU/1/5/2358415-portrait-anthony-003-300x507.jpeg" class="d_img3">
+        </div>
+        <div class="d_2">
+            <button type="button" class="d_button">Déclarer la guerre</button>
+            <button type="button" class="d_button">Proposer la paix</button>
+            <button type="button" class="d_button">Proposer l'alliance</button>
+            <button type="button" class="d_button">Se retirer de l'alliance</button>
+        </div>
+            `;
         break;
       case 2: // Statistiques de partie
         content = '<p>Ici il y aura tous les éléments relatifs aux statistiques de la partie</p>';;

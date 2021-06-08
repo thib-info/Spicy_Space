@@ -27,6 +27,7 @@ const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+var isLoading = false;
 // loading images
 const starImage = new Image();
 starImage.addEventListener('load', function() {
@@ -345,7 +346,9 @@ function update() {
   // if the image loaded show it
   if (loadedImages == 2) {
     displayTransform.setTransform();
+    if(!isLoading){
     drawStars();
+    }
   }
 
   // reaquest next frame
@@ -355,5 +358,7 @@ function update() {
 update(); // start it happening
 
 function setData(jsonMap){
+  isLoading=true;
   data = jsonMap;
+  isLoading=false;
 }
