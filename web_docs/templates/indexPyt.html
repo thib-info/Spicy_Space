@@ -5,7 +5,7 @@
     <title>Spicy Space</title>
     <link rel="stylesheet" href="{{url_for('static', filename='css/window/window.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/index/index.css')}}">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/images/images-style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/images/image-style.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/colors/colors-stock.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/index/menu-style.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/font/font.css')}}">
@@ -26,12 +26,13 @@
 <body>
 <div class="top-bar custom-gradient"></div>
 <div id="windowMenu">
-    <button type="button" onclick="addWindow(2)">Construction</button>
-    <button type="button"  onclick="addWindow(0)">Technologies</button>
-    <button type="button"  onclick="addWindow(1)">Diplomatie</button>
-    <button type="button" id="ajax-test" >Test AJAX</button>
+    <button type="button" onclick="addWindow(0,null)">Technologies</button>
+    <button type="button" onclick="addWindow(1,null)">Diplomatie</button>
+    <button type="button" onclick="addWindow(2,null)">Statistiques</button>
 </div>
-<div id="res" class="tf-tree"></div>
+<div id="canvasDiv">
+    <canvas id="canvas" style="position: absolute;"></canvas>
+</div>
 <div class="container-menu">
     <div class="btn-menu button-menu-color"></div>
     <div id="statistique" class="menu-item blob-1">
