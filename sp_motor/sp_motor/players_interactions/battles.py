@@ -8,11 +8,7 @@ import random
 import json
 from copy import deepcopy
 
-with open("../../../config/config_unit.json") as f:
-    conf = json.load(f)
 
-
-destroyer = un(conf["destroyer"], -1, [-1, -1])
 
 def hit(defense):
     if random.randint(1, 100) <= defense.precision:
@@ -29,7 +25,7 @@ def battle(pUnit1,target):
         else:
             print("Tir echoue")
 def can_battle(pUnit1,pUnit2,player1,player2):
-    if pUnit1.owner != pUnit2.owner and pUnit1.position == pUnit2.position and player1.is_ally(player2.pid):
+    if pUnit1.owner != pUnit2.owner and pUnit1.position == pUnit2.position and not player1.is_ally(player2.pid):
         return True
     else :
         return False
@@ -40,17 +36,17 @@ def can_battle(pUnit1,pUnit2,player1,player2):
 
 
 
-id1 = deepcopy(destroyer)
-id1.set_param(1,(1,1))
-id2 = deepcopy(destroyer)
-id2.set_param(2,(1,1))
+#id1 = deepcopy(destroyer)
+#id1.set_param(1,(1,1))
+#id2 = deepcopy(destroyer)
+#id2.set_param(2,(1,1))
 
 #print(id1.battling)
 #print(hit(id2))
 
-battle(id1,id2)
-battle(id1,id2)
-print(id2.pv)
+#battle(id1,id2)
+#battle(id1,id2)
+#print(id2.pv)
 
 #print(id1.battling)
 

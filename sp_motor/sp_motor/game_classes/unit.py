@@ -1,9 +1,13 @@
 import json
 
 class unit:
+
+    lastId = 1
+
     def __init__(self, conf, owner, position, base_lvl=1,battling = False):
+        self.id = unit.lastId
+        unit.lastId += 1
         self.name = conf["name"]
-        self.type = conf["type"]
         self.owner = owner
         self.precision= conf["precision"]
         self.position = position

@@ -1,7 +1,6 @@
 {
   "destroyer": {
     "name": "destroyer",
-    "type": "military",
     "pv_max" : 10,
     "pa" : 4,
     "speed": 4,

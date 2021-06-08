@@ -39,6 +39,11 @@ class game():
     def delete_unit(self,id_unit):
         self.units.pop(id_unit)
 
+    def create_unit(self, owner_id, position, created_unit, base_lvl=1,):
+        self.units.append(deepcopy(self.models[created_unit]))
+        self.units[-1].set_param(owner_id, position, base_lvl)
+        self.players[owner_id].unit.append(self.units[-1].id)
+
 
 
 ######################################""

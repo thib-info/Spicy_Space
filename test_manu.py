@@ -4,6 +4,7 @@ from sp_motor.game_classes.unit import unit
 from sp_motor.game_classes.building import building as build
 from sp_motor.utils import load_conf_f
 from copy import deepcopy
+from sp_motor.players_interactions.battles import battle
 
 
 
@@ -17,19 +18,20 @@ g1.create_player(True)
 print(g1.players[0].name)
 print(g1.players[1].pid)
 
-conf_unit = load_conf_f("config_unit")
+g1.create_unit(1, 4, "destroyer")
+g1.create_unit(0,4,"battleship")
+print(g1.units[1].pv)
+
+battle(g1.units[0], g1.units[1])
+print(g1.units[1].pv)
 
 
-destroyer = unit(conf_unit["destroyer"], -1, [-1, -1])
-u1=deepcopy(destroyer)
-g1.units.append(u1)
-g1.units.append(u1)
-print(g1.units[0].name)
+print(g1.units[0].owner)
 
 
-save_game(g1, "game_save")
-g2 = game()
-g2 = load_game("game_save")
-print(g2.players[0].name)
-print(g2.players[1].pid)
-print(g2.units[0].name)
+#save_game(g1, "game_save")
+#g2 = game()
+#g2 = load_game("game_save")
+#print(g2.players[0].name)
+#print(g2.players[1].pid)
+#print(g2.units[0].name)
