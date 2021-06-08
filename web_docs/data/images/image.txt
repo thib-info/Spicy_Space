@@ -3,6 +3,8 @@
 ##########################################################################################
 
 
+logo.png            ->logo du milieux de la barre
+
 Population.png      -> icone population
 
 Nourriture.png      -> icone nourriture
