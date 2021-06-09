@@ -5,6 +5,7 @@ from sp_motor.game_classes.player import player
 from sp_motor.game_classes.unit import unit 
 from sp_motor.game_classes.building import building
 from sp_motor.utils import load_conf_f
+from sp_motor.players_interactions.Players_interraction import Players_interraction
 
 from copy import deepcopy
 from sp_motor.game_classes.player import player
@@ -29,8 +30,8 @@ class game():
         
 
     def create_player(self,isMJ=False):
-        tmp=deepcopy(self.models["player"])
-        tmp.ressources_init_player()
+        tmp = deepcopy(self.models["player"])
+        tmp.ressources_init_player(self.models["ressources"])
         self.players.append(tmp)
         self.players[-1].set_param(len(self.players)-1, PLAYER1_NAME,isMJ)
         return tmp.pid
@@ -78,7 +79,7 @@ class game():
 
         conf_ress = load_conf_f("ressources")
         self.models["ressources"] = {}
-        for c, v in conf_unit.items():
+        for c, v in conf_ress.items():
             self.models["ressources"][c] = v["value"]
 
     def delete_unit(self,id_unit):
@@ -249,4 +250,4 @@ def load_game(path):
 # print(g1.units)
 # g1.delete_unit(0)
 # print(g1.units)
->>>>>>> coloniser
+

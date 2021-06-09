@@ -4,7 +4,19 @@
     "pv_max" : 10,
     "pa" : 4,
     "pm": 4,
-    "cost": 2500,
+    "cost": [{
+              "minerai": 100,
+              "or": 100
+            },
+            {
+              "lingot": 100,
+              "or": 100
+            },
+            {
+              "electronique": 100,
+              "or": 100
+            }
+          ],
     "maint_cost": 200,
     "scaling": [1,1,1,1,1],
     "precision": 70
@@ -14,7 +26,19 @@
     "pv_max" : 10,
     "pa" : 4,
     "pm": 4,
-    "cost": 2500,
+    "cost": [{
+              "minerai": 100,
+              "or": 100
+            },
+            {
+              "lingot": 100,
+              "or": 100
+            },
+            {
+              "electronique": 100,
+              "or": 100
+            }
+          ],
     "maint_cost": 200,
     "scaling": [1,1,1,1,1],
     "precision": 70
@@ -24,7 +48,19 @@
     "pv_max" : 10,
     "pa" : 4,
     "pm": 4,
-    "cost": 2500,
+    "cost": [{
+              "minerai": 100,
+              "or": 100
+            },
+            {
+              "lingot": 100,
+              "or": 100
+            },
+            {
+              "electronique": 100,
+              "or": 100
+            }
+          ],
     "maint_cost": 200,
     "scaling": [1,1,1,1,1],
     "precision": 70
@@ -34,7 +70,19 @@
     "pv_max" : 10,
     "pa" : 4,
     "pm": 4,
-    "cost": 2500,
+    "cost": [{
+              "minerai": 100,
+              "or": 100
+            },
+            {
+              "lingot": 100,
+              "or": 100
+            },
+            {
+              "electronique": 100,
+              "or": 100
+            }
+          ],
     "maint_cost": 200,
     "scaling": [1,1,1,1,1],
     "precision": 70
@@ -44,7 +92,19 @@
     "pv_max" : 10,
     "pa" : 4,
     "pm": 4,
-    "cost": 2500,
+    "cost": [{
+              "minerai": 100,
+              "or": 100
+            },
+            {
+              "lingot": 100,
+              "or": 100
+            },
+            {
+              "electronique": 100,
+              "or": 100
+            }
+          ],
     "maint_cost": 200,
     "scaling": [1,1,1,1,1],
     "precision": 70
