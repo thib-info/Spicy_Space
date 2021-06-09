@@ -1,13 +1,17 @@
-from flask import Flask, jsonify, request, render_template, redirect, url_for, session, flash
+from flask import Flask, jsonify, request, render_template, redirect, url_for, session, flash, send_file
 from functools import wraps
 
 import time
 import json
 from datetime import datetime, timedelta
+import os
 
 
 from bdd import give_connection
 from bdd import add_user, get_user_id, compare_passw
+
+
+from backend import list_files, find_file
 
 app = Flask(__name__)
 app.static_folder = "../web_docs/data"
@@ -76,6 +80,18 @@ def connexion():
         return render_template('connexion_pyt.html')
 
 
+@app.route("/get_img/<name>")
+def give_img(name):
+
+    path = os.path.join(app.static_folder, find_file(list_files(app.static_folder), name))
+    print(path)
+
+    if path != None:
+        if os.path.isfile(path):
+            return send_file(path, mimetype='image/gif')
+
+    return send_file(app.static_folder + "/images/error.jpg" , mimetype='image/gif')
+
 
    
 
@@ -105,10 +121,6 @@ def rendu():
     
     return jsonify({'resp':a})
 
-@app.route("/connexion", methods=["GET", "POST"])
-def login_page():
-    # traitement de la requete ajax
-    pass
 
 @app.route("/map", methods=["POST"])
 def mapSend():
