@@ -39,7 +39,7 @@ class System_p(Basic_info):
         self.id = System_p.lastId
         System_p.lastId += 1
         self.owner_id = -1
-
+        
         self.to_peace = 0
 
         self.units_id = []

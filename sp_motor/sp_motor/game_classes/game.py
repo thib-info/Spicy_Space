@@ -15,6 +15,8 @@ class game():
         self.systems =[] #conf["map"]
         self.turn =[] #conf["turn"]
         self.units = []
+        self.buildings = []
+        self.map = None
         self.models = {}
         self.players_interactions=[]
         self.map = None
@@ -38,6 +40,12 @@ class game():
     def get_systems(self,id):
         for i in range(len(self.map.systems)):
             if self.map.systems[i].id == id:
+                return i
+        return -1
+
+    def get_buildings(self,id):
+        for i in range(len(self.building)):
+            if self.buildings.id == id:
                 return i
         return -1
 
@@ -68,6 +76,25 @@ class game():
         self.units[-1].set_param(owner_id, position, base_lvl)
         self.players[owner_id].units_id.append(self.units[-1].id)
 
+
+    ################## syst de production des ressources #########
+
+
+    def update_player_ressources(self):
+        for player in self.players:
+
+            pl_sys_index = [self.get_systems(id) for id in player.systems_id]
+            #partie ajout des productions pour chaques joueurs
+            for c in player.ressources:
+                player.ressources[c]["qt_t"] = 0
+
+
+            for sys_id in pl_sys_index:
+                local_buildings = [deepcopy(self.buildings[self.get_buildings(id)]) for id in self.systems[sys_id].buildings_id]
+                sys_prod = self.systems[sys_id].produce(self.models["ressources"], local_buildings)
+                player.update_prod(sys_prod)
+
+            #fin de la partie sur la production
 
 
 
@@ -123,24 +150,3 @@ def load_game(path):
     return output
 
 
-
-# g1 = game()
-# g1.load_conf()
-# g1.create_player()
-# g1.create_player(True)
-# print(g1.players[0])
-# print(g1.players[1])
-# #print(g1.players[0].name)
-# #print(g1.players[1].pid)
-
-# with open("../../../config/config_unit.json") as g:
-#     conf_unit = json.load(g)
-
-
-# destroyer = unit(conf_unit["destroyer"], -1, [-1, -1])
-# u1=deepcopy(destroyer)
-# g1.units.append(u1)
-# g1.units.append(u1)
-# print(g1.units)
-# g1.delete_unit(0)
-# print(g1.units)
