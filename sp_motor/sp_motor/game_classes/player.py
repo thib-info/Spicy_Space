@@ -13,7 +13,7 @@ class player :
         self.pid = pid
         self.allies_id = []
         self.enemies_id = []
-        self.ressources = []
+        self.ressources = {}
         self.systems_id = []
         self.isMj = isMj
         self.interraction_requested_id = []

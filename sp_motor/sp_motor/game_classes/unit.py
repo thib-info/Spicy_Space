@@ -47,17 +47,17 @@ class unit:
 
     def to_front(self):
         dic = {"id":self.id,
-               "position": self.position,
-               "nom": self.name,
+               "id_system": self.position,
+               "ship_t": self.name,
                "pv_max": self.pv_max,
-               "pv":self.pv,
-               "pa": self.pa,
-               "pm": self.pm,
-               "cost":self.cost,
+               "pv": self.pv,
+               "at": self.pa,
+               "mp": self.pm,
+               "cost": self.cost,
                "maint_cost": self.maint_cost,
-               "owner":self.owner,
-               "tier":self.tier,
-               "precision":self.precision,
+               "owner": self.owner,
+               "tier": self.tier,
+               "precision": self.precision,
                }
         return dic
 
