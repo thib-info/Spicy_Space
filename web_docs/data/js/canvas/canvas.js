@@ -40,33 +40,76 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 // loading images
-const starImage = new Image();
-starImage.addEventListener('load', function() {
+var starImages = {}, starHoverImages = {};
+
+const shipImage = new Image();
+shipImage.addEventListener('load', function() {
   loadedImages += 1;
 }, false);
-if(!checkAjax)
-  starImage.src ="../data/images/star2.png";
-else
-  starImage.src ="../data/images/stazr2.png";
+shipImage.src ="../data/images/ship.png";
 
-const hoverStarImage = new Image();
-hoverStarImage.addEventListener('load', function() {
+const shipHoverImage = new Image();
+shipHoverImage.addEventListener('load', function() {
   loadedImages += 1;
 }, false);
-hoverStarImage.src ="../data/images/hoverStar2.png";
+shipHoverImage.src ="../data/images/shipHover.png";
 
-var clickingOnStar = false, starHovered = false;
+const star1Image = new Image();
+star1Image.addEventListener('load', function() {
+  starImages["1"] = star1Image;
+  loadedImages += 1;
+}, false);
+star1Image.src ="../data/images/star1.png";
+
+const star1HoverImage = new Image();
+star1HoverImage.addEventListener('load', function() {
+  starHoverImages["1"] = star1HoverImage;
+  loadedImages += 1;
+}, false);
+star1HoverImage.src ="../data/images/star1Hover.png";
+
+const star2Image = new Image();
+star2Image.addEventListener('load', function() {
+  starImages["2"] = star2Image;
+  loadedImages += 1;
+}, false);
+star2Image.src ="../data/images/star2.png";
+
+const star2HoverImage = new Image();
+star2HoverImage.addEventListener('load', function() {
+  starHoverImages["2"] = star2HoverImage;
+  loadedImages += 1;
+}, false);
+star2HoverImage.src ="../data/images/star2Hover.png";
+
+const star3Image = new Image();
+star3Image.addEventListener('load', function() {
+  starImages["3"] = star3Image;
+  loadedImages += 1;
+}, false);
+star3Image.src ="../data/images/star3.png";
+
+const star3HoverImage = new Image();
+star3HoverImage.addEventListener('load', function() {
+  starHoverImages["3"] = star3HoverImage;
+  loadedImages += 1;
+}, false);
+star3HoverImage.src ="../data/images/star3Hover.png";
+
+
+var clickingOnStar = false, clickingOnShip = false, starHovered = false, shipHovered = false;
+var shipAlreadyDrawn = false;
 
 var loadedImages = 0
 // CONSTANTS
-var n = 1000;
-var starSize = 48;
+//var n = 1000;
+var starSize = 48, shipSize = 20;
 var galaxySize = 600;
-var maxZoom = 5, minZoom = (canvas.width/galaxySize)/3, zoomFactor = 1.05, zoomLimit = 0.3;
+var maxZoom = (canvas.width/galaxySize)*3, minZoom = (canvas.width/galaxySize)/3, zoomFactor = 1.05, zoomLimit = (canvas.width/galaxySize)/2.5;
 var topCanvas, leftCanvas;
 
 
-var X = [], Y = [], links = [];
+var X = [], Y = [], links = [], ships = [];
 data["systems"].forEach((system) => {
   X.push(system["pos"][0]);
   Y.push(system["pos"][1]);
@@ -74,8 +117,18 @@ data["systems"].forEach((system) => {
 data["links"].forEach((link) => {
   links.push([link["start"],link["end"]]);
 });
-console.log(X.length);
 
+for (let i = 0 ; i < X.length ; i++) {
+  ships[i.toString()] = [];
+}
+for (let i = 0 ; i < units.length ; i++) {
+  ships[i.toString()].push(units[i]);
+}
+
+// determine the color of each star for the entire game (only visual)
+var starColors = [];
+for (let i = 0 ; i < X.length ; i++)
+  starColors.push(Math.floor(Math.random() * 3) + 1);
 
 /*for (let i = 0 ; i < n ; i++) {
   X.push(Math.floor(Math.random() * galaxySize));
@@ -306,40 +359,65 @@ const displayTransform = {
 
 function drawStars() {
   starHovered = false;
+  shipHovered = false;
   var rect = canvas.getBoundingClientRect();
-  //starImage.addEventListener('load',function() {
+  // draw lines between systems
   for (let i = 0 ; i < links.length ; i++) {
     ctx.beginPath();
     ctx.moveTo(links[i][0][0],links[i][0][1]);
     ctx.lineTo(links[i][1][0],links[i][1][1]);
-    ctx.strokeStyle = "green";
+    ctx.strokeStyle = "grey";
     ctx.stroke();
   }
 
-  for (let i = 0 ; i < n ; i++) {
+  for (let i = 0 ; i < X.length ; i++) {
+      shipAlreadyDrawn = false;
       if (displayTransform.scale > zoomLimit) {
         ctx.beginPath();
         ctx.rect(X[i]-(starSize/displayTransform.scale)/2,Y[i]-(starSize/displayTransform.scale)/2,starSize/displayTransform.scale,starSize/displayTransform.scale);
         if (ctx.isPointInPath(mouse.x,mouse.y) && !starHovered) {
           starHovered = true;
-            ctx.drawImage(hoverStarImage, X[i]-(starSize/displayTransform.scale)/2,Y[i]-(starSize/displayTransform.scale)/2,starSize/displayTransform.scale,starSize/displayTransform.scale);
-            if (mouse.oldX !== undefined && (mouse.buttonRaw & 1) === 1) {
-              clickingOnStar = true;
-              addPanel(0,i,true);
-            } else {
-              clickingOnStar = false;
-            }
+          ctx.drawImage(starHoverImages[starColors[i]], X[i]-(starSize/displayTransform.scale)/2,Y[i]-(starSize/displayTransform.scale)/2,starSize/displayTransform.scale,starSize/displayTransform.scale);
+          if (mouse.oldX !== undefined && (mouse.buttonRaw & 1) === 1) {
+            clickingOnStar = true;
+            addPanel(0,i,true);
+          } else {
+            clickingOnStar = false;
+          }
         } else {
-            ctx.drawImage(starImage, X[i]-(starSize/displayTransform.scale)/2,Y[i]-(starSize/displayTransform.scale)/2,starSize/displayTransform.scale,starSize/displayTransform.scale);
+            ctx.drawImage(starImages[starColors[i]], X[i]-(starSize/displayTransform.scale)/2,Y[i]-(starSize/displayTransform.scale)/2,starSize/displayTransform.scale,starSize/displayTransform.scale);
         }
+        // draw system name
         ctx.textAlign = 'center';
         ctx.fillStyle = "white"
+        ctx.font = "5px Arial";
         ctx.fillText(`Système ${i}`,X[i],Y[i]+(starSize/displayTransform.scale)/2);
+
+        // draw ship icon if system has ships.
+        ships[i.toString()].forEach((ship) => {
+
+          ctx.beginPath();
+          ctx.rect(X[i]-(starSize/displayTransform.scale)/4,Y[i]-(starSize/displayTransform.scale),starSize/displayTransform.scale/2,starSize/displayTransform.scale/2);
+          if (ctx.isPointInPath(mouse.x,mouse.y) && !shipHovered) {
+            shipHovered = true;
+            ctx.drawImage(shipHoverImage,X[i]-(starSize/displayTransform.scale)/4,Y[i]-(starSize/displayTransform.scale),starSize/displayTransform.scale/2,starSize/displayTransform.scale/2);
+            if (mouse.oldX !== undefined && (mouse.buttonRaw & 1) === 1) {
+              clickingOnShip = true;
+              addPanel(1,i,true);
+            } else {
+              clickingOnShip = false;
+            }
+          } else {
+            ctx.drawImage(shipImage,X[i]-(starSize/displayTransform.scale)/4,Y[i]-(starSize/displayTransform.scale),starSize/displayTransform.scale/2,starSize/displayTransform.scale/2);
+          }
+
+        });
+
       }
       else {
           ctx.beginPath();
-          ctx.arc(X[i], Y[i], 10, 10, Math.PI, true);
-          ctx.fillStyle = "red";
+          ctx.arc(X[i], Y[i], 3, 3, Math.PI, true);
+          ctx.fillStyle = "grey";
           ctx.fill();
       }
     }
@@ -355,7 +433,7 @@ function update() {
   displayTransform.setHome();
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   // if the image loaded show it
-  if (loadedImages == 2) {
+  if (loadedImages == 8) {
     displayTransform.setTransform();
     if(!isLoading){
     drawStars();
