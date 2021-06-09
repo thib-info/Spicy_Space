@@ -39,7 +39,7 @@ class game():
 
     def get_player(self,pid):
         for i in range(len(self.players)):
-            if self.players[i].pid==pid:
+            if self.players[i].pid====pid:
                 return i
         return -1
 

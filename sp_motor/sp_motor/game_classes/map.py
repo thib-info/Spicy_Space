@@ -62,11 +62,7 @@ class System_p(Basic_info):
         pass
 
 
-    def can_add_building(self):
-        if len(self.buildings_id) < self.max_building:
-                return True
-        else:
-            return False
+
 
 
     def add_building(self,id):
@@ -89,6 +85,18 @@ class System_p(Basic_info):
 
         return test
 
+    ############## gestion des buildings ############
+    def can_add_building(self):
+        if len(self.buildings_id) < self.max_building:
+                return True
+        else:
+            return False
+
+    def update_buildings_owner(self, p_id):
+        for building in self.buildings:
+            building.owner = p_id
+
+
     def produce(self, model, building):
         local_production = {}
         for c, v in model.items():
@@ -97,13 +105,16 @@ class System_p(Basic_info):
         for building in buildings:
             if building.state:
                 build_prod = building.produce()
-                local_production[build_prod["ress"]] += build_prod["qt"]
+                local_production[build_prod["ress"]] += self.bonus * build_prod["qt"]
+
 
         test_croissance = adjust_pop(local_production)
         if test_croissance:
             local_production["population"] = 1
 
         return local_production
+
+    ########### fin de gestion des buildings #############
 
     
 
