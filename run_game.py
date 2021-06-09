@@ -50,6 +50,15 @@ for unit in super_game.units:
     print(unit.owner)
     print("")
 
+super_game.delete_unit(2)
+print("dead")
+for unit in super_game.units:
+    print(unit.id)
+    print(unit.name)
+    print(unit.position)
+    print(unit.owner)
+    print("")
+
 
 
 

@@ -28,6 +28,11 @@ class game():
         self.turn =[] #conf["turn"]
 
 
+        self.last_id = {
+            "unit":0
+            }
+
+
     ##### etapes de configuration, à faire seulement au deb ################
     def load_conf(self):
         conf_unit = load_conf_f("config_unit")
@@ -84,15 +89,16 @@ class game():
     ############### gestion des unités #########################
     def delete_unit(self,id_unit):
         su = deepcopy(self.units[self.get_unit(id_unit)])
-
-        self.players[self.get_player(su.owner)].units_id.pop(id_unit)
-        self.map.systems[self.map.get_system(su.position)].units_id.pop(id_unit)
+        self.players[self.get_player(su.owner)].units_id.pop(self.players[self.get_player(su.owner)].units_id.index(su.id))
+        self.map.systems[self.map.get_system(su.position)].units_id.pop(self.map.systems[self.map.get_system(su.position)].units_id.index(id_unit))
 
         self.units.pop(self.get_unit(id_unit))
 
 
     def create_unit(self, owner_id, position, created_unit, base_lvl=1):
         temp_unit = deepcopy(self.models[created_unit])
+        temp_unit.id = self.last_id["unit"]
+        self.last_id["unit"] += 1
         temp_unit.set_param(owner_id, position, base_lvl)
         tu_id = temp_unit.id
 
@@ -134,8 +140,6 @@ class game():
             self.create_unit(pid, sys_id, "colon")
             self.create_unit(pid, sys_id, "scout")
 
-            
-        
             #on renvoie true pour dire que c'est réussi
             return True
         
