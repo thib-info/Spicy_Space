@@ -1,29 +1,19 @@
-# from sp_motor.game_classes.map import Map
-# from sp_motor.map.create import create_map
 import json
-from sp_motor.game_classes.map import Map
-from sp_motor.map.create import print_graph, create_map
-import sp_motor.game_classes
-
-# import json
-
-# map = create_map(radius=300)
-
-# dico = map.export_info()
-
-# print(dico)
 
 
+from sp_motor.game_classes.game import game
+from sp_motor.game_classes.map import Map, System_p
+from sp_motor.map.create import create_map
+from sp_motor.game_classes.player import player
+
+
+def big_map():
+    return create_map(radius=350,nb_zonnes=(70, 90), zonnes_r=(45, 70), systems=(8, 15), inner_conf=(10, 15) )
+
+def medium_map():
+    return create_map(radius=250,nb_zonnes=(15, 20), zonnes_r=(30, 50), systems=(6, 12), inner_conf=(7, 12) )
 
 def test_map():
-
-    def big_map():
-        return create_map(radius=350,nb_zonnes=(70, 90), zonnes_r=(45, 70), systems=(8, 15), inner_conf=(10, 15) )
-
-    def medium_map():
-        return create_map(radius=250,nb_zonnes=(15, 20), zonnes_r=(30, 50), systems=(6, 12), inner_conf=(7, 12) )
-
-
     map = medium_map()
     # print_graph(map)
 
@@ -33,4 +23,45 @@ def test_map():
     #     json.dump(dico, f)
 
 
-test_map()
+def create_game():
+
+    g = game()
+    g.load_conf()
+    g.import_map(big_map())
+    return g
+
+
+def join_game(g, player_id, player_name, p_quality=False):
+    result = g.create_player(player_id, player_name, p_quality)
+
+    return result
+
+
+super_game = create_game()
+print(join_game(super_game, 10, 'coco'))
+print(join_game(super_game, 10, 'robert'))
+print(join_game(super_game, 11, 'robert'))
+print(join_game(super_game, 15, 'merde'))
+# print(len(super_game.players), "    ", len(super_game.units))
+for unit in super_game.units:
+    print(unit.id)
+    print(unit.name)
+    print(unit.position)
+    print(unit.owner)
+    print("")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

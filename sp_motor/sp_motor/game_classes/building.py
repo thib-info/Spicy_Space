@@ -1,6 +1,5 @@
 import json
 from copy import deepcopy
-from sp_motor.game_classes.ressources import ressource
 from sp_motor.game_classes.unit import unit
 from sp_motor.utils import load_conf_f
 

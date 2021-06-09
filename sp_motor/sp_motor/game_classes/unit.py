@@ -22,6 +22,14 @@ class unit:
         self.maint_cost = conf["maint_cost"] + (self.tier-1)*conf["scaling"][4]*conf["maint_cost"]
         self.pv = self.pv_max
 
+    def set_param(self, owner, position, base_lvl=1):
+        self.owner = owner
+        self.position = position
+        self.tier = base_lvl
+
+
+
+
     def upgrade(self,conf):
         self.pv_max = self.pv_max + self.scaling[0] * conf["pv_max"]
         self.pa = self.pa + self.scaling[1] * conf["pa"]
@@ -39,10 +47,7 @@ class unit:
             if self.pv > self.pv_max:
                 self.pv = self.pv_max
 
-    def set_param(self, owner, position, base_lvl=1):
-        self.owner = owner
-        self.position = position
-        self.tier = base_lvl
+   
 
     def move_unit(self,destination):
         self.position = destination

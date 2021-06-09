@@ -1,31 +1,36 @@
 import json
-#from ressources import ressource
-from sp_motor.game_classes.ressources import ressource
 from sp_motor.players_interactions.Players_interraction import Players_interraction
-#from sp_motor.game_classes.systeme import systeme
 from sp_motor.utils import load_conf_f
-import sp_motor.game_classes.game
 from copy import deepcopy
 
 
-#conf_ress = load_conf_f("ressources")
 class player :
-    def __init__(self, conf, pid, name, isMj = False):
-        self.name = name
-        self.pid = pid
-        self.allies_id = []
-        self.enemies_id = []
-        self.ressources = {}
-        self.systems_id = []
-        self.isMj = isMj
-        self.interraction_requested_id = []
-        self.interraction_created_id = []
+    def __init__(self):
+        self.name = ""
+        self.pid = -1
+        self.isMj = False
+
         self.units_id = []
         self.known_systems = []
+        self.ressources = {}
+
+        self.allies_id = []
+        self.enemies_id = []
+        self.systems_id = []
+        
+        
+        self.interraction_requested_id = []
+        self.interraction_created_id = []
+        
+    ################## configuration du joueur #########
+    def set_param(self, pid, name, isMJ=False):
+        self.pid = pid
+        self.name = name
+        self.isMj = isMJ
+    ####################################################
 
 
-    def affiche(self):
-        print(f"{self.name},{self.isMj}")
+
 
     ##################### FONCTION DES INTERACTIONS ######
     def add_enemy(self,pid):
@@ -43,40 +48,37 @@ class player :
         if pid in self.allies_id:
             self.allies_id.remove(pid)
 
-    def send_interraction(self,Player_interraction_id):
-        Liste_interraction=deepcopy(game.Players_intteractions)
-        interraction=Liste_interraction[Player_interraction_id]
-        interraction.is_sended()
-        interraction.player2.interraction_request.append(Player_interraction_id) #AJOUTE LA REQUET A LA LISTE DES REQUETS DU DESTINATAIRE
-        game.Players_intteractions[Player_interraction_id]=interaction
+    # def send_interraction(self,Player_interraction_id):
+    #     Liste_interraction=deepcopy(game.Players_intteractions)
+    #     interraction=Liste_interraction[Player_interraction_id]
+    #     interraction.is_sended()
+    #     interraction.player2.interraction_request.append(Player_interraction_id) #AJOUTE LA REQUET A LA LISTE DES REQUETS DU DESTINATAIRE
+    #     game.Players_intteractions[Player_interraction_id]=interaction
 
-    def accept_interraction(self,Player_interraction_id):
-        Liste_interraction=deepcopy(game.Players_intteractions)
-        interraction=Liste_interraction[Player_interraction_id]
-        interraction.is_accepted()
-        interraction.execute()
-        self.interraction_request.remove(interraction) #SUPPRIME LA REQUET DE LA LISTE DES REQUETS RECUES
+    # def accept_interraction(self,Player_interraction_id):
+    #     Liste_interraction=deepcopy(game.Players_intteractions)
+    #     interraction=Liste_interraction[Player_interraction_id]
+    #     interraction.is_accepted()
+    #     interraction.execute()
+    #     self.interraction_request.remove(interraction) #SUPPRIME LA REQUET DE LA LISTE DES REQUETS RECUES
 
-    def decline_interraction(self,Player_interraction_id):
-        Liste_interraction=deepcopy(game.Players_intteractions)
-        interraction=Liste_interraction[Player_interraction_id]
-        interraction.is_declined()
-        self.interraction_request.remove(interraction) #SUPPRIME LA REQUET DE LA LISTE DES REQUETS RECUES
+    # def decline_interraction(self,Player_interraction_id):
+    #     Liste_interraction=deepcopy(game.Players_intteractions)
+    #     interraction=Liste_interraction[Player_interraction_id]
+    #     interraction.is_declined()
+    #     self.interraction_request.remove(interraction) #SUPPRIME LA REQUET DE LA LISTE DES REQUETS RECUES
 
-    def read_interraction_request(self):
-        print("\n")
-        for i in self.interraction_request_id:
-            print("Requet de type " + str(i.type) +", du joueur "+str(i.player1.pid))
-        print("\n")
+    # def read_interraction_request(self):
+    #     print("\n")
+    #     for i in self.interraction_request_id:
+    #         print("Requet de type " + str(i.type) +", du joueur "+str(i.player1.pid))
+    #     print("\n")
 
-    def send_interraction_created(self):
-        for i in self.interraction_created:
-            self.send_interraction(i)
+    # def send_interraction_created(self):
+    #     for i in self.interraction_created:
+    #         self.send_interraction(i)
 
-    def set_param(self,pid, name,isMJ= False):
-        self.pid = pid
-        self.name = name
-        self.isMj = isMJ
+    
 
 
 

@@ -6,7 +6,6 @@ from random import randint
 from sp_motor.game_classes.building import building
 
 from sp_motor.utils import calculate_cost
-import sp_motor.game_classes.game
 
 
 class Basic_info():
@@ -49,29 +48,23 @@ class System_p(Basic_info):
         self.bonus=randint(0,4)
         Basic_info.__init__(self, name, pos)
 
+
+
+
     def set_sector(self, sector_id):
         self.sector_id = sector_id
-    
-
 
     def get_sector_id(self):
         return self.sector_id
 
-
     def export_system_info(self):
         pass
-
-
-
-
 
     def add_building(self,id):
         self.buildings_id.append(id)
 
     def change_owner(self,owner):
         self.owner_id = owner
-
-
 
     def is_owned(self, pid):
         return self.owner_id == pid
@@ -127,10 +120,11 @@ class System_p(Basic_info):
     
 
 class Sectors(Basic_info):
-
+    lastId = 0
     def __init__(self, name, pos):
         self.members = []
-
+        self.id = Sectors.lastId
+        Sectors.lastId += 1
         Basic_info.__init__(self, name, pos)
 
     
@@ -151,6 +145,31 @@ class Map(Basic_info):
 
         Basic_info.__init__(self, name, pos)
 
+
+    def get_system(self, id):
+        for i in range(len(self.systems)):
+            if self.systems[i].id == id:
+                return i
+        return -1
+
+    def get_sector(self, id):
+        for i in range(len(self.sectors)):
+            if self.sectors[i].id == id:
+                return i
+        return -1
+
+    def get_empty_sectors(self):
+        output = []
+        for sector in self.sectors:
+            test = True
+            for sys_id in sector.members:
+                if len(self.systems[self.get_system(sys_id)].units_id) != 0:
+                    test = False
+            if test:
+                output.append(sector.id)
+        return output
+
+    
     
     def import_sectors(self, sectors):
         self.sectors = deepcopy(sectors)

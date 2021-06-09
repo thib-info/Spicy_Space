@@ -232,9 +232,9 @@ def create_map(radius=250, nb_zonnes=(10, 14), zonnes_r=(30, 40), systems=(10, 1
         sys_indices = []
         for ch in child.children:
             o_systems.append(System_p("syst_nul", ch.pos))
-            o_systems[-1].set_sector(len(o_sectors) - 1)
+            o_systems[-1].set_sector(o_sectors[-1].id)
 
-            sys_indices.append(len(o_systems) - 1)
+            sys_indices.append(o_systems[-1].id)
 
         o_sectors[-1].set_systems_indices(sys_indices)
 

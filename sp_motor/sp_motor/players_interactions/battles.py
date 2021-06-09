@@ -1,7 +1,5 @@
-from sp_motor.sp_motor.game_classes.unit import unit as un
-from sp_motor.sp_motor.game_classes.player import player
-from sp_motor.sp_motor.game_classes.game import game
-from sp_motor.sp_motor.game_classes.map import System_p
+# from sp_motor.sp_motor.game_classes.unit import unit as un
+
 
 
 import random
