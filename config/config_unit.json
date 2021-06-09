@@ -42,6 +42,7 @@
     "maint_cost": 200,
     "scaling": [1,1,1,1,1],
     "precision": 70
+
   },
   "battleship": {
     "name": "battleship",
