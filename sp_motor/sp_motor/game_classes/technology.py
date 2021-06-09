@@ -1,27 +1,38 @@
-from sp_motor.utils import load_conf_f
-from sp_motor.game_classes.player import player
+def parcours(conf, bat):
+    for c, v in conf.items():
+        if c == bat:
+            return v
+        else:
+            for child in v["children"]:
+                buffer = parcours(child, bat)
+                if buffer != None:
+                    return buffer
+    return None
 
+def path(conf, bat, buff=[]):
+    for c, v in conf.items():
+        buff.append(v)
+        if c == bat:
+            v["researched"] = True
+            buff.append(v)
+            return buff
+        else:
+            for child in v["children"]:
+                buff.append(v["children"])
+                buffer = path(child, bat, buff)
+                buff.pop()
+                if buffer != []:
+                    return buff
+        buff.pop()
+    return []
 
 class technology:
     def __init__(self, conf, bat):
-        buff = self.parcours(conf, bat)
+        buff = parcours(conf, bat)
         self.name = buff["name"]
         self.cost = buff["cost"]
         self.unlocked = buff["researched"]
         self.upgrade = buff["children"]
-
-    def parcours(self, conf, bat, find=0):
-        global buffer
-        if find == 0:
-            for v in conf.items():
-                if isinstance(v, dict):
-                    if v["name"] == bat:
-                        buffer = v
-                        find = 1
-                        return buffer
-                    else:
-                        self.parcours(v["children"], bat, find)
-        return buffer
 
     def __getitem__(self, item):
         return getattr(self, item)
@@ -32,14 +43,15 @@ class technology:
         return False
 
     def upgrade_possible(self):
-        return self.upgrade
+        buffer = []
+        for i in self.upgrade[0]:
+            buffer.append(i)
+        return buffer
 
-    def research(self):
-        buff = player.ressources[6]
-        if buff >= self.cost:
-            player.ressources[6].withdraw(self.cost)
-            self.unlocked = True
-        return self.unlocked
+    def research(self, conf):
+        self.unlocked = True
+        buffer = path(conf, self.name)
+        return buffer
 
     def researched(self):
         return self.unlocked
@@ -58,7 +70,7 @@ class technology:
         res = []
         for i in self.tech_researched(conf):
             buff = technology(conf, i)
-            for j in buff["upgrade"]:
+            for j in buff["upgrade"][0]:
                 if j not in self.tech_researched(conf):
                     res.append(j)
         return res
@@ -67,23 +79,3 @@ class technology:
         if name in self.upgrade_possible():
             return True
         return False
-
-
-# config = load_conf_f("base_tech")
-# buffer = []
-# print(config["mine"].keys())
-# test = technology(config, "usine niveau 2")
-# print("researched")
-# print(test.researched())
-# print("upgrade")
-# print(test.research())
-# print("upgradable")
-# print(test.upgradable())
-# print("upgrade possible")
-# print(test.upgrade_possible())
-# print("tech_researched")
-# result = test.tech_researched(config)
-# print(result)
-# print("tech_researchable")
-# result2 = test.tech_researchable(config)
-# print(result2)
