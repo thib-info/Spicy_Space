@@ -36,7 +36,7 @@ function windowConstructor(windowIndex,location) {
       case 3:
         title = '<h2>Statistique</h2>';
         break;
-      case 4:
+      case 5:
         title = '<h2>Arbre de technologie</h2>';
         break;
       default:
@@ -168,9 +168,9 @@ function windowConstructor(windowIndex,location) {
         </div>
         `;
         break;
-      case 4: // Arbre de technologie
+      case 5: // Arbre de technologie
         //content = drawTreeTech();
-        content = '<p> test </p>';
+        content = printPartTree();
         break;
       default:
         content = '<h2>Default_Content</h2>';
@@ -179,8 +179,11 @@ function windowConstructor(windowIndex,location) {
     var windowBody = document.querySelector(`[id="${windowID}"] .windowBody`);
     windowBody.insertAdjacentHTML('afterbegin',content);
 
-      if (windowIndex == 3)
-      systemPrev(`c${windowID}`);
+      if (windowIndex === 3)
+        systemPrev(`c${windowID}`);
+
+      if(windowIndex === 5)
+        animateArrow();
   }
 
   windowBase();

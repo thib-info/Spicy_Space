@@ -1,7 +1,7 @@
-let markupArray = ["<ul>"];
+let markupArray = [];
 let jsonTreeTech = null;
-
-getTreeTech();
+let indexTree = 0;
+let keyTreeVal = ["colonisateur", "mine", "ferme", "labo", "habitation", "eclaireur"];
 
 function getTreeTech(){
     let valueToSend = "";
@@ -15,21 +15,22 @@ function defineJsonTreeTech(jsonTT){
 }
 
 // evaluate expressions
-const createList = (items) => {
+const createList = (items, nameValue) => {
     switch (typeof items) {
         case "object":
-            getItems(items);
+            getItems(items, nameValue);
             break;
     }
 };
 
 // get items in the object
-const getItems = (items) => {
+const getItems = (items, nameValue) => {
     for (const item in items) {
-        //markupArray.push(`<li> ${item}`);
-        let details = items[item];
-        getDetails(details);
-        markupArray.push("</li>");
+        if(item === nameValue || nameValue === null) {
+            let details = items[item];
+            getDetails(details);
+            markupArray.push("</li>");
+        }
     }
 };
 
@@ -37,22 +38,23 @@ const getDetails = (details) => {
     // iterate over the detail items of object
     let id = details['name'].replace(/ /g, '_');
     if(details['researched'] === true)
-        markupArray.push(`<li id=${id} class="researched"><span class="tf-nc"> ${details['name']} </span>`);
+        markupArray.push(`<li id=${id} class="researched"><span class="tf-nc tree-tech-researched-color"> ${details['name']} </span>`);
     else
-        markupArray.push(`<li id=${id} class="no-researched"><span class="tf-nc"> ${details['name']} </span>`);
+        markupArray.push(`<li id=${id} class="no-researched"><span class="tf-nc tree-tech-no-researched-color"> ${details['name']} </span>`);
 
     if(Object.entries(details['children']).length !== 0){
         markupArray.push("</div><ul>");
-        getItems(details['children'][0]);
+        getItems(details['children'][0], null);
         markupArray.push("</ul>");
     }
 };
 
-function drawTreeTech(){
-    createList(jsonTreeTech);
+function drawTreeTech(nameValue){
+    markupArray = ["<div class=\"arrow\"><div class=\"arrow-top\"></div><div class=\"arrow-bottom\"></div></div>"];
+    markupArray.push("<ul class='tf-tree'>");
+    createList(jsonTreeTech, nameValue);
     markupArray.push("</ul>");
-    let htmlCode = markupArray.join("");
-    return htmlCode;
+    return markupArray.join("");
 }
 
 function askUpdateTech(idTech){
@@ -62,7 +64,25 @@ function askUpdateTech(idTech){
     ajaxCall(valueToSend, target, goal);
 }
 
-function redrawTreeTech(){
+function redrawTreeTech(element){
     // Changer la classe pour modifier son visuel à la limite
-    return null;
+    let windowContainer = element.parentElement;
+    windowContainer.innerHTML = "";
+    windowContainer.innerHTML = drawTreeTech(keyTreeVal[indexTree]);
+    animateArrow();
+}
+
+function animateArrow(){
+    let arrow = document.getElementsByClassName('arrow')[0];
+    arrow.addEventListener('click', function(){
+        indexTree+=1;
+        if(indexTree === keyTreeVal.length)
+            indexTree = 0;
+        redrawTreeTech(this);
+    });
+}
+
+function printPartTree(){
+    let nameToPrint = keyTreeVal[indexTree];
+    return drawTreeTech(nameToPrint);
 }
