@@ -27,7 +27,7 @@ class game():
         self.models = {}
         self.turn =[] #conf["turn"]
 
-
+        self.sys_in_war = []
         self.last_id = {
             "unit":0
             }
@@ -107,6 +107,30 @@ class game():
         self.map.systems[self.map.get_system(position)].units_id.append(tu_id)
 
 
+    def can_unit_move(self, u_id, dest_id):
+        u = deepcopy(self.units[self.get_unit(u_id)])
+
+        i_d, i_a = self.map.get_system(u.position), self.map.get_system(dest_id)
+
+        pm_restants = u.pm - self.players[self.get_player(u.owner)].access_graph[i_d, i_a]
+
+        return pm_restants
+
+        
+
+
+    def move_unit(self, u_id, dest_id):
+        new_pm = self.can_unit_move(u_id, dest_id)
+        if new_pm >= 0:
+            u = deepcopy(self.units[self.get_unit(u_id)])
+            u_pos = self.map.get_system(u.position)
+            self.map.systems[u_pos].units.pop(self.map.systems[u_pos].unit.index(u_pos))
+            
+            self.units[self.get_unit(u_id)].position = dest_id
+            self.units[self.get_unit(u_id)].pm = new_pm
+
+            new_pos = self.map.get_system(dest_id)
+            self.map.systems[new_pos].units.append(u_id)
 
    ############## fin de gestion des unités ###################
 
@@ -145,6 +169,36 @@ class game():
         
         return False
 
+    def update_players_syst(self):
+        neutral_sys = self.map.get_systems_from_owner(-1)
+
+        for pl in self.players:
+
+            sys_allies = []
+            for ally in pl.allies_id:
+                sys_allies += self.map.get_systems_from_owner(ally)
+
+            pl.sys_allies = list(set(sys_allies))
+
+        
+            temporary_list = pl.known_systems[:]
+            pl.available_systems = []
+            for sys in temporary_list:
+                if sys in neutral_sys :
+                    pl.available_systems.append(sys)
+
+            pl.available_systems = list(set(pl.available_systems + pl.sys_allies + self.sys_in_war))
+
+
+            ok_indices = [self.get_systems(id) for id in pl.available_systems]
+            no_indices = [self.get_systems(id) for id in self.sys_in_war]
+            pl.access_graph = self.map.send_access_graph(ok_indices, no_indices)
+
+
+            
+
+
+
     ################## fin de la partie sur les joueurs ###############
 
 
@@ -152,8 +206,6 @@ class game():
     
 
     
-
-
     
     ######### en rapport avec les systemes ################
     #vient modifier le timer de paix d'un systeme

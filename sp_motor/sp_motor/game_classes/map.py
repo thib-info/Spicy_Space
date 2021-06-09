@@ -111,14 +111,6 @@ class System_p(Basic_info):
 
     
 
-            
-                
-        
-    
-
-
-    
-
 class Sectors(Basic_info):
     lastId = 0
     def __init__(self, name, pos):
@@ -169,7 +161,40 @@ class Map(Basic_info):
                 output.append(sector.id)
         return output
 
-    
+
+    def get_systems_from_owner(self, owner):
+        output = []
+        for sys in self.systems:
+            if sys.owner_id == owner:
+                output.append(sys.id)
+
+        return output
+
+    def send_access_graph(self, ok_sys, no_sys):
+        graph = np.array([[0 for i in range(self.graph_cost.shape[0])] for i in range(self.graph_cost.shape[1])])
+        for i in range(self.graph_cost.shape[0]):
+            if i in ok_sys:
+                for j in range(self.graph_cost.shape[1]):
+                    if j in ok_sys and i not in no_sys:
+                        graph[i, j] = graph_cost[i, j]
+
+        for z in range(3):
+            temp_graph = np.array([[0 for i in range(self.graph_cost.shape[0])] for i in range(self.graph_cost.shape[1])])
+            for i in range(graph.shape[0]):
+                for j in range(graph.shape[1]):
+                    temp_graph[i, j] = graph[i, j]
+                    for x in range(graph.shape[0]):
+                        for y in range(graph.shape[1]):
+                            temp_graph[i, j] = min(temp_graph[i, j], graph[x, y])
+
+            graph = deepcopy(temp_graph)
+
+
+        return graph
+
+            
+
+
     
     def import_sectors(self, sectors):
         self.sectors = deepcopy(sectors)

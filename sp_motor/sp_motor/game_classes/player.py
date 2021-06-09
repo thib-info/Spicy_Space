@@ -1,7 +1,10 @@
 import json
+from copy import deepcopy
+import numpy as np
+
 from sp_motor.players_interactions.Players_interraction import Players_interraction
 from sp_motor.utils import load_conf_f
-from copy import deepcopy
+
 
 
 class player :
@@ -17,6 +20,11 @@ class player :
         self.allies_id = []
         self.enemies_id = []
         self.systems_id = []
+        
+        self.sys_allies = []
+        self.available_systems = []
+
+        self.access_graph = None
         
         
         self.interraction_requested_id = []
