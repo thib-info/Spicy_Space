@@ -61,9 +61,18 @@ class game():
         self.units[-1].set_param(owner_id, position, base_lvl)
         self.players[owner_id].units_id.append(self.units[-1].id)
 
-    def move_unit(self, unit_id, destination):
-        self.units[unit_id].position = destination
 
+
+
+
+   # def discover(self,unit_id):                   #A SUPPR
+    #    pos = self.units[unit_id].position
+     #   ow = self.units[unit_id].owner
+      #  self.players[ow].known_systems += [2] #ajouter les voisins ici
+
+   # def move_unit(self, unit_id, destination):
+    #    self.units[unit_id].position = destination
+     #   self.discover(unit_id)
 
 ######################################""
 def save_game(game, path):

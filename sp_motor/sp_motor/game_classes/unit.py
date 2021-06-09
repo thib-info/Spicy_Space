@@ -4,7 +4,7 @@ class unit:
 
     lastId = 0
 
-    def __init__(self, conf, owner, position, base_lvl=1,battling = False):
+    def __init__(self, conf, owner, position, base_lvl=1):
         self.id = unit.lastId
         unit.lastId += 1
         self.name = conf["name"]
@@ -42,22 +42,24 @@ class unit:
         self.position = position
         self.tier = base_lvl
 
-    def recruit(self, type, pos):
-        if typeU == "destroyer":
-            vaiss = unit(conf["destroyer"],self.owner,pos)
-            print("recruit" + typeU)
-        elif typeU == "tardigrade":
-            vaiss = unit(conf["tardigrade"], self.owner, pos)
-            print("recruit" + typeU)
-        elif typeU == "battleship":
-            vaiss = unit(conf["battleship"], self.owner, pos)
-            print("recruit" + typeU)
-        elif typeU == "colon":
-            vaiss = unit(conf["colon"], self.owner, pos)
-            print("recruit" + typeU)
-        elif typeU == "spotter":
-            vaiss = unit(conf["spotter"], self.owner, pos)
-            print("recruit" + typeU)
+    def move_unit(self,destination):
+        self.position = destination
+
+    def to_front(self):
+        dic = {"id":self.id,
+               "position": self.position,
+               "nom": self.name,
+               "pv_max": self.pv_max,
+               "pv":self.pv,
+               "pa": self.pa,
+               "pm": self.pm,
+               "cost":self.cost,
+               "maint_cost": self.maint_cost,
+               "owner":self.owner,
+               "tier":self.tier,
+               "precision":self.precision,
+               }
+        return dic
 
 
 # with open("../../../config/config_unit.json") as f:

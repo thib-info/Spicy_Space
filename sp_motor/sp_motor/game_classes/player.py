@@ -8,17 +8,18 @@ import sp_motor.game_classes.game
 
 #conf_ress = load_conf_f("ressources")
 class player :
-    def __init__(self, conf, pid, name, isMj=False):
+    def __init__(self, conf, pid, name, isMj = False):
         self.name = name
         self.pid = pid
         self.allies_id = []
-        self.enemies_id=[]
+        self.enemies_id = []
         self.ressources = []
         self.systems_id = []
         self.isMj = isMj
-        self.interraction_requested_id=[]
-        self.interraction_created_id=[]
+        self.interraction_requested_id = []
+        self.interraction_created_id = []
         self.units_id = []
+        self.known_systems = []
 
 
     def get_isMJ(self):
@@ -124,7 +125,8 @@ class player :
             for j in i.buildings:
                 j.produce()
 
-
+    def add_known_systems(self):
+        self.known_systems.append()#ajouter les neighbor
 
 #if __name__ == '__main__':
     #with open("../../../config/config_player.json") as f:
