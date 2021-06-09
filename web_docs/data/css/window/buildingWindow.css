@@ -16,6 +16,10 @@
     background-color: grey;
 }
 
+.systemPreview {
+  z-index: 12;
+}
+
 .b_11{
     position:absolute;
     top: 0;
