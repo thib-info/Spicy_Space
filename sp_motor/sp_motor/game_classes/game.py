@@ -12,11 +12,11 @@ PLAYER1_NAME = "Toto"
 class game():
     def __init__(self):
         self.players = []
-        self.list_systems =[] #conf["map"]
+        self.systems =[] #conf["map"]
         self.turn =[] #conf["turn"]
         self.units = []
         self.models = {}
-        self.Players_intteractions=[]
+        self.players_interactions=[]
         self.map = None
 
     def create_player(self,isMJ=False):
@@ -33,17 +33,15 @@ class game():
         for i in range(len(self.unit)):
             if self.unit[i].id==id:
                 return i
-
         return -1
 
     def get_systems(self,id):
         for i in range(len(self.map.systems)):
             if self.map.systems[i].id == id:
                 return i
-
         return -1
 
-    def get_pLayers_interactions(self,id):
+    def get_players_interactions(self,id):
         for i in self.players_interractions:
             if i.id==self.pid:
                 return i
@@ -69,6 +67,39 @@ class game():
 
     def move_unit(self, unit_id, destination):
         self.units[unit_id].position = destination
+
+
+
+    #################
+    #syst interactions
+
+    #vient modifier le timer de paix d'un systeme
+    def is_syst_in_war(self, sys_id):
+        s_id = self.get_systems(sys_id)
+        ow_id = self.systems[s_id].owner_id
+        sys = deepcopy(self.systems[s_id])
+
+
+        present_players = []
+        for u_id in sys.units_id:
+            present_players.append(self.units[self.get_unit(u_id)].owner)
+
+        present_players = list(set(present_players))
+        present_players.pop(present_players.index(ow_id))
+
+        for p_id in present_players:
+            if p_id in self.players[self.get_player(ow_id)].enemies_id:
+                sys.to_peace = 4
+        
+        self.systems[s_id] = deepcopy(sys)
+                
+    #################
+
+    #vient tester si un joueur possède un systeme
+    def is_proprio(self, p_id, sys_id):
+        return p_id == self.systems[self.get_systems(sys_id)].owner_id
+    
+    
 
 
 ######################################""

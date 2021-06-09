@@ -79,6 +79,8 @@ class System_p(Basic_info):
     def is_owned(self, pid):
         return self.owner_id == pid
 
+    
+
 
     
 
