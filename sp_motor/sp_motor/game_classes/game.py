@@ -26,7 +26,7 @@ class game():
     def add_systems(self,systeme):
         self.list_systems.append(systeme)
         return systeme.id
->
+
 
     def create_player(self,isMJ=False):
         tmp=deepcopy(self.models["player"])
@@ -88,6 +88,41 @@ class game():
         self.units.append(deepcopy(self.models[created_unit]))
         self.units[-1].set_param(owner_id, position, base_lvl)
         self.players[owner_id].units_id.append(self.units[-1].id)
+
+ ################## PLAYERS INTERRACTIONS ##################
+    def create_interraction(self,pid1,pid2,type):
+        interraction=Players_interraction(pid1,pid2,type) #créer l'interraction
+        self.players_interactions.append(interraction) #l'ajoute à la liste des interractions de la partie
+        pid1.interraction_created_id.append(interraction.id)#ajoute l'id de l'interraction à la liste des interractions créer du joueur
+
+    def send_interraction(self,Player_interraction_id):
+        interraction=self.players_interactions[Player_interraction_id] #recuperation de l'interraction
+        interraction.is_sended()
+        interraction.player2.interraction_request.append(Player_interraction_id) #ajoute l'id de l'interraction à la liste des interractions request du joueur destinataire
+
+    def accept_interraction(self,Player_interraction_id):
+        interraction = self.players_interactions[Player_interraction_id]  # recuperation de l'interraction
+        interraction.is_accepted()
+        interraction.execute() #execute l'interraction (A VERIFIER FONCTIONNEMENT)
+        interraction.player2.interraction_request.remove(interraction) #supprimer l'interraction de la liste des request du joueur destinataire
+
+    def decline_interraction(self,Player_interraction_id):
+        interraction = self.players_interactions[Player_interraction_id]  # recuperation de l'interraction
+        interraction.is_declined()
+        interraction.player2.interraction_request.remove(interraction) #supprimer l'interraction de la liste des request du joueur destinataire
+
+    def read_interraction_request(self,pid):
+        player=self.players[pid] #recuperation du joueur concerner
+        print("\n")
+        for i in player.interraction_request_id:
+            interraction=self.players_interactions[i] #recuperation de l'interraction
+            print("Requet de type " + str(interraction.type) +", du joueur "+str(interraction.player1))
+        print("\n")
+
+    def send_interraction_created(self,pid): #envoi toutes les interractions créer
+        player=self.players[pid] #recuperation du joueur concerner
+        for i in player.interraction_created:
+            player.send_interraction(i)
 
 
     ################## syst de production des ressources #########
