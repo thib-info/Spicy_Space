@@ -1,7 +1,7 @@
 from sp_motor.utils import load_conf_f
 
 class ressource:
-    def __init__(self, type):
+    def __init__(self, typeR):
         self.value = 0
         self.typeR = typeR
 
@@ -16,10 +16,8 @@ class ressource:
 
     def withdraw(self, amount):
         self.value -= amount
-    def get_ress(self):
-        return self.value
 
-    def pop_growth(self, conf):
+    def pop_growth(self, conf):    # a modif
         nour = ressource(conf["nourriture"])
         pop = ressource(conf["population"])
         if nour.value>pop.value*100:
@@ -35,7 +33,7 @@ class ressource:
         print("no pop change")
         return pop.value
 
-    def total_ressources(self):
+    def total_ressources(self):    #surement a supr
         conf = load_conf_f("ressources")
         res = []
         for i in conf:
@@ -44,7 +42,7 @@ class ressource:
             res.append(buff)
         return res
 
-    def order_ressources(self,conf):
+    def order_ressources(self,conf):       #surement a supr
         res = []
         for i in conf:
             buff = ressource(i)
@@ -52,6 +50,11 @@ class ressource:
             res.append(buff.type)
         return res
 
+    def get_ressources(self):
+        return {
+            "type_r": self.typeR,
+            "qt": self.value
+        }
 # with open("config/ressources.json") as f:
 #     config = json.load(f)
 

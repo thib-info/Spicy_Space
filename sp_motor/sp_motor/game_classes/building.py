@@ -72,19 +72,7 @@ class building:
             self.production_per_turn = round(self.production_per_turn * self.scaling[2])
             self.level_production=self.level_production+1
 
-    def produce(self):
-        if self.typeB == "habitation": #ressources population
-            self.owner.ressources[4].value=self.owner.ressources[4].value+self.production_per_turn
-        elif self.typeB == "mine": #minerais
-            self.owner.ressources[1].value = self.owner.ressources[1].value + self.production_per_turn
-        elif self.typeB == "raffinerie":#ingot
-            self.owner.ressources[2].value = self.owner.ressources[2].value + self.production_per_turn
-        elif self.typeB == "usine":#electrotech
-            self.owner.ressources[3].value = self.owner.ressources[3].value + self.production_per_turn
-        elif self.typeB == "ferme": #nourriture
-            self.owner.ressources[5].value = self.owner.ressources[5].value + self.production_per_turn
-
-    def link_ress(self,type):
+    def link_ress(self):
         if self.typeB == "habitation":
             return "or"
         elif self.typeB == "mine":
@@ -95,6 +83,33 @@ class building:
             return "electronique"
         elif self.typeB == "ferme":
             return "nourriture"
+
+    def produce(self):
+       ress=self.link_ress()
+       return {
+           "ress":ress,
+           "qt":self.production_per_turn,
+       }
+
+    def to_front(self):
+        dic = {
+            "id": self.id,
+            "id_system": self.location,
+            "build_t": self.typeB,
+            "cost": self.cost,
+            "maint_cost": self.maint_cost,
+            "owner": self.owner,
+            "tier": self.level_tier,
+            "state": self.state,
+            "prod_turn": self.production_per_turn,
+
+        }
+        return dic
+
+
+
+
+
 
 
     def change_owner(self,owner):
