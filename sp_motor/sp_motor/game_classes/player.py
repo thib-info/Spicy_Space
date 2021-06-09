@@ -109,7 +109,7 @@ class player :
 
 
     def add_known_systems(self):
-    self.known_systems.append()#ajouter les neighbor
+        self.known_systems.append()#ajouter les neighbor
 
     ##################### systeme de ressources ##############
 

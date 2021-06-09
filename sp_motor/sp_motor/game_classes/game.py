@@ -5,7 +5,7 @@ from sp_motor.game_classes.player import player
 from sp_motor.game_classes.unit import unit 
 from sp_motor.game_classes.building import building
 from sp_motor.utils import load_conf_f
-from sp_motor.game_classes.map import System_p
+
 from copy import deepcopy
 from sp_motor.game_classes.player import player
 
@@ -26,7 +26,7 @@ class game():
     def add_systems(self,systeme):
         self.list_systems.append(systeme)
         return systeme.id
->
+
 
     def create_player(self,isMJ=False):
         tmp=deepcopy(self.models["player"])
