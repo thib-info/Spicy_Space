@@ -25,30 +25,28 @@ function statsWindowContent() {
 function buildingWindowContent(windowIndex,location) {
   var windowID = `${windowIndex}-${location}`;
   return `
-  <div class="b_1">
-      <div class="b_11">
-          <canvas id="c${windowID}" class="systemPreview" width="250" height="250"></canvas>
-      </div>
-      <div class="b_12">
-          <p class="b_sysname">Nom du système</p>
-          <p class="b_ressource">Population : 10</p>
-          <p class="b_ressource">Ressource 1 : 50</p>
-          <p class="b_ressource">Ressource 2 : 60</p>
-          <p class="b_ressource">Ressource 3 : 60</p>
-      </div>
-  </div>
-  <div class="b_2">
-      <div class="b_22">
-          <button type="button" class="b_button">Bâtiment 1</button>
-          <button type="button" class="b_button">Bâtiment 2</button>
-          <button type="button" class="b_button">Bâtiment 3</button>
-      </div>
-      <div class="b_23">
-          <button type="button" class="b_button">Bâtiment 4</button>
-          <button type="button" class="b_button">Bâtiment 5</button>
-          <button type="button" class="b_button">Bâtiment 6</button>
-      </div>
-  </div>
+        <div class="b_1">
+            <div class="b_11">
+                <canvas id="c${windowID}" class="systemPreview" width="250" height="250">
+            </div>
+            <div class="b_12">
+                <p class="b_sysname">Nom du système</p>
+                <p class="b_ressource">Population : 10</p>
+                <p class="b_ressource">Ressource 1 : 50</p>
+                <p class="b_ressource">Ressource 2 : 60</p>
+                <p class="b_ressource">Ressource 3 : 60</p>
+            </div>
+        </div>
+        <div class="b_2">
+            <div class="b_21">
+                <button type="button" class="b_button">Bâtiment 1</button>
+                <button type="button" class="b_button">Bâtiment 2</button>
+                <button type="button" class="b_button">Bâtiment 3</button>
+                <button type="button" class="b_button">Bâtiment 4</button>
+                <button type="button" class="b_button">Bâtiment 5</button>
+                <button type="button" class="b_button">Bâtiment 6</button>
+            </div>
+        </div>
   `;
 }
 
@@ -88,36 +86,36 @@ function unitWindowContent(windowIndex,location) {
       </div>
   </div>
   <div class="u_div1 u_divp u_divc">
-      <p>Spacioports</p>
+      <p>Spatioports</p>
       <div>
-          <button type="button" class="u_button">Spacioport 1</button>
+          <button type="button" class="u_button">Spatioport 1</button>
       </div>
       <div>
-          <button type="button" class="u_button">Spacioport 1</button>
+          <button type="button" class="u_button">Spatioport 1</button>
       </div>
       <div>
-          <button type="button" class="u_button">Spacioport 1</button>
+          <button type="button" class="u_button">Spatioport 1</button>
       </div>
       <div>
-          <button type="button" class="u_button">Spacioport 1</button>
+          <button type="button" class="u_button">Spatioport 1</button>
       </div>
       <div>
-          <button type="button" class="u_button">Spacioport 1</button>
+          <button type="button" class="u_button">Spatioport 1</button>
       </div>
       <div>
-          <button type="button" class="u_button">Spacioport 1</button>
+          <button type="button" class="u_button">Spatioport 1</button>
       </div>
       <div>
-          <button type="button" class="u_button">Spacioport 1</button>
+          <button type="button" class="u_button">Spatioport 1</button>
       </div>
       <div>
-          <button type="button" class="u_button">Spacioport 1</button>
+          <button type="button" class="u_button">Spatioport 1</button>
       </div>
       <div>
-          <button type="button" class="u_button">Spacioport 1</button>
+          <button type="button" class="u_button">Spatioport 1</button>
       </div>
       <div>
-          <button type="button" class="u_button">Spacioport 1</button>
+          <button type="button" class="u_button">Spatioport 1</button>
       </div>
 
   </div>
