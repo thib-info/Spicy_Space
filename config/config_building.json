@@ -3,7 +3,18 @@
     "type": "mine",
     "level_tier" : 1,
     "level_production" : 1,
-    "cost" : 10,
+    "cost" : {
+      "or": 100
+    },
+    "cost_2" : {
+      "or": 100,
+      "minerai": 200
+    },
+    "cost_3" : {
+      "or": 100,
+      "minerai": 200,
+      "lingot": 200
+    },
     "pv": 50,
     "maint_cost": 200,
     "state": 0,
@@ -14,7 +25,44 @@
     "type": "ferme",
     "level_tier" : 1,
     "level_production" : 1,
-    "cost" : 10,
+    "cost" : {
+      "or": 100,
+      "minerai": 200
+    },
+    "cost_2" : {
+      "or": 100,
+      "lingot": 200,
+      "electronique": 200
+    },
+    "cost_3" : {
+      "or": 100,
+      "minerai": 200,
+      "lingot": 200
+    },
+    "pv": 50,
+    "maint_cost": 200,
+    "state": 0,
+    "scaling": [1.25,2,1.5],
+    "production": 1
+  },
+  "labo": {
+    "type": "labo",
+    "level_tier" : 1,
+    "level_production" : 1,
+    "cost" : {
+      "or": 100,
+      "minerai": 200
+    },
+    "cost_2" : {
+      "or": 100,
+      "minerai": 200,
+      "lingot": 200
+    },
+    "cost_3" : {
+      "or": 100,
+      "lingot": 200,
+      "elsectronique": 200
+    },
     "pv": 50,
     "maint_cost": 200,
     "state": 0,
@@ -25,7 +73,18 @@
     "type": "habitation",
     "level_tier" : 1,
     "level_production" : 1,
-    "cost" : 10,
+    "cost" : {
+      "minerai": 100
+    },
+    "cost_2" : {
+      "or": 100,
+      "minerai": 200
+    },
+    "cost_3" : {
+      "or": 100,
+      "minerai": 200,
+      "lingot": 200
+    },
     "pv": 50,
     "maint_cost": 200,
     "state": 0,
@@ -36,7 +95,20 @@
     "type": "raffinerie",
     "level_tier" : 1,
     "level_production" : 1,
-    "cost" : 10,
+    "cost" : {
+      "or": 100,
+      "minerai": 200
+    },
+    "cost_2" : {
+      "or": 100,
+      "minerai": 200,
+      "lingot": 200
+    },
+    "cost_3" : {
+      "or": 100,
+      "lingot": 200,
+      "electronique": 200
+    },
     "pv": 50,
     "maint_cost": 200,
     "state": 0,
@@ -47,7 +119,20 @@
     "type": "usine",
     "level_tier" : 1,
     "level_production" : 1,
-    "cost" : 10,
+    "cost" : {
+      "or": 100,
+      "lingot": 200
+    },
+    "cost_2" : {
+      "or": 100,
+      "lingot": 200,
+      "electronique": 200
+    },
+    "cost_3" : {
+      "or": 100,
+      "lingot": 200,
+      "electronique": 200
+    },
     "pv": 50,
     "maint_cost": 200,
     "state": 0,
@@ -58,7 +143,20 @@
     "type": "spatioport",
     "level_tier" : 1,
     "level_production" : 1,
-    "cost" : 10,
+    "cost" : {
+      "or": 100,
+      "minerai": 200
+    },
+    "cost_2" : {
+      "or": 100,
+      "minerai": 200,
+      "lingot": 200
+    },
+    "cost_3" : {
+      "or": 100,
+      "lingot": 200,
+      "electronique": 200
+    },
     "pv": 50,
     "maint_cost": 200,
     "state": 0,
