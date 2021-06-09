@@ -1,6 +1,3 @@
-from sp_motor.utils import load_conf_f
-from sp_motor.game_classes.player import player
-
 def parcours(conf, bat):
     for c, v in conf.items():
         if c == bat:
@@ -12,18 +9,22 @@ def parcours(conf, bat):
                     return buffer
     return None
 
-def path(conf, bat):
-    buff = []
+def path(conf, bat, buff=[]):
     for c, v in conf.items():
+        buff.append(v)
         if c == bat:
+            v["researched"] = True
+            buff.append(v)
             return buff
         else:
             for child in v["children"]:
-                buff.append(v)
-                buffer = parcours(child, bat)
-                if buffer != None:
+                buff.append(v["children"])
+                buffer = path(child, bat, buff)
+                buff.pop()
+                if buffer != []:
                     return buff
-    return buff
+        buff.pop()
+    return []
 
 class technology:
     def __init__(self, conf, bat):
@@ -32,8 +33,6 @@ class technology:
         self.cost = buff["cost"]
         self.unlocked = buff["researched"]
         self.upgrade = buff["children"]
-
-
 
     def __getitem__(self, item):
         return getattr(self, item)
@@ -49,9 +48,10 @@ class technology:
             buffer.append(i)
         return buffer
 
-    def research(self):
+    def research(self, conf):
         self.unlocked = True
-        return self.unlocked
+        buffer = path(conf, self.name)
+        return buffer
 
     def researched(self):
         return self.unlocked
@@ -79,6 +79,3 @@ class technology:
         if name in self.upgrade_possible():
             return True
         return False
-
-    def yol(self, conf, bat):
-        path(conf, bat)
