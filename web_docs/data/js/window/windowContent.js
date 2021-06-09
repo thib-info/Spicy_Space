@@ -52,72 +52,45 @@ function buildingWindowContent(windowIndex,location) {
 
 function unitWindowContent(windowIndex,location) {
   return `
-   <div class="u_div1 u_divp u_diva">
-      <p>Militaire</p>
-      <div>
-          <p>Exploration</p>
-          <button type="button" class="u_button">Vaisseau 11</button>
-      </div>
-      <div>
-          <p>Colonisation</p>
-          <button type="button" class="u_button">Vaisseau 12</button>
-      </div>
-  </div>
-  <div class="u_div1 u_divg u_divb">
+        <div class="u_div1">
+            <div class="u_div11">
+                <p>Exploration</p>
+                <button type="button" class="u_button u_but11">Vaisseau 11</button>
+            </div>
+            <div class="u_div12">
+                <p>Colonisation</p>
+                <button type="button" class="u_button u_but12">Vaisseau 12</button>
+            </div>
+        </div>
+        <div class="u_div2">
+            <div class="u_div21">
+                <p>Destroyer</p>
+                <button type="button" class="u_button u_but211">I</button>
+                <button type="button" class="u_button u_but212">II</button>
+                <button type="button" class="u_button u_but213">III</button>
+            </div>
 
-      <div>
-          <p>Destroyer</p>
-          <button type="button" class="u_button">I</button>
-          <button type="button" class="u_button">II</button>
-          <button type="button" class="u_button">III</button>
-      </div>
-
-      <div>
-          <p>Cuirassé</p>
-          <button type="button" class="u_button">I</button>
-          <button type="button" class="u_button">II</button>
-          <button type="button" class="u_button">III</button>
-      </div>
-      <div>
-          <p>Tardigrade</p>
-          <button type="button" class="u_button">I</button>
-          <button type="button" class="u_button">II</button>
-          <button type="button" class="u_button">III</button>
-      </div>
-  </div>
-  <div class="u_div1 u_divp u_divc">
-      <p>Spatioports</p>
-      <div>
-          <button type="button" class="u_button">Spatioport 1</button>
-      </div>
-      <div>
-          <button type="button" class="u_button">Spatioport 1</button>
-      </div>
-      <div>
-          <button type="button" class="u_button">Spatioport 1</button>
-      </div>
-      <div>
-          <button type="button" class="u_button">Spatioport 1</button>
-      </div>
-      <div>
-          <button type="button" class="u_button">Spatioport 1</button>
-      </div>
-      <div>
-          <button type="button" class="u_button">Spatioport 1</button>
-      </div>
-      <div>
-          <button type="button" class="u_button">Spatioport 1</button>
-      </div>
-      <div>
-          <button type="button" class="u_button">Spatioport 1</button>
-      </div>
-      <div>
-          <button type="button" class="u_button">Spatioport 1</button>
-      </div>
-      <div>
-          <button type="button" class="u_button">Spatioport 1</button>
-      </div>
-
-  </div>
+            <div class="u_div22">
+                <p>Cuirassé</p>
+                <button type="button" class="u_button u_but221">I</button>
+                <button type="button" class="u_button u_but222">II</button>
+                <button type="button" class="u_button u_but223">III</button>
+            </div>
+            <div class="u_div23">
+                <p>Tardigrade</p>
+                <button type="button" class="u_button u_but231">I</button>
+                <button type="button" class="u_button u_but232">II</button>
+                <button type="button" class="u_button u_but233">III</button>
+            </div>
+        </div>
+        <div class="u_div3">
+            <p>Spatioports</p>
+                <button type="button" class="u_button u_but31">Spatioport 1</button>
+                <button type="button" class="u_button u_but32">Spatioport 2</button>
+                <button type="button" class="u_button u_but33">Spatioport 3</button>
+                <button type="button" class="u_button u_but34">Spatioport 4</button>
+                <button type="button" class="u_button u_but35">Spatioport 5</button>
+                <button type="button" class="u_button u_but36">Spatioport 6</button>
+        </div>
   `;
 }
