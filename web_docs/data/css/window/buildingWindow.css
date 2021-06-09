@@ -1,0 +1,66 @@
+.b_1{
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background-color: aliceblue;
+}
+
+.b_2{
+    position:absolute;
+    top: 60%;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background-color: grey;
+}
+
+.systemPreview {
+  z-index: 12;
+}
+
+.b_11{
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 30%;
+    height: 100%;
+    background-color: red;
+}
+
+.b_12{
+    position:absolute;
+    top: 0;
+    left: 30%;
+    width: 70%;
+    height: 100%;
+    background-color: green;
+}
+
+.b_21{
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: blue;
+}
+
+.b_button{
+
+    background-color: transparent;
+    height: 100%;
+    width: 16%;
+
+}
+
+.b_sysname{
+    font-size: 30px;
+    text-align: center;
+}
+
+.b_ressource{
+    font-size: 12px;
+    text-align: center;
+}

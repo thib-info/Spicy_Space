@@ -71,6 +71,7 @@ class Map(Basic_info):
         self.sectors = []
         self.graph_cost = None
         self.graph_link = None
+        self.size = 2*pos[0]
 
         Basic_info.__init__(self, name, pos)
 
@@ -108,6 +109,9 @@ class Map(Basic_info):
                         "start":self.systems[i].get_pos(),
                         "end":self.systems[j].get_pos()
                     })
+
+
+        output["map_size"] = self.size
 
         return output
 

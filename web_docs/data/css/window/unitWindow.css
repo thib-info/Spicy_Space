@@ -1,0 +1,195 @@
+.u_div1{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20%;
+    height: 100%;
+    background-color: blue;
+}
+
+.u_div2{
+    position: absolute;
+    top: 0;
+    left: 20%;
+    width: 60%;
+    height: 100%;
+    background-color: red;
+}
+
+.u_div3{
+    position: absolute;
+    top: 0;
+    left: 80%;
+    width: 20%;
+    height: 100%;
+    background-color: aliceblue;
+}
+
+.u_div11{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: aliceblue;
+}
+
+.u_div12{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: red;
+}
+
+.u_div21{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 33%;
+    background-color: green;
+}
+
+.u_div22{
+    position: absolute;
+    top: 33%;
+    left: 0;
+    width: 100%;
+    height: 33%;
+    background-color: red;
+}
+
+.u_div23{
+    position: absolute;
+    top: 66%;
+    left: 0;
+    width: 100%;
+    height: 34%;
+    background-color: orange;
+}
+
+.u_button{
+    position: absolute;
+    background-color: transparent;
+}
+
+.u_but211{
+    top: 35%;
+    left:5%;
+    height: 30%;
+    width: 30%;
+}
+
+.u_but212{
+    top: 35%;
+    left:35%;
+    height: 30%;
+    width: 30%;
+}
+
+.u_but213{
+    top: 35%;
+    left:65%;
+    height: 30%;
+    width: 30%;
+}
+
+.u_but221{
+    top: 35%;
+    left:5%;
+    height: 30%;
+    width: 30%;
+}
+
+.u_but222{
+    top: 35%;
+    left:35%;
+    height: 30%;
+    width: 30%;
+}
+
+.u_but223{
+    top: 35%;
+    left:65%;
+    height: 30%;
+    width: 30%;
+}
+
+.u_but231{
+    top: 35%;
+    left:5%;
+    height: 30%;
+    width: 30%;
+}
+
+.u_but232{
+    top: 35%;
+    left:35%;
+    height: 30%;
+    width: 30%;
+}
+
+.u_but233{
+    top: 35%;
+    left:65%;
+    height: 30%;
+    width: 30%;
+}
+
+.u_but11{
+    top: 40%;
+    left:10%;
+    height: 20%;
+    width: 80%;
+}
+
+.u_but12{
+    top: 40%;
+    left:10%;
+    height: 20%;
+    width: 80%;
+}
+
+.u_but31{
+    top: 20%;
+    left:10%;
+    height: 10%;
+    width: 80%;
+}
+
+.u_but32{
+    top: 30%;
+    left:10%;
+    height: 10%;
+    width: 80%;
+}
+
+.u_but33{
+    top: 40%;
+    left:10%;
+    height: 10%;
+    width: 80%;
+}
+
+.u_but34{
+    top: 50%;
+    left:10%;
+    height: 10%;
+    width: 80%;
+}
+
+.u_but35{
+    top: 60%;
+    left:10%;
+    height: 10%;
+    width: 80%;
+}
+
+.u_but36{
+    top: 70%;
+    left:10%;
+    height: 10%;
+    width: 80%;
+}

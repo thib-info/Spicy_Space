@@ -1,0 +1,35 @@
+construire une fenêtre :
+
+appeler addWindow(windowIndex,location)
+
+où :
+
+windowIndex est un entier qui décrit le sujet de la fenêtre
+0 : Arbre des technologies
+1 : Diplomatie
+2 : Statistiques sur la partie
+3 : Construire un bâtiment sur un système
+4 : Construire une unité sur un système
+
+location est une entier qui décrit où se trouve l'action (id du système)
+par exemple, addWindow(4,627) ouvrira la fenêtre de construction du système numéro 627
+
+pour windowIndex dans {0,1,2}, on n'a pas besoin de location, ce sont des données globales
+donc addWindow(2,null) ouvrira la fenêtre des statistiques de la partie
+
+------------------------------------------------------------------------------------------------
+
+construire un panel :
+
+appeler addPanel(panelIndex,location,isRight)
+
+où :
+
+panelIndex est un entier qui décrit le sujet de la fenêtre
+0 : Panel pricipal d'un système. Permet d'ouvrir les fenêtres de construction de bâtiments et d'unités)
+1 : Gestion d'une flotte de vaisseaux
+
+location est une entier qui décrit où se trouve l'action (id du système)
+Dans le cas d'une flotte en transit entre 2 systèmes, on y affiche le système de destination
+
+isRight est un booléen qui indique si le Panel se trouve à droite de l'écran, sinon il est à gauche

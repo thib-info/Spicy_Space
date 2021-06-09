@@ -47,7 +47,6 @@ def main():
 
 @app.route('/connexion', methods=['GET','POST'])
 def connexion():
-    
     if request.method == 'POST':
         pseudo = request.form.get('pseudo')
         passwd = request.form.get('password')
@@ -71,11 +70,6 @@ def connexion():
 
         flash('mauvais couple id/password')
         return render_template('connexion_pyt.html')
-
-
-
-        
-
     else:
         return render_template('connexion_pyt.html')
 
@@ -91,10 +85,6 @@ def give_img(name):
             return send_file(path, mimetype='image/gif')
 
     return send_file(app.static_folder + "/images/error.jpg" , mimetype='image/gif')
-
-
-   
-
 
 @app.route('/api/user', methods=['POST'])
 def api_user():
@@ -121,10 +111,18 @@ def rendu():
     
     return jsonify({'resp':a})
 
-
 @app.route("/map", methods=["POST"])
 def mapSend():
     with open("../game_data/map.json") as f:
         map=json.load(f)
     return jsonify(map)
-    pass
+
+@app.route("/treeTech", methods=["POST"])
+def treeTechSend():
+    idTech = request.form.get('idTech')
+    if(idTech != None):
+        return True
+    else:
+        with open("../config/base_tech.json") as f:
+            treeTech=json.load(f)
+        return jsonify(treeTech)

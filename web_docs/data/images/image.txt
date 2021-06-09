@@ -1,3 +1,8 @@
+
+########################## BARRE DE RESSOURCES ###########################################
+##########################################################################################
+
+
 Population.png      -> icone population
 
 énergie.png         -> icone électricitée
@@ -17,3 +22,46 @@ Acier.png           alternatif
 
 PCB.png             ->icone minerais tier3
 CPU.png             alternatif
+
+erlenmeyer.png      ->icone science
+testube.png         alternatif
+
+
+########################## MENU ##########################################################
+##########################################################################################
+
+diplomatie.png      ->icone diplomatie
+
+statistiques.png    ->icone statistiques
+
+technologie.png	    ->icone arbre de techologie
+
+########################## BATIMENTS #####################################################
+##########################################################################################
+
+city.png	   ->icone habitations
+
+fondrie.png        ->icone production minerais tier 2
+
+labo.png           ->icone production point de recherche
+
+mine.png           ->icone production minerais tier 1
+
+Spatioport.png     ->icone production de vaisseaux
+
+usine.png          ->icone produiction de minerai tier 3
+
+########################## VAISSEAUX #####################################################
+##########################################################################################
+
+Battleship.png      ->icone battleship(vaisseau militaire lourd)
+
+Destroyer.png       ->icone destroyer(vaisseau militaire moyen)
+
+Tardigrade.png      ->icone tardigrade(vaisseau militaire léger)
+
+Colonisateur.png    ->icone vaisseau colon
+
+éclaireur.png       ->icone vaisseau éclaireur
+
+

@@ -1,4 +1,4 @@
-var windows = []; // array of all window class instances
+var confirmationWindow = null; // will store the current cWindow element;
 
 function windowConstructor(windowIndex,location) {
   // windowIndex is an integer
@@ -33,12 +33,6 @@ function windowConstructor(windowIndex,location) {
       case 4: // Construire une unité sur un système
         title = `<h2>Système ${location} - Unités</h2>`;
         break;
-      case 3: // Statistiques de la partie
-        title = '<h2>Statistique</h2>';
-        break;
-      case 4: // Arbre des technologies
-        title = '<h2>Arbres de technologie</h2>';
-        break;
       default:
         title = '<h2>Default_Title</h2>';
         break;
@@ -50,19 +44,39 @@ function windowConstructor(windowIndex,location) {
     var content;
     switch (windowIndex) {
       case 0: // Technologies
-        content = techWindowContent();
+        content = '<p>Ici il y aura tous les éléments relatifs aux Technologies</p>';
         break;
       case 1: // Diplomatie
-        content = diplomacyWindowContent();
+        content = '<p>Ici il y aura tous les éléments relatifs à la Diplomatie</p>';
         break;
       case 2: // Statistiques de partie
-        content = statsWindowContent();
+        content = '<p>Ici il y aura tous les éléments relatifs aux statistiques de la partie</p>';;
         break;
       case 3: // Construire un bâtiment sur un système
-        content = buildingWindowContent(windowIndex,location);
+        content = `
+        <div class="centerWrapper">
+          <canvas id="c${windowID}" class="systemPreview" width="250" height="250"></canvas>
+          <div class="ressourcesDashboard"></div>
+          <div class="slots"></div>
+        </div>
+        `;
         break;
       case 4: // Construire une unité sur un système
-        content = unitWindowContent(windowIndex,location);
+        content = `
+        <div class="u_div1 u_divp">
+          <button type="button" class="u_button_1">Vaisseau 11</button>
+          <button type="button" class="u_button_2">Vaisseau 12</button>
+        </div>
+        <div class="u_div1 u_divg">
+            <button type="button">Vaisseau 21</button>
+            <button type="button">Vaisseau 22</button>
+            <button type="button">Vaisseau 23</button>
+        </div>
+        <div class="u_div1 u_divp">
+            <button type="button">Vaisseau 21</button>
+            <button type="button">Vaisseau 22</button>
+        </div>
+        `;
         break;
       default:
         content = '<h2>Default_Content</h2>';
@@ -70,8 +84,7 @@ function windowConstructor(windowIndex,location) {
     }
     var windowBody = document.querySelector(`[id="${windowID}"] .windowBody`);
     windowBody.insertAdjacentHTML('afterbegin',content);
-
-      if (windowIndex == 3)
+    if (windowIndex == 3)
       systemPrev(`c${windowID}`);
   }
 
@@ -100,7 +113,6 @@ function addWindow(windowIndex,location) { // windowIndex is an integer
     windowFocus(document.querySelector(`[id="${windowIndex}-${location}"]`)); // just focus on it
     return 0;
   }
-
    // constructing window
   windowConstructor(windowIndex,location);
 
