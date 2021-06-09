@@ -44,6 +44,15 @@ class Players_interraction:
             if self.type==5: #echange commercial
                 print("echange commercial")
 
+    def to_front(self):
+        dic = {
+        "id":self.id,
+        "player1":self.player1,
+        "player2":self.player2,
+        "state":self.state,
+        "type":self.type,
+        }
+        return dic
 
 
 

@@ -96,23 +96,27 @@ class game():
         pid1.interraction_created_id.append(interraction.id)#ajoute l'id de l'interraction à la liste des interractions créer du joueur
 
     def send_interraction(self,Player_interraction_id):
-        interraction=self.players_interactions[Player_interraction_id] #recuperation de l'interraction
+        index=self.get_players_interactions(self,Player_interraction_id)#recupere l'index correspondant à l'id de l'interraction
+        interraction=self.players_interactions[index] #recuperation de l'interraction
         interraction.is_sended()
         interraction.player2.interraction_request.append(Player_interraction_id) #ajoute l'id de l'interraction à la liste des interractions request du joueur destinataire
 
     def accept_interraction(self,Player_interraction_id):
-        interraction = self.players_interactions[Player_interraction_id]  # recuperation de l'interraction
+        index=self.get_players_interactions(self,Player_interraction_id)#recupere l'index correspondant à l'id de l'interraction
+        interraction=self.players_interactions[index] #recuperation de l'interraction
         interraction.is_accepted()
         interraction.execute() #execute l'interraction (A VERIFIER FONCTIONNEMENT)
         interraction.player2.interraction_request.remove(interraction) #supprimer l'interraction de la liste des request du joueur destinataire
 
     def decline_interraction(self,Player_interraction_id):
-        interraction = self.players_interactions[Player_interraction_id]  # recuperation de l'interraction
+        index=self.get_players_interactions(self,Player_interraction_id)#recupere l'index correspondant à l'id de l'interraction
+        interraction=self.players_interactions[index] #recuperation de l'interraction
         interraction.is_declined()
         interraction.player2.interraction_request.remove(interraction) #supprimer l'interraction de la liste des request du joueur destinataire
 
     def read_interraction_request(self,pid):
-        player=self.players[pid] #recuperation du joueur concerner
+        index=self.get_player(pid)
+        player=self.players[index] #recuperation du joueur concerner
         print("\n")
         for i in player.interraction_request_id:
             interraction=self.players_interactions[i] #recuperation de l'interraction
@@ -120,7 +124,8 @@ class game():
         print("\n")
 
     def send_interraction_created(self,pid): #envoi toutes les interractions créer
-        player=self.players[pid] #recuperation du joueur concerner
+        index=self.get_player(pid)
+        player=self.players[index] #recuperation du joueur concerner
         for i in player.interraction_created:
             player.send_interraction(i)
 

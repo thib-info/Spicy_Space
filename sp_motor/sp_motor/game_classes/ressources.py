@@ -53,6 +53,14 @@ class ressource:
             res.append(buff.type)
         return res
 
+    def to_front(self):
+        dic = {
+        "typeR":self.typeR,
+        "value":self.value,
+        }
+        return dic
+
+
 # with open("config/ressources.json") as f:
 #     config = json.load(f)
 
