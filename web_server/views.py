@@ -39,7 +39,7 @@ def login_required(f):
 
 
 @app.route('/')
-@login_required
+#@login_required
 def main():
     session['connected'] = False
     return render_template('indexPyt.html', reload = time.time())
@@ -76,7 +76,6 @@ def connexion():
 
 @app.route("/get_img/<name>")
 def give_img(name):
-
     path = os.path.join(app.static_folder, find_file(list_files(app.static_folder), name))
     print(path)
 
