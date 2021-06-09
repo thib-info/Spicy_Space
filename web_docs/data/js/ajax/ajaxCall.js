@@ -22,7 +22,6 @@ function reactAjax(index, response){
         case 1:
             let jsonMap = JSON.parse(response);
             setData(jsonMap);
-
             break;
         case 2:
             let jsonTreeTech = JSON.parse(response);

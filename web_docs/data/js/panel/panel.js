@@ -87,7 +87,8 @@ function addPanel(panelIndex,location,isRight) {
         if (targetElement == panelElement // click inside the panel
           || targetElement == document.getElementById("windowMenu") // click inside the bar
           || windows.includes(targetElement) // click inside a window
-          || clickingOnStar) { // clicking right now on the star
+          || clickingOnStar // clicking right now on the star
+          || clickingOnShip) { // clicking right now on the ship
             return;
         }
         targetElement = targetElement.parentNode;
