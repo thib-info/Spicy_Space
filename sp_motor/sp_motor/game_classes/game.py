@@ -30,8 +30,8 @@ class game():
         return -1
 
     def get_unit(self,id):
-        for i in range(len(self.unit)):
-            if self.unit[i].id==id:
+        for i in range(len(self.units)):
+            if self.units[i].id==id:
                 return i
         return -1
 
@@ -107,8 +107,14 @@ class game():
     #vient tester si un joueur possède un systeme
     def is_proprio(self, p_id, sys_id):
         return p_id == self.systems[self.get_systems(sys_id)].owner_id
-    
-    
+
+    def colonize(self, unit_id):
+        u_id = self.get_unit(unit_id)
+        s_id = self.get_systems(self.units[u_id].position)
+        if self.units[unit_id].name == "colon":
+            if self.map.systems[s_id].owner_id == -1:
+                self.map.systems[s_id].change_owner(self.units[u_id].owner)
+
 
 ######################################""
 def save_game(game, path):
@@ -119,7 +125,6 @@ def load_game(path):
     with open(path, 'rb') as f:
         output = pickle.load(f)
     return output
-
 
 
 # g1 = game()
