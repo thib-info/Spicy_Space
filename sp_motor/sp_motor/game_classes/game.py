@@ -66,7 +66,9 @@ class game():
             self.models[key] = unit(model, -1, -1)
 
         conf_ress = load_conf_f("ressources")
-        self.models["ressources"] = conf_ress
+        self.models["ressources"] = {}
+        for c, v in conf_unit.items():
+            self.models["ressources"][c] = v["value"]
 
     def delete_unit(self,id_unit):
         self.units.pop(id_unit)
@@ -95,6 +97,8 @@ class game():
                 player.update_prod(sys_prod)
 
             #fin de la partie sur la production
+
+            #partie prend en compte les couts de fonctionnement
 
 
 

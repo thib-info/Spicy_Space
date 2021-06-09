@@ -73,7 +73,7 @@ class System_p(Basic_info):
         
 
     def adjust_pop(self, production):
-        if self.to_peace < 2:
+        if self.to_peace < 1:
             test = True
             for c, v in production.items():
                 test = test and v >= self.population
