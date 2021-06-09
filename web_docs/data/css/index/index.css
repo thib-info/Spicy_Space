@@ -17,14 +17,6 @@ body{
     height: 10000px;
 }
 
-.top-bar{
-    display: block;
-    width: 100%;
-    height: 40px;
-    margin: 0;
-    padding: 7px 15px;
-}
-
 .circle-menu{
     display: flex;
     justify-content: center;
