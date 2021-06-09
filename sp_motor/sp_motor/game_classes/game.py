@@ -42,8 +42,8 @@ class game():
         return -1
 
     def get_unit(self,id):
-        for i in range(len(self.unit)):
-            if self.unit[i].id==id:
+        for i in range(len(self.units)):
+            if self.units[i].id==id:
                 return i
         return -1
 
@@ -148,14 +148,7 @@ class game():
 
 
 
-    def create_systeme(self,name,pos):
-        #creation du systeme
-        tmp=System_p(name,pos)
 
-        #ajout du systeme à la liste des systemes de game
-        self.list_systems.append(tmp)
-
-        return tmp.id
 
     def change_owner_systeme(self,systeme_id,owner_id):
         self.list_systems[systeme_id].change_owner(owner_id)
@@ -210,8 +203,14 @@ class game():
     #vient tester si un joueur possède un systeme
     def is_proprio(self, p_id, sys_id):
         return p_id == self.systems[self.get_systems(sys_id)].owner_id
-    
-    
+
+    def colonize(self, unit_id):
+        u_id = self.get_unit(unit_id)
+        s_id = self.get_systems(self.units[u_id].position)
+        if self.units[unit_id].name == "colon":
+            if self.map.systems[s_id].owner_id == -1:
+                self.map.systems[s_id].change_owner(self.units[u_id].owner)
+
 
 ######################################""
 def save_game(game, path):
@@ -224,3 +223,25 @@ def load_game(path):
     return output
 
 
+
+# g1 = game()
+# g1.load_conf()
+# g1.create_player()
+# g1.create_player(True)
+# print(g1.players[0])
+# print(g1.players[1])
+# #print(g1.players[0].name)
+# #print(g1.players[1].pid)
+
+# with open("../../../config/config_unit.json") as g:
+#     conf_unit = json.load(g)
+
+
+# destroyer = unit(conf_unit["destroyer"], -1, [-1, -1])
+# u1=deepcopy(destroyer)
+# g1.units.append(u1)
+# g1.units.append(u1)
+# print(g1.units)
+# g1.delete_unit(0)
+# print(g1.units)
+>>>>>>> coloniser
