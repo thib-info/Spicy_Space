@@ -9,7 +9,6 @@ from sp_motor.utils import calculate_cost
 import sp_motor.game_classes.game
 
 
-
 class Basic_info():
 
     def __init__(self, name, pos):

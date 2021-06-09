@@ -15,7 +15,6 @@ PLAYER1_NAME = "Toto"
 class game():
     def __init__(self):
         self.players = []
-        self.systems =[] #conf["map"]
         self.turn =[] #conf["turn"]
         self.units = []
         self.buildings = []
@@ -30,8 +29,10 @@ class game():
         
 
     def create_player(self,isMJ=False):
+
         tmp = deepcopy(self.models["player"])
         tmp.ressources_init_player(self.models["ressources"])
+
         self.players.append(tmp)
         self.players[-1].set_param(len(self.players)-1, PLAYER1_NAME,isMJ)
         return tmp.pid
@@ -157,7 +158,10 @@ class game():
 
 
     def change_owner_systeme(self,systeme_id,owner_id):
-        self.list_systems[systeme_id].change_owner(owner_id)
+        if self.map.systems[systeme_id].owner_id != -1 :
+            self.players[self.get_player(self.map.systems[systeme_id].owner_id)].systems_id.remove(systeme_id)
+        self.map.systems[systeme_id].change_owner(owner_id)
+        self.players[self.get_player(owner_id)].systems_id.append(systeme_id)
 
 
     def create_building(self,type,systeme_id,owner_id):
@@ -165,12 +169,12 @@ class game():
         tmp = building(type,systeme_id,owner_id)
 
         #ajout du batiment a la liste des batiments de game
-        self.list_buildings.append(tmp)
+        self.buildings.append(tmp)
+
         #ajout du batiment au systeme concerné
-        self.list_systems[systeme_id].add_building(tmp.id)
+        player = self.get_player(owner_id)
 
         return tmp.id
-
 
 
    # def discover(self,unit_id):                   #A SUPPR
@@ -217,6 +221,34 @@ class game():
             if self.map.systems[s_id].owner_id == -1:
                 self.map.systems[s_id].change_owner(self.units[u_id].owner)
 
+    ################## FONCTIONS DE TEST #####################
+    def print_players_game(self):
+        print("\nJOUEURS DANS LA GAME:")
+        for p in self.players:
+            print("id: "+str(p.pid))
+
+    def print_buildings_game(self):
+        print("\nBATIMENTS DANS LA GAME:")
+        for b in self.buildings:
+            print("id: "+str(b.id)+" type: "+str(b.typeB))
+
+    def print_systemes_map(self):
+        print("\nSYSTEMES DANS MAP LA GAME:")
+        cpt=0
+        for s in self.map.systems:
+            cpt=cpt+1
+        print("nombre de systemes : "+str(cpt))
+
+    def print_systeme_player(self,owner_id):
+        print("\nSYSTEME DU JOUEUR ID: "+str(owner_id))
+        index=self.get_player(owner_id)
+        player=self.players[index]
+        for i in player.systems_id:
+            print("id: "+str(i))
+
+
+    ##########################################################
+
 
 ######################################""
 def save_game(game, path):
@@ -227,6 +259,7 @@ def load_game(path):
     with open(path, 'rb') as f:
         output = pickle.load(f)
     return output
+
 
 
 
