@@ -39,7 +39,7 @@ class System_p(Basic_info):
         self.id = System_p.lastId
         System_p.lastId += 1
         self.owner_id = -1
-        
+
         self.to_peace = 0
 
         self.units_id = []
@@ -72,6 +72,14 @@ class System_p(Basic_info):
         return self.owner_id == pid
         
 
+    def adjust_pop(self, production):
+        if self.to_peace < 2:
+            test = True
+            for c, v in production.items():
+                test = test and v >= self.population
+
+        return test
+
     def produce(self, model, building):
         local_production = {}
         for c, v in model.items():
@@ -82,7 +90,14 @@ class System_p(Basic_info):
                 build_prod = building.produce()
                 local_production[build_prod["ress"]] += build_prod["qt"]
 
+        test_croissance = adjust_pop(local_production)
+        if test_croissance:
+            local_production["population"] = 1
+
         return local_production
+
+    
+
             
                 
         
