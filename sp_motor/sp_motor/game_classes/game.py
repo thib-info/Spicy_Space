@@ -23,10 +23,10 @@ class game():
         self.players_interactions=[]
 
 
-    def add_systems(self,systeme):
-        self.list_systems.append(systeme)
-        return systeme.id
-
+    def import_map(self, map):
+        for i in range(len(map.systems)):
+            self.systems.append(map.systems[i].id)
+        
 
     def create_player(self,isMJ=False):
         tmp=deepcopy(self.models["player"])
