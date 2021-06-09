@@ -1,25 +1,49 @@
 from sp_motor.game_classes.game import game
-from sp_motor.game_classes.map import System_p
+from sp_motor.map.create import create_map
 
 #creation de la partie
 g1=game()
 g1.load_conf()
 
+g1.map = create_map(radius=350,nb_zonnes=(70, 90), zonnes_r=(45, 70), systems=(8, 15), inner_conf=(10, 15) )
+
 #ajout des joueurs
-p1_id=g1.create_player()
-p2_id=g1.create_player()
+g1.create_player()
+g1.create_player()
 
-#creation d'un systeme
-s1_id=g1.create_systeme("dasysteme","daposition")
+#affichage des joueurs dans la partie
+g1.print_players_game()
 
-#changement du propriétaire
-g1.change_owner_systeme(s1_id,p1_id)
+#creations des buildings
+g1.create_building("mine",0,1)
+g1.create_building("usine",0,1)
 
-#creation d'un batiment
-g1.create_building("mine",s1_id,p1_id)
+#affichage des buildings dans la partie
+g1.print_buildings_game()
+
+#affichage des systemes de la map de la partie
+g1.print_systemes_map()
+
+print("---------------------------------------------")
+print("TEST DE CHANGEMENT DE PROPRIETAIRE DE SYSTEMS")
+print("---------------------------------------------")
 
 
+g1.change_owner_systeme(0,0)
 
+#affichage des systemes possèder par le premier joueur
+g1.print_systeme_player(0)
+
+print("\n-changement de propriétaire-")
+g1.change_owner_systeme(0,1)
+g1.print_systeme_player(0)
+g1.print_systeme_player(1)
+
+print("---------------------------------------------")
+print("TEST D'INTERACTION ENTRE JOUEUR")
+print("---------------------------------------------")
+
+#g1.create_interraction(0,1,1)#creation d'une demande d'alliance par p1, pour p2
 
 
 
