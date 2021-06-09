@@ -61,7 +61,7 @@ class game():
 
     def get_players_interactions(self,id):
         for i in self.players_interractions:
-            if i.id==self.pid:
+            if i.id==id:
                 return i
 
     def next_turn(self):
