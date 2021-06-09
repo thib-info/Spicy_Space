@@ -81,6 +81,29 @@ class game():
 
 
 
+    ############### gestion des unités #########################
+    def delete_unit(self,id_unit):
+        su = deepcopy(self.units[self.get_unit(id_unit)])
+
+        self.players[self.get_player(su.owner)].units_id.pop(id_unit)
+        self.map.systems[self.map.get_system(su.position)].units_id.pop(id_unit)
+
+        self.units.pop(self.get_unit(id_unit))
+
+
+    def create_unit(self, owner_id, position, created_unit, base_lvl=1):
+        temp_unit = deepcopy(self.models[created_unit])
+        temp_unit.set_param(owner_id, position, base_lvl)
+        tu_id = temp_unit.id
+
+        self.units.append(temp_unit)
+        self.players[self.get_player(owner_id)].units_id.append(tu_id)
+        self.map.systems[self.map.get_system(position)].units_id.append(tu_id)
+
+
+
+   ############## fin de gestion des unités ###################
+
 
 
     ################## configuration des joueurs ################
@@ -103,31 +126,15 @@ class game():
             spawn_sys_id = choice(poss_spawn_sys)
 
             sys_id = self.map.get_system(spawn_sys_id)
-            
-            #on ajoute les vaisseaux à la game dans le bon syst
-            start_ship1 = deepcopy(self.models["scout"])
-            start_ship2 = deepcopy(self.models["colon"])
 
-            start_ship1.set_param(pid, sys_id)
-            start_ship2.set_param(pid, sys_id)
-
-            ss1_id = start_ship1.id
-            ss2_id = start_ship2.id
-
-            #on ajoute les vaisseaux dans la game
-            self.units.append(start_ship1)
-            self.units.append(start_ship2)
-
-            #on ajoute l'id des vaisseaux chez le joueur
-            temp_p.units_id.append(ss1_id)
-            temp_p.units_id.append(ss2_id)
-
-            #on ajoute l'id des vaisseaux dans le systeme
-            self.map.systems[self.map.get_system(sys_id)].units_id.append(ss1_id)
-            self.map.systems[self.map.get_system(sys_id)].units_id.append(ss2_id)
-
-            #enfin, on ajoute le joueur
+            # on ajoute le joueur
             self.players.append(deepcopy(temp_p))
+            
+            #on lui donne 2 vaisseaux
+            self.create_unit(pid, sys_id, "colon")
+            self.create_unit(pid, sys_id, "scout")
+
+            
         
             #on renvoie true pour dire que c'est réussi
             return True
@@ -138,16 +145,7 @@ class game():
 
 
 
-    ############### gestion des unités #########################
-    def delete_unit(self,id_unit):
-        self.units.pop(id_unit)
-
-
-    def create_unit(self, owner_id, position, created_unit, base_lvl=1,):
-        self.units.append(deepcopy(self.models[created_unit]))
-        self.units[-1].set_param(owner_id, position, base_lvl)
-        self.players[owner_id].units_id.append(self.units[-1].id)
-   ############## fin de gestion des unités ###################
+    
 
     
 
