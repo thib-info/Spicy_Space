@@ -40,6 +40,8 @@ class System_p(Basic_info):
         System_p.lastId += 1
         self.owner_id = -1
 
+        self.to_peace = 0
+
         self.units_id = []
         self.max_building=randint(5,10)
         self.buildings_id=[]
@@ -57,13 +59,15 @@ class System_p(Basic_info):
     def export_system_info(self):
         pass
 
-
-    def add_building(self,id):
+    def can_add_building(self):
         if len(self.buildings_id) < self.max_building:
-            self.buildings_id.append(id)
             return True
         else:
             return False
+
+    def add_building(self,id):
+        self.buildings_id.append(id)
+         
 
 
     def add_population(self,n):
@@ -72,11 +76,10 @@ class System_p(Basic_info):
     def change_owner(self,owner):
         self.owner_id = owner
 
-    def print_buildings(self):
-        for i in self.buildings:
-            print("\n")
-            print("liste des différents batiments du systeme :")
-            print("type: "+str(i.type)+" propriétaire: "+str(i.owner.pid))
+    def is_owned(self, pid):
+        return self.owner_id == pid
+
+    
 
 
     
@@ -151,8 +154,13 @@ class Map(Basic_info):
         return output
 
 
+
+
+
+
         
-            
+
+
 
    
 
