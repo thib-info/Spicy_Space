@@ -15,24 +15,26 @@ g1.create_player(True)
 
 
 
-print(g1.players[0].name)
-print(g1.players[1].pid)
+#print(g1.players[0].name)
+#print(g1.players[1].pid)
 
 g1.create_unit(1, 4, "destroyer")
 g1.create_unit(0,4,"tardigrade")
-print(g1.units[1].pv)
+#print(g1.units[1].pv)
 
 
 battle(g1,g1.units[0], g1.units[1])
-print(g1.units[1].pv)
-print(g1.units[0].position)
-g1.move_unit(g1.units[0].id, 2)
-print(g1.units[0].position)
+#print(g1.units[1].pv)
+#print(g1.units[0].position)
+#g1.move_unit(g1.units[0].id, 2)
+#print(g1.units[0].position)
 battle(g1,g1.units[0], g1.units[1])
+#g1.discover(1)
+#print(g1.players[0].known_systems[0])
 
 
 
-print(g1.units[0].owner)
+#print(g1.units[0].owner)
 
 
 #save_game(g1, "game_save")
