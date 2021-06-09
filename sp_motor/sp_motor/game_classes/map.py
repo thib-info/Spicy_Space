@@ -3,9 +3,10 @@ from copy import deepcopy
 import json
 from random import randint
 # from copy import deepcopy
+from sp_motor.game_classes.building import building
 
 from sp_motor.utils import calculate_cost
-
+import sp_motor.game_classes.game
 
 
 
@@ -33,7 +34,7 @@ class Basic_info():
 
 
 class System_p(Basic_info):
-    lastId = 1
+    lastId = 0
     def __init__(self, name, pos):
         self.sector_id = 0
         self.id = System_p.lastId
@@ -44,7 +45,7 @@ class System_p(Basic_info):
 
         self.units_id = []
         self.max_building=randint(5,10)
-        self.buildings_id=[]
+        self.buildings=[]
         self.population=0
         self.bonus=randint(0,4)
         Basic_info.__init__(self, name, pos)
@@ -53,20 +54,29 @@ class System_p(Basic_info):
         self.sector_id = sector_id
     
 
+
+    def get_sector_id(self):
+        return self.sector_id
+
+
     def export_system_info(self):
         pass
 
+
     def can_add_building(self):
         if len(self.buildings_id) < self.max_building:
-            return True
+                return True
         else:
             return False
+
 
     def add_building(self,id):
         self.buildings_id.append(id)
 
     def change_owner(self,owner):
         self.owner_id = owner
+
+
 
     def is_owned(self, pid):
         return self.owner_id == pid

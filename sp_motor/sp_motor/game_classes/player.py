@@ -107,6 +107,7 @@ class player :
     def remove_systeme(self,systeme_id):
         self.systems_id.remove(systeme_id)
 
+
     def add_known_systems(self):
     self.known_systems.append()#ajouter les neighbor
 

@@ -3,9 +3,11 @@ import pickle
 
 from sp_motor.game_classes.player import player 
 from sp_motor.game_classes.unit import unit 
-from sp_motor.game_classes.building import building as build
+from sp_motor.game_classes.building import building
 from sp_motor.utils import load_conf_f
+from sp_motor.game_classes.map import System_p
 from copy import deepcopy
+from sp_motor.game_classes.player import player
 
 PLAYER1_NAME = "Toto"
 
@@ -19,11 +21,19 @@ class game():
         self.map = None
         self.models = {}
         self.players_interactions=[]
-        self.map = None
+
+
+    def add_systems(self,systeme):
+        self.list_systems.append(systeme)
+        return systeme.id
+>
 
     def create_player(self,isMJ=False):
-        self.players.append(deepcopy(self.models["player"]))
+        tmp=deepcopy(self.models["player"])
+        tmp.ressources_init_player()
+        self.players.append(tmp)
         self.players[-1].set_param(len(self.players)-1, PLAYER1_NAME,isMJ)
+        return tmp.pid
 
     def get_player(self,pid):
         for i in range(len(self.players)):
@@ -62,6 +72,7 @@ class game():
         self.models["player"] = player(conf_player["player"], -1, "NULL")
 
         conf_unit = load_conf_f("config_unit")
+
         for key,model in conf_unit.items():
             self.models[key] = unit(model, -1, -1)
 
@@ -101,6 +112,30 @@ class game():
             #partie prend en compte les couts de fonctionnement
 
 
+
+    def create_systeme(self,name,pos):
+        #creation du systeme
+        tmp=System_p(name,pos)
+
+        #ajout du systeme à la liste des systemes de game
+        self.list_systems.append(tmp)
+
+        return tmp.id
+
+    def change_owner_systeme(self,systeme_id,owner_id):
+        self.list_systems[systeme_id].change_owner(owner_id)
+
+
+    def create_building(self,type,systeme_id,owner_id):
+        #creation du batiment
+        tmp = building(type,systeme_id,owner_id)
+
+        #ajout du batiment a la liste des batiments de game
+        self.list_buildings.append(tmp)
+        #ajout du batiment au systeme concerné
+        self.list_systems[systeme_id].add_building(tmp.id)
+
+        return tmp.id
 
 
 
