@@ -16,12 +16,6 @@
                 "cost": 500,
                 "researched": false,
                 "children": {}
-              },
-              "prod ferme +20%": {
-                "name": "prod ferme +20%",
-                "cost": 500,
-                "researched": false,
-                "children": {}
               }
             }
           ]
@@ -61,12 +55,6 @@
                 "cost": 500,
                 "researched": false,
                 "children": {}
-              },
-              "prod labo +20%": {
-                "name": "prod labo +20%",
-                "cost": 500,
-                "researched": false,
-                "children": {}
               }
             }
           ]
@@ -103,12 +91,6 @@
               {
               "habitations niveau 3": {
                 "name": "habitations niveau 3",
-                "cost": 500,
-                "researched": false,
-                "children": {}
-              },
-              "prod habitations +20%": {
-                "name": "prod habitations +20%",
                 "cost": 500,
                 "researched": false,
                 "children": {}
@@ -152,12 +134,6 @@
                 "researched": false,
                 "children": {}
 
-              },
-              "prod mine +20%": {
-                "name": "prod mine +20%",
-                "cost": 500,
-                "researched": false,
-                "children": {}
               }
             }
           ]
@@ -194,16 +170,10 @@
                       "cost": 500,
                       "researched": false,
                       "children": {}
-                    }
+                     }
                     }
                   ]
                 },
-                "vitesse prod spatioport +20%": {
-                  "name": "vitesse prod spatioport +20%",
-                  "cost": 500,
-                  "researched": false,
-                  "children": {}
-              },
               "vitesse prod spatioport +10%": {
                 "name": "vitesse prod spatioport +20%",
                 "cost": 500,
@@ -236,12 +206,6 @@
                     {
                     "raffinerie niveau 3": {
                       "name": "raffinerie niveau 3",
-                      "cost": 500,
-                      "researched": false,
-                      "children": {}
-                    },
-                    "prod raffinerie +20%": {
-                      "name": "prod raffinerie +20%",
                       "cost": 500,
                       "researched": false,
                       "children": {}
@@ -278,12 +242,6 @@
                           {
                           "usine niveau 3": {
                             "name": "usine niveau 3",
-                            "cost": 500,
-                            "researched": false,
-                            "children": {}
-                          },
-                          "prod usine +20%": {
-                            "name": "prod usine +20%",
                             "cost": 500,
                             "researched": false,
                             "children": {}
