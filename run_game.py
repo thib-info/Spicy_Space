@@ -25,7 +25,7 @@ def test_map():
 
 
     map = medium_map()
-    print_graph(map)
+    # print_graph(map)
 
 
     # dico = map.export_info()

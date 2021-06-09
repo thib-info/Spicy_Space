@@ -61,7 +61,6 @@ def prune_graph(delaunay, m_tree, min_add=0, max_add=1):
     possible_add = delaunay - m_tree
     for i in range(n):
         friends = list(possible_add[i])
-        print(friends)
         max_f = randint(min_add, max_add)
 
         for step in range(max_f):
@@ -143,9 +142,6 @@ def print_spawn_total(spawn, graph):
 def print_spawn(spawn):
     points = {"x":[], "y":[]}
     lines = []
-
-    
-
 
     for syst in spawn.children:
         points["x"].append(syst.pos[0])
@@ -285,18 +281,5 @@ def print_graph(map):
 
 
 
-
-
-
-# print(map.graph_cost)
-# print(map.graph_link)
-# for sector in map.sectors:
-#     print(sector.name)
-#     for indice in sector.members:
-#         print(indice, "  :  ", map.systems[indice].pos)
-
-
-
-# import json
 
 
