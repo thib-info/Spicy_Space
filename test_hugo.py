@@ -8,9 +8,11 @@ from sp_motor.players_interactions.battles import battle,can_battle
 from sp_motor.map.create import create_map
 from sp_motor.game_classes.map import Map, System_p
 
+
 g1 = game()
 g1.load_conf()
+g1.create_player(True)
+g1.map = create_map(radius=350,nb_zonnes=(70, 90), zonnes_r=(45, 70), systems=(8, 15), inner_conf=(10, 15) )
+g1.create_building("ferme", 1, 1)
 
-test = build("ferme", [0, 0], 1)
-test.aplly_conf()
-print(test.ressources_needed())
+print(g1.buildings[0])
