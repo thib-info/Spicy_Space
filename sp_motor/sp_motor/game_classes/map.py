@@ -3,9 +3,10 @@ from copy import deepcopy
 import json
 from random import randint
 # from copy import deepcopy
+from sp_motor.game_classes.building import building
 
 from sp_motor.utils import calculate_cost
-
+import sp_motor.game_classes.game
 
 
 
@@ -33,7 +34,7 @@ class Basic_info():
 
 
 class System_p(Basic_info):
-    lastId = 1
+    lastId = 0
     def __init__(self, name, pos):
         self.sector_id = 0
         self.id = System_p.lastId
@@ -42,7 +43,7 @@ class System_p(Basic_info):
 
         self.units_id = []
         self.max_building=randint(5,10)
-        self.buildings_id=[]
+        self.buildings=[]
         self.population=0
         self.bonus=randint(0,4)
         Basic_info.__init__(self, name, pos)
@@ -53,18 +54,15 @@ class System_p(Basic_info):
     def get_sector_id(self):
         return self.sector_id
 
-
     def export_system_info(self):
         pass
 
-
-    def add_building(self,id):
-        if len(self.buildings_id) < self.max_building:
-            self.buildings_id.append(id)
+    def add_building(self,building_id):
+        if len(self.buildings) < self.max_building:
+            self.buildings.append(building_id)
             return True
         else:
             return False
-
 
     def add_population(self,n):
         self.population=self.population+n
@@ -73,10 +71,19 @@ class System_p(Basic_info):
         self.owner_id = owner
 
     def print_buildings(self):
+        print("\nliste des différents batiments du systeme :")
         for i in self.buildings:
-            print("\n")
-            print("liste des différents batiments du systeme :")
-            print("type: "+str(i.type)+" propriétaire: "+str(i.owner.pid))
+            print("type: "+str(i.typeB)+" propriétaire: "+str(i.owner))
+
+    def print_buildings_stat(self,building_id):
+        print("\nSTATISTIQUES DU BATIMENT ID: "+str(building_id))
+        b=self.buildings[building_id]
+        print("level_tier: "+str(b.level_tier))
+        print("level_production: " + str(b.level_production))
+        print("maint_cost: " + str(b.maint_cost))
+        print("state: " + str(b.state))
+        print("production_per_turn: " + str(b.production_per_turn))
+
 
 
     

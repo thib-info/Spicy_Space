@@ -8,7 +8,6 @@ class unit:
         self.id = unit.lastId
         unit.lastId += 1
         self.name = conf["name"]
-        self.typeU = conf["type"]
         self.owner = owner
         self.precision= conf["precision"]
         self.position = position

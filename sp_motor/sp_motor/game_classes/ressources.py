@@ -2,7 +2,7 @@ import json
 from sp_motor.utils import load_conf_f
 
 class ressource:
-    def __init__(self, type):
+    def __init__(self, typeR):
         self.value = 0
         self.typeR = typeR
 

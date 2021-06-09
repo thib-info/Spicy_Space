@@ -124,8 +124,6 @@ class player :
             for j in i.buildings:
                 j.produce()
 
-
-
 #if __name__ == '__main__':
     #with open("../../../config/config_player.json") as f:
     #    conf = json.load(f)
