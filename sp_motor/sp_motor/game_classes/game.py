@@ -57,6 +57,9 @@ class game():
         for key,model in conf_unit.items():
             self.models[key] = unit(model, -1, -1)
 
+        conf_ress = load_conf_f("ressources")
+        self.models["ressources"] = conf_ress
+
     def delete_unit(self,id_unit):
         self.units.pop(id_unit)
 
@@ -87,7 +90,6 @@ class game():
         s_id = self.get_systems(sys_id)
         ow_id = self.systems[s_id].owner_id
         sys = deepcopy(self.systems[s_id])
-
 
         present_players = []
         for u_id in sys.units_id:

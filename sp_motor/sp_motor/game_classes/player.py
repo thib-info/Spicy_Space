@@ -22,11 +22,10 @@ class player :
         self.known_systems = []
 
 
-    def get_isMJ(self):
-        return self.isMj
     def affiche(self):
         print(f"{self.name},{self.isMj}")
 
+    ##################### FONCTION DES INTERACTIONS ######
     def add_enemy(self,pid):
         if not pid in self.allies_id and not pid in self.enemies_id:
             self.enemies_id.append(pid)
@@ -77,6 +76,9 @@ class player :
         self.name = name
         self.isMj = isMJ
 
+
+
+    ##########fonctions en sursis, pourraient etres deplacées dans games ##############""
     def is_ally(self, pid):
         for i in self.allies_id:
             if pid == self.allies_id[i]:
@@ -90,19 +92,13 @@ class player :
                 return True
             else:
                 return False
-
-    #fonction pour test
-    def print_ally(self):
-        for i in self.allies_id:
-            print(i.pid)
-    #fonction pour test
-    def print_enemies(self):
-        for i in self.enemies_id:
-            print(i.pid)
+    ################## fin du sursis #####################
 
     def create_interraction(self,p2,type):
         interraction=Players_interraction(self,p2,type)
         self.interraction_create.append(interraction)
+
+    ######################### FIN DES INTERACTION ##########
 
     def add_systeme(self,systeme_id):
         #systeme.change_owner(self)
@@ -111,22 +107,26 @@ class player :
     def remove_systeme(self,systeme_id):
         self.systems_id.remove(systeme_id)
 
-    def ressources_init_player(self):
-        temp = ressource("or")
-        temp.apply_conf()
-        self.ressources=temp.total_ressources()
-
-    def print_ressources(self):
-        for i in self.ressources:
-            print("player id= "+str(self.pid)+ " ressources: "+str(i.type)+" : "+str(i.value))
-
-    def recolte_production(self):
-        for i in self.systems_id:
-            for j in i.buildings:
-                j.produce()
-
     def add_known_systems(self):
-        self.known_systems.append()#ajouter les neighbor
+    self.known_systems.append()#ajouter les neighbor
+
+    ##################### systeme de ressources ##############
+
+    def ressources_init_player(self, model):
+        self.ressources = deepcopy(model)
+
+    
+    def update_prod(self, prod):
+        for c, v in prod.items():
+            self.ressources[c] = {
+                "qt":v["qt"] + self.ressources[c]["qt"],
+                "qt_t":v["qt_t"],
+            }
+
+    # ajouter une mth pour déduire les frais de fct
+    
+    ####################### fin des systemes de ressources #########
+    
 
 #if __name__ == '__main__':
     #with open("../../../config/config_player.json") as f:
