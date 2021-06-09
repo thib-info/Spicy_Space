@@ -78,7 +78,7 @@ class game():
 
         conf_ress = load_conf_f("ressources")
         self.models["ressources"] = {}
-        for c, v in conf_unit.items():
+        for c, v in conf_ress.items():
             self.models["ressources"][c] = v["value"]
 
     def delete_unit(self,id_unit):
@@ -249,4 +249,4 @@ def load_game(path):
 # print(g1.units)
 # g1.delete_unit(0)
 # print(g1.units)
->>>>>>> coloniser
+

@@ -18,8 +18,11 @@ class building:
         self.typeB = typeB
         self.location = location
         self.level_tier = 0
+        self.level_tier_max = 3
         self.level_production = 0
-        self.cost = 0
+        self.cost = {}
+        self.cost2 = {}
+        self.cost3 = {}
         self.maint_cost = 0
         self.state = 0
         self.production_per_turn = 0
@@ -39,18 +42,14 @@ class building:
         self.scaling = actual_conf["scaling"]
 
     def upgrade_tier(self):
-        if self.level_tier<3:
-            self.pv=round(self.pv*self.scaling[0])
-            self.maint_cost = round(self.maint_cost * self.scaling[1])
-            self.production_per_turn = round(self.production_per_turn * self.scaling[2])
-            self.level_tier=self.level_tier+1
-        else:
-            print("\nbatiment améliorer au max\n")
+        self.maint_cost = round(self.maint_cost * self.scaling[1])
+        self.production_per_turn = round(self.production_per_turn * self.scaling[2])
+        self.level_tier += 1
 
     def upgrade_prod(self):
-        if self.level_production<3:
+        if self.level_production < self.level_tier_max:
             self.production_per_turn = round(self.production_per_turn * self.scaling[2])
-            self.level_production=self.level_production+1
+            self.level_production = self.level_production+1
 
 
     def link_ress(self):
@@ -79,7 +78,7 @@ class building:
             "id": self.id,
             "id_system": self.location,
             "build_t": self.typeB,
-            "cost": self.cost,
+            "cost": self.cost[self.level_tier-1],
             "maint_cost": self.maint_cost,
             "owner": self.owner,
             "tier": self.level_tier,
@@ -103,16 +102,7 @@ class building:
                 game.map.systems[self.location].units_id.append(id_created)
 
     def ressources_needed(self):
-        if self.typeB == "habitation":
-            return ["minerai"]
-        elif self.typeB == "mine":
-            return ["or"]
-        elif self.typeB == "raffinerie":
-            return ["or","minerai"]
-        elif self.typeB == "usine":
-            return ["or","lingot"]
-        elif self.typeB == "ferme":
-            return ["or","minerai"]
+        return self.cost[self.level_tier]
 
 
 
