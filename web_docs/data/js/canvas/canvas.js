@@ -1,6 +1,6 @@
 let data = null;
 let checkAjax = false;
-let isLoading = false;
+let isLoading = true;
 let firstLoad = false;
 
 var url = window.location.href; url = url.split('/');
