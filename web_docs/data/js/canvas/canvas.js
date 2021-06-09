@@ -1,7 +1,6 @@
 let data = null;
 let checkAjax = false;
-let isLoading = true;
-let firstLoad = false;
+let isLoading = false;
 
 var url = window.location.href; url = url.split('/');
 url = url[2].split(':');
@@ -67,7 +66,7 @@ var maxZoom = 5, minZoom = (canvas.width/galaxySize)/3, zoomFactor = 1.05, zoomL
 var topCanvas, leftCanvas;
 
 
-var X = [], Y = [], links = [], ships = [];
+var X = [], Y = [], links = [];
 data["systems"].forEach((system) => {
   X.push(system["pos"][0]);
   Y.push(system["pos"][1]);
@@ -75,10 +74,6 @@ data["systems"].forEach((system) => {
 data["links"].forEach((link) => {
   links.push([link["start"],link["end"]]);
 });
-
-for (let i = 0 ; i < units.length ; i++) {
-  ships.push({"a" : []});
-}
 console.log(X.length);
 
 
@@ -351,11 +346,6 @@ function drawStars() {
 }
 
 function update() {
-  if(!isLoading && !firstLoad) {
-      loadMap();
-      firstLoad=true;
-      isLoading=false;
-  }
   topCanvas = -displayTransform.matrix[5] / displayTransform.scale;
   leftCanvas = -displayTransform.matrix[4] / displayTransform.scale;
 
@@ -381,15 +371,4 @@ update(); // start it happening
 function setData(jsonMap){
   data = jsonMap;
   isLoading=false;
-}
-
-function loadMap(){
-    data["systems"].forEach((system) => {
-    X.push(system["pos"][0]);
-    Y.push(system["pos"][1]);
-    });
-    data["links"].forEach((link) => {
-    links.push([link["start"],link["end"]]);
-    });
-    console.log(X.length);
 }
