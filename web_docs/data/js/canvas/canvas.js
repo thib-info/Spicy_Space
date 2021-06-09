@@ -49,14 +49,12 @@ var starImages = {}, starHoverImages = {};
 const shipImage = new Image();
 shipImage.addEventListener('load', function() {
   loadedImages += 1;
-  console.log("1");
 }, false);
 shipImage.src ="../data/images/ship.png";
 
 const shipHoverImage = new Image();
 shipHoverImage.addEventListener('load', function() {
   loadedImages += 1;
-  console.log("2");
 }, false);
 shipHoverImage.src ="../data/images/shipHover.png";
 
@@ -64,7 +62,6 @@ const star1Image = new Image();
 star1Image.addEventListener('load', function() {
   starImages["1"] = star1Image;
   loadedImages += 1;
-  console.log("3");
 }, false);
 star1Image.src ="../data/images/star1.png";
 
@@ -72,7 +69,6 @@ const star1HoverImage = new Image();
 star1HoverImage.addEventListener('load', function() {
   starHoverImages["1"] = star1HoverImage;
   loadedImages += 1;
-  console.log("4");
 }, false);
 star1HoverImage.src ="../data/images/star1Hover.png";
 
@@ -80,7 +76,6 @@ const star2Image = new Image();
 star2Image.addEventListener('load', function() {
   starImages["2"] = star2Image;
   loadedImages += 1;
-  console.log("5");
 }, false);
 star2Image.src ="../data/images/star2.png";
 
@@ -88,7 +83,6 @@ const star2HoverImage = new Image();
 star2HoverImage.addEventListener('load', function() {
   starHoverImages["2"] = star2HoverImage;
   loadedImages += 1;
-  console.log("6");
 }, false);
 star2HoverImage.src ="../data/images/star2Hover.png";
 
@@ -96,7 +90,6 @@ const star3Image = new Image();
 star3Image.addEventListener('load', function() {
   starImages["3"] = star3Image;
   loadedImages += 1;
-  console.log("7");
 }, false);
 star3Image.src ="../data/images/star3.png";
 
@@ -106,7 +99,6 @@ const star3HoverImage = new Image();
 star3HoverImage.addEventListener('load', function() {
   starHoverImages["3"] = star3HoverImage;
   loadedImages += 1;
-  console.log("8");
 }, false);
 star3HoverImage.src ="../data/images/star3Hover.png";
 
@@ -446,7 +438,6 @@ function update() {
   displayTransform.setHome();
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   // if the image loaded show it
-  console.log(loadedImages);
   if (loadedImages == 8 & mapLoaded) {
     displayTransform.setTransform();
     drawStars();
@@ -472,6 +463,5 @@ function loadMap(){
     data["links"].forEach((link) => {
     links.push([link["start"],link["end"]]);
     });
-    
-}
 
+}
