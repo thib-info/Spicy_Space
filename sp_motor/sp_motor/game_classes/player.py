@@ -5,6 +5,8 @@ from sp_motor.players_interactions.Players_interraction import Players_interract
 #from sp_motor.game_classes.systeme import systeme
 from sp_motor.utils import load_conf_f
 import sp_motor.game_classes.game
+from copy import deepcopy
+
 
 #conf_ress = load_conf_f("ressources")
 class player :
