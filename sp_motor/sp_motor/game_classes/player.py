@@ -123,73 +123,13 @@ class player :
                 "qt_t":v["qt_t"],
             }
 
+    def can_afford(self, cost):
+        for c, v in cost.items():
+            if self.ressources[c] < v:
+                return False
+        return True
+
     # ajouter une mth pour déduire les frais de fct
     
     ####################### fin des systemes de ressources #########
     
-
-#if __name__ == '__main__':
-    #with open("../../../config/config_player.json") as f:
-    #    conf = json.load(f)
-    #test = player(conf["player"], 1,"oui")
-    #test.add_ally(4)
-
-    #print(test.allies)
-
-    # TEST DES INTERRACTIONS
-
-    #p1 = player(conf["player"],1,"oui")
-    #p2 = player(conf["player"],2,"oui")
-    #p3 = player(conf["player"],3,"oui")
-
-    #p1.create_interraction(p2,2)
-    #p1.create_interraction(p2,4)
-
-    #print("Etat initial de l'interraction: "+ str(p1.interraction_create[0].state))
-    #p1.send_interraction_created()
-    #print("Etat de l'interraction après envoi: "+ str(p1.interraction_create[0].state))
-    #print("\nlecture des requets reçu par p2:")
-    #p2.read_interraction_request()
-    #print("P2 enemmies avant:")
-    #p1.print_enemies()
-    #print("P1 enemmies avant:")
-    #p2.print_enemies()
-
-    #p2.accept_interraction(p2.interraction_request[0])
-    #print("P2 enemmies après:")
-    #p1.print_enemies()
-
-    #print("P2 enemmies après:")
-    #p2.print_enemies()
-
-
-    #p2.decline_interraction(p2.interraction_request[0])
-    #print("P2 enemmies après:")
-    #p1.print_enemies()
-
-    #print("P2 enemmies après:")
-    #p2.print_enemies()
-
-
-
-    #print("Etat de l'interraction après acceptation: "+ str(p1.interraction_create[0].state))
-
-
-    #print("\n")
-    #print("test ressources")
-    #p1.print_ressources()
-    #p1.ressources_init_player()
-    #p1.print_ressources()
-
-
-    #systeme_test=systeme("dasysteme","dalocation",p1)
-    #systeme_test.add_building("mine")
-    #systeme_test.add_building("usine")
-    #systeme_test.print_buildings()
-    #p1.add_systeme(systeme_test)
-    #print("\n")
-    #p1.recolte_production()
-    #p1.print_ressources()
-
-
-    #print(p1.ressources[0])
