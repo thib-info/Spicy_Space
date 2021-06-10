@@ -168,9 +168,7 @@ class game():
 
     def update_players_syst(self):
         neutral_sys = self.map.get_systems_from_owner(-1)
-
         for pl in self.players:
-
             sys_allies = []
             for ally in pl.allies_id:
                 sys_allies += self.map.get_systems_from_owner(ally)
@@ -322,7 +320,7 @@ class game():
 
             pl_sys_index = [self.get_systems(id) for id in player.systems_id]
             #partie ajout des productions pour chaques joueurs
-            for c in player.ressources:
+            for c in player.ressources.keys():
                 player.ressources[c]["qt_t"] = 0
 
 
@@ -382,8 +380,8 @@ class game():
 
     ######## fonction de mise à jour de la partie, pour passer au tour suivant ##########
     def to_next_turn(self):
-        for i in self.systems:
-            sys_id = self.get_systems(i)
+        for sys_id in range(len(self.map.systems)):
+            # sys_id = self.get_systems(i)
             self.map.systems[sys_id].to_peace -= 1
             bef = self.map.systems[sys_id].to_peace
             self.is_syst_in_war(sys_id)
@@ -391,17 +389,17 @@ class game():
             if bef > 0 and self.map.systems[sys_id].to_peace == 0:
                 self.sys_in_war.pop(self.sys_in_war.index(sys_id))
 
-            if self.map.systems[sys_id].to_peace > and sys_id not in self.sys_in_war:
+            if self.map.systems[sys_id].to_peace > 0 and sys_id not in self.sys_in_war:
                 self.sys_in_war.append(sys_id)
 
-            self.map.systems[sys_id].
+            
 
         #ici la fonction pour les combats
         #ici la fonction pour savoir qui controle le plus un syst
         #ici la fonction pour update les proprios des syst
 
         self.update_players_syst()
-
+        
 
         self.update_player_ressources()
 

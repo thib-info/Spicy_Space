@@ -2,8 +2,13 @@ import numpy as np
 from copy import deepcopy
 import json
 from random import randint
+from scipy.sparse import csr_matrix
+from scipy.sparse.csgraph import shortest_path
+
 # from copy import deepcopy
 from sp_motor.game_classes.building import building
+
+
 
 from sp_motor.utils import calculate_cost
 
@@ -88,6 +93,8 @@ class System_p(Basic_info):
                 test = test and v >= self.population
 
         return test
+
+    
 
     ############## gestion des buildings ############
     def can_add_building(self):
@@ -189,19 +196,11 @@ class Map(Basic_info):
                     if j in ok_sys and i not in no_sys:
                         graph[i, j] = graph_cost[i, j]
 
-        for z in range(3):
-            temp_graph = np.array([[0 for i in range(self.graph_cost.shape[0])] for i in range(self.graph_cost.shape[1])])
-            for i in range(graph.shape[0]):
-                for j in range(graph.shape[1]):
-                    temp_graph[i, j] = graph[i, j]
-                    for x in range(graph.shape[0]):
-                        for y in range(graph.shape[1]):
-                            temp_graph[i, j] = min(temp_graph[i, j], graph[x, y])
 
-            graph = deepcopy(temp_graph)
+        dist_matrix = shortest_path(csgraph=csr_matrix(self.graph_cost.tolist()), method='FW', directed=False, return_predecessors=False )
+    
 
-
-        return graph
+        return dist_matrix
 
             
 

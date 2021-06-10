@@ -127,6 +127,11 @@ class player :
 
     def ressources_init_player(self, model):
         self.ressources = deepcopy(model)
+        for c in self.ressources.keys():
+            self.ressources[c] = {
+                "qt":self.ressources[c],
+                "qt_t":0,
+            }
 
     
     def update_prod(self, prod):

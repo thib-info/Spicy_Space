@@ -50,8 +50,10 @@ for unit in super_game.units:
     print(unit.owner)
     print("")
 
-print(super_game.can_unit_move(3, 14))
 
+
+super_game.to_next_turn()
+print(super_game.can_unit_move(3, 14))
 
 
 
