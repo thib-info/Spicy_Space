@@ -409,7 +409,8 @@ class game():
 
         output["syst_details"] = sys_details
 
-        # output["tech"] = pl.tech
+        output["player"] = pl.pid
+        output["mj"] = pl.isMj
         
 
         #les interactions ne sont pas gérées
