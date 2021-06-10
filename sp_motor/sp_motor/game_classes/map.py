@@ -107,6 +107,10 @@ class System_p(Basic_info):
         for building in self.buildings:
             building.owner = p_id
 
+    def create_building(self,type):
+        b=building(type,self.id,self.owner_id);
+        self.buildings.append(b);
+
 
     def produce(self, model):
         local_production = {}
