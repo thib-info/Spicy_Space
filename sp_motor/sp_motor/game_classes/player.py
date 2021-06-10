@@ -57,10 +57,7 @@ class player :
             return True
         return False
 
-    def upgrade_tech(self, name):
-        if self.can_upgrade(name):
-            tmp = technology(self.tech, name)
-            tmp.research(self.tech)
+    
 
 
     ####################################################
