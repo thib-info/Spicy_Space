@@ -31,6 +31,10 @@ function reactAjax(index, response){
             if(response===true)
                 redrawTreeTech();
             break;
+        case 4:
+            let jsonRes = JSON.parse(response);
+            getRessources(jsonRes);
+            break;
         case 100:
             justeTest(response);
             break;
