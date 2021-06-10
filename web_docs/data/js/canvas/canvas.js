@@ -140,6 +140,7 @@ var topCanvas, leftCanvas;
 
 
 var X = [], Y = [], links = [], ships = [];
+var starColors = [];
 
 const mouse = {
   x: 0,
@@ -443,8 +444,9 @@ function update() {
   displayTransform.setHome();
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   // if the image loaded show it
-  if (loadedImages == 8 & mapLoaded) {
+  
     displayTransform.setTransform();
+    if (loadedImages == 8 & mapLoaded) {
     drawStars();
   }
 
@@ -478,7 +480,7 @@ function loadMap(){
     }
 
     // determine the color of each star for the entire game (only visual)
-    var starColors = [];
+    
     for (let i = 0 ; i < X.length ; i++)
     starColors.push(Math.floor(Math.random() * 3) + 1);
 
