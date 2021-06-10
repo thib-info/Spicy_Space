@@ -7,7 +7,7 @@ import json
 from copy import deepcopy
 
 REDUC_DMG_TARDI = 20# %
-
+to_peace
 def hit(attacker):
     return random.randint(1, 100) <= attacker.precision
 

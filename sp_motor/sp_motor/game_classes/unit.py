@@ -22,6 +22,8 @@ class unit:
         self.maint_cost = conf["maint_cost"] + (self.tier-1)*conf["scaling"][4]*conf["maint_cost"]
         self.pv = self.pv_max
 
+
+
     def set_param(self, owner, position, base_lvl=1):
         self.owner = owner
         self.position = position

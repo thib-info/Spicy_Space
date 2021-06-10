@@ -20,12 +20,11 @@ class game():
 
         self.players = []
         self.units = []
-        self.buildings = []
         
         
         self.players_interactions=[]
         self.models = {}
-        self.turn =[] #conf["turn"]
+        self.turn = 1 #conf["turn"]
 
         self.sys_in_war = []
         self.last_id = {
@@ -52,6 +51,9 @@ class game():
     ##################### fin des étapes uniques ################
 
 
+    
+
+
     ############ trouver les bons index ######################
     def get_player(self,pid):
         for i in range(len(self.players)):
@@ -59,11 +61,6 @@ class game():
                 return i
         return -1
 
-    def get_buildings(self,id):
-        for i in range(len(self.building)):
-            if self.buildings.id == id:
-                return i
-        return -1
 
     def get_unit(self,id):
         for i in range(len(self.units)):
@@ -195,10 +192,6 @@ class game():
             pl.access_graph = self.map.send_access_graph(ok_indices, no_indices)
 
 
-            
-
-
-
     ################## fin de la partie sur les joueurs ###############
 
 
@@ -211,26 +204,51 @@ class game():
     #vient modifier le timer de paix d'un systeme
     def is_syst_in_war(self, sys_id):
         s_id = self.get_systems(sys_id)
-        ow_id = self.systems[s_id].owner_id
-        sys = deepcopy(self.systems[s_id])
+        ow_id = self.map.systems[s_id].owner_id
+        sys = deepcopy(self.map.systems[s_id])
 
         present_players = []
         for u_id in sys.units_id:
             present_players.append(self.units[self.get_unit(u_id)].owner)
 
         present_players = list(set(present_players))
-        present_players.pop(present_players.index(ow_id))
+        if ow_id in present_players:
+            present_players.pop(present_players.index(ow_id))
+
+        else:
+            sys.owner_id = - 1
+
+        
 
         for p_id in present_players:
             if p_id in self.players[self.get_player(ow_id)].enemies_id:
                 sys.to_peace = 4
         
-        self.systems[s_id] = deepcopy(sys)
+        if sys.to_peace == 0 and sys.owner_id == -1:
+            counter = {}
+            for u_id in sys.units_id:
+                p_id = self.units[self.get_unit(u_id)].owner
+                if p_id in counter.keys():
+                    counter[p_id] += 1
+                else:
+                    counter[p_id] = 1
+
+                new_prop = p_id
+            
+            for c, v in counter.items():
+                if v > counter[new_prop]:
+                    new_prop = c
+
+            sys.owner_id = new_prop
+
+
+
+        self.map.systems[s_id] = deepcopy(sys)
                 
 
     #vient tester si un joueur possède un systeme
     def is_proprio(self, p_id, sys_id):
-        return p_id == self.systems[self.get_systems(sys_id)].owner_id
+        return p_id == self.map.systems[self.get_systems(sys_id)].owner_id
 
     def colonize(self, unit_id):
         u_id = self.get_unit(unit_id)
@@ -245,17 +263,11 @@ class game():
 
 
     ############ gestion des buildings ##############
-    def create_building(self,type,systeme_id,owner_id):
-        #creation du batiment
-        tmp = building(type,systeme_id,owner_id)
+    # def add_building(self, b_type, sys_id):
+        #venir ajouter les batiments, là je ne viens meme pas regarder
+        #soumed by les costs
 
-        #ajout du batiment a la liste des batiments de game
-        self.buildings.append(tmp)
-
-        #ajout du batiment au systeme concerné
-        player = self.get_player(owner_id)
-
-        return tmp.id
+    
     ############# fin de gestion des buildings #########
 
 
@@ -272,8 +284,7 @@ class game():
 
 
             for sys_id in pl_sys_index:
-                local_buildings = [deepcopy(self.buildings[self.get_buildings(id)]) for id in self.systems[sys_id].buildings_id]
-                sys_prod = self.systems[sys_id].produce(self.models["ressources"], local_buildings)
+                sys_prod = self.map.systems[sys_id].produce(self.models["ressources"])
                 player.update_prod(sys_prod)
 
             #fin de la partie sur la production
@@ -281,6 +292,44 @@ class game():
             #partie prend en compte les couts de fonctionnement
 
     ############## fin de la gestion des ressources ####################
+
+
+
+    ######## fonction de mise à jour de la partie, pour passer au tour suivant ##########
+    def to_next_turn(self):
+        for i in self.systems:
+            sys_id = self.get_systems(i)
+            self.map.systems[sys_id].to_peace -= 1
+            bef = self.map.systems[sys_id].to_peace
+            self.is_syst_in_war(sys_id)
+
+            if bef > 0 and self.map.systems[sys_id].to_peace == 0:
+                self.sys_in_war.pop(self.sys_in_war.index(sys_id))
+
+            if self.map.systems[sys_id].to_peace > and sys_id not in self.sys_in_war:
+                self.sys_in_war.append(sys_id)
+
+            self.map.systems[sys_id].
+
+        #ici la fonction pour les combats
+        #ici la fonction pour savoir qui controle le plus un syst
+        #ici la fonction pour update les proprios des syst
+
+        self.update_players_syst()
+
+
+        self.update_player_ressources()
+
+
+        self.turn += 1
+
+
+
+        
+
+
+
+            
 
 
 

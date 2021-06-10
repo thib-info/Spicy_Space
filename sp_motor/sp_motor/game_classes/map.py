@@ -60,8 +60,6 @@ class System_p(Basic_info):
     def export_system_info(self):
         pass
 
-    def add_building(self,id):
-        self.buildings_id.append(id)
 
     def change_owner(self,owner):
         self.owner_id = owner
@@ -80,7 +78,7 @@ class System_p(Basic_info):
 
     ############## gestion des buildings ############
     def can_add_building(self):
-        if len(self.buildings_id) < self.max_building:
+        if len(self.buildings) < self.max_building:
                 return True
         else:
             return False
@@ -90,12 +88,12 @@ class System_p(Basic_info):
             building.owner = p_id
 
 
-    def produce(self, model, building):
+    def produce(self, model):
         local_production = {}
         for c, v in model.items():
             local_production[c] = 0
         
-        for building in buildings:
+        for building in self.buildings:
             if building.state:
                 build_prod = building.produce()
                 local_production[build_prod["ress"]] += self.bonus * build_prod["qt"]
