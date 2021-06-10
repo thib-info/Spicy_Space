@@ -140,25 +140,7 @@ var topCanvas, leftCanvas;
 
 
 var X = [], Y = [], links = [], ships = [];
-data["systems"].forEach((system) => {
-  X.push(system["pos"][0]);
-  Y.push(system["pos"][1]);
-});
-data["links"].forEach((link) => {
-  links.push([link["start"],link["end"]]);
-});
-
-for (let i = 0 ; i < X.length ; i++) {
-  ships[i.toString()] = [];
-}
-for (let i = 0 ; i < units.length ; i++) {
-  ships[i.toString()].push(units[i]);
-}
-
-// determine the color of each star for the entire game (only visual)
 var starColors = [];
-for (let i = 0 ; i < X.length ; i++)
-  starColors.push(Math.floor(Math.random() * 3) + 1);
 
 const mouse = {
   x: 0,
@@ -462,8 +444,9 @@ function update() {
   displayTransform.setHome();
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   // if the image loaded show it
-  if (loadedImages == 8 & mapLoaded) {
+  
     displayTransform.setTransform();
+    if (loadedImages == 8 & mapLoaded) {
     drawStars();
   }
 
@@ -480,12 +463,26 @@ function setData(jsonMap){
 }
 
 function loadMap(){
+
     data["systems"].forEach((system) => {
-    X.push(system["pos"][0]);
-    Y.push(system["pos"][1]);
+        X.push(system["pos"][0]);
+        Y.push(system["pos"][1]);
     });
     data["links"].forEach((link) => {
-    links.push([link["start"],link["end"]]);
+        links.push([link["start"],link["end"]]);
     });
+
+    for (let i = 0 ; i < X.length ; i++) {
+        ships[i.toString()] = [];
+    }
+    for (let i = 0 ; i < units.length ; i++) {
+        ships[i.toString()].push(units[i]);
+    }
+
+    // determine the color of each star for the entire game (only visual)
+    
+    for (let i = 0 ; i < X.length ; i++)
+    starColors.push(Math.floor(Math.random() * 3) + 1);
+
 
 }
