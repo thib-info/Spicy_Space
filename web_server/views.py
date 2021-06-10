@@ -32,7 +32,6 @@ def login_required(f):
     @wraps(f)
     def wrap(*args, **kwargs):
         if 'connected' in session and session['connected']:
-            print(session["user_id"])
             return f(*args, **kwargs)
 
         else:
@@ -45,9 +44,8 @@ def login_required(f):
 
 
 @app.route('/')
-#@login_required
+@login_required
 def main():
-    session['connected'] = False
     return render_template('indexPyt.html', reload = time.time())
 
 
@@ -65,6 +63,7 @@ def connexion():
             add_user(pseudo, passwd, bdd_con)
             session['connected'] = True
             session["user_id"] = get_user_id(pseudo, bdd_con)
+            session["pseudo"] = pseudo
             flash('ok !')
             return redirect(url_for('main'))
 
@@ -80,20 +79,14 @@ def connexion():
         return render_template('connexion_pyt.html')
 
 
-@app.route("/get_img/<name>")
-def give_img(name):
-    path = os.path.join(app.static_folder, find_file(list_files(app.static_folder), name))
-    print(path)
+@app.route('/deco')
+@login_required
+def deco():
+    session['connected'] = False
+    session['user_id'] = - 1
 
-    if path != None:
-        if os.path.isfile(path):
-            return send_file(path, mimetype='image/gif')
-
-    return send_file(app.static_folder + "/images/error.jpg" , mimetype='image/gif')
-
-@app.route('/api/user', methods=['POST'])
-def api_user():
-    return jsonify({})
+    return redirect(url_for('main'))
+    
 
 
 
@@ -110,3 +103,18 @@ def treeTechSend():
         with open("../config/base_tech.json") as f:
             treeTech=json.load(f)
         return jsonify(treeTech)
+
+@app.route("/get_img/<name>")
+def give_img(name):
+    path = os.path.join(app.static_folder, find_file(list_files(app.static_folder), name))
+    print(path)
+
+    if path != None:
+        if os.path.isfile(path):
+            return send_file(path, mimetype='image/gif')
+
+    return send_file(app.static_folder + "/images/error.jpg" , mimetype='image/gif')
+
+@app.route('/api/user', methods=['POST'])
+def api_user():
+    return jsonify({})
