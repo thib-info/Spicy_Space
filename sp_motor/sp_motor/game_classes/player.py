@@ -4,6 +4,7 @@ import numpy as np
 
 from sp_motor.players_interactions.Players_interraction import Players_interraction
 from sp_motor.utils import load_conf_f
+from sp_motor.game_classes.technology import parcours
 
 
 
