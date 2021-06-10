@@ -135,10 +135,12 @@ class player :
 
     
     def update_prod(self, prod):
+        
         for c, v in prod.items():
+
             self.ressources[c] = {
-                "qt":v["qt"] + self.ressources[c]["qt"],
-                "qt_t":v["qt"] + self.ressources[c]["qt_t"],  #production par tour affichée avec un mois de délai
+                "qt":self.ressources[c]["qt"] + prod[c],
+                "qt_t":self.ressources[c]["qt_t"] + prod[c],  #production par tour affichée avec un mois de délai
             }
 
     def can_afford(self, cost):

@@ -139,6 +139,11 @@ class game():
             temp_p = player()
             temp_p.set_param(pid, name, isMj)
             temp_p.ressources_init_player(self.models["ressources"])
+
+
+            print(temp_p.ressources)
+
+
             #ajouter un arbre technologique
             
 
@@ -168,14 +173,18 @@ class game():
 
     def update_players_syst(self):
         neutral_sys = self.map.get_systems_from_owner(-1)
-        for pl in self.players:
+        for pl_indice in range(len(self.players)):
+            pl = deepcopy(self.players[pl_indice])
             sys_allies = []
             for ally in pl.allies_id:
                 sys_allies += self.map.get_systems_from_owner(ally)
 
             pl.sys_allies = list(set(sys_allies))
 
-        
+            # units = [self.units[self.get_unit(id)].position for id in pl.units]        
+            pl.known_systems = list(set(pl.known_systems[:] + [self.units[self.get_unit(id)].position for id in pl.units_id] ))
+
+
             temporary_list = pl.known_systems[:]
             pl.available_systems = []
             for sys in temporary_list:
@@ -188,6 +197,8 @@ class game():
             ok_indices = [self.get_systems(id) for id in pl.available_systems]
             no_indices = [self.get_systems(id) for id in self.sys_in_war]
             pl.access_graph = self.map.send_access_graph(ok_indices, no_indices)
+
+            self.players[pl_indice] = pl
 
 
     ################## fin de la partie sur les joueurs ###############
@@ -212,8 +223,11 @@ class game():
         present_players = list(set(present_players))
         if ow_id in present_players:
             present_players.pop(present_players.index(ow_id))
+            
 
         else:
+            if sys_id in self.players[self.get_player(ow_id)].systems_id:
+                self.players[self.get_player(ow_id)].systems_id.pop(self.players[self.get_player(ow_id)].systems_id.index(sys_id))
             sys.owner_id = - 1
 
         
@@ -223,7 +237,9 @@ class game():
                 sys.to_peace = 4
         
         if sys.to_peace == 0 and sys.owner_id == -1:
+            new_prop = -1
             counter = {}
+            print(sys.units_id)
             for u_id in sys.units_id:
                 p_id = self.units[self.get_unit(u_id)].owner
                 if p_id in counter.keys():
@@ -231,6 +247,8 @@ class game():
                 else:
                     counter[p_id] = 1
 
+
+                print(counter)
                 new_prop = p_id
             
             for c, v in counter.items():
@@ -238,6 +256,7 @@ class game():
                     new_prop = c
 
             sys.owner_id = new_prop
+            self.players[self.get_player(new_prop)].systems_id.append(sys_id)
 
 
 
@@ -316,7 +335,8 @@ class game():
 
     ################## syst de production des ressources #########
     def update_player_ressources(self):
-        for player in self.players:
+        for pl in range(len(self.players)):
+            player = deepcopy(self.players[pl])
 
             pl_sys_index = [self.get_systems(id) for id in player.systems_id]
             #partie ajout des productions pour chaques joueurs
@@ -363,12 +383,13 @@ class game():
         sys_details = {}
         for sys_id in pl.systems_id:
             s_id = self.map.get_system(sys_id)
-            sys_details[s_id] = self.map.systems.export_system_info()
+            sys_details[s_id] = self.map.systems[s_id].export_system_info()
 
         output["syst_details"] = sys_details
         
 
         #les interactions ne sont pas gérées
+        return output
         
 
 
@@ -382,7 +403,7 @@ class game():
     def to_next_turn(self):
         for sys_id in range(len(self.map.systems)):
             # sys_id = self.get_systems(i)
-            self.map.systems[sys_id].to_peace -= 1
+            self.map.systems[sys_id].to_peace = max(self.map.systems[sys_id].to_peace -1, 0)
             bef = self.map.systems[sys_id].to_peace
             self.is_syst_in_war(sys_id)
 

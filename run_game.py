@@ -43,17 +43,24 @@ print(join_game(super_game, 10, 'robert'))
 print(join_game(super_game, 11, 'robert'))
 print(join_game(super_game, 15, 'merde'))
 # print(len(super_game.players), "    ", len(super_game.units))
-for unit in super_game.units:
-    print(unit.id)
-    print(unit.name)
-    print(unit.position)
-    print(unit.owner)
-    print("")
+# for unit in super_game.units:
+#     print(unit.id)
+#     print(unit.name)
+#     print(unit.position)
+#     print(unit.owner)
+#     print("")
 
 
 
 super_game.to_next_turn()
 print(super_game.can_unit_move(3, 14))
+super_game.map.systems[super_game.map.get_system(super_game.units[super_game.get_unit(3)].position)].owner = super_game.units[super_game.get_unit(3)].owner
+print(json.dumps(super_game.to_front(10), indent=2))
+
+
+# for sys in super_game.map.systems:
+#     if sys.owner_id == super_game.units[super_game.get_unit(3)].owner:
+#         print(json.dumps(sys.export_system_info(), indent=2))
 
 
 

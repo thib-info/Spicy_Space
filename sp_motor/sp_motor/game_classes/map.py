@@ -119,7 +119,7 @@ class System_p(Basic_info):
                 local_production[build_prod["ress"]] += self.bonus * build_prod["qt"]
 
 
-        test_croissance = adjust_pop(local_production)
+        test_croissance = self.adjust_pop(local_production)
         if test_croissance:
             local_production["population"] = 1
 
@@ -194,7 +194,7 @@ class Map(Basic_info):
             if i in ok_sys:
                 for j in range(self.graph_cost.shape[1]):
                     if j in ok_sys and i not in no_sys:
-                        graph[i, j] = graph_cost[i, j]
+                        graph[i, j] = self.graph_cost[i, j]
 
 
         dist_matrix = shortest_path(csgraph=csr_matrix(self.graph_cost.tolist()), method='FW', directed=False, return_predecessors=False )
