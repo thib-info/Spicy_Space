@@ -91,21 +91,21 @@ function unitWindowContent(windowIndex,location) {
               <div class="u_div21">
                   <p>Destroyer</p>
                   <button type="button" class="u_button u_but211 font-ouverture">I</button>
-                  <button type="button" class="u_button u_but212 font-ouverture">II</button>
-                  <button type="button" class="u_button u_but213 font-ouverture">III</button>
+                  <button type="button" class="u_button u_but212 font-ouverture">I I</button>
+                  <button type="button" class="u_button u_but213 font-ouverture">I I I</button>
               </div>
   
               <div class="u_div22">
                   <p>Cuirassé</p>
                   <button type="button" class="u_button u_but221 font-ouverture">I</button>
-                  <button type="button" class="u_button u_but222 font-ouverture">II</button>
-                  <button type="button" class="u_button u_but223 font-ouverture">III</button>
+                  <button type="button" class="u_button u_but222 font-ouverture">I I</button>
+                  <button type="button" class="u_button u_but223 font-ouverture">I I I</button>
               </div>
               <div class="u_div23">
                   <p>Tardigrade</p>
                   <button type="button" class="u_button u_but231 font-ouverture">I</button>
-                  <button type="button" class="u_button u_but232 font-ouverture">II</button>
-                  <button type="button" class="u_button u_but233 font-ouverture">III</button>
+                  <button type="button" class="u_button u_but232 font-ouverture">I I</button>
+                  <button type="button" class="u_button u_but233 font-ouverture">I I I</button>
               </div>
           </div>
           <div class="u_div3 font-ouverture">
