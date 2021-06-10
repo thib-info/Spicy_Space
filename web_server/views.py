@@ -11,12 +11,19 @@ from bdd import give_connection
 from bdd import add_user, get_user_id, compare_passw
 
 
+from game_utils import game, create_game, join_game
+
+
 from backend import list_files, find_file
 
 app = Flask(__name__)
 app.static_folder = "../web_docs/data"
 app.template_folder = "../web_docs/templates"
 app.config.from_object('config')
+
+
+sg_a = create_game()
+
 
 
 bdd_con = 'dev'
@@ -26,7 +33,6 @@ def login_required(f):
     @wraps(f)
     def wrap(*args, **kwargs):
         if 'connected' in session and session['connected']:
-            print(session["user_id"])
             return f(*args, **kwargs)
 
         else:
@@ -39,9 +45,10 @@ def login_required(f):
 
 
 @app.route('/')
-#@login_required
+@login_required
 def main():
-    session['connected'] = False
+    if sg_a.get_player(session["user_id"]) == -1:
+        join_game(sg_a, session["user_id"], session["pseudo"])
     return render_template('indexPyt.html', reload = time.time())
 
 
@@ -59,12 +66,14 @@ def connexion():
             add_user(pseudo, passwd, bdd_con)
             session['connected'] = True
             session["user_id"] = get_user_id(pseudo, bdd_con)
+            session["pseudo"] = pseudo
             flash('ok !')
             return redirect(url_for('main'))
 
         if compare_passw(pseudo, passwd, bdd_con):
             session['connected'] = True
             session["user_id"] = get_user_id(pseudo, bdd_con)
+            session["pseudo"] = pseudo
             flash('connexion !')
             return redirect(url_for('main'))
 
@@ -72,6 +81,39 @@ def connexion():
         return render_template('connexion_pyt.html')
     else:
         return render_template('connexion_pyt.html')
+
+
+@app.route('/deco')
+@login_required
+def deco():
+    session['connected'] = False
+    session['user_id'] = - 1
+
+    return redirect(url_for('main'))
+    
+
+
+
+@app.route("/map", methods=[ "POST"])
+def mapSend():
+    return jsonify(sg_a.map.export_info())
+
+
+@app.route("/player_info", methods=["GET", "POST"])
+def send_p_info():
+    return jsonify(sg_a.to_front(session["user_id"]))
+
+@app.route("/treeTech", methods=["POST"])
+def treeTechSend():
+    idTech = request.form.get('idTech')
+    if(idTech != None):
+        return True
+    else:
+        with open("../config/base_tech.json") as f:
+            treeTech=json.load(f)
+        return jsonify(treeTech)
+
+
 
 
 @app.route("/get_img/<name>")
@@ -87,41 +129,4 @@ def give_img(name):
 
 @app.route('/api/user', methods=['POST'])
 def api_user():
-    info = {
-        "username":"test1",
-        "games":{
-            "test1":{
-                "activated":True,
-                "last_played":'2020-12-01',
-            },
-            "test2":{
-                "activated":False,
-                "last_played":'2020-12-01',
-            },
-        },
-        "info_nulle":["naze", 1]
-    }
-
-    return jsonify(info)
-
-@app.route('/api/rendu', methods=['POST'])
-def rendu():
-    a = int(request.form.get('a'))
-    
-    return jsonify({'resp':a})
-
-@app.route("/map", methods=["POST"])
-def mapSend():
-    with open("../game_data/map.json") as f:
-        map=json.load(f)
-    return jsonify(map)
-
-@app.route("/treeTech", methods=["POST"])
-def treeTechSend():
-    idTech = request.form.get('idTech')
-    if(idTech != None):
-        return True
-    else:
-        with open("../config/base_tech.json") as f:
-            treeTech=json.load(f)
-        return jsonify(treeTech)
+    return jsonify({})

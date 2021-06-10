@@ -19,7 +19,7 @@ def calculate_cost(graph):
 
 
 def load_conf_f(conf_file):
-    with open(f"config/{conf_file}.json") as f:
+    with open(f"../config/{conf_file}.json") as f:
         config = json.load(f)
 
     return config
