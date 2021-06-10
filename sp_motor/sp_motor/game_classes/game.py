@@ -1,6 +1,6 @@
 import json
 import pickle
-from random import choice
+from random import choice, randint
 from copy import deepcopy
 
 from sp_motor.game_classes.player import player 
@@ -121,8 +121,6 @@ class game():
 
         return pm_restants
 
-        
-
 
     def move_unit(self, u_id, dest_id):
         new_pm = self.can_unit_move(u_id, dest_id)
@@ -136,6 +134,66 @@ class game():
 
             new_pos = self.map.get_system(dest_id)
             self.map.systems[new_pos].units.append(u_id)
+
+
+    def can_battle(self, u1_id, u2_id):
+        u1 = deepcopy(self.units[self.get_unit(u1_id)])
+        u2 = deepcopy(self.units[self.get_unit(u2_id)])
+
+        return u1.position == u2.position and u1.owner != u2.owner
+        
+
+    def battle_unit(self, u1_id, u2_id):
+        
+        u1 = deepcopy(self.units[self.get_unit(u1_id)])
+        u2 = deepcopy(self.units[self.get_unit(u2_id)])
+
+
+        if u1.cible == u2.id and u2.cible == u1.id:
+            if u1.precision >= randint(1, 100):
+                u2.take_damage(u1.pa)
+            
+            if u2.precision >= randint (1, 100):
+                u1.take_damage(u1.pa)
+
+            u1.cible = -1
+            u2.cible = -1
+
+        elif u1.cible == u2.id:
+            if u1.precision >= randint(1, 100):
+                u2.take_damage(u1.pa)
+
+            u1.cible = -1
+
+        elif u2.cible == u1.id:
+            if u2.precision >= randint (1, 100):
+                u1.take_damage(u1.pa)
+
+            u2.cible = -1
+
+        self.units[u1_id] = u1
+        self.units[u2_id] = u2
+
+        pl1 = deepcopy(self.players[self.get_player(u1.owner)])
+        pl2 = deepcopy(self.players[self.get_player(u2.owner)])
+
+        if pl1.pid in pl2.allies_id:
+            pl2.allies_id.pop(pl2.allies_id.index(pl1.id))
+
+        if pl1.pid not in pl2.enemies_id:
+            pl2.enemies_id.append(pl1.id)
+
+        if pl2.pid in pl1.allies_id:
+            pl1.allies_id.pop(pl1.allies_id.index(pl2.id))
+
+        if pl2.pid not in pl1.enemies_id:
+            pl1.enemies_id.append(pl2.id)
+
+        self.players[self.get_player(u1.owner)] = pl1
+        self.players[self.get_player(u2.owner)] = pl2
+
+            
+        ### mettre les joueurs en guerre, rompre alliance
 
    ############## fin de gestion des unités ###################
 
@@ -210,15 +268,11 @@ class game():
 
             self.players[pl_indice] = pl
 
-
     ################## fin de la partie sur les joueurs ###############
 
 
 
-    
 
-    
-    
     ######### en rapport avec les systemes ################
     #vient modifier le timer de paix d'un systeme
     def is_syst_in_war(self, sys_id):
@@ -234,14 +288,12 @@ class game():
         if ow_id in present_players:
             present_players.pop(present_players.index(ow_id))
             
-
         else:
             if sys_id in self.players[self.get_player(ow_id)].systems_id:
                 self.players[self.get_player(ow_id)].systems_id.pop(self.players[self.get_player(ow_id)].systems_id.index(sys_id))
             sys.owner_id = - 1
 
         
-
         for p_id in present_players:
             if p_id in self.players[self.get_player(ow_id)].enemies_id:
                 sys.to_peace = 4
@@ -249,7 +301,7 @@ class game():
         if sys.to_peace == 0 and sys.owner_id == -1:
             new_prop = -1
             counter = {}
-            print(sys.units_id)
+
             for u_id in sys.units_id:
                 p_id = self.units[self.get_unit(u_id)].owner
                 if p_id in counter.keys():
@@ -257,10 +309,7 @@ class game():
                 else:
                     counter[p_id] = 1
 
-
-                print(counter)
                 new_prop = p_id
-            
             for c, v in counter.items():
                 if v > counter[new_prop]:
                     new_prop = c
@@ -276,14 +325,6 @@ class game():
     #vient tester si un joueur possède un systeme
     def is_proprio(self, p_id, sys_id):
         return p_id == self.map.systems[self.get_systems(sys_id)].owner_id
-
-    def colonize(self, unit_id):
-        u_id = self.get_unit(unit_id)
-        s_id = self.get_systems(self.units[u_id].position)
-        if self.units[unit_id].name == "colon":
-            if self.map.systems[s_id].owner_id == -1:
-                self.map.systems[s_id].change_owner(self.units[u_id].owner)
-
     ############ fin des systemes ###################
 
 
@@ -299,46 +340,6 @@ class game():
 
 
 
-
- ################## PLAYERS INTERRACTIONS ##################
-    def create_interraction(self,pid1,pid2,type):
-        interraction=Players_interraction(pid1,pid2,type) #créer l'interraction
-        self.players_interactions.append(interraction) #l'ajoute à la liste des interractions de la partie
-        pid1.interraction_created_id.append(interraction.id)#ajoute l'id de l'interraction à la liste des interractions créer du joueur
-
-    def send_interraction(self,Player_interraction_id):
-        index=self.get_players_interactions(self,Player_interraction_id)#recupere l'index correspondant à l'id de l'interraction
-        interraction=self.players_interactions[index] #recuperation de l'interraction
-        interraction.is_sended()
-        interraction.player2.interraction_request.append(Player_interraction_id) #ajoute l'id de l'interraction à la liste des interractions request du joueur destinataire
-
-    def accept_interraction(self,Player_interraction_id):
-        index=self.get_players_interactions(self,Player_interraction_id)#recupere l'index correspondant à l'id de l'interraction
-        interraction=self.players_interactions[index] #recuperation de l'interraction
-        interraction.is_accepted()
-        interraction.execute() #execute l'interraction (A VERIFIER FONCTIONNEMENT)
-        interraction.player2.interraction_request.remove(interraction) #supprimer l'interraction de la liste des request du joueur destinataire
-
-    def decline_interraction(self,Player_interraction_id):
-        index=self.get_players_interactions(self,Player_interraction_id)#recupere l'index correspondant à l'id de l'interraction
-        interraction=self.players_interactions[index] #recuperation de l'interraction
-        interraction.is_declined()
-        interraction.player2.interraction_request.remove(interraction) #supprimer l'interraction de la liste des request du joueur destinataire
-
-    def read_interraction_request(self,pid):
-        index=self.get_player(pid)
-        player=self.players[index] #recuperation du joueur concerner
-        print("\n")
-        for i in player.interraction_request_id:
-            interraction=self.players_interactions[i] #recuperation de l'interraction
-            print("Requet de type " + str(interraction.type) +", du joueur "+str(interraction.player1))
-        print("\n")
-
-    def send_interraction_created(self,pid): #envoi toutes les interractions créer
-        index=self.get_player(pid)
-        player=self.players[index] #recuperation du joueur concerner
-        for i in player.interraction_created:
-            player.send_interraction(i)
 
 
 
@@ -418,10 +419,6 @@ class game():
 
 
 
-
-
-
-
     ######## fonction de mise à jour de la partie, pour passer au tour suivant ##########
     def to_next_turn(self):
         for sys_id in range(len(self.map.systems)):
@@ -436,11 +433,25 @@ class game():
             if self.map.systems[sys_id].to_peace > 0 and sys_id not in self.sys_in_war:
                 self.sys_in_war.append(sys_id)
 
+
+        #on applique les combats
+        for unit_id in range(len(self.units)):
+            if self.units[self.get_unit(unit_id)].cible != -1:
+                battle_unit(unit_id, self.units[self.get_unit(unit_id)].cible)
+
+        #on nettoire les cadavres
+        new_units = []
+        for i in range(len(self.units)):
+            if self.units[i].pv > 0:
+                new_units.append(deepcopy(self.units[i]))
+
+        self.units = new_units
             
 
-        #ici la fonction pour les combats
+            
+
+        
         #ici la fonction pour savoir qui controle le plus un syst
-        #ici la fonction pour update les proprios des syst
 
         self.update_players_syst()
         
