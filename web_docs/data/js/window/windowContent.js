@@ -24,27 +24,52 @@ function statsWindowContent() {
 
 function buildingWindowContent(windowIndex,location) {
   var windowID = `${windowIndex}-${location}`;
-  return `
+  let content = `
         <div class="b_1">
             <div class="b_11">
                 <canvas id="c${windowID}" class="systemPreview" width="250" height="250">
             </div>
             <div class="b_12">
-                <p class="b_sysname">Nom du système</p>
-                <p class="b_ressource">Population : 10</p>
-                <p class="b_ressource">Ressource 1 : 50</p>
-                <p class="b_ressource">Ressource 2 : 60</p>
-                <p class="b_ressource">Ressource 3 : 60</p>
+                <p id="sys-name" class="b_sysname font-paragraphe">Info utiles</p>
+                <p id="population" class="b_ressource font-ouverture">Population : 10</p>
+                <p id="r1" class="b_ressource font-ouverture">Ressource 1 : 50</p>
+                <p id="r2" class="b_ressource font-ouverture">Ressource 2 : 60</p>
+                <p id="r3" class="b_ressource font-ouverture">Ressource 3 : 60</p>
             </div>
         </div>
         <div class="b_2">
-            <div class="b_21">
-                <button type="button" class="b_button">Bâtiment 1</button>
-                <button type="button" class="b_button">Bâtiment 2</button>
-                <button type="button" class="b_button">Bâtiment 3</button>
-                <button type="button" class="b_button">Bâtiment 4</button>
-                <button type="button" class="b_button">Bâtiment 5</button>
-                <button type="button" class="b_button">Bâtiment 6</button>
+            <div class="b_21">`;
+  let defaufltbutton1 = `
+                <select onclick="replace_image(this.id`;
+
+  let defaufltbutton2 = `)"  id= "b_selector`;
+
+  let defaufltbutton3=                    ` " class="b_select">
+                  <option value="">Construire un batiment</option>
+                  <option value="ferme">Ferme</option>
+                  <option value="habitations">Habitations</option>
+                  <option value="mine">Mine</option>
+                  <option value="rafinerie">Rafinerie</option>
+                  <option value="usine">Usine</option>
+                  <option value="laboratoire">Laboratoire</option>
+                  <option value="spatioport">Spatioport</option>
+                 </select>
+  `;
+
+  let cntr = 0;
+  /*
+  for( let i = 0; i < buildings.length; i++){
+    if (buildings(id_system) = 1 ){
+      cntr++;
+    }
+  } */
+
+  for(cntr;cntr < 6; cntr++){
+    content=content + defaufltbutton1 + defaufltbutton2 + cntr + defaufltbutton3;
+  }
+
+
+  return content + `
             </div>
         </div>
   `;
@@ -93,4 +118,50 @@ function unitWindowContent(windowIndex,location) {
                 <button type="button" class="u_button u_but36">Spatioport 6</button>
         </div>
   `;
+}
+
+function  replace_image(selector_id){
+  let torepalce=document.getElementById(selector_id);
+  if(torepalce != null){
+    let id_image=torepalce.value;
+    switch (id_image) {
+      case "ferme":
+        torepalce.outerHTML = `<img class="b_image"
+       src="get_img/ferme.png"
+       >`
+        break;
+      case "habitations":
+        torepalce.outerHTML = `<img class="b_image"
+       src="get_img/city.png"
+       >`
+        break;
+      case "mine":
+        torepalce.outerHTML = `<img class="b_image"
+       src="get_img/mine.png"
+       >`
+        break;
+      case "rafinerie":
+        torepalce.outerHTML = `<img class="b_image"
+       src="get_img/fondrie.png"
+       >`
+        break;
+      case "usine":
+        torepalce.outerHTML = `<img class="b_image"
+       src="get_img/usine.png"
+       >`
+        break;
+      case "laboratoire":
+        torepalce.outerHTML = `<img class="b_image"
+       src="get_img/labo.png"
+       >`
+        break;
+      case "spatioport":
+        torepalce.outerHTML = `<img class="b_image"
+       src="get_img/Spatioport.png"
+       >`
+        break;
+      default:
+        break;
+    }
+  }else(console.log("nothing selected"));
 }
