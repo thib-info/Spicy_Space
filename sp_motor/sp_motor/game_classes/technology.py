@@ -1,3 +1,5 @@
+from sp_motor.utils import load_conf_f
+
 def parcours(conf, bat):
     for c, v in conf.items():
         if c == bat:
@@ -79,3 +81,13 @@ class technology:
         if name in self.upgrade_possible():
             return True
         return False
+
+    def to_front(self):
+        dic = {
+            "name": self.name,
+            "cost": self.cost,
+            "researched": self.unlocked,
+            "children": self.upgrade
+        }
+        return dic
+

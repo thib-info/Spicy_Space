@@ -4,7 +4,8 @@ from random import choice
 from copy import deepcopy
 
 from sp_motor.game_classes.player import player 
-from sp_motor.game_classes.unit import unit 
+from sp_motor.game_classes.unit import unit
+from sp_motor.game_classes.technology import technology
 from sp_motor.game_classes.building import building
 from sp_motor.utils import load_conf_f
 from sp_motor.players_interactions.Players_interraction import Players_interraction
@@ -37,6 +38,13 @@ class game():
         conf_unit = load_conf_f("config_unit")
         for key,model in conf_unit.items():
             self.models[key] = unit(model, -1, -1)
+
+        conf_tech = load_conf_f("base_tech")
+        self.models["tech"] = {}
+        for c in conf_tech.keys():
+            tech = technology(conf_tech, c)
+            self.models["tech"][c] = tech
+
 
 
         conf_ress = load_conf_f("ressources")
@@ -139,6 +147,8 @@ class game():
             temp_p = player()
             temp_p.set_param(pid, name, isMj)
             temp_p.ressources_init_player(self.models["ressources"])
+            for c, v in self.models["tech"].items():
+                temp_p.import_tree(v, c)
 
 
             print(temp_p.ressources)
@@ -384,6 +394,10 @@ class game():
         for sys_id in pl.systems_id:
             s_id = self.map.get_system(sys_id)
             sys_details[s_id] = self.map.systems[s_id].export_system_info()
+
+        output["tech"] = {}
+        for c, v in pl.tech.items():
+            output["tech"][c] = v.tofront()
 
         output["syst_details"] = sys_details
         

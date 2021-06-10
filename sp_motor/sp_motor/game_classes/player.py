@@ -16,6 +16,7 @@ class player :
         self.units_id = []
         self.known_systems = []
         self.ressources = {}
+        self.tech = None
 
         self.allies_id = []
         self.enemies_id = []
@@ -38,6 +39,14 @@ class player :
     ####################################################
 
 
+    ################## fonction pour tech #########
+    def import_tree(self, model, key):
+        self.tech[key] = deepcopy(model)
+
+
+
+
+    ####################################################
 
 
     ##################### FONCTION DES INTERACTIONS ######
