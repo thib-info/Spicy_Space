@@ -142,6 +142,7 @@ class game():
             temp_p = player()
             temp_p.set_param(pid, name, isMj)
             temp_p.ressources_init_player(self.models["ressources"])
+            temp_p.import_tree(self.models["tech"])
 
 
             print(temp_p.ressources)
