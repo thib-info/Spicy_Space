@@ -273,6 +273,49 @@ class game():
 
 
 
+ ################## PLAYERS INTERRACTIONS ##################
+    def create_interraction(self,pid1,pid2,type):
+        interraction=Players_interraction(pid1,pid2,type) #créer l'interraction
+        self.players_interactions.append(interraction) #l'ajoute à la liste des interractions de la partie
+        pid1.interraction_created_id.append(interraction.id)#ajoute l'id de l'interraction à la liste des interractions créer du joueur
+
+    def send_interraction(self,Player_interraction_id):
+        index=self.get_players_interactions(self,Player_interraction_id)#recupere l'index correspondant à l'id de l'interraction
+        interraction=self.players_interactions[index] #recuperation de l'interraction
+        interraction.is_sended()
+        interraction.player2.interraction_request.append(Player_interraction_id) #ajoute l'id de l'interraction à la liste des interractions request du joueur destinataire
+
+    def accept_interraction(self,Player_interraction_id):
+        index=self.get_players_interactions(self,Player_interraction_id)#recupere l'index correspondant à l'id de l'interraction
+        interraction=self.players_interactions[index] #recuperation de l'interraction
+        interraction.is_accepted()
+        interraction.execute() #execute l'interraction (A VERIFIER FONCTIONNEMENT)
+        interraction.player2.interraction_request.remove(interraction) #supprimer l'interraction de la liste des request du joueur destinataire
+
+    def decline_interraction(self,Player_interraction_id):
+        index=self.get_players_interactions(self,Player_interraction_id)#recupere l'index correspondant à l'id de l'interraction
+        interraction=self.players_interactions[index] #recuperation de l'interraction
+        interraction.is_declined()
+        interraction.player2.interraction_request.remove(interraction) #supprimer l'interraction de la liste des request du joueur destinataire
+
+    def read_interraction_request(self,pid):
+        index=self.get_player(pid)
+        player=self.players[index] #recuperation du joueur concerner
+        print("\n")
+        for i in player.interraction_request_id:
+            interraction=self.players_interactions[i] #recuperation de l'interraction
+            print("Requet de type " + str(interraction.type) +", du joueur "+str(interraction.player1))
+        print("\n")
+
+    def send_interraction_created(self,pid): #envoi toutes les interractions créer
+        index=self.get_player(pid)
+        player=self.players[index] #recuperation du joueur concerner
+        for i in player.interraction_created:
+            player.send_interraction(i)
+
+
+
+
     ################## syst de production des ressources #########
     def update_player_ressources(self):
         for player in self.players:
@@ -292,6 +335,48 @@ class game():
             #partie prend en compte les couts de fonctionnement
 
     ############## fin de la gestion des ressources ####################
+
+
+
+    ####### fonctions d'export pour un joueur #######################
+    def to_front(self, p_id):
+        output = {}
+        u_id = self.get_player(p_id)
+
+        pl = deepcopy(self.players[u_id])
+        output["ressources"] = deepcopy(self.players[u_id].ressources)
+
+        #traitement des alliés et ennemis
+        output["allies_id"] = pl.allies_id[:]
+        output["enemies_id"] = pl.enemies_id[:]
+
+        #les systemes qu'il peut voir, pour le fog
+        output["visible_systs"] = [self.map.get_system(id) for id in pl.known_systems]
+
+
+        
+        #attraper les unités presentes dans ces systemes
+        output["units"] = []
+        for s_id in output["visible_systs"]:
+            concerned_units = [self.get_unit(id) for id in self.map.systems[s_id].units_id]
+            output["units"] += [self.units[id].to_front() for id in concerned_units]
+
+        #le detail de ses systemes
+        sys_details = {}
+        for sys_id in pl.systems_id:
+            s_id = self.map.get_system(sys_id)
+            sys_details[s_id] = self.map.systems.export_system_info()
+
+        output["syst_details"] = sys_details
+        
+
+        #les interactions ne sont pas gérées
+        
+
+
+
+
+
 
 
 

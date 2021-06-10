@@ -58,7 +58,20 @@ class System_p(Basic_info):
         return self.sector_id
 
     def export_system_info(self):
-        pass
+        output = {
+            "id":self.id,
+            "owner":self.owner_id,
+            "to_peace":self.to_peace,
+            "nb_max_build":self.max_building,
+            "pop":self.population,
+            "bonus":self.bonus,
+        }
+
+        building_info = [b.to_front() for b in self.buildings]
+        output["buildings"] = building_info
+
+        return output
+
 
 
     def change_owner(self,owner):
