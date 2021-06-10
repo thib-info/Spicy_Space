@@ -36,6 +36,8 @@ statistiques.png    ->icone statistiques
 
 technologie.png	    ->icone arbre de techologie
 
+bouttonMenu.png     ->icon du gros boutton menu
+
 ########################## BATIMENTS #####################################################
 ##########################################################################################
 
