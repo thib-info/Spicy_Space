@@ -3,9 +3,9 @@
 ##########################################################################################
 
 
-Population.png      -> icone population
+logo.png            ->logo du milieux de la barre
 
-énergie.png         -> icone électricitée
+Population.png      -> icone population
 
 Nourriture.png      -> icone nourriture
 
@@ -35,6 +35,8 @@ diplomatie.png      ->icone diplomatie
 statistiques.png    ->icone statistiques
 
 technologie.png	    ->icone arbre de techologie
+
+bouttonMenu.png     ->icon du gros boutton menu
 
 ########################## BATIMENTS #####################################################
 ##########################################################################################

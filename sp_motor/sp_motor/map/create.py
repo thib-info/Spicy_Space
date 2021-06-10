@@ -61,7 +61,6 @@ def prune_graph(delaunay, m_tree, min_add=0, max_add=1):
     possible_add = delaunay - m_tree
     for i in range(n):
         friends = list(possible_add[i])
-        print(friends)
         max_f = randint(min_add, max_add)
 
         for step in range(max_f):
@@ -144,9 +143,6 @@ def print_spawn(spawn):
     points = {"x":[], "y":[]}
     lines = []
 
-    
-
-
     for syst in spawn.children:
         points["x"].append(syst.pos[0])
         points["y"].append(syst.pos[1])
@@ -177,9 +173,9 @@ def create_map(radius=250, nb_zonnes=(10, 14), zonnes_r=(30, 40), systems=(10, 1
         map.make_spawn(zonnes_r[0], zonnes_r[1])
     
     #on calcule le graph reliant les amas
-    adja_max = get_delaunay(map)
-    r = minimal_tree(map)
-    amas_graph = prune_graph(adja_max, r, 1, 2)
+    amas_graph = get_delaunay(map)
+    # r = minimal_tree(map)
+    # amas_graph = prune_graph(adja_max, r, 1, 2)
 
     #pr chaque amas, on vient créer ses systèmes, et on en fait le graphe
     for i in range(len(map.children)):
@@ -236,9 +232,9 @@ def create_map(radius=250, nb_zonnes=(10, 14), zonnes_r=(30, 40), systems=(10, 1
         sys_indices = []
         for ch in child.children:
             o_systems.append(System_p("syst_nul", ch.pos))
-            o_systems[-1].set_sector(len(o_sectors) - 1)
+            o_systems[-1].set_sector(o_sectors[-1].id)
 
-            sys_indices.append(len(o_systems) - 1)
+            sys_indices.append(o_systems[-1].id)
 
         o_sectors[-1].set_systems_indices(sys_indices)
 
@@ -246,7 +242,7 @@ def create_map(radius=250, nb_zonnes=(10, 14), zonnes_r=(30, 40), systems=(10, 1
     o_map = Map("map", map.pos)
     o_map.import_sectors(o_sectors)
     o_map.import_systems(o_systems)
-    o_map.import_graph_cost(map.graph)
+    o_map.import_graph_cost(deepcopy(map.graph))
 
 
     link_graph = deepcopy(map.graph)
@@ -285,43 +281,5 @@ def print_graph(map):
 
 
 
-
-
-
-# print(map.graph_cost)
-# print(map.graph_link)
-# for sector in map.sectors:
-#     print(sector.name)
-#     for indice in sector.members:
-#         print(indice, "  :  ", map.systems[indice].pos)
-
-
-
-# import json
-
-
-# map = create_map(radius=300,nb_zonnes=(60, 90), zonnes_r=(60, 80), systems=(8, 15), inner_conf=(8, 15) )
-# print_graph(map)
-# dico = map.export_info()
-
-
-
-
-
-
-# with open("../../../map.json", 'w') as f:
-#     json.dump(dico, f)
-
-
-
-
-
-
-
-
-
-# print(graph)
-# with open("../../../graph.json", 'w') as f:
-#     json.dump(graph, f)
 
 
