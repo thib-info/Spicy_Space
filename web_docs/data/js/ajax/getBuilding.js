@@ -6,9 +6,9 @@ function callBuilding(){
 }
 
 function getBuilding(jsonRes){
-    let building = jsonRes['syst_details'];
+    let buildings = jsonRes['syst_details'];
     console.log(ressources);
-    for (let building in building){
-        setRessource(ressources[ressource], ressource);
+    for (let building in buildings){
+
     }
 }
