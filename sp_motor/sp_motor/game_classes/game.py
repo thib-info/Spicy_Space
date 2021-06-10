@@ -38,6 +38,9 @@ class game():
         for key,model in conf_unit.items():
             self.models[key] = unit(model, -1, -1)
 
+        conf_tech = load_conf_f("base_tech")
+        self.models["tech"] = conf_tech
+
 
         conf_ress = load_conf_f("ressources")
         self.models["ressources"] = {}
