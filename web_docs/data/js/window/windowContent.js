@@ -30,7 +30,7 @@ function buildingWindowContent(windowIndex,location) {
                 <canvas id="c${windowID}" class="systemPreview" width="250" height="250">
             </div>
             <div class="b_12">
-                <p id="sys-name" class="b_sysname font-paragraphe">Info utiles</p>
+                <p id="sys-name" class="b_sysname font-paragraphe">Info système</p>
                 <p id="population" class="b_ressource font-ouverture">Population : 10</p>
                 <p id="r1" class="b_ressource font-ouverture">Ressource 1 : 50</p>
                 <p id="r2" class="b_ressource font-ouverture">Ressource 2 : 60</p>
@@ -44,7 +44,7 @@ function buildingWindowContent(windowIndex,location) {
 
   let defaufltbutton2 = `)"  id= "b_selector`;
 
-  let defaufltbutton3=                    ` " class="b_select">
+  let defaufltbutton3=                    ` " class="b_select font-ouverture">
                   <option value="">Construire un batiment</option>
                   <option value="ferme">Ferme   \tcout: 100 or, 200 minerai</option>
                   <option value="habitations">Habitations   \tcout: 100 minerai</option>
@@ -77,46 +77,46 @@ function buildingWindowContent(windowIndex,location) {
 
 function unitWindowContent(windowIndex,location) {
   return `
-        <div class="u_div1">
-            <div class="u_div11">
-                <p>Exploration</p>
-                <button type="button" class="u_button u_but11">Vaisseau 11</button>
-            </div>
-            <div class="u_div12">
-                <p>Colonisation</p>
-                <button type="button" class="u_button u_but12">Vaisseau 12</button>
-            </div>
-        </div>
-        <div class="u_div2">
-            <div class="u_div21">
-                <p>Destroyer</p>
-                <button type="button" class="u_button u_but211">I</button>
-                <button type="button" class="u_button u_but212">II</button>
-                <button type="button" class="u_button u_but213">III</button>
-            </div>
-
-            <div class="u_div22">
-                <p>Cuirassé</p>
-                <button type="button" class="u_button u_but221">I</button>
-                <button type="button" class="u_button u_but222">II</button>
-                <button type="button" class="u_button u_but223">III</button>
-            </div>
-            <div class="u_div23">
-                <p>Tardigrade</p>
-                <button type="button" class="u_button u_but231">I</button>
-                <button type="button" class="u_button u_but232">II</button>
-                <button type="button" class="u_button u_but233">III</button>
-            </div>
-        </div>
-        <div class="u_div3">
-            <p>Spatioports</p>
-                <button type="button" class="u_button u_but31">Spatioport 1</button>
-                <button type="button" class="u_button u_but32">Spatioport 2</button>
-                <button type="button" class="u_button u_but33">Spatioport 3</button>
-                <button type="button" class="u_button u_but34">Spatioport 4</button>
-                <button type="button" class="u_button u_but35">Spatioport 5</button>
-                <button type="button" class="u_button u_but36">Spatioport 6</button>
-        </div>
+          <div class="u_div1 font-ouverture">
+              <div class="u_div11">
+                  <p>Exploration</p>
+                  <button type="button" class="u_button u_but11"></button>
+              </div>
+              <div class="u_div12">
+                  <p>Colonisation</p>
+                  <button type="button" class="u_button u_but12"></button>
+              </div>
+          </div>
+          <div class="u_div2 font-ouverture">
+              <div class="u_div21">
+                  <p>Destroyer</p>
+                  <button type="button" class="u_button u_but211 font-ouverture">I</button>
+                  <button type="button" class="u_button u_but212 font-ouverture">II</button>
+                  <button type="button" class="u_button u_but213 font-ouverture">III</button>
+              </div>
+  
+              <div class="u_div22">
+                  <p>Cuirassé</p>
+                  <button type="button" class="u_button u_but221 font-ouverture">I</button>
+                  <button type="button" class="u_button u_but222 font-ouverture">II</button>
+                  <button type="button" class="u_button u_but223 font-ouverture">III</button>
+              </div>
+              <div class="u_div23">
+                  <p>Tardigrade</p>
+                  <button type="button" class="u_button u_but231 font-ouverture">I</button>
+                  <button type="button" class="u_button u_but232 font-ouverture">II</button>
+                  <button type="button" class="u_button u_but233 font-ouverture">III</button>
+              </div>
+          </div>
+          <div class="u_div3 font-ouverture">
+              <p>Spatioports</p>
+                  <button type="button" class="u_button u_but31 font-ouverture">Spatioport 1</button>
+                  <button type="button" class="u_button u_but32 font-ouverture">Spatioport 2</button>
+                  <button type="button" class="u_button u_but33 font-ouverture">Spatioport 3</button>
+                  <button type="button" class="u_button u_but34 font-ouverture">Spatioport 4</button>
+                  <button type="button" class="u_button u_but35 font-ouverture">Spatioport 5</button>
+                  <button type="button" class="u_button u_but36 font-ouverture">Spatioport 6</button>
+          </div>
   `;
 }
 
