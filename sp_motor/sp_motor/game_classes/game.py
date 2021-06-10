@@ -389,6 +389,8 @@ class game():
             s_id = self.map.get_system(sys_id)
             sys_details[s_id] = self.map.systems[s_id].export_system_info()
 
+        output["tech"] = pl.tech
+
         output["syst_details"] = sys_details
         
 
