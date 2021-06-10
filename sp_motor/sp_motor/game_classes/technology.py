@@ -1,3 +1,5 @@
+from sp_motor.utils import load_conf_f
+
 def parcours(conf, bat):
     for c, v in conf.items():
         if c == bat:
@@ -79,3 +81,8 @@ class technology:
         if name in self.upgrade_possible():
             return True
         return False
+
+def up(name):
+    conf = load_conf_f("base_tech")
+    tech = technology(conf, name)
+    return tech.upgradable()
