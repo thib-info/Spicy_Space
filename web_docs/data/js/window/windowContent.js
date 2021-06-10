@@ -30,11 +30,11 @@ function buildingWindowContent(windowIndex,location) {
                 <canvas id="c${windowID}" class="systemPreview" width="250" height="250">
             </div>
             <div class="b_12">
-                <p class="b_sysname">Nom du système</p>
-                <p class="b_ressource">Population : 10</p>
-                <p class="b_ressource">Ressource 1 : 50</p>
-                <p class="b_ressource">Ressource 2 : 60</p>
-                <p class="b_ressource">Ressource 3 : 60</p>
+                <p id="sys-name" class="b_sysname font-paragraphe">Info utiles</p>
+                <p id="population" class="b_ressource font-ouverture">Population : 10</p>
+                <p id="r1" class="b_ressource font-ouverture">Ressource 1 : 50</p>
+                <p id="r2" class="b_ressource font-ouverture">Ressource 2 : 60</p>
+                <p id="r3" class="b_ressource font-ouverture">Ressource 3 : 60</p>
             </div>
         </div>
         <div class="b_2">
