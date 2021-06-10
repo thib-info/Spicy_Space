@@ -1,19 +1,18 @@
-.tf-tree{
-    font-size:16px;overflow:auto;
-    position: absolute;
-    top: 3%;
-    left: 40%;
-}
-
 .tf-nc{
-    width: 90px;
-    height: 90px;
+    width: 105px;
+    height: 105px;
     border-radius: 50%;
-    color: #3B90FF;
     display: flex !important;
     align-items: center;
     justify-content: center;
     text-align: center;
+    font-variant: small-caps slashed-zero;
+    font-size: 15px;
+}
+
+.tf-tree{
+    font-size:16px;overflow:auto;
+    margin-top: 10px;
 }
 
 .tf-tree *{
@@ -56,11 +55,11 @@
 .tf-tree li li:last-child:before{
     left:auto;
     max-width:calc(50% + .0625em);
-    right:calc(50% - .03125em)
+    right:calc(50% - .03125em);
 }
 
 .tf-tree li li:only-child:before{
-    display:none
+    display:none;
 }
 
 .tf-tree li li:only-child>.tf-nc:before,.tf-tree li li:only-child>.tf-node-content:before{

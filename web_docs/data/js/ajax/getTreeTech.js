@@ -38,9 +38,9 @@ const getDetails = (details) => {
     // iterate over the detail items of object
     let id = details['name'].replace(/ /g, '_');
     if(details['researched'] === true)
-        markupArray.push(`<li id=${id} class="researched"><span class="tf-nc tree-tech-researched-color"> ${details['name']} </span>`);
+        markupArray.push(`<li id=${id} class="researched"><span class="tf-nc tree-tech-researched-color font-paragraphe"> ${details['name']} </span>`);
     else
-        markupArray.push(`<li id=${id} class="no-researched"><span class="tf-nc tree-tech-no-researched-color"> ${details['name']} </span>`);
+        markupArray.push(`<li id=${id} class="no-researched"><span class="tf-nc tree-tech-no-researched-color font-titre" onclick="askUpdateTech(this)"> ${details['name']} </span>`);
 
     if(Object.entries(details['children']).length !== 0){
         markupArray.push("</div><ul>");
@@ -51,6 +51,11 @@ const getDetails = (details) => {
 
 function drawTreeTech(nameValue){
     markupArray = ["<div class=\"arrow\"><div class=\"arrow-top\"></div><div class=\"arrow-bottom\"></div></div>"];
+    markupArray.push("<div class=\"turn arrow\"><div class=\"arrow-top\"></div><div class=\"arrow-bottom\"></div></div>")
+    markupArray.push("<video autoplay muted loop class=\"background\" >" +
+        "        <source src=\"/get_images/stars_video.mp4\" type=\"video/ogv\"/>\n" +
+        "        <source src=\"/get_images/stars_video.mp4\" type=\"video/mp4\"/>\n" +
+        "    </video>");
     markupArray.push("<ul class='tf-tree'>");
     createList(jsonTreeTech, nameValue);
     markupArray.push("</ul>");
@@ -58,6 +63,7 @@ function drawTreeTech(nameValue){
 }
 
 function askUpdateTech(idTech){
+    idTech = idTech.innerText;
     let valueToSend = "idTech=" + idTech;
     let target = "/treeTech";
     let goal = 3;
@@ -73,11 +79,18 @@ function redrawTreeTech(element){
 }
 
 function animateArrow(){
-    let arrow = document.getElementsByClassName('arrow')[0];
-    arrow.addEventListener('click', function(){
+    let arrow = document.getElementsByClassName('arrow');
+    arrow[0].addEventListener('click', function(){
         indexTree+=1;
         if(indexTree === keyTreeVal.length)
             indexTree = 0;
+        redrawTreeTech(this);
+    });
+
+    arrow[1].addEventListener('click', function(){
+        indexTree-=1;
+        if(indexTree < 0)
+            indexTree = keyTreeVal.length - 1;
         redrawTreeTech(this);
     });
 }
