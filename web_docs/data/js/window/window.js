@@ -36,8 +36,8 @@ function windowConstructor(windowIndex,location) {
       case 3: // Statistiques de la partie
         title = '<h2>Statistique</h2>';
         break;
-      case 4: // Arbre des technologies
-        title = '<h2>Arbres de technologie</h2>';
+      case 5:
+        title = '<h2>Arbre de technologie</h2>';
         break;
       default:
         title = '<h2>Default_Title</h2>';
@@ -61,8 +61,11 @@ function windowConstructor(windowIndex,location) {
       case 3: // Construire un bâtiment sur un système
         content = buildingWindowContent(windowIndex,location);
         break;
-      case 4: // Construire une unité sur un système
+      case 4:
         content = unitWindowContent(windowIndex,location);
+        break;
+      case 5: // Arbre de technologie
+        content = printPartTree();
         break;
       default:
         content = '<h2>Default_Content</h2>';
@@ -71,8 +74,11 @@ function windowConstructor(windowIndex,location) {
     var windowBody = document.querySelector(`[id="${windowID}"] .windowBody`);
     windowBody.insertAdjacentHTML('afterbegin',content);
 
-      if (windowIndex == 3)
-      systemPrev(`c${windowID}`);
+      if (windowIndex === 3)
+        systemPrev(`c${windowID}`);
+
+      if(windowIndex === 5)
+        animateArrow();
   }
 
   windowBase();

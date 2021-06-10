@@ -3,57 +3,171 @@
     "type": "mine",
     "level_tier" : 1,
     "level_production" : 1,
-    "cost" : 10,
+    "cost" : [{
+      "or": 100
+    },
+    {
+      "or": 100,
+      "minerai": 200
+    },
+    {
+      "or": 100,
+      "minerai": 200,
+      "lingot": 200
+    }],
     "pv": 50,
     "maint_cost": 200,
     "state": 0,
     "scaling": [1.25,2,1.5],
-    "production": 15
+    "production": 80
   },
-    "ferme": {
+  "ferme": {
     "type": "ferme",
-    "level" : 1,
+    "level_tier" : 1,
+    "level_production" : 1,
+    "cost" : [{
+      "or": 100,
+      "minerai": 200
+    },
+    {
+      "or": 100,
+      "minerai": 200,
+      "lingot": 200
+    },
+    {
+      "or": 100,
+      "lingot": 200,
+      "electronique": 200
+    }],
+    "pv": 50,
+    "maint_cost": 200,
+    "state": 0,
+    "scaling": [1.25,2,1.5],
+    "production": 1
+  },
+  "labo": {
+    "type": "labo",
+    "level_tier" : 1,
+    "level_production" : 1,
+    "cost" : [{
+      "or": 100,
+      "minerai": 200
+    },
+    {
+      "or": 100,
+      "minerai": 200,
+      "lingot": 200
+    },
+    {
+      "or": 100,
+      "lingot": 200,
+      "elsectronique": 200
+    }],
+    "pv": 50,
+    "maint_cost": 200,
+    "state": 0,
+    "scaling": [1.25,2,1.5],
+    "production": 1
+  },
+  "labo": {
+    "type": "labo",
+    "level_tier" : 1,
+    "level_production" : 1,
     "cost" : 10,
     "pv": 50,
     "maint_cost": 200,
     "state": 0,
     "scaling": [1.25,2,1.5],
-    "production": 15
+    "production": 1
   },
-      "habitation": {
+  "habitation": {
     "type": "habitation",
-    "level" : 1,
-    "cost" : 10,
+    "level_tier" : 1,
+    "level_production" : 1,
+    "cost" : [{
+      "minerai": 100
+    },
+    {
+      "or": 100,
+      "minerai": 200
+    },
+    {
+      "or": 100,
+      "minerai": 200,
+      "lingot": 200
+    }],
     "pv": 50,
     "maint_cost": 200,
     "state": 0,
     "scaling": [1.25,2,1.5],
-    "production": 15
+    "production": 125
   },
-      "raffinerie": {
+  "raffinerie": {
     "type": "raffinerie",
-    "level" : 1,
-    "cost" : 10,
+    "level_tier" : 1,
+    "level_production" : 1,
+    "cost" : [{
+      "or": 100,
+      "minerai": 200
+    },
+    {
+      "or": 100,
+      "minerai": 200,
+      "lingot": 200
+    },
+    {
+      "or": 100,
+      "lingot": 200,
+      "electronique": 200
+    }],
     "pv": 50,
     "maint_cost": 200,
     "state": 0,
     "scaling": [1.25,2,1.5],
     "production": 15
   },
-        "usine": {
+  "usine": {
     "type": "usine",
-    "level" : 1,
-    "cost" : 10,
+    "level_tier" : 1,
+    "level_production" : 1,
+    "cost" : [{
+      "or": 100,
+      "lingot": 200
+    },
+    {
+      "or": 100,
+      "lingot": 200,
+      "electronique": 200
+    },
+    {
+      "or": 100,
+      "lingot": 200,
+      "electronique": 200
+    }],
     "pv": 50,
     "maint_cost": 200,
     "state": 0,
     "scaling": [1.25,2,1.5],
     "production": 15
   },
-          "spatioport": {
+  "spatioport": {
     "type": "spatioport",
-    "level" : 1,
-    "cost" : 10,
+    "level_tier" : 1,
+    "level_production" : 1,
+    "cost" : [{
+      "or": 100,
+      "minerai": 200
+    },
+    {
+      "or": 100,
+      "minerai": 200,
+      "lingot": 200
+    },
+    {
+      "or": 100,
+      "lingot": 200,
+      "electronique": 200
+    }],
     "pv": 50,
     "maint_cost": 200,
     "state": 0,

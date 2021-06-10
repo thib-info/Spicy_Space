@@ -26,10 +26,16 @@ function reactAjax(index, response){
         case 2:
             let jsonTreeTech = JSON.parse(response);
             defineJsonTreeTech(jsonTreeTech);
+            addWindow(5, null);
+            //defWindowTree();
             break;
         case 3:
             if(response===true)
                 redrawTreeTech();
+            break;
+        case 4:
+            let jsonRes = JSON.parse(response);
+            getRessources(jsonRes);
             break;
         case 100:
             justeTest(response);

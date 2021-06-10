@@ -1,13 +1,116 @@
 {
   "destroyer": {
     "name": "destroyer",
-    "type": "military",
     "pv_max" : 10,
     "pa" : 4,
-    "speed": 4,
-    "cost": 2500,
+    "pm": 4,
+    "cost": [{
+              "minerai": 100,
+              "or": 100
+            },
+            {
+              "lingot": 100,
+              "or": 100
+            },
+            {
+              "electronique": 100,
+              "or": 100
+            }
+          ],
     "maint_cost": 200,
     "scaling": [1,1,1,1,1],
-    "evasion": 40
-  }
+    "precision": 70
+  },
+  "tardigrade": {
+    "name": "tardigrade",
+    "pv_max" : 10,
+    "pa" : 4,
+    "pm": 4,
+    "cost": [{
+              "minerai": 100,
+              "or": 100
+            },
+            {
+              "lingot": 100,
+              "or": 100
+            },
+            {
+              "electronique": 100,
+              "or": 100
+            }
+          ],
+    "maint_cost": 200,
+    "scaling": [1,1,1,1,1],
+    "precision": 70
+
+  },
+  "battleship": {
+    "name": "battleship",
+    "pv_max" : 10,
+    "pa" : 4,
+    "pm": 4,
+    "cost": [{
+              "minerai": 100,
+              "or": 100
+            },
+            {
+              "lingot": 100,
+              "or": 100
+            },
+            {
+              "electronique": 100,
+              "or": 100
+            }
+          ],
+    "maint_cost": 200,
+    "scaling": [1,1,1,1,1],
+    "precision": 70
+  },
+  "scout": {
+    "name": "scout",
+    "pv_max" : 10,
+    "pa" : 4,
+    "pm": 4,
+    "cost": [{
+              "minerai": 100,
+              "or": 100
+            },
+            {
+              "lingot": 100,
+              "or": 100
+            },
+            {
+              "electronique": 100,
+              "or": 100
+            }
+          ],
+    "maint_cost": 200,
+    "scaling": [1,1,1,1,1],
+    "precision": 70
+    },
+  "colon": {
+    "name": "colon",
+    "pv_max" : 10,
+    "pa" : 4,
+    "pm": 4,
+    "cost": [{
+              "minerai": 100,
+              "or": 100
+            },
+            {
+              "lingot": 100,
+              "or": 100
+            },
+            {
+              "electronique": 100,
+              "or": 100
+            }
+          ],
+    "maint_cost": 200,
+    "scaling": [1,1,1,1,1],
+    "precision": 70
+    }
 }
+
+
+

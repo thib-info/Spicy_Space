@@ -21,3 +21,13 @@
 .no-researched{
     color: red;
 }
+
+.background-tree-tech{
+    position : absolute;
+    right: 0;
+    top :0;
+    max-width: 100%;
+    height: auto;
+    width: auto;
+    z-index : 0;
+}
