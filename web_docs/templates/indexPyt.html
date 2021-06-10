@@ -27,9 +27,67 @@
     <script src="{{url_for('static', filename='js/ajax/ajaxCall.js')}}"></script>
     <script src="{{url_for('static', filename='js/ajax/getMap.js')}}"></script>
     <script src="{{url_for('static', filename='js/ajax/exampleConnexion.js')}}"></script>
+    <script src="{{url_for('static', filename='js/ajax/getRessources.js')}}"></script>
 </head>
+
 <body style="background-image: url('get_img/background.png')">
-<div class="top-bar custom-gradient"></div>
+<div class="top-bar custom-gradient">
+    <div id="container-top-left">
+        <div id="container-minerais" class="top-bar-container-items">
+            <img src="get_img/minerais.png" class="top-bar-icon">
+            <div class="container-value">
+                <p id="minerai_q" class="font-paragraphe">10</p>
+                <p id="minerai_qt" class="font-paragraphe production">(+20)</p>
+            </div>
+        </div>
+        <div id="container-minerais2" class="top-bar-container-items">
+            <img src="get_img/Cuivre.png" class="top-bar-icon">
+            <div class="container-value">
+                <p id="lingot_q" class="font-paragraphe">10</p>
+                <p id="lingot_qt" class="font-paragraphe production">(+20)</p>
+            </div>
+        </div>
+        <div id="container-minerais3" class="top-bar-container-items">
+            <img src="get_img/PCB.png" class="top-bar-icon">
+            <div class="container-value">
+                <p id="electronique_q" class="font-paragraphe">10</p>
+                <p id="electronique_qt" class="font-paragraphe production">(+20)</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="container-top-right">
+        <div id="container-monnaie" class="top-bar-container-items">
+            <img src="get_img/monnaie.png" class="top-bar-icon">
+            <div class="container-value">
+                <p id="or_q" class="font-paragraphe">10</p>
+                <p id="or_qt" class="font-paragraphe production">(+20)</p>
+            </div>
+        </div>
+        <div id="container-scientificPoint" class="top-bar-container-items">
+            <img src="get_img/erlenmeyer.png" class="top-bar-icon">
+            <div class="container-value">
+                <p id="science_q" class="font-paragraphe">10</p>
+                <p id="science_qt" class="font-paragraphe production">(+20)</p>
+            </div>
+        </div>
+        <div id="container-nourriture" class="top-bar-container-items">
+            <img src="get_img/Nourriture.png" class="top-bar-icon">
+            <div class="container-value">
+                <p id="nourriture_q" class="font-paragraphe">10</p>
+                <p id="nourriture_qt" class="font-paragraphe production">(+20)</p>
+            </div>
+        </div>
+        <div id="container-population" class="top-bar-container-items">
+            <img src="get_img/Population.png" class="top-bar-icon">
+            <div class="container-value">
+                <p id="population_q" class="font-paragraphe">10</p>
+                <p id="population_qt" class="font-paragraphe production">(+20)</p>
+            </div>
+        </div>
+    </div>
+</div>
+>>>>>>> update-res
 <div id="windowMenu">
     <button type="button" onclick="addWindow(0,null)">Technologies</button>
     <button type="button" onclick="addWindow(1,null)">Diplomatie</button>
@@ -39,7 +97,9 @@
     <canvas id="canvas" style="position: absolute;"></canvas>
 </div>
 <div class="container-menu">
-    <div class="btn-menu button-menu-color"></div>
+    <div class="btn-menu button-menu-color">
+        <img src="get_img/bouttonMenu.png">
+    </div>
     <div id="statistique" class="menu-item blob-1">
         <img src="{{url_for('static', filename='images/Menu/statistiques.png')}}" class="menu-item">
         <p class="name-item name-menu-item-color font-style-menu font-ouverture">Statistiques</p>
