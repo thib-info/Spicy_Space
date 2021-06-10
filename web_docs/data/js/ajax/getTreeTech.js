@@ -53,8 +53,8 @@ function drawTreeTech(nameValue){
     markupArray = ["<div class=\"arrow\"><div class=\"arrow-top\"></div><div class=\"arrow-bottom\"></div></div>"];
     markupArray.push("<div class=\"turn arrow\"><div class=\"arrow-top\"></div><div class=\"arrow-bottom\"></div></div>")
     markupArray.push("<video autoplay muted loop class=\"background\" >" +
-        "        <source src=\"/get_images/stars_video.mp4\" type=\"video/ogv\"/>\n" +
-        "        <source src=\"/get_images/stars_video.mp4\" type=\"video/mp4\"/>\n" +
+        "        <source src=\"/get_img/stars_video.mp4\" type=\"video/ogv\"/>\n" +
+        "        <source src=\"/get_img/stars_video.mp4\" type=\"video/mp4\"/>\n" +
         "    </video>");
     markupArray.push("<ul class='tf-tree'>");
     createList(jsonTreeTech, nameValue);
