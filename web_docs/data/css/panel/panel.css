@@ -49,6 +49,25 @@
 }
 
 
+.unselectedShip{
+    color: white;
+}
+
+.selectedShip{
+    color: red;
+}
+
+#nav{
+height:200px;
+
+}
+
+#nav ul{
+overflow:hidden;
+overflow-y:scroll;
+}
+
+
 .btn-pannel {
     background-image: linear-gradient(to right, #003973 0%, #E5E5BE  51%, #003973  100%)
 }

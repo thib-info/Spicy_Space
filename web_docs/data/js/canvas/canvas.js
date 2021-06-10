@@ -485,7 +485,7 @@ function loadMap(){
         ships[i.toString()] = [];
     }
     for (let i = 0 ; i < units.length ; i++) {
-        ships[i.toString()].push(units[i]);
+        ships[units[i]["id_system"]].push(units[i]);
     }
 
     // determine the color of each star for the entire game (only visual)

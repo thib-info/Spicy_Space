@@ -108,4 +108,25 @@ function addPanel(panelIndex,location,isRight) {
       leftPanel = 0;
     panelElement.remove();
   }
+  var list_ship = document.querySelectorAll('#nav1>ul>li');
+
+  for (var i = 0; i < list_ship.length; i++) {
+    list_ship[i].addEventListener("click", toggle);
 }
+  var list_ennemy_ship = document.querySelectorAll('#nav2>ul>li');
+
+  for (var i = 0; i < list_ennemy_ship.length; i++) {
+    list_ennemy_ship[i].addEventListener("click", toggle);
+    
+
+}
+
+
+}
+
+function toggle() {
+  this.classList.toggle("unselectedShip");
+  this.classList.toggle("selectedShip");
+}
+
+
