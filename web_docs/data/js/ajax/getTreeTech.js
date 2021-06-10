@@ -99,3 +99,13 @@ function printPartTree(){
     let nameToPrint = keyTreeVal[indexTree];
     return drawTreeTech(nameToPrint);
 }
+
+function defWindowTree(){
+    let windows = document.getElementsByClassName("window");
+    console.log(windows);
+    for(let window of windows){
+        if(window.children[0].innerText === "Arbre de technologie"){
+            window.children[1].classList.add("background-tree-tech");
+        }
+    }
+}
