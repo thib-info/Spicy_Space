@@ -38,6 +38,9 @@ class game():
         for key,model in conf_unit.items():
             self.models[key] = unit(model, -1, -1)
 
+        conf_tech = load_conf_f("base_tech")
+        self.models["tech"] = conf_tech
+
 
         conf_ress = load_conf_f("ressources")
         self.models["ressources"] = {}
@@ -139,6 +142,7 @@ class game():
             temp_p = player()
             temp_p.set_param(pid, name, isMj)
             temp_p.ressources_init_player(self.models["ressources"])
+            temp_p.import_tree(self.models["tech"])
 
 
             print(temp_p.ressources)
@@ -384,6 +388,8 @@ class game():
         for sys_id in pl.systems_id:
             s_id = self.map.get_system(sys_id)
             sys_details[s_id] = self.map.systems[s_id].export_system_info()
+
+        output["tech"] = pl.tech
 
         output["syst_details"] = sys_details
 
