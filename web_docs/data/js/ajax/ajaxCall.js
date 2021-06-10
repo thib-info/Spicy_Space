@@ -27,7 +27,7 @@ function reactAjax(index, response){
             let jsonTreeTech = JSON.parse(response);
             defineJsonTreeTech(jsonTreeTech);
             addWindow(5, null);
-            defWindowTree();
+            //defWindowTree();
             break;
         case 3:
             if(response===true)

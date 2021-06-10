@@ -18,7 +18,7 @@
   width: 100%;
 }
 .arrow-top:after, .arrow-bottom:after {
-  background-color: #000;
+  background-color: #fff;
   content: "";
   height: 100%;
   position: absolute;
