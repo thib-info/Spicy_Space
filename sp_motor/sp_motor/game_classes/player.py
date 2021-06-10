@@ -43,7 +43,17 @@ class player :
     def import_tree(self, model, key):
         self.tech[key] = deepcopy(model)
 
+    def can_build(self, bat):
+        buffer = parcours(self.tech, bat)
+        if buffer != None & buffer["researched"]:
+            return True
+        return False
 
+    def can_upgrade(self, bat):
+        buffer = parcours(self.tech, bat)
+        if buffer != None & buffer["children"] != [] & self.ressources["science"] > self.tech["cost"]:
+            return True
+        return False
 
 
     ####################################################
