@@ -59,57 +59,81 @@ const shipImage = new Image();
 shipImage.addEventListener('load', function() {
   loadedImages += 1;
 }, false);
-shipImage.src ="../data/images/ship.png";
+
+if(!checkAjax)
+  shipImage.src ="../data/images/ship.png";
+else
+  shipImage.src ="get_img/ship.png";
 
 const shipHoverImage = new Image();
 shipHoverImage.addEventListener('load', function() {
   loadedImages += 1;
 }, false);
-shipHoverImage.src ="../data/images/shipHover.png";
+if(!checkAjax)
+  shipHoverImage.src ="../data/images/shipHover.png";
+else
+  shipHoverImage.src ="get_img/shipHover.png";
 
 const star1Image = new Image();
 star1Image.addEventListener('load', function() {
   starImages["1"] = star1Image;
   loadedImages += 1;
 }, false);
-star1Image.src ="../data/images/star1.png";
+if(!checkAjax)
+  star1Image.src ="../data/images/star1.png";
+else
+  star1Image.src ="get_img/star1.png";
 
 const star1HoverImage = new Image();
 star1HoverImage.addEventListener('load', function() {
   starHoverImages["1"] = star1HoverImage;
   loadedImages += 1;
 }, false);
-star1HoverImage.src ="../data/images/star1Hover.png";
+
+if(!checkAjax)
+  star1HoverImage.src ="../data/images/star1Hover.png";
+else
+  star1HoverImage.src ="get_img/star1Hover.png";
 
 const star2Image = new Image();
 star2Image.addEventListener('load', function() {
   starImages["2"] = star2Image;
   loadedImages += 1;
 }, false);
-star2Image.src ="../data/images/star2.png";
+if(!checkAjax)
+  star2Image.src ="../data/images/star2.png";
+else
+  star2Image.src ="get_img/star2.png";
 
 const star2HoverImage = new Image();
 star2HoverImage.addEventListener('load', function() {
   starHoverImages["2"] = star2HoverImage;
   loadedImages += 1;
 }, false);
-star2HoverImage.src ="../data/images/star2Hover.png";
+if(!checkAjax)
+  star2HoverImage.src ="../data/images/star2Hover.png";
+else
+  star2HoverImage.src ="get_img/star2Hover.png";
 
 const star3Image = new Image();
 star3Image.addEventListener('load', function() {
   starImages["3"] = star3Image;
   loadedImages += 1;
 }, false);
-star3Image.src ="../data/images/star3.png";
-
-if(checkAjax) starImage.src ="../data/images/star2.png";
+if(!checkAjax)
+  star3Image.src ="../data/images/star3.png";
+else
+  star3Image.src ="get_img/star3.png";
 
 const star3HoverImage = new Image();
 star3HoverImage.addEventListener('load', function() {
   starHoverImages["3"] = star3HoverImage;
   loadedImages += 1;
 }, false);
-star3HoverImage.src ="../data/images/star3Hover.png";
+if(!checkAjax)
+  star3HoverImage.src ="../data/images/star3Hover.png";
+else
+  star3HoverImage.src ="get_img/star3Hover.png";
 
 
 var clickingOnStar = false, clickingOnShip = false, starHovered = false, shipHovered = false;
@@ -125,25 +149,7 @@ var topCanvas, leftCanvas;
 
 
 var X = [], Y = [], links = [], ships = [];
-data["systems"].forEach((system) => {
-  X.push(system["pos"][0]);
-  Y.push(system["pos"][1]);
-});
-data["links"].forEach((link) => {
-  links.push([link["start"],link["end"]]);
-});
-
-for (let i = 0 ; i < X.length ; i++) {
-  ships[i.toString()] = [];
-}
-for (let i = 0 ; i < units.length ; i++) {
-  ships[i.toString()].push(units[i]);
-}
-
-// determine the color of each star for the entire game (only visual)
 var starColors = [];
-for (let i = 0 ; i < X.length ; i++)
-  starColors.push(Math.floor(Math.random() * 3) + 1);
 
 const mouse = {
   x: 0,
@@ -434,7 +440,7 @@ function drawStars() {
 }
 
 function update() {
-  if(dataLoaded & !mapLoaded) {
+  if(dataLoaded && !mapLoaded) {
       loadMap();
       mapLoaded=true;
   }
@@ -447,8 +453,9 @@ function update() {
   displayTransform.setHome();
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   // if the image loaded show it
-  if (loadedImages == 8 & mapLoaded) {
+  
     displayTransform.setTransform();
+    if (loadedImages == 8 & mapLoaded) {
     drawStars();
   }
 
@@ -465,12 +472,26 @@ function setData(jsonMap){
 }
 
 function loadMap(){
+
     data["systems"].forEach((system) => {
-    X.push(system["pos"][0]);
-    Y.push(system["pos"][1]);
+        X.push(system["pos"][0]);
+        Y.push(system["pos"][1]);
     });
     data["links"].forEach((link) => {
-    links.push([link["start"],link["end"]]);
+        links.push([link["start"],link["end"]]);
     });
+
+    for (let i = 0 ; i < X.length ; i++) {
+        ships[i.toString()] = [];
+    }
+    for (let i = 0 ; i < units.length ; i++) {
+        ships[i.toString()].push(units[i]);
+    }
+
+    // determine the color of each star for the entire game (only visual)
+    
+    for (let i = 0 ; i < X.length ; i++)
+    starColors.push(Math.floor(Math.random() * 3) + 1);
+
 
 }

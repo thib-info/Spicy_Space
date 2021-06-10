@@ -1,6 +1,6 @@
 import sqlite3
 import json
-
+import os
 from bdd import give_connection
 
 from bdd import  add_game, get_game_id, can_join, rm_game, list_game_users
@@ -70,15 +70,35 @@ def connect_user(login, passw, con):
     return False
 
 
+def list_files(path):
+    output = {}
+    for filename in os.listdir(path):
+        if os.path.isdir(os.path.join(path ,filename)):
+            output[filename] = list_files(os.path.join(path ,filename))
+        else:
+            output[filename] = None
 
-conn = give_connection('dev')
+    return output
 
-# print(register_player("user2", "test", conn))
-# print(create_game(1, "game2", "naze", conn))
+def find_file(arbo, filename):
+    for c, v in arbo.items():
+        if v == None:
+            if c == filename:
+                return c
+            
+        if v != None:
+            temp = find_file(v, filename)
+            if temp != None:
+                return os.path.join(c, temp)
 
-print(give_mj(1, "user2", 4, conn))
+            
+            
 
 
 
+    
+        
+    
 
-conn.close()
+    
+    
