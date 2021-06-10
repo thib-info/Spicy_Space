@@ -11,7 +11,7 @@ from bdd import give_connection
 from bdd import add_user, get_user_id, compare_passw
 
 
-from game_utils import game, create_game
+from game_utils import game, create_game, join_game
 
 
 from backend import list_files, find_file
@@ -23,6 +23,7 @@ app.config.from_object('config')
 
 
 sg_a = create_game()
+
 
 
 bdd_con = 'dev'
@@ -46,6 +47,8 @@ def login_required(f):
 @app.route('/')
 @login_required
 def main():
+    if sg_a.get_player(session["user_id"]) == -1:
+        join_game(sg_a, session["user_id"], session["pseudo"])
     return render_template('indexPyt.html', reload = time.time())
 
 
@@ -70,6 +73,7 @@ def connexion():
         if compare_passw(pseudo, passwd, bdd_con):
             session['connected'] = True
             session["user_id"] = get_user_id(pseudo, bdd_con)
+            session["pseudo"] = pseudo
             flash('connexion !')
             return redirect(url_for('main'))
 
@@ -90,9 +94,14 @@ def deco():
 
 
 
-@app.route("/map", methods=["POST"])
+@app.route("/map", methods=[ "POST"])
 def mapSend():
-    pass
+    return jsonify(sg_a.map.export_info())
+
+
+@app.route("/player_info", methods=["GET", "POST"])
+def send_p_info():
+    return jsonify(sg_a.to_front(session["user_id"]))
 
 @app.route("/treeTech", methods=["POST"])
 def treeTechSend():
@@ -103,6 +112,9 @@ def treeTechSend():
         with open("../config/base_tech.json") as f:
             treeTech=json.load(f)
         return jsonify(treeTech)
+
+
+
 
 @app.route("/get_img/<name>")
 def give_img(name):
