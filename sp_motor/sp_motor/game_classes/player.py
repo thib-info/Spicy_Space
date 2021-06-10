@@ -17,7 +17,7 @@ class player :
         self.units_id = []
         self.known_systems = []
         self.ressources = {}
-        self.tech = None
+        self.tech = {}
 
         self.allies_id = []
         self.enemies_id = []

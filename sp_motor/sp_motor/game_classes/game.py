@@ -397,7 +397,7 @@ class game():
 
         output["tech"] = {}
         for c, v in pl.tech.items():
-            output["tech"][c] = v.tofront()
+            output["tech"][c] = v.to_front()
 
         output["syst_details"] = sys_details
         
