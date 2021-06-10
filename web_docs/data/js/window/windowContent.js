@@ -46,13 +46,13 @@ function buildingWindowContent(windowIndex,location) {
 
   let defaufltbutton3=                    ` " class="b_select">
                   <option value="">Construire un batiment</option>
-                  <option value="ferme">Ferme</option>
-                  <option value="habitations">Habitations</option>
-                  <option value="mine">Mine</option>
-                  <option value="rafinerie">Rafinerie</option>
-                  <option value="usine">Usine</option>
-                  <option value="laboratoire">Laboratoire</option>
-                  <option value="spatioport">Spatioport</option>
+                  <option value="ferme">Ferme   \tcout: 100 or, 200 minerai</option>
+                  <option value="habitations">Habitations   \tcout: 100 minerai</option>
+                  <option value="mine">Mine     \tcout: 100 or</option>
+                  <option value="rafinerie">Rafinerie   \tcout: 100 or, 200 minerai</option>
+                  <option value="usine">Usine   \tcout: 100 or, 200 lingot</option>
+                  <option value="laboratoire">Laboratoire   \t cout: 100 or, 200 minerai</option>
+                  <option value="spatioport">Spatioport    \t cout: 100 or, 200 minerai</option>
                  </select>
   `;
 
