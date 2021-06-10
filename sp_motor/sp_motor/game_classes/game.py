@@ -379,7 +379,14 @@ class game():
         output["enemies_id"] = pl.enemies_id[:]
 
         #les systemes qu'il peut voir, pour le fog
-        output["visible_systs"] = [self.map.get_system(id) for id in pl.known_systems]
+        temp = [self.map.get_system(id) for id in pl.known_systems]
+        envi = []
+        for i in temp:
+            for j in range(self.map.graph_link.shape[0]):
+                if self.map.graph_link[i, j] > 0:
+                    envi.append(j)
+
+        output["visible_systs"] = list(set(temp + envi))
 
 
         
