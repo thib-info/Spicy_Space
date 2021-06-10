@@ -12,7 +12,7 @@
     left: 0;
     width: 100%;
     height: 40%;
-    background-color: red;
+    background-image: linear-gradient(to bottom, #051937, #001b4b, #001b5e, #001870, #101080);
 }
 
 .d_button{
