@@ -19,9 +19,6 @@ class building:
         self.level_tier = 0
         self.level_tier_max = 3
         self.level_production = 0
-        self.cost = {}
-        self.cost2 = {}
-        self.cost3 = {}
         self.maint_cost = 0
         self.state = 0
         self.production_per_turn = 0
