@@ -82,7 +82,12 @@ class technology:
             return True
         return False
 
-def up(name):
-    conf = load_conf_f("base_tech")
-    tech = technology(conf, name)
-    return tech.upgradable()
+    def to_front(self):
+        dic = {
+            "name": self.name,
+            "cost": self.cost,
+            "researched": self.unlocked,
+            "children": self.upgrade
+        }
+        return dic
+
