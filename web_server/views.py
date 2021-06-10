@@ -52,6 +52,13 @@ def main():
     return render_template('indexPyt.html', reload = time.time())
 
 
+
+@app.route('/regen')
+@login_required
+def regen():
+    sg_a = create_game()
+    return redirect(url_for('main'))
+
 @app.route('/connexion', methods=['GET','POST'])
 def connexion():
     if request.method == 'POST':
