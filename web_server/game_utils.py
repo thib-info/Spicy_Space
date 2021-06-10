@@ -32,6 +32,7 @@ def create_game():
 
 def join_game(g, player_id, player_name, p_quality=False):
     result = g.create_player(player_id, player_name, p_quality)
+    g.update_players_syst()
 
     return result
 

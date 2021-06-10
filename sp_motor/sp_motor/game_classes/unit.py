@@ -21,6 +21,7 @@ class unit:
         self.cost = conf["cost"]
         self.maint_cost = conf["maint_cost"] + (self.tier-1)*conf["scaling"][4]*conf["maint_cost"]
         self.pv = self.pv_max
+        self.cible = -1
 
 
 
@@ -42,7 +43,11 @@ class unit:
 
 
     def take_damage(self, damage_taken):
-        self.pv = self.pv - damage_taken
+        
+        if self.name == "tardigrade":
+            self.pv = int(self.pv - 0.8 * damage_taken)
+        else:
+            self.pv = self.pv - damage_taken
 
     def heal_damage(self, damage_healed):
             self.pv = self.pv + damage_healed

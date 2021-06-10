@@ -4,6 +4,8 @@ import numpy as np
 
 from sp_motor.players_interactions.Players_interraction import Players_interraction
 from sp_motor.utils import load_conf_f
+from sp_motor.game_classes.technology import parcours
+
 
 
 
@@ -42,6 +44,18 @@ class player :
     ################## fonction pour tech #########
     def import_tree(self, model, key):
         self.tech[key] = deepcopy(model)
+
+    def can_build(self, name):
+        buffer = parcours(self.tech, name)
+        if buffer != None & buffer["researched"]:
+            return True
+        return False
+
+    def can_upgrade(self, name):
+        buffer = parcours(self.tech, name)
+        if buffer != None & buffer["children"] != [] & self.ressources["science"] > self.tech["cost"]:
+            return True
+        return False
 
 
 

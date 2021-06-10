@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, render_template, redirect, url_for, session, flash, send_file
+from flask import Flask, jsonify, request, render_template, redirect, url_for, session, flash, send_file, g
 from functools import wraps
 
 import time
@@ -51,6 +51,14 @@ def main():
         join_game(sg_a, session["user_id"], session["pseudo"])
     return render_template('indexPyt.html', reload = time.time())
 
+
+
+@app.route('/regen')
+@login_required
+def regen():
+    global sg_a
+    sg_a = create_game()
+    return redirect(url_for('main'))
 
 @app.route('/connexion', methods=['GET','POST'])
 def connexion():

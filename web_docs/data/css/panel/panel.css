@@ -48,6 +48,7 @@
   height: 10%;
 }
 
+
 .unselectedShip{
     color: white;
 }
@@ -65,3 +66,37 @@ height:200px;
 overflow:hidden;
 overflow-y:scroll;
 }
+
+
+.btn-pannel {
+    background-image: linear-gradient(to right, #003973 0%, #E5E5BE  51%, #003973  100%)
+}
+
+.btn-pannel {
+    margin: 10px;
+    margin-bottom: 25px !important;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+}
+
+.btn-pannel:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}
+
+.container-button{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2%;
+}
+
