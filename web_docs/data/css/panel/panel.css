@@ -50,22 +50,29 @@
 
 
 .unselectedShip{
-    color: white;
+    border: 2px solid black;
+    color: grey;
+    list-style-type: none;
 }
 
 .selectedShip{
-    color: red;
+    border: 2px solid black;
+    color: white;
+    list-style-type: none;
 }
 
-#nav{
+#nav1{
 height:200px;
 
 }
+
 
 #nav ul{
 overflow:hidden;
 overflow-y:scroll;
 }
+
+
 
 
 .btn-pannel {
