@@ -11,12 +11,18 @@ from bdd import give_connection
 from bdd import add_user, get_user_id, compare_passw
 
 
+from game_utils import game, create_game
+
+
 from backend import list_files, find_file
 
 app = Flask(__name__)
 app.static_folder = "../web_docs/data"
 app.template_folder = "../web_docs/templates"
 app.config.from_object('config')
+
+
+sg_a = create_game()
 
 
 bdd_con = 'dev'
@@ -87,34 +93,13 @@ def give_img(name):
 
 @app.route('/api/user', methods=['POST'])
 def api_user():
-    info = {
-        "username":"test1",
-        "games":{
-            "test1":{
-                "activated":True,
-                "last_played":'2020-12-01',
-            },
-            "test2":{
-                "activated":False,
-                "last_played":'2020-12-01',
-            },
-        },
-        "info_nulle":["naze", 1]
-    }
+    return jsonify({})
 
-    return jsonify(info)
 
-@app.route('/api/rendu', methods=['POST'])
-def rendu():
-    a = int(request.form.get('a'))
-    
-    return jsonify({'resp':a})
 
 @app.route("/map", methods=["POST"])
 def mapSend():
-    with open("../game_data/map.json") as f:
-        map=json.load(f)
-    return jsonify(map)
+    pass
 
 @app.route("/treeTech", methods=["POST"])
 def treeTechSend():
