@@ -127,37 +127,37 @@ function  replace_image(selector_id){
     switch (id_image) {
       case "ferme":
         torepalce.outerHTML = `<img class="b_image"
-       src="../../web_docs/data/images/batiments/ferme.png"
+       src="get_img/ferme.png"
        alt="OUI">`
         break;
       case "habitations":
         torepalce.outerHTML = `<img class="b_image"
-       src="../../web_docs/data/images/batiments/city.png"
+       src="get_img/city.png"
        alt="OUI">`
         break;
       case "mine":
         torepalce.outerHTML = `<img class="b_image"
-       src="../../web_docs/data/images/batiments/mine.png"
+       src="get_img/mine.png"
        alt="OUI">`
         break;
       case "rafinerie":
         torepalce.outerHTML = `<img class="b_image"
-       src="../../web_docs/data/images/batiments/fondrie.png"
+       src="get_img/fondrie.png"
        alt="OUI">`
         break;
       case "usine":
         torepalce.outerHTML = `<img class="b_image"
-       src="../../web_docs/data/images/batiments/usine.png"
+       src="get_img/usine.png"
        alt="OUI">`
         break;
       case "laboratoire":
         torepalce.outerHTML = `<img class="b_image"
-       src="../../web_docs/data/images/batiments/labo.png"
+       src="get_img/labo.png"
        alt="OUI">`
         break;
       case "spatioport":
         torepalce.outerHTML = `<img class="b_image"
-       src="../../web_docs/data/images/batiments/spatioport.png"
+       src="get_img/Spatioport.png"
        alt="OUI">`
         break;
       default:
