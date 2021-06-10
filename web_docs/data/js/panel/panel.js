@@ -46,14 +46,10 @@ function panelConstructor(panelIndex, location,isRight) {
     var content;
     switch (panelIndex) {
       case 0: // Apercu général du système
-        content = `
-        <p>Ici il y aura tous les éléments relatifs au système ${location}</p>
-        <button type="button" onclick="addWindow(3,${location})">Bâtiments...</button>
-        <button type="button" onclick="addWindow(4,${location})">Unités...</button>
-        `;
+        content = systemPanelContent(location);
         break;
       case 1: // Vaisseaux / flottes
-        content = `<p>Ici il y aura tous les éléments relatifs aux Vaisseaux du système ${location}</p>`;
+        content = shipPanelContent(location);
         break;
       default:
         content = '<h2>Default_Content</h2>';
@@ -61,6 +57,8 @@ function panelConstructor(panelIndex, location,isRight) {
     }
     var panelBody = document.querySelector(`[id="${panelID}"] .panelBody`);
     panelBody.insertAdjacentHTML('afterbegin',content);
+    if (panelIndex == 0)
+      systemPrev(`c${location}`);
   }
   panelBase();
   panelTitle();
@@ -82,12 +80,14 @@ function addPanel(panelIndex,location,isRight) {
     leftPanel = panelElement;
 
   function detect(e) {
+    console.log("detecting");
     let targetElement = e.target; // clicked element
     do {
         if (targetElement == panelElement // click inside the panel
           || targetElement == document.getElementById("windowMenu") // click inside the bar
           || windows.includes(targetElement) // click inside a window
-          || clickingOnStar) { // clicking right now on the star
+          || clickingOnStar // clicking right now on the star
+          || clickingOnShip) { // clicking right now on the ship
             return;
         }
         targetElement = targetElement.parentNode;

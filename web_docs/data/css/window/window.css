@@ -34,7 +34,7 @@ body {
   position: relative;
   padding: 10px;
   z-index: inherit;
-  height: inherit;
+  height: 100%;
 }
 
 .centerWrapper {
