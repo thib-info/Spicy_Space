@@ -128,37 +128,37 @@ function  replace_image(selector_id){
       case "ferme":
         torepalce.outerHTML = `<img class="b_image"
        src="get_img/ferme.png"
-       alt="OUI">`
+       >`
         break;
       case "habitations":
         torepalce.outerHTML = `<img class="b_image"
        src="get_img/city.png"
-       alt="OUI">`
+       >`
         break;
       case "mine":
         torepalce.outerHTML = `<img class="b_image"
        src="get_img/mine.png"
-       alt="OUI">`
+       >`
         break;
       case "rafinerie":
         torepalce.outerHTML = `<img class="b_image"
        src="get_img/fondrie.png"
-       alt="OUI">`
+       >`
         break;
       case "usine":
         torepalce.outerHTML = `<img class="b_image"
        src="get_img/usine.png"
-       alt="OUI">`
+       >`
         break;
       case "laboratoire":
         torepalce.outerHTML = `<img class="b_image"
        src="get_img/labo.png"
-       alt="OUI">`
+       >`
         break;
       case "spatioport":
         torepalce.outerHTML = `<img class="b_image"
        src="get_img/Spatioport.png"
-       alt="OUI">`
+       >`
         break;
       default:
         break;
