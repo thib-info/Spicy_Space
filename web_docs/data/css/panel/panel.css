@@ -47,3 +47,21 @@
   margin: 10px;
   height: 10%;
 }
+
+.unselectedShip{
+    color: white;
+}
+
+.selectedShip{
+    color: red;
+}
+
+#nav{
+height:200px;
+
+}
+
+#nav ul{
+overflow:hidden;
+overflow-y:scroll;
+}
