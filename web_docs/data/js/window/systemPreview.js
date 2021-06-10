@@ -1,9 +1,3 @@
-function drawBg(cw,ch) {
-  ctx.clearRect(0, 0, cw, ch);
-    ctx.fillStyle = "black";
-    ctx.fillRect(0, 0, cw, ch);
-}
-
 function systemPrev(canvasId) {
   const canvas = document.getElementById(canvasId);
   const ctx = canvas.getContext("2d");
@@ -14,7 +8,6 @@ function systemPrev(canvasId) {
   ctx.strokeStyle = "white"; // color of orbits
 
   const canvasPercentage = canvas.width / 100 / 2;
-  drawBg(cw,ch);
   var key = sha256(canvasId);
   var usedSurface = 0; // when it reaches 100, stop plotting.
   var index = 0;

@@ -2,7 +2,7 @@
   position: absolute;
   background-color: #f1f1f1;
   border: 1px solid #d3d3d3;
-
+  background-image: linear-gradient(to bottom, #051937, #001b4b, #001b5e, #001870, #101080);
   width: 20%;
   height: 80%;
   z-index: 8;
@@ -40,4 +40,10 @@
 .panelBody {
   padding: 10px;
   z-index: inherit;
+}
+
+.panel button {
+  width: 80%;
+  margin: 10px;
+  height: 10%;
 }
